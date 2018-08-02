@@ -4,30 +4,27 @@ import app.Platformer;
 import app.constants.Constants;
 import app.enums.ESongType;
 import app.interfaces.IDrawable;
+import app.utils.ResourceUtils;
 
-import javax.inject.Inject;
-
+/**
+ * enemy
+ */
 public class Enemy extends ACharacter implements IDrawable {
-
-    // main sketch
-    @Inject
-    Platformer platformer;
 
     // true means flying enemy (not affected by gravity)
     protected boolean isFlying;
 
-    // true means invulnerable, cannot be killed by player contact
+    // true means invulnerable; always kills player on contact
     protected boolean isInvulnerable;
 
-    // true means visible by player
     protected boolean isVisible;
 
     /**
      * set properties of this
      */
-    Enemy(int x, int y, int diameter, float runSpeed,
-          boolean isFlying, boolean isInvulnerable, boolean isVisible, boolean isActive) {
-        super(x, y, diameter, isActive);
+    public Enemy(Platformer mainSketch, int x, int y, int diameter, float runSpeed,
+                 boolean isFlying, boolean isInvulnerable, boolean isVisible, boolean isActive) {
+        super(mainSketch, x, y, diameter, isActive);
         this.vel.x = runSpeed;
 
         this.isFlying = isFlying;
@@ -40,12 +37,12 @@ public class Enemy extends ACharacter implements IDrawable {
      * range of collision angles (in degrees): [0, 90]
      * negative angle means no collision
      */
-    double collisionWithPlayer() {
-        float xDifference = Math.abs(this.pos.x - getCurrentActivePlayer().pos.x); // TODO: encapsulate
-        float yDifference = Math.abs(this.pos.y - getCurrentActivePlayer().pos.y); // TODO: encapsulate
+    public double collisionWithPlayer() {
+        float xDifference = Math.abs(this.pos.x - this.mainSketch.getCurrentActivePlayer().pos.x); // TODO: encapsulate
+        float yDifference = Math.abs(this.pos.y - this.mainSketch.getCurrentActivePlayer().pos.y); // TODO: encapsulate
 
         // distance between player and this must be sum of their radii for collision
-        float distanceNeededForCollision = (this.diameter / 2) + (getCurrentActivePlayer().diameter / 2); // TODO: encapsulate
+        float distanceNeededForCollision = (this.diameter / 2) + (this.mainSketch.getCurrentActivePlayer().diameter / 2); // TODO: encapsulate
 
         // pythagorean theorem
         boolean isAtCollisionDistance =
@@ -61,12 +58,12 @@ public class Enemy extends ACharacter implements IDrawable {
     /**
      * runs continuously. handles enemy movement and physics
      */
-    void draw() {
+    public void draw() {
         this.checkHandleContactWithPlayer();
         this.handleMovement();
 
         if(this.isVisible) {
-            platformer.fill(Constants.ENEMY_COLOR);
+            this.mainSketch.fill(Constants.ENEMY_COLOR);
             this.show();
         }
     }
@@ -75,26 +72,26 @@ public class Enemy extends ACharacter implements IDrawable {
      *  check and handle contact with player
      */
     private void checkHandleContactWithPlayer() {
-        if(getCurrentActivePlayer().isActive) {   // to prevent multiple consecutive deaths TODO: encapsulate
+        if(this.mainSketch.getCurrentActivePlayer().isActive) {   // to prevent multiple consecutive deaths TODO: encapsulate
             double collisionAngle = this.collisionWithPlayer();
             if(collisionAngle >= 0) {
                 System.out.println("coll angle: " + Math.toDegrees(collisionAngle));
                 System.out.println("min angle: " + Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE);
 
                 if(Math.toDegrees(collisionAngle) >= Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE
-                    && this.pos.y > getCurrentActivePlayer().pos.y
+                    && this.pos.y > this.mainSketch.getCurrentActivePlayer().pos.y
                     && !this.isInvulnerable)  // player is above this // TODO: encapsulate
                 {
                     System.out.println("killed enemy: " + Math.toDegrees(collisionAngle));
-                    playSong(ESongType.PlayerAction);
+                    ResourceUtils.playSong(ESongType.PlayerAction);
                     this.makeNotActive();
-                    getCurrentActiveCharactersList().remove(this);
-                    getCurrentActivePlayer().handleJumpKillEnemyPhysics();
+                    this.mainSketch.getCurrentActiveCharactersList().remove(this);
+                    this.mainSketch.getCurrentActivePlayer().handleJumpKillEnemyPhysics();
 
                 } else {
                     this.isVisible = true;
                     System.out.println("killed player: " + Math.toDegrees(collisionAngle));
-                    resetLevel();
+                    mainSketch.resetLevel();
                 }
             }
         }

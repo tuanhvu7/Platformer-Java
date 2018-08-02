@@ -1,6 +1,6 @@
 package app.enums;
 
-public enum PauseMenuButtonType {
+public enum EPauseMenuButtonType {
     Continue,
     Quit
 }

@@ -4,35 +4,31 @@ import app.Platformer;
 import app.constants.Constants;
 import processing.core.PVector;
 
-import javax.inject.Inject;
-
 /**
- * Common for circular characters
+ * Common for circular app.characters
  */
 public abstract class ACharacter {
 
     // main sketch
-    @Inject
-    Platformer platformer;
+    protected Platformer mainSketch;
 
     // (x, y) coordinates of center of character (x, y)
     protected PVector pos;
     // (x, y) velocity of character (x, y)
     protected PVector vel;
 
-    // character diameter
     protected int diameter;
 
-    // number of floor-like boundaries this is touching;
+    // number of floor-like app.boundaries this is touching;
     protected int numberOfFloorBoundaryContacts;
 
-    // true means this is active (boundary and character collision detection)
     protected boolean isActive;
 
     /**
      * set properties of this
      */
-    ACharacter(int x, int y, int diameter, boolean isActive) {
+    ACharacter(Platformer mainSketch, int x, int y, int diameter, boolean isActive) {
+        this.mainSketch = mainSketch;
         this.pos = new PVector(x, y);
         this.vel = new PVector();
         this.diameter = diameter;
@@ -49,15 +45,15 @@ public abstract class ACharacter {
     /**
      * draw circle character
      */
-    void show() {
-        platformer.strokeWeight(0);
-        platformer.ellipse(this.pos.x, this.pos.y, this.diameter, this.diameter);
+    protected void show() {
+        this.mainSketch.strokeWeight(0);
+        this.mainSketch.ellipse(this.pos.x, this.pos.y, this.diameter, this.diameter);
     }
 
     /**
      * handle contact with horizontal boundary
      */
-    void handleContactWithHorizontalBoundary(float boundaryYPoint, boolean isFloorBoundary) {
+    public void handleContactWithHorizontalBoundary(float boundaryYPoint, boolean isFloorBoundary) {
         if(isFloorBoundary) { // floor-like boundary
             if(this.vel.y > 0) {    // boundary only act like floor if this is falling onto boundary
                 this.vel.y = 0;
@@ -74,14 +70,14 @@ public abstract class ACharacter {
     /**
      * handle contact with vertical boundary
      */
-    void handleContactWithVerticalBoundary(float boundaryXPoint) {
+    public void handleContactWithVerticalBoundary(float boundaryXPoint) {
         this.vel.x = -this.vel.x; // move in oposite horizontal direction
     }
 
     /**
      * handle arial physics
      */
-    void handleInAirPhysics() {
+    public void handleInAirPhysics() {
         this.vel.y = Math.min(this.vel.y + Constants.GRAVITY.y, Constants.MAX_VERTICAL_VELOCITY);
     }
 
@@ -89,16 +85,16 @@ public abstract class ACharacter {
     /**
      * active and add this to game
      */
-    void makeActive() {
+    public void makeActive() {
         this.isActive = true;
-        platformer.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
     }
 
     /**
      * deactivate and remove this from game
      */
-    void makeNotActive() {
+    public void makeNotActive() {
         this.isActive = false;
-        platformer.unregisterMethod("draw", this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
     }
 }

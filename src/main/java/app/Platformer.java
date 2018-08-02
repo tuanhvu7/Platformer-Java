@@ -1,22 +1,45 @@
 package app;
 
+import app.blocks.ABlock;
+import app.characters.ACharacter;
+import app.characters.Player;
+import app.collectables.ACollectable;
 import app.constants.Constants;
 import app.enums.ESongType;
+import app.factories.LevelFactory;
+import app.levels.ALevel;
+import app.menus.LevelSelectMenu;
 import app.utils.ResourceUtils;
 import javafx.embed.swing.JFXPanel;
 import processing.core.PApplet;
+import processing.core.PVector;
+
+import java.lang.ref.WeakReference;
+import java.util.Set;
 
 /**
  * main app
  */
 public class Platformer extends PApplet {
 
+//    /*** LEVEL ***/
+    // level select menu
+    private LevelSelectMenu levelSelectMenu;
+
+    /*** MUSIC ***/
+    // stores current active level
+    private WeakReference<ALevel> currentActiveLevel;
+
+    // stores currently active level number
+    private int currentActiveLevelNumber;
+
+    private WeakReference<Thread> levelCompleteThread;
+
     public void settings() {
         new JFXPanel(); // initialize JavaFx toolkit
         size(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-
-        ResourceUtils.LEVEL_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
-        ResourceUtils.LEVEL_SONG_PLAYER.play();
+        ResourceUtils.loopSong(ESongType.Level);
+        this.levelSelectMenu = new LevelSelectMenu(this, true);
     }
 
     public void draw() { }
@@ -31,24 +54,24 @@ public class Platformer extends PApplet {
      * reset level
      */
     public void resetLevel() {
-        stopSong();
-        playSong(ESongType.PlayerDeath);
+        ResourceUtils.stopSong();
+        ResourceUtils.playSong(ESongType.PlayerDeath);
 
         // to reset level after player death song finishes without freezing game
         new Thread( new Runnable() {
             public void run()  {
                 try  {
                     println("running reset level thread!!!");
-                    if(global_level_complete_thread != null) {
-                        global_level_complete_thread.get().interrupt();
+                    if(this.levelCompleteThread != null) {
+                        this.levelCompleteThread.get().interrupt();
                     }
                     getCurrentActivePlayer().makeNotActive();
-                    Thread.sleep( (long) global_player_death_song.getDuration().toMillis() );  // wait for song duration
+                    Thread.sleep( (long) ResourceUtils.PLAYER_DEATH_SONG.getDuration().toMillis() );  // wait for song duration
 
-                    boolean loadPlayerFromCheckPoint = global_current_active_level.get().loadPlayerFromCheckPoint;    // TODO: encapsulate
-                    global_current_active_level.get().deactivateLevel();
+                    boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().loadPlayerFromCheckPoint;    // TODO: encapsulate
+                    getCurrentActiveLevel().deactivateLevel();
                     LevelFactory levelFactory = new LevelFactory();
-                    global_current_active_level = new WeakReference( levelFactory.getLevel(true, loadPlayerFromCheckPoint) );
+                    currentActiveLevel = new WeakReference( levelFactory.getLevel(this, true, loadPlayerFromCheckPoint) );
                 }
                 catch (InterruptedException ie)  { }
             }
@@ -60,106 +83,99 @@ public class Platformer extends PApplet {
      * complete level
      */
     public void handleLevelComplete() {
-        stopSong();
-        playSong(ESongType.LevelComplete);
+        ResourceUtils.stopSong();
+        ResourceUtils.playSong(ESongType.LevelComplete);
 
-        global_level_complete_thread = new WeakReference(
+        this.levelCompleteThread = new WeakReference(
             new Thread( new Runnable() {
                 public void run()  {
                     try  {
                         println("running level complete thread!!!");
-                        global_current_active_level.get().isHandlingLevelComplete = true;    // TODO: encapsulate
+                        getCurrentActiveLevel().isHandlingLevelComplete = true;    // TODO: encapsulate
                         getCurrentActivePlayer().resetControlPressed();
                         getCurrentActivePlayer().setVelocity(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
                         unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
 
-                        Thread.sleep( (long) global_level_complete_song.getDuration().toMillis() );  // wait for song duration
+                        Thread.sleep( (long) ResourceUtils.LEVEL_COMPLETE_SONG_.getDuration().toMillis() );  // wait for song duration
                         getCurrentActivePlayer().makeNotActive();
-                        global_current_active_level.get().deactivateLevel();
-                        global_current_active_level_number = 0;
-                        global_level_select_menu.setupActivateMenu();
+                        getCurrentActiveLevel().deactivateLevel();
+                        currentActiveLevelNumber = 0;
+                        levelSelectMenu.setupActivateMenu();
                     }
                     catch (InterruptedException ie)  { }
                 }
             } )
         );
-        global_level_complete_thread.get().start();
+        this.levelCompleteThread.get().start();
+    }
+
+
+
+    //////////////
+
+    public LevelSelectMenu getLevelSelectMenu() {
+        return levelSelectMenu;
+    }
+
+    public ALevel getCurrentActiveLevel() {
+        return currentActiveLevel.get();
+    }
+
+    public void setCurrentActiveLevel(ALevel currentActiveLevel) {
+        this.currentActiveLevel = new WeakReference<ALevel>(currentActiveLevel);
+    }
+
+    public int getCurrentActiveLevelNumber() {
+        return currentActiveLevelNumber;
+    }
+
+    public void setCurrentActiveLevelNumber(int currentActiveLevelNumber) {
+        this.currentActiveLevelNumber = currentActiveLevelNumber;
+    }
+
+
+    ////////////////
+
+    /**
+     * return player of current active level
+     */
+    public Player getCurrentActivePlayer() {
+        return this.currentActiveLevel.get().player;    // TODO: encapsulate
     }
 
     /**
-     * loop song
+     * return non-player app.characters of current active level
      */
-    private void loopSong(ESongType songType) {
-        switch(songType) {
-            case Level:
-                ResourceUtils.LEVEL_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
-                ResourceUtils.LEVEL_SONG_PLAYER.play();
-                break;
-
-            default:
-                break;
-        }
+    public Set<ACharacter> getCurrentActiveCharactersList() {
+        return this.currentActiveLevel.get().charactersList;    // TODO: encapsulate
     }
 
     /**
-     * play song
+     * return app.blocks of current active level
      */
-    private void playSong(ESongType songType) {
-        switch(songType) {
-            case PlayerDeath:
-                global_player_death_song_player.setCycleCount(1);
-                global_player_death_song_player.play();
-                break;
-
-            case LevelComplete:
-                global_level_complete_song_player.setCycleCount(1);
-                global_level_complete_song_player.play();
-                break;
-
-            case PlayerAction:
-                // to reset level after player death song finishes without freezing game
-                new Thread( new Runnable() {
-                    public void run()  {
-                        try  {
-                            global_player_action_song_player.setCycleCount(1);
-                            global_player_action_song_player.play();
-                            Thread.sleep( (long) global_player_action_song.getDuration().toMillis() );  // wait for song duration
-                            global_player_action_song_player.stop();
-                        }
-                        catch (InterruptedException ie)  { }
-                    }
-                } ).start();
-                break;
-
-            case EventBlockDescent:
-                // to reset level after player death song finishes without freezing game
-                new Thread( new Runnable() {
-                    public void run()  {
-                        try  {
-                            global_event_block_descent_song_player.setCycleCount(1);
-                            global_event_block_descent_song_player.play();
-                            Thread.sleep( (long) global_event_block_descent_song.getDuration().toMillis() );  // wait for song duration
-                            global_event_block_descent_song_player.stop();
-                        }
-                        catch (InterruptedException ie)  { }
-                    }
-                } ).start();
-                break;
-
-            default:
-                break;
-        }
+    public Set<ABlock> getCurrentActiveBlocksList() {
+        return this.currentActiveLevel.get().blocksList;    // TODO: encapsulate
     }
 
     /**
-     * stop song
+     * return app.collectables of current active level
      */
-    private void stopSong() {
-        ResourceUtils.LEVEL_SONG_PLAYER.stop();
-        global_player_death_song_player.stop();
-        global_level_complete_song_player.stop();
-        global_player_action_song_player.stop();
-        global_event_block_descent_song_player.stop();
+    public Set<ACollectable> getCurrentActiveLevelCollectables() {
+        return this.currentActiveLevel.get().collectablesList;    // TODO: encapsulate
+    }
+
+    /**
+     * return viewbox of current active level
+     */
+    public ViewBox getCurrentActiveViewBox() {
+        return this.currentActiveLevel.get().viewBox; // TODO: encapsulate
+    }
+
+    /**
+     * return width of current active level
+     */
+    public int getCurrentActiveLevelWidth() {
+        return Constants.LEVELS_WIDTH_ARRAY[currentActiveLevelNumber];
     }
 
 }

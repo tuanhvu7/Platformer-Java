@@ -1,9 +1,9 @@
-package app.interfaces;
+package app.boundaries;
 
 import app.characters.ACharacter;
 
 /**
- * states required methods for boundaries
+ * required methods for boundaries
  */
 public interface IBoundary {
     boolean contactWithCharacter(ACharacter character);

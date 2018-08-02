@@ -2,7 +2,7 @@ package app.constants;
 import processing.core.PVector;
 
 /**
- * constants used across app
+ * app.constants used across app
  */
 public class Constants {
 
@@ -12,14 +12,14 @@ public class Constants {
     public static final int PANEL_WIDTH = 200;
     public static final int PANEL_COLOR = 0x00FF00;
 
-    // widths of all levels
+    // widths of all app.levels
     public final static int[] LEVELS_WIDTH_ARRAY = {
             0,          // non-existent level zero
             1500,       // 5632 level one
             1000
     };
 
-    // heights of all levels
+    // heights of all app.levels
     public final static int[] LEVELS_HEIGHT_ARRAY = {
             0,      // non-existent level zero
             900,    // level one
