@@ -51,7 +51,7 @@ public class Enemy extends ACharacter implements IDrawable {
         boolean isAtCollisionDistance =
             Math.sqrt(Math.pow(xDifference, 2) + Math.pow(yDifference, 2)) <= distanceNeededForCollision;
 
-        if(isAtCollisionDistance) {
+        if (isAtCollisionDistance) {
             return Math.atan2(yDifference, xDifference);
         } else {
             return -1.0;
@@ -66,22 +66,22 @@ public class Enemy extends ACharacter implements IDrawable {
         this.checkHandleContactWithPlayer();
         this.handleMovement();
 
-        if(this.isVisible) {
+        if (this.isVisible) {
             this.show();
         }
     }
 
     /**
-     *  check and handle contact with player
+     * check and handle contact with player
      */
     private void checkHandleContactWithPlayer() {
-        if(this.mainSketch.getCurrentActivePlayer().isActive()) {   // to prevent multiple consecutive deaths TODO: encapsulate
+        if (this.mainSketch.getCurrentActivePlayer().isActive()) {   // to prevent multiple consecutive deaths TODO: encapsulate
             double collisionAngle = this.collisionWithPlayer();
-            if(collisionAngle >= 0) {
+            if (collisionAngle >= 0) {
                 System.out.println("coll angle: " + Math.toDegrees(collisionAngle));
                 System.out.println("min angle: " + Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE);
 
-                if(Math.toDegrees(collisionAngle) >= Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE
+                if (Math.toDegrees(collisionAngle) >= Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE
                     && this.pos.y > this.mainSketch.getCurrentActivePlayer().getPos().y
                     && !this.isInvulnerable)  // player is above this
                 {
@@ -104,7 +104,7 @@ public class Enemy extends ACharacter implements IDrawable {
      * handle movement (position, velocity)
      */
     void handleMovement() {
-        if(!this.isFlying && this.numberOfFloorBoundaryContacts == 0) {
+        if (!this.isFlying && this.numberOfFloorBoundaryContacts == 0) {
             this.handleInAirPhysics();
         }
 

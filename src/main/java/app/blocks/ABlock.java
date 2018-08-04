@@ -17,10 +17,10 @@ public class ABlock {
     int fillColor;
 
     // position and dimensions
-    final int leftX;
-    final int topY;
-    final int width;
-    final int height;
+    private final int leftX;
+    private final int topY;
+    private final int width;
+    private final int height;
 
     // boundaries that make up block
     HorizontalBoundary topSide;
@@ -136,5 +136,6 @@ public class ABlock {
      * deactivate and remove this from game;
      * to override in extended classes
      */
-    public void makeNotActive() {}
+    public void makeNotActive() {
+    }
 }

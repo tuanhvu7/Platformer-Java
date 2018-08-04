@@ -15,10 +15,10 @@ public class ViewBox implements IDrawable {
     private final Platformer mainSketch;
 
     // top-left (x, y) coordinates of viewbox position
-    private PVector pos;
+    private final PVector pos;
 
     // velocity of viewbox
-    private PVector vel;
+    private final PVector vel;
 
     /**
      * set properties of this
@@ -27,7 +27,7 @@ public class ViewBox implements IDrawable {
         this.mainSketch = mainSketch;
         this.pos = new PVector(startXPos, startYPos);
         this.vel = new PVector(0, 0);
-        if(isActive) {
+        if (isActive) {
             this.makeActive();
         }
     }
@@ -63,9 +63,9 @@ public class ViewBox implements IDrawable {
      * given value would result this x position level overflow
      */
     public void setViewBoxHorizontalPosition(float middleXPos) {
-        if(middleXPos - this.mainSketch.width / 2 < 0) {
+        if (middleXPos - this.mainSketch.width / 2 < 0) {
             this.pos.x = 0;
-        } else if(middleXPos + this.mainSketch.width / 2 > this.mainSketch.getCurrentActiveLevelWidth()) {
+        } else if (middleXPos + this.mainSketch.width / 2 > this.mainSketch.getCurrentActiveLevelWidth()) {
             this.pos.x = this.mainSketch.getCurrentActiveLevelWidth() - Constants.SCREEN_WIDTH;
         } else {
             this.pos.x = middleXPos - (Constants.SCREEN_WIDTH / 2);
@@ -76,32 +76,28 @@ public class ViewBox implements IDrawable {
      * handle movement (position, velocity)
      */
     private void handleMovement() {
-        if(this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete() && this.playerAtViewBoxBoundary(false))
-        {   // viewbox movement during level completion
+        if (this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete() && this.playerAtViewBoxBoundary(false)) {   // viewbox movement during level completion
             this.vel.x = Constants.PLAYER_LEVEL_COMPLETE_SPEED;
 
         } else {
-            if(this.mainSketch.getCurrentActivePlayer().isMoveLeftPressed()) {
-                if(this.pos.x > 0       // left edge of viewbox not at left edge of level
-                    && this.playerAtViewBoxBoundary(true))
-                {
+            if (this.mainSketch.getCurrentActivePlayer().isMoveLeftPressed()) {
+                if (this.pos.x > 0       // left edge of viewbox not at left edge of level
+                    && this.playerAtViewBoxBoundary(true)) {
                     this.vel.x = -Constants.PLAYER_RUN_SPEED;
                 } else {
                     this.vel.x = 0;
                 }
             }
-            if(this.mainSketch.getCurrentActivePlayer().isMoveRightPressed()) {
-                if(this.pos.x < this.mainSketch.getCurrentActiveLevelWidth() - this.mainSketch.width   // right edge of viewbox not at right edge of level
-                    && this.playerAtViewBoxBoundary(false))
-                {
+            if (this.mainSketch.getCurrentActivePlayer().isMoveRightPressed()) {
+                if (this.pos.x < this.mainSketch.getCurrentActiveLevelWidth() - this.mainSketch.width   // right edge of viewbox not at right edge of level
+                    && this.playerAtViewBoxBoundary(false)) {
                     this.vel.x = Constants.PLAYER_RUN_SPEED;
                 } else {
                     this.vel.x = 0;
                 }
             }
-            if(!this.mainSketch.getCurrentActivePlayer().isMoveLeftPressed() &&
-                !this.mainSketch.getCurrentActivePlayer().isMoveRightPressed())
-            {
+            if (!this.mainSketch.getCurrentActivePlayer().isMoveLeftPressed() &&
+                !this.mainSketch.getCurrentActivePlayer().isMoveRightPressed()) {
                 this.vel.x = 0;
             }
         }
@@ -109,9 +105,9 @@ public class ViewBox implements IDrawable {
         this.pos.add(this.vel);
 
         // fix viewbox level boundary overflows
-        if(this.pos.x > this.mainSketch.getCurrentActiveLevelWidth() - this.mainSketch.width) {
-            this.pos.x = this.mainSketch.getCurrentActiveLevelWidth() -this.mainSketch. width;
-        } else if(this.pos.x < 0) {
+        if (this.pos.x > this.mainSketch.getCurrentActiveLevelWidth() - this.mainSketch.width) {
+            this.pos.x = this.mainSketch.getCurrentActiveLevelWidth() - this.mainSketch.width;
+        } else if (this.pos.x < 0) {
             this.pos.x = 0;
         }
     }
@@ -120,7 +116,7 @@ public class ViewBox implements IDrawable {
      * return if player is at lower (left) or upper (right) boundary (from given value) of viewbox
      */
     private boolean playerAtViewBoxBoundary(boolean isLowerLeftBoundary) {
-        if(isLowerLeftBoundary) {
+        if (isLowerLeftBoundary) {
             return this.mainSketch.getCurrentActivePlayer().getPos().x <= this.pos.x + Constants.VIEWBOX_BOUNDARY * this.mainSketch.width;
         } else {
             return this.mainSketch.getCurrentActivePlayer().getPos().x >= this.pos.x + (1.00 - Constants.VIEWBOX_BOUNDARY) * this.mainSketch.width;
@@ -131,18 +127,5 @@ public class ViewBox implements IDrawable {
     public PVector getPos() {
         return pos;
     }
-
-    public void setPos(PVector pos) {
-        this.pos = pos;
-    }
-
-    public PVector getVel() {
-        return vel;
-    }
-
-    public void setVel(PVector vel) {
-        this.vel = vel;
-    }
-
 }
 

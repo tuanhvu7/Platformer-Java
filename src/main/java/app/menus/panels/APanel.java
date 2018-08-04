@@ -27,10 +27,10 @@ public abstract class APanel implements IDrawable {
     /**
      * set properties of this
      */
-   APanel(Platformer mainSketch, String panelText, int leftX, int topY, int width, int height, boolean isActive) {
-       this.mainSketch = mainSketch;
+    APanel(Platformer mainSketch, String panelText, int leftX, int topY, int width, int height, boolean isActive) {
+        this.mainSketch = mainSketch;
 
-       this.panelText = panelText;
+        this.panelText = panelText;
         this.width = width;
         this.height = height;
 
@@ -40,7 +40,7 @@ public abstract class APanel implements IDrawable {
         this.topY = topY;
         this.bottomY = topY + height;
 
-        if(isActive) {
+        if (isActive) {
             this.makeActive();
         }
     }
@@ -79,8 +79,8 @@ public abstract class APanel implements IDrawable {
      * Execute appropriate method (executeWhenClicked) when this is clicked
      */
     public void mouseEvent(MouseEvent event) {
-        if(event.getAction() == MouseEvent.CLICK) {
-            if(isMouseIn()) {
+        if (event.getAction() == MouseEvent.CLICK) {
+            if (isMouseIn()) {
                 executeWhenClicked();
             }
         }
@@ -89,13 +89,14 @@ public abstract class APanel implements IDrawable {
     /**
      * to execute when this panel is clicked; to override in extended classes
      */
-    void executeWhenClicked() { }
+    void executeWhenClicked() {
+    }
 
     /**
      * return if mouse position inside this panel
      */
     boolean isMouseIn() {
-        return  this.mainSketch.mouseX > this.leftX &&
+        return this.mainSketch.mouseX > this.leftX &&
             this.mainSketch.mouseX < this.rightX &&
             this.mainSketch.mouseY > this.topY &&
             this.mainSketch.mouseY < this.bottomY;

@@ -44,11 +44,10 @@ public class ControllableEnemy extends Enemy {
      */
     @Override
     protected void handleMovement() {
-        if(!this.isFlying) {
+        if (!this.isFlying) {
 
-            if(this.jumpPressed) {    // jump button pressed/held
-                if( this.numberOfFloorBoundaryContacts > 0 )
-                { // able to jump
+            if (this.jumpPressed) {    // jump button pressed/held
+                if (this.numberOfFloorBoundaryContacts > 0) { // able to jump
                     this.vel.y = Constants.PLAYER_JUMP_VERTICAL_VELOCITY;
                 } else {
                     // for jumping higher the longer jump button is held
@@ -57,7 +56,7 @@ public class ControllableEnemy extends Enemy {
                         Constants.MAX_VERTICAL_VELOCITY);
                 }
 
-            } else if(this.numberOfFloorBoundaryContacts == 0) {    // in air
+            } else if (this.numberOfFloorBoundaryContacts == 0) {    // in air
                 this.handleInAirPhysics();
             }
         }
@@ -69,13 +68,13 @@ public class ControllableEnemy extends Enemy {
      * handle character keypress controls
      */
     public void keyEvent(KeyEvent keyEvent) {
-        if(keyEvent.getAction() == KeyEvent.PRESS) {
-            if(keyEvent.getKey() == 'w') {
+        if (keyEvent.getAction() == KeyEvent.PRESS) {
+            if (keyEvent.getKey() == 'w') {
                 this.jumpPressed = true;
             }
 
-        } else if(keyEvent.getAction() == KeyEvent.RELEASE) {
-            if(keyEvent.getKey() == 'w') {
+        } else if (keyEvent.getAction() == KeyEvent.RELEASE) {
+            if (keyEvent.getKey() == 'w') {
                 this.jumpPressed = false;
             }
         }

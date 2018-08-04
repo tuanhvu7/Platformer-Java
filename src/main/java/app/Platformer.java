@@ -49,7 +49,8 @@ public class Platformer extends PApplet {
     /**
      * runs continuously; need this to run draw() for levels
      */
-    public void draw() { }
+    public void draw() {
+    }
 
 
     public static void main(String[] args) {
@@ -65,23 +66,21 @@ public class Platformer extends PApplet {
         ResourceUtils.playSong(ESongType.PlayerDeath);
 
         // to reset level after player death song finishes without freezing game
-        new Thread( new Runnable() {
-            public void run()  {
-                try  {
-                    println("running reset level thread!!!");
-                    if(levelCompleteThread != null) {
-                        levelCompleteThread.interrupt();
-                    }
-                    Thread.sleep( (long) ResourceUtils.PLAYER_DEATH_SONG.getDuration().toMillis() );  // wait for song duration
-
-                    boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();
-                    getCurrentActiveLevel().deactivateLevel();
-                    LevelFactory levelFactory = new LevelFactory();
-                    currentActiveLevel = new WeakReference<>( levelFactory.getLevel(mainSketch, true, loadPlayerFromCheckPoint) );
+        new Thread(() -> {
+            try {
+                println("running reset level thread!!!");
+                if (levelCompleteThread != null) {
+                    levelCompleteThread.interrupt();
                 }
-                catch (InterruptedException ie)  { }
+                Thread.sleep((long) ResourceUtils.PLAYER_DEATH_SONG.getDuration().toMillis());  // wait for song duration
+
+                boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();
+                getCurrentActiveLevel().deactivateLevel();
+                LevelFactory levelFactory = new LevelFactory();
+                currentActiveLevel = new WeakReference<>(levelFactory.getLevel(mainSketch, true, loadPlayerFromCheckPoint));
+            } catch (InterruptedException ie) {
             }
-        } ).start();
+        }).start();
 
     }
 
@@ -93,27 +92,24 @@ public class Platformer extends PApplet {
         ResourceUtils.playSong(ESongType.LevelComplete);
 
         this.levelCompleteThread =
-            new Thread( new Runnable() {
-                public void run()  {
-                    try  {
-                        println("running level complete thread!!!");
-                        getCurrentActiveLevel().setHandlingLevelComplete(true);
-                        getCurrentActivePlayer().resetControlPressed();
-                        getCurrentActivePlayer().setVel(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
-                        unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
+            new Thread(() -> {
+                try {
+                    println("running level complete thread!!!");
+                    getCurrentActiveLevel().setHandlingLevelComplete(true);
+                    getCurrentActivePlayer().resetControlPressed();
+                    getCurrentActivePlayer().setVel(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
+                    unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
 
-                        Thread.sleep( (long) ResourceUtils.LEVEL_COMPLETE_SONG_.getDuration().toMillis() );  // wait for song duration
-                        getCurrentActivePlayer().makeNotActive();
-                        getCurrentActiveLevel().deactivateLevel();
-                        currentActiveLevelNumber = 0;
-                        levelSelectMenu.setupActivateMenu();
-                    }
-                    catch (InterruptedException ie)  { }
+                    Thread.sleep((long) ResourceUtils.LEVEL_COMPLETE_SONG_.getDuration().toMillis());  // wait for song duration
+                    getCurrentActivePlayer().makeNotActive();
+                    getCurrentActiveLevel().deactivateLevel();
+                    currentActiveLevelNumber = 0;
+                    levelSelectMenu.setupActivateMenu();
+                } catch (InterruptedException ie) {
                 }
-            } );
+            });
         this.levelCompleteThread.start();
     }
-
 
 
     /*** getters and setters ***/

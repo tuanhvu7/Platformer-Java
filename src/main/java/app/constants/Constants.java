@@ -17,16 +17,16 @@ public class Constants {
 
     // widths of all app.levels
     public final static int[] LEVELS_WIDTH_ARRAY = {
-            0,          // non-existent level zero
-            1500,       // 5632 level one
-            1000
+        0,          // non-existent level zero
+        1500,       // 5632 level one
+        1000
     };
 
     // heights of all app.levels
     public final static int[] LEVELS_HEIGHT_ARRAY = {
-            0,      // non-existent level zero
-            900,    // level one
-            900
+        0,      // non-existent level zero
+        900,    // level one
+        900
     };
 
     /*** screen config ***/
@@ -91,7 +91,8 @@ public class Constants {
     public static final int DEFAULT_EVENT_BLOCK_WIDTH = 125;
     public static final int DEFAULT_EVENT_BLOCK_HEIGHT = 200;
 
-    private Constants() {}
+    private Constants() {
+    }
 
 }
 

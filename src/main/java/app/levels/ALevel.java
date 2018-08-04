@@ -82,7 +82,7 @@ public abstract class ALevel implements IDrawable {
 
         this.isHandlingLevelComplete = false;
 
-        if(isActive) {
+        if (isActive) {
             this.setUpActivateLevel();
             this.setUpActivateFloorWallsGoal();
         }
@@ -100,13 +100,15 @@ public abstract class ALevel implements IDrawable {
     /**
      * setup and activate this; to override in extended classes
      */
-    void setUpActivateLevel() { }
+    void setUpActivateLevel() {
+    }
 
     /**
      * handle conditional enemy triggers in this;
      * to override in extended classes if needed
      */
-    void handleConditionalEnemyTriggers() { }
+    void handleConditionalEnemyTriggers() {
+    }
 
 
     /**
@@ -115,19 +117,19 @@ public abstract class ALevel implements IDrawable {
     public void deactivateLevel() {
         this.viewBox.makeNotActive();
 
-        for(ACharacter curCharacter : this.charactersList) {
+        for (ACharacter curCharacter : this.charactersList) {
             curCharacter.makeNotActive();
         }
 
-        for(ABoundary curBoundary : this.boundariesList) {
+        for (ABoundary curBoundary : this.boundariesList) {
             curBoundary.makeNotActive();
         }
 
-        for(ABlock curBlock : this.blocksList) {
+        for (ABlock curBlock : this.blocksList) {
             curBlock.makeNotActive();
         }
 
-        for(ACollectable curCollectable: this.collectablesList) {
+        for (ACollectable curCollectable : this.collectablesList) {
             curCollectable.makeNotActive();
         }
 
@@ -157,9 +159,9 @@ public abstract class ALevel implements IDrawable {
         // draw background image horizontally until level width is filled
         int levelWidthLeftToDraw = this.mainSketch.getCurrentActiveLevelWidth();
         int numberHorizontalBackgroundIterations =
-            (int) Math.ceil( (double) this.mainSketch.getCurrentActiveLevelWidth() / ResourceUtils.STAGE_BACKGROUND_IMAGE.width);
+            (int) Math.ceil((double) this.mainSketch.getCurrentActiveLevelWidth() / ResourceUtils.STAGE_BACKGROUND_IMAGE.width);
 
-        for(int i = 0; i < numberHorizontalBackgroundIterations; i++) {
+        for (int i = 0; i < numberHorizontalBackgroundIterations; i++) {
             int widthToDraw =
                 Math.min(
                     ResourceUtils.STAGE_BACKGROUND_IMAGE.width,
@@ -182,15 +184,15 @@ public abstract class ALevel implements IDrawable {
      * handle character keypress controls
      */
     public void keyEvent(KeyEvent keyEvent) {
-        if(this.player.isActive() && !this.isHandlingLevelComplete) {  // only allow pause if player is active
+        if (this.player.isActive() && !this.isHandlingLevelComplete) {  // only allow pause if player is active
             // press 'p' for pause
-            if(keyEvent.getAction() == KeyEvent.PRESS) {
+            if (keyEvent.getAction() == KeyEvent.PRESS) {
                 char keyPressed = keyEvent.getKey();
 
-                if(keyPressed == 'p') {   // pause
+                if (keyPressed == 'p') {   // pause
                     this.isPaused = !this.isPaused;
 
-                    if(this.isPaused) {
+                    if (this.isPaused) {
                         ResourceUtils.stopSong();
                         this.mainSketch.noLoop();
                         this.pauseMenu = new PauseMenu(
@@ -256,20 +258,8 @@ public abstract class ALevel implements IDrawable {
     }
 
     /*** getters and setters ***/
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
     public Player getPlayer() {
         return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
     }
 
     public ViewBox getViewBox() {

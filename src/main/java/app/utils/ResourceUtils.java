@@ -14,7 +14,7 @@ public class ResourceUtils {
      * loop song
      */
     public static void loopSong(ESongType songType) {
-        switch(songType) {
+        switch (songType) {
             case Level:
                 LEVEL_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
                 LEVEL_SONG_PLAYER.play();
@@ -29,7 +29,7 @@ public class ResourceUtils {
      * play song
      */
     public static void playSong(ESongType songType) {
-        switch(songType) {
+        switch (songType) {
             case PlayerDeath:
                 PLAYER_DEATH_SONG_PLAYER.setCycleCount(1);
                 PLAYER_DEATH_SONG_PLAYER.play();
@@ -42,32 +42,28 @@ public class ResourceUtils {
 
             case PlayerAction:
                 // to reset level after player death song finishes without freezing game
-                new Thread( new Runnable() {
-                    public void run()  {
-                        try  {
-                            PLAYER_ACTION_SONG_PLAYER.setCycleCount(1);
-                            PLAYER_ACTION_SONG_PLAYER.play();
-                            Thread.sleep( (long) PLAYER_ACTION_SONG.getDuration().toMillis() );  // wait for song duration
-                            PLAYER_ACTION_SONG_PLAYER.stop();
-                        }
-                        catch (InterruptedException ie)  { }
+                new Thread(() -> {
+                    try {
+                        PLAYER_ACTION_SONG_PLAYER.setCycleCount(1);
+                        PLAYER_ACTION_SONG_PLAYER.play();
+                        Thread.sleep((long) PLAYER_ACTION_SONG.getDuration().toMillis());  // wait for song duration
+                        PLAYER_ACTION_SONG_PLAYER.stop();
+                    } catch (InterruptedException ie) {
                     }
-                } ).start();
+                }).start();
                 break;
 
             case EventBlockDescent:
                 // to reset level after player death song finishes without freezing game
-                new Thread( new Runnable() {
-                    public void run()  {
-                        try  {
-                            EVENT_BLOCK_DESCENT_SONG_PLAYER.setCycleCount(1);
-                            EVENT_BLOCK_DESCENT_SONG_PLAYER.play();
-                            Thread.sleep( (long) EVENT_BLOCK_DESCENT_SONG.getDuration().toMillis() );  // wait for song duration
-                            EVENT_BLOCK_DESCENT_SONG_PLAYER.stop();
-                        }
-                        catch (InterruptedException ie)  { }
+                new Thread(() -> {
+                    try {
+                        EVENT_BLOCK_DESCENT_SONG_PLAYER.setCycleCount(1);
+                        EVENT_BLOCK_DESCENT_SONG_PLAYER.play();
+                        Thread.sleep((long) EVENT_BLOCK_DESCENT_SONG.getDuration().toMillis());  // wait for song duration
+                        EVENT_BLOCK_DESCENT_SONG_PLAYER.stop();
+                    } catch (InterruptedException ie) {
                     }
-                } ).start();
+                }).start();
                 break;
 
             default:

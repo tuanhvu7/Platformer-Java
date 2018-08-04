@@ -44,8 +44,8 @@ public abstract class ABoundary {
      * @param y2Offset difference between first and second y coordinates (y2 - y1)
      */
     ABoundary(Platformer mainSketch, int x1Point, int y1Point, int x2Offset, int y2Offset, int boundaryLineThickness,
-                     boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
-                     boolean isActive) {
+              boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
+              boolean isActive) {
 
         this.mainSketch = mainSketch;
 

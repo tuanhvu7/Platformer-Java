@@ -42,8 +42,8 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
      * set properties of this
      */
     HorizontalBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
-                              boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
-                              boolean isFloorBoundary, boolean isActive) {
+                       boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
+                       boolean isFloorBoundary, boolean isActive) {
         super(mainSketch, startXPoint, startYPoint, x2Offset, 0, boundaryLineThickness,
             isVisible, doesAffectPlayer, doesAffectNonPlayers, isActive);
 

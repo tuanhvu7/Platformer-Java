@@ -21,7 +21,7 @@ public class LevelGoal extends ACollectable {
      */
     @Override
     protected void checkHandleContactWithPlayer() {
-        if(this.mainSketch.getCurrentActivePlayer().isActive() && this.contactWithPlayer()) {
+        if (this.mainSketch.getCurrentActivePlayer().isActive() && this.contactWithPlayer()) {
             this.makeNotActive();
             this.mainSketch.getCurrentActiveLevelCollectables().remove(this);
             this.mainSketch.handleLevelComplete();

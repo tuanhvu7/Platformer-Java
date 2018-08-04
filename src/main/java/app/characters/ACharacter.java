@@ -39,7 +39,7 @@ public abstract class ACharacter {
 
         this.numberOfFloorBoundaryContacts = 0;
 
-        if(isActive) {
+        if (isActive) {
             this.makeActive();
         }
     }
@@ -57,13 +57,13 @@ public abstract class ACharacter {
      * handle contact with horizontal boundary
      */
     public void handleContactWithHorizontalBoundary(float boundaryYPoint, boolean isFloorBoundary) {
-        if(isFloorBoundary) { // floor-like boundary
-            if(this.vel.y > 0) {    // boundary only act like floor if this is falling onto boundary
+        if (isFloorBoundary) { // floor-like boundary
+            if (this.vel.y > 0) {    // boundary only act like floor if this is falling onto boundary
                 this.vel.y = 0;
                 this.pos.y = boundaryYPoint - this.diameter / 2;
             }
         } else {    // ceiling-like boundary
-            if(this.vel.y < 0) {    // boundary only act like ceiling if this is rising into boundary
+            if (this.vel.y < 0) {    // boundary only act like ceiling if this is rising into boundary
                 this.vel.y = 1;
                 this.pos.add(this.vel);
             }
@@ -127,9 +127,5 @@ public abstract class ACharacter {
 
     public boolean isActive() {
         return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
     }
 }

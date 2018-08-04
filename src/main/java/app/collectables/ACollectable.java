@@ -15,12 +15,12 @@ public class ACollectable implements IDrawable {
     int fillColor;
 
     // position and dimensions
-    final int leftX;
-    final int topY;
-    final int width;
-    final int height;
+    private final int leftX;
+    private final int topY;
+    private final int width;
+    private final int height;
 
-    final int blockLineThickness;
+    private final int blockLineThickness;
 
     /**
      * set properties of this;
@@ -78,7 +78,8 @@ public class ACollectable implements IDrawable {
      * check and handle contact with player;
      * to override in extended classes
      */
-    void checkHandleContactWithPlayer() { }
+    void checkHandleContactWithPlayer() {
+    }
 
     /**
      * true means this contact with player

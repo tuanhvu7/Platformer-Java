@@ -60,29 +60,28 @@ public class Player extends ACharacter implements IDrawable {
      * handle character keypress controls
      */
     public void keyEvent(KeyEvent keyEvent) {
-        if(keyEvent.getAction() == KeyEvent.PRESS) {
-            if(keyEvent.getKey() == 'a') {   //left
+        if (keyEvent.getAction() == KeyEvent.PRESS) {
+            if (keyEvent.getKey() == 'a') {   //left
                 this.moveLeftPressed = true;
             }
-            if(keyEvent.getKey() == 'd') {   //right
+            if (keyEvent.getKey() == 'd') {   //right
                 this.moveRightPressed = true;
             }
-            if(keyEvent.getKey() == 'w') {
+            if (keyEvent.getKey() == 'w') {
                 this.jumpPressed = true;
             }
-            if(keyEvent.getKey() == 's' && this.eventTopBoundaryContacts.size() == 1 && !isDescendingDownEventBlock)
-            {
+            if (keyEvent.getKey() == 's' && this.eventTopBoundaryContacts.size() == 1 && !isDescendingDownEventBlock) {
                 this.isDescendingDownEventBlock = true;
             }
 
-        } else if(keyEvent.getAction() == KeyEvent.RELEASE) {
-            if(keyEvent.getKey() == 'a') {       //left
+        } else if (keyEvent.getAction() == KeyEvent.RELEASE) {
+            if (keyEvent.getKey() == 'a') {       //left
                 this.moveLeftPressed = false;
             }
-            if(keyEvent.getKey() == 'd') {       //right
+            if (keyEvent.getKey() == 'd') {       //right
                 this.moveRightPressed = false;
             }
-            if(keyEvent.getKey() == 'w') {
+            if (keyEvent.getKey() == 'w') {
                 this.jumpPressed = false;
             }
         }
@@ -93,10 +92,10 @@ public class Player extends ACharacter implements IDrawable {
      */
     @Override
     public void draw() {
-        if(this.isDescendingDownEventBlock) {
+        if (this.isDescendingDownEventBlock) {
             this.handleEventBlockDescent();
         } else {
-            if(!this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete()) {
+            if (!this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete()) {
                 this.handleHorizontalMovement();
             }
             this.handleVerticalMovement();
@@ -132,13 +131,13 @@ public class Player extends ACharacter implements IDrawable {
      */
     @Override
     public void handleContactWithHorizontalBoundary(float boundaryYPoint, boolean isFloorBoundary) {
-        if(isFloorBoundary) { // floor-like boundary
-            if(this.vel.y > 0) {    // boundary only act like floor if this is falling onto boundary
+        if (isFloorBoundary) { // floor-like boundary
+            if (this.vel.y > 0) {    // boundary only act like floor if this is falling onto boundary
                 this.vel.y = 0;
                 this.pos.y = boundaryYPoint - this.diameter / 2;
             }
         } else {    // ceiling-like boundary
-            if(this.vel.y < 0) {    // boundary only act like ceiling if this is rising into boundary
+            if (this.vel.y < 0) {    // boundary only act like ceiling if this is rising into boundary
                 this.vel.y = 1;
                 this.pos.y = boundaryYPoint + this.diameter / 2;
                 this.pos.add(this.vel);
@@ -152,7 +151,7 @@ public class Player extends ACharacter implements IDrawable {
     @Override
     public void handleContactWithVerticalBoundary(float boundaryXPoint) {
         this.vel.x = 0;
-        if(this.pos.x > boundaryXPoint) {   // left boundary
+        if (this.pos.x > boundaryXPoint) {   // left boundary
             this.ableToMoveLeft = false;
         } else {    // right boundary
             this.ableToMoveRight = false;
@@ -165,7 +164,7 @@ public class Player extends ACharacter implements IDrawable {
     public void handleConactWithEventBoundary(EventBlockTopBoundary eventBlockTopBoundary, PVector endWarpPosition) {
         this.mainSketch.registerMethod("keyEvent", this); // connect this draw() from main draw()
         this.isDescendingDownEventBlock = false;
-        if(endWarpPosition == null) {
+        if (endWarpPosition == null) {
             this.vel.y = Constants.CHARACTER_LAUNCH_EVENT_VERTICAL_VELOCITY;
         } else {
             this.pos.x = endWarpPosition.x;
@@ -204,7 +203,7 @@ public class Player extends ACharacter implements IDrawable {
      * handle this descent down event block
      */
     private void handleEventBlockDescent() {
-        if(this.eventTopBoundaryContacts.size() == 1) {
+        if (this.eventTopBoundaryContacts.size() == 1) {
             this.resetControlPressed();
             this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
 
@@ -226,13 +225,13 @@ public class Player extends ACharacter implements IDrawable {
      * handle horizontal movement of this
      */
     private void handleHorizontalMovement() {
-        if(this.moveLeftPressed && this.ableToMoveLeft) {
+        if (this.moveLeftPressed && this.ableToMoveLeft) {
             this.vel.x = -Constants.PLAYER_RUN_SPEED;
         }
-        if(this.moveRightPressed && this.ableToMoveRight) {
+        if (this.moveRightPressed && this.ableToMoveRight) {
             this.vel.x = Constants.PLAYER_RUN_SPEED;
         }
-        if(!this.moveLeftPressed && !this.moveRightPressed) {
+        if (!this.moveLeftPressed && !this.moveRightPressed) {
             this.vel.x = 0;
         }
     }
@@ -241,10 +240,9 @@ public class Player extends ACharacter implements IDrawable {
      * handle vertical movement of this
      */
     private void handleVerticalMovement() {
-        if(this.jumpPressed) {    // jump button pressed/held
-            if( this.numberOfFloorBoundaryContacts > 0 ||
-                (this.numberOfVerticalBoundaryContacts > 0 && this.numberOfCeilingBoundaryContacts == 0) )
-            { // able to jump
+        if (this.jumpPressed) {    // jump button pressed/held
+            if (this.numberOfFloorBoundaryContacts > 0 ||
+                (this.numberOfVerticalBoundaryContacts > 0 && this.numberOfCeilingBoundaryContacts == 0)) { // able to jump
                 ResourceUtils.playSong(ESongType.PlayerAction);
                 this.vel.y = Constants.PLAYER_JUMP_VERTICAL_VELOCITY;
             } else {
@@ -255,9 +253,9 @@ public class Player extends ACharacter implements IDrawable {
             }
 
         } else {    // jump button not pressed
-            if(this.numberOfVerticalBoundaryContacts > 0) {   // touching wall
+            if (this.numberOfVerticalBoundaryContacts > 0) {   // touching wall
                 this.handleOnWallPhysics();
-            } else if(this.numberOfFloorBoundaryContacts == 0) {    // in air
+            } else if (this.numberOfFloorBoundaryContacts == 0) {    // in air
                 this.handleInAirPhysics();
             }
         }

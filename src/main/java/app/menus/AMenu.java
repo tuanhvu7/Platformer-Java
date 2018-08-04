@@ -32,7 +32,7 @@ public abstract class AMenu {
 
         this.horizontalOffset = 0;
         this.panelsList = new ArrayList<>();
-        if(isActive) {
+        if (isActive) {
             this.setupActivateMenu();
         }
     }
@@ -46,7 +46,7 @@ public abstract class AMenu {
 
         this.horizontalOffset = horizontalOffset;
         this.panelsList = new ArrayList<>();
-        if(isActive) {
+        if (isActive) {
             this.setupActivateMenu();
         }
     }
@@ -54,13 +54,14 @@ public abstract class AMenu {
     /**
      * activate and setup this; to override in extended classes
      */
-    void setupActivateMenu() { }
+    void setupActivateMenu() {
+    }
 
     /**
      * deactiviate this
      */
     public void deactivateMenu() {
-        for(APanel curPanel : this.panelsList) {
+        for (APanel curPanel : this.panelsList) {
             curPanel.makeNotActive();
         }
 

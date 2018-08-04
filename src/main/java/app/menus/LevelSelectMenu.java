@@ -9,7 +9,7 @@ import app.utils.ResourceUtils;
 /**
  * menu to select level to play;
  */
-public class LevelSelectMenu extends AMenu  implements IDrawable {
+public class LevelSelectMenu extends AMenu implements IDrawable {
 
     /**
      * set properties of this

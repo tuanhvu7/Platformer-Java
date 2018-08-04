@@ -35,7 +35,7 @@ public class LevelTwo extends ALevel implements IDrawable {
 
         ResourceUtils.loopSong(ESongType.Level);
 
-        charactersList.add( new Enemy(
+        charactersList.add(new Enemy(
             this.mainSketch,
             this.mainSketch.getCurrentActiveLevelWidth() - 500,
             0,

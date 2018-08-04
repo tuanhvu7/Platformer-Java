@@ -45,8 +45,8 @@ public class LevelOne extends ALevel implements IDrawable {
 
         this.makeActive();
 
-        if(this.loadPlayerFromCheckPoint) {
-            this.viewBox = new ViewBox(this.mainSketch,this.checkpointXPos - 200, 0, this.isActive);
+        if (this.loadPlayerFromCheckPoint) {
+            this.viewBox = new ViewBox(this.mainSketch, this.checkpointXPos - 200, 0, this.isActive);
             this.player = new Player(this.mainSketch, this.checkpointXPos, 0, Constants.PLAYER_DIAMETER, this.isActive);
         } else {
             this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
@@ -147,29 +147,29 @@ public class LevelOne extends ALevel implements IDrawable {
 //             this.isActive
 //         ));
 
-         this.blocksList.add(new Block(
-             this.mainSketch,
-             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300,
-             this.mainSketch.height - 300,
-             Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-             false,
-             false,
-             this.isActive
-         ));
+        this.blocksList.add(new Block(
+            this.mainSketch,
+            this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300,
+            this.mainSketch.height - 300,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            false,
+            false,
+            this.isActive
+        ));
 
-         this.blocksList.add(new Block(
-             this.mainSketch,
-             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300 + Constants.DEFAULT_BLOCK_SIZE,
-             this.mainSketch.height - 300 - Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-             true,
-             true,
-             this.isActive
-         ));
+        this.blocksList.add(new Block(
+            this.mainSketch,
+            this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300 + Constants.DEFAULT_BLOCK_SIZE,
+            this.mainSketch.height - 300 - Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            true,
+            this.isActive
+        ));
 
         /*** END Blocks ***/
     }
@@ -180,7 +180,7 @@ public class LevelOne extends ALevel implements IDrawable {
      */
     @Override
     public void handleConditionalEnemyTriggers() {
-        if(!bigEnemyTriggerActivated && this.charactersList.size() == this.bigEnemyTriggerCharacterListSizeCondition) {
+        if (!bigEnemyTriggerActivated && this.charactersList.size() == this.bigEnemyTriggerCharacterListSizeCondition) {
             Set<Enemy> enemySet = new HashSet<>();
             Enemy triggerEnemy = new Enemy(
                 this.mainSketch,
