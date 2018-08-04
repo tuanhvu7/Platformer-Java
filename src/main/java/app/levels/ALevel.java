@@ -71,10 +71,10 @@ public abstract class ALevel implements IDrawable {
 
         this.mainSketch = mainSketch;
 
-        this.charactersList = new HashSet<ACharacter>();
-        this.boundariesList = new HashSet<ABoundary>();
-        this.blocksList = new HashSet<ABlock>();
-        this.collectablesList = new HashSet<ACollectable>();
+        this.charactersList = new HashSet<>();
+        this.boundariesList = new HashSet<>();
+        this.blocksList = new HashSet<>();
+        this.collectablesList = new HashSet<>();
 
         this.isPaused = false;
 

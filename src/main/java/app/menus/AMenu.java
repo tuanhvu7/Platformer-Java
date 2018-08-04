@@ -31,7 +31,7 @@ public abstract class AMenu {
         this.mainSketch = mainSketch;
 
         this.horizontalOffset = 0;
-        this.panelsList = new ArrayList<APanel>();
+        this.panelsList = new ArrayList<>();
         if(isActive) {
             this.setupActivateMenu();
         }
@@ -45,7 +45,7 @@ public abstract class AMenu {
         this.mainSketch = mainSketch;
 
         this.horizontalOffset = horizontalOffset;
-        this.panelsList = new ArrayList<APanel>();
+        this.panelsList = new ArrayList<>();
         if(isActive) {
             this.setupActivateMenu();
         }

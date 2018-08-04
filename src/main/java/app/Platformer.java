@@ -37,7 +37,7 @@ public class Platformer extends PApplet {
     // stores currently active level number
     private int currentActiveLevelNumber;
 
-    private WeakReference<Thread> levelCompleteThread;
+    private Thread levelCompleteThread;
 
     public void settings() {
         new JFXPanel(); // initialize JavaFx toolkit
@@ -57,6 +57,7 @@ public class Platformer extends PApplet {
      * reset level
      */
     public void resetLevel() {
+        getCurrentActivePlayer().makeNotActive();
         ResourceUtils.stopSong();
         ResourceUtils.playSong(ESongType.PlayerDeath);
 
@@ -66,15 +67,14 @@ public class Platformer extends PApplet {
                 try  {
                     println("running reset level thread!!!");
                     if(levelCompleteThread != null) {
-                        levelCompleteThread.get().interrupt();
+                        levelCompleteThread.interrupt();
                     }
-                    getCurrentActivePlayer().makeNotActive();
                     Thread.sleep( (long) ResourceUtils.PLAYER_DEATH_SONG.getDuration().toMillis() );  // wait for song duration
 
                     boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();    // TODO: encapsulate
                     getCurrentActiveLevel().deactivateLevel();
                     LevelFactory levelFactory = new LevelFactory();
-                    currentActiveLevel = new WeakReference( levelFactory.getLevel(mainSketch, true, loadPlayerFromCheckPoint) );
+                    currentActiveLevel = new WeakReference<>( levelFactory.getLevel(mainSketch, true, loadPlayerFromCheckPoint) );
                 }
                 catch (InterruptedException ie)  { }
             }
@@ -89,7 +89,7 @@ public class Platformer extends PApplet {
         ResourceUtils.stopSong();
         ResourceUtils.playSong(ESongType.LevelComplete);
 
-        this.levelCompleteThread = new WeakReference(
+        this.levelCompleteThread =
             new Thread( new Runnable() {
                 public void run()  {
                     try  {
@@ -107,9 +107,8 @@ public class Platformer extends PApplet {
                     }
                     catch (InterruptedException ie)  { }
                 }
-            } )
-        );
-        this.levelCompleteThread.get().start();
+            } );
+        this.levelCompleteThread.start();
     }
 
 
@@ -124,7 +123,7 @@ public class Platformer extends PApplet {
     }
 
     public void setCurrentActiveLevel(ALevel currentActiveLevel) {
-        this.currentActiveLevel = new WeakReference<ALevel>(currentActiveLevel);
+        this.currentActiveLevel = new WeakReference<>(currentActiveLevel);
     }
 
     public int getCurrentActiveLevelNumber() {

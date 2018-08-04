@@ -1,5 +1,8 @@
 package app.constants;
+
 import processing.core.PVector;
+
+import java.awt.Color;
 
 /**
  * app.constants used across app
@@ -10,7 +13,7 @@ public class Constants {
     public static final int TEXT_SIZE = 24;
     public static final int PANEL_HEIGHT = 200;
     public static final int PANEL_WIDTH = 200;
-    public static final int PANEL_COLOR = 0x00FF00;
+    public static final int PANEL_COLOR = new Color(0x00FF00).getRGB();
 
     // widths of all app.levels
     public final static int[] LEVELS_WIDTH_ARRAY = {
@@ -56,7 +59,7 @@ public class Constants {
     public static final int PLAYER_LEVEL_COMPLETE_SPEED = 1;
     public static final int PLAYER_JUMP_VERTICAL_VELOCITY = -12;
     public static final int PLAYER_JUMP_KILL_ENEMY_HOP_VERTICAL_VELOCITY = -7;
-    public static final int PLAYER_COLOR = 0x000000;
+    public static final int PLAYER_COLOR = new Color(0x000000).getRGB();
     public static final int PLAYER_DIAMETER = 60;
     // minimum angle (degrees) of collision between player and enemy
     // for player to kill enemy
@@ -64,27 +67,27 @@ public class Constants {
 
     /*** enemy config **/
     public static final float ENEMY_RUN_SPEED = 2.5f;
-    public static final int ENEMY_COLOR = 0xFF0000;
+    public static final int ENEMY_COLOR = new Color(0xFF0000).getRGB();
     public static final int REGULAR_ENEMY_DIAMETER = 60;
     public static final int BIG_ENEMY_DIAMETER = 500;
 
 
     /*** boundary and block config ***/
-    public static final int BOUNDARY_COLOR = 0x000000;
+    public static final int BOUNDARY_COLOR = new Color(0x000000).getRGB();
     public static final int DEFAULT_BOUNDARY_LINE_THICKNESS = 1;
 
-    public static final int DEFAULT_BLOCK_COLOR = 0xCD853F;
+    public static final int DEFAULT_BLOCK_COLOR = new Color(0xCD853F).getRGB();
     public static final int DEFAULT_BLOCK_SIZE = 100;
 
-    public static final int CHECKPOINT_BLOCK_COLOR = 0xFFD700;
+    public static final int CHECKPOINT_BLOCK_COLOR = new Color(0xFFD700).getRGB();
     public static final int CHECKPOINT_BLOCK_WIDTH = 40;
     public static final int CHECKPOINT_BLOCK_HEIGHT = 100;
 
-    public static final int LEVEL_GOAL_BLOCK_COLOR = 0xDCDCDC;
+    public static final int LEVEL_GOAL_BLOCK_COLOR = new Color(0xDCDCDC).getRGB();
     public static final int LEVEL_GOAL_BLOCK_WIDTH = 40;
     public static final int LEVEL_GOAL_BLOCK_HEIGHT = LEVEL_FLOOR_Y_POSITION;
 
-    public static final int EVENT_BLOCK_COLOR = 0x00E500;
+    public static final int EVENT_BLOCK_COLOR = new Color(0x00E500).getRGB();
     public static final int DEFAULT_EVENT_BLOCK_WIDTH = 125;
     public static final int DEFAULT_EVENT_BLOCK_HEIGHT = 200;
 

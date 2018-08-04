@@ -43,7 +43,7 @@ public class Player extends ACharacter implements IDrawable {
         this.numberOfVerticalBoundaryContacts = 0;
         this.numberOfFloorBoundaryContacts = 0;
 
-        this.eventTopBoundaryContacts = new HashSet<EventBlockTopBoundary>();
+        this.eventTopBoundaryContacts = new HashSet<>();
 
         this.resetControlPressed();
 

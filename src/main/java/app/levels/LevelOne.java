@@ -181,7 +181,7 @@ public class LevelOne extends ALevel implements IDrawable {
     @Override
     public void handleConditionalEnemyTriggers() {
         if(!bigEnemyTriggerActivated && this.charactersList.size() == this.bigEnemyTriggerCharacterListSizeCondition) {
-            Set<Enemy> enemySet = new HashSet<Enemy>();
+            Set<Enemy> enemySet = new HashSet<>();
             Enemy triggerEnemy = new Enemy(
                 this.mainSketch,
                 1200,

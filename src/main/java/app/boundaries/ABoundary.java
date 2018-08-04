@@ -65,7 +65,7 @@ public abstract class ABoundary {
         this.doesAffectPlayer = doesAffectPlayer;
         this.doesAffectNonPlayers = doesAffectNonPlayers;
 
-        this.charactersTouchingThis = new HashSet<ACharacter>();
+        this.charactersTouchingThis = new HashSet<>();
 
         if (isActive) {
             this.makeActive();
