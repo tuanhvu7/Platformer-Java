@@ -113,9 +113,10 @@ public abstract class ALevel implements IDrawable {
 
     /**
      * deactivate this;
-     * NOTE: this DOES NOT deactivate player
      */
     public void deactivateLevel() {
+        this.player.makeNotActive();
+
         this.viewBox.makeNotActive();
 
         for (ACharacter curCharacter : this.charactersList) {

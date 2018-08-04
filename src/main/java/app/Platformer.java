@@ -101,7 +101,6 @@ public class Platformer extends PApplet {
                     unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
 
                     Thread.sleep((long) ResourceUtils.LEVEL_COMPLETE_SONG_.getDuration().toMillis());  // wait for song duration
-                    getCurrentActivePlayer().makeNotActive();
                     getCurrentActiveLevel().deactivateLevel();
                     currentActiveLevelNumber = 0;
                     levelSelectMenu.setupActivateMenu();

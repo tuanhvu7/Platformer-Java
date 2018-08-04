@@ -1,6 +1,7 @@
 package app.drawable.levels;
 
 import app.Platformer;
+import app.constants.Constants;
 import app.drawable.blocks.Block;
 import app.drawable.boundaries.EnemyTriggerVerticalBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
@@ -8,11 +9,10 @@ import app.drawable.characters.ControllableEnemy;
 import app.drawable.characters.Enemy;
 import app.drawable.characters.Player;
 import app.drawable.collectables.Checkpoint;
-import app.constants.Constants;
-import app.enums.ESongType;
 import app.drawable.interfaces.IDrawable;
-import app.utils.ResourceUtils;
 import app.drawable.viewbox.ViewBox;
+import app.enums.ESongType;
+import app.utils.ResourceUtils;
 
 import java.util.HashSet;
 import java.util.Set;
