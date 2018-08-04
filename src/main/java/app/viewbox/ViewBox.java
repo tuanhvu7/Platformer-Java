@@ -20,9 +20,6 @@ public class ViewBox implements IDrawable {
     // velocity of viewbox
     private PVector vel;
 
-    // true means display this and have this move according to player position
-    private boolean isActive;
-
     /**
      * set properties of this
      */
@@ -30,7 +27,6 @@ public class ViewBox implements IDrawable {
         this.mainSketch = mainSketch;
         this.pos = new PVector(startXPos, startYPos);
         this.vel = new PVector(0, 0);
-        this.isActive = isActive;
         if(isActive) {
             this.makeActive();
         }
@@ -51,7 +47,6 @@ public class ViewBox implements IDrawable {
      * activate and add this to game
      */
     private void makeActive() {
-        this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
     }
 
@@ -59,7 +54,6 @@ public class ViewBox implements IDrawable {
      * deactivate and remove this from game
      */
     public void makeNotActive() {
-        this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
     }
 
@@ -150,12 +144,5 @@ public class ViewBox implements IDrawable {
         this.vel = vel;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
 }
 

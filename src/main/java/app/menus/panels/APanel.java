@@ -24,9 +24,6 @@ public abstract class APanel implements IDrawable {
 
     private final String panelText;
 
-    // true means is displayed and clickable
-    private boolean isActive;
-
     /**
      * set properties of this
      */
@@ -52,7 +49,6 @@ public abstract class APanel implements IDrawable {
      * active and add this to game
      */
     private void makeActive() {
-        this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
         this.mainSketch.registerMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
     }
@@ -61,7 +57,6 @@ public abstract class APanel implements IDrawable {
      * deactivate and remove this from game
      */
     public void makeNotActive() {
-        this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
         this.mainSketch.unregisterMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
     }

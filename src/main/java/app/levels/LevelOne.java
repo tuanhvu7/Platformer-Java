@@ -1,7 +1,7 @@
 package app.levels;
 
 import app.Platformer;
-import app.blocks.EventBlock;
+import app.blocks.Block;
 import app.boundaries.EnemyTriggerVerticalBoundary;
 import app.boundaries.HorizontalBoundary;
 import app.characters.ControllableEnemy;
@@ -130,46 +130,46 @@ public class LevelOne extends ALevel implements IDrawable {
 //             this.isActive
 //         ));
 
-         int playerWarpEndXPos = 1000;
-         // int playerWarpEndXPos = getCurrentActiveLevelWidth() - Constants.PLAYER_DIAMETER - 1;  // test end of state
-         // int playerWarpEndXPos = Constants.PLAYER_DIAMETER / 2 + 1;   // test beginning of stage
+//         int playerWarpEndXPos = 1000;
+//         // int playerWarpEndXPos = getCurrentActiveLevelWidth() - Constants.PLAYER_DIAMETER - 1;  // test end of state
+//         // int playerWarpEndXPos = Constants.PLAYER_DIAMETER / 2 + 1;   // test beginning of stage
+//
+//         this.blocksList.add(new EventBlock( // warp event
+//             this.mainSketch,
+//             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300,
+//             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+//             Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+//             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+//             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+//             playerWarpEndXPos,
+//             750,
+//             true,
+//             this.isActive
+//         ));
 
-         this.blocksList.add(new EventBlock( // warp event
+         this.blocksList.add(new Block(
              this.mainSketch,
              this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300,
-             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
-             Constants.DEFAULT_EVENT_BLOCK_WIDTH,
-             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+             this.mainSketch.height - 300,
+             Constants.DEFAULT_BLOCK_SIZE,
+             Constants.DEFAULT_BLOCK_SIZE,
              Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-             playerWarpEndXPos,
-             750,
-             true,
+             false,
+             false,
              this.isActive
          ));
 
-//         this.blocksList.add(new Block(
-//             this.mainSketch,
-//             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300,
-//             this.mainSketch.height - 300,
-//             Constants.DEFAULT_BLOCK_SIZE,
-//             Constants.DEFAULT_BLOCK_SIZE,
-//             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-//             false,
-//             false,
-//             this.isActive
-//         ));
-//
-//         this.blocksList.add(new Block(
-//             this.mainSketch,
-//             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300 + Constants.DEFAULT_BLOCK_SIZE,
-//             this.mainSketch.height - 300 - Constants.DEFAULT_BLOCK_SIZE,
-//             Constants.DEFAULT_BLOCK_SIZE,
-//             Constants.DEFAULT_BLOCK_SIZE,
-//             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-//             true,
-//             true,
-//             this.isActive
-//         ));
+         this.blocksList.add(new Block(
+             this.mainSketch,
+             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300 + Constants.DEFAULT_BLOCK_SIZE,
+             this.mainSketch.height - 300 - Constants.DEFAULT_BLOCK_SIZE,
+             Constants.DEFAULT_BLOCK_SIZE,
+             Constants.DEFAULT_BLOCK_SIZE,
+             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+             true,
+             true,
+             this.isActive
+         ));
 
         /*** END Blocks ***/
     }

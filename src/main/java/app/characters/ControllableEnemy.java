@@ -26,7 +26,6 @@ public class ControllableEnemy extends Enemy {
      */
     @Override
     public void makeActive() {
-        this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
         this.mainSketch.registerMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
     }
@@ -36,7 +35,6 @@ public class ControllableEnemy extends Enemy {
      */
     @Override
     public void makeNotActive() {
-        this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
         this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
     }

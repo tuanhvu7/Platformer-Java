@@ -74,6 +74,7 @@ public class Constants {
     public static final int DEFAULT_BOUNDARY_LINE_THICKNESS = 1;
 
     public static final int DEFAULT_BLOCK_COLOR = 0xCD853F;
+    public static final int DEFAULT_BLOCK_SIZE = 100;
 
     public static final int CHECKPOINT_BLOCK_COLOR = 0xFFD700;
     public static final int CHECKPOINT_BLOCK_WIDTH = 40;

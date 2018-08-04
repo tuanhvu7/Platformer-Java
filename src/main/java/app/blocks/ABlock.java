@@ -12,7 +12,6 @@ public class ABlock {
     // main sketch
     final Platformer mainSketch;
 
-    boolean isActive;
     boolean isVisible;
 
     // position and dimensions

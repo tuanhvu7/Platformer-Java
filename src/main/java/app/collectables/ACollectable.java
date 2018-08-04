@@ -17,7 +17,6 @@ public class ACollectable implements IDrawable {
     final int topY;
     final int width;
     final int height;
-    private boolean isActive;
 
     final int blockLineThickness;
 
@@ -54,7 +53,6 @@ public class ACollectable implements IDrawable {
      * active and add this to game
      */
     private void makeActive() {
-        this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
     }
 
@@ -62,7 +60,6 @@ public class ACollectable implements IDrawable {
      * deactivate and remove this from game
      */
     public void makeNotActive() {
-        this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
     }
 

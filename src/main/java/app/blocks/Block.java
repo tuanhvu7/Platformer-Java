@@ -97,7 +97,6 @@ public class Block extends ABlock implements IDrawable {
      * active and add this to game
      */
     private void makeActive() {
-        this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
 
         // make horizontal boundaries first since their detection takes precedence
@@ -115,7 +114,6 @@ public class Block extends ABlock implements IDrawable {
      */
     @Override
     public void makeNotActive() {
-        this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
 
         this.topSide.makeNotActive();

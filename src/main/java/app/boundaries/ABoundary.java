@@ -35,9 +35,6 @@ public abstract class ABoundary {
     // set of all characters that are touching this
     final Set<ACharacter> charactersTouchingThis;
 
-    // true means this is active (character collision detection)
-    private boolean isActive;
-
     /**
      * set properties of this
      *
@@ -91,7 +88,6 @@ public abstract class ABoundary {
      */
     public void makeActive() {
         this.charactersTouchingThis.clear();
-        this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
     }
 
@@ -99,7 +95,6 @@ public abstract class ABoundary {
      * deactivate and remove this from game
      */
     public void makeNotActive() {
-        this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
     }
 
@@ -120,11 +115,4 @@ public abstract class ABoundary {
         this.doesAffectPlayer = doesAffectPlayer;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
 }
