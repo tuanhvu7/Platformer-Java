@@ -138,4 +138,11 @@ public abstract class ACharacter {
         this.numberOfFloorBoundaryContacts = numberOfFloorBoundaryContacts;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }

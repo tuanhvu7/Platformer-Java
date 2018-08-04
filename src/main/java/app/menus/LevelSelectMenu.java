@@ -52,11 +52,11 @@ public class LevelSelectMenu extends AMenu  implements IDrawable {
      */
     public void draw() {
         this.mainSketch.image(
-            ResourceUtils.STAGE_BACKGROUND,
+            ResourceUtils.STAGE_BACKGROUND_IMAGE,
             0,
             0,
-            ResourceUtils.STAGE_BACKGROUND.width,
-            ResourceUtils.STAGE_BACKGROUND.height);
+            ResourceUtils.STAGE_BACKGROUND_IMAGE.width,
+            ResourceUtils.STAGE_BACKGROUND_IMAGE.height);
     }
 
 }

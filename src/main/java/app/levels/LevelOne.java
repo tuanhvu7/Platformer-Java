@@ -13,6 +13,7 @@ import app.constants.Constants;
 import app.enums.ESongType;
 import app.interfaces.IDrawable;
 import app.utils.ResourceUtils;
+import app.viewbox.ViewBox;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -45,10 +46,10 @@ public class LevelOne extends ALevel implements IDrawable {
         this.makeActive();
 
         if(this.loadPlayerFromCheckPoint) {
-            this.viewBox = new ViewBox(this.checkpointXPos - 200, 0, this.isActive);
+            this.viewBox = new ViewBox(this.mainSketch,this.checkpointXPos - 200, 0, this.isActive);
             this.player = new Player(this.mainSketch, this.checkpointXPos, 0, Constants.PLAYER_DIAMETER, this.isActive);
         } else {
-            this.viewBox = new ViewBox(0, 0, this.isActive);
+            this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
             this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
 
             this.collectablesList.add(new Checkpoint(

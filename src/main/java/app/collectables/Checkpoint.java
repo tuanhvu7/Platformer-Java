@@ -30,7 +30,7 @@ public class Checkpoint extends ACollectable {
      */
     protected void checkHandleContactWithPlayer() {
         if(this.mainSketch.getCurrentActivePlayer().isActive() && this.contactWithPlayer()) {   // TODO: encapsulate
-            this.mainSketch.getCurrentActiveLevel().loadPlayerFromCheckPoint = true;  // TODO: encapsulate
+            this.mainSketch.getCurrentActiveLevel().setLoadPlayerFromCheckPoint(true);
             this.makeNotActive();
             this.mainSketch.getCurrentActiveLevelCollectables().remove(this);
         }

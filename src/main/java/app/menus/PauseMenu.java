@@ -4,6 +4,7 @@ import app.Platformer;
 import app.constants.Constants;
 import app.enums.EPauseMenuButtonType;
 import app.interfaces.IDrawable;
+import app.menus.panels.PauseMenuPanel;
 import app.utils.ResourceUtils;
 
 /**
@@ -27,6 +28,7 @@ public class PauseMenu extends AMenu implements IDrawable {
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
 
         this.panelsList.add(new PauseMenuPanel(
+            this.mainSketch,
             EPauseMenuButtonType.Continue,
             100 + this.horizontalOffset,    // add offset to account for viewbox
             100,
@@ -37,6 +39,7 @@ public class PauseMenu extends AMenu implements IDrawable {
         ));
 
         this.panelsList.add(new PauseMenuPanel(
+            this.mainSketch,
             EPauseMenuButtonType.Quit,
             400 + this.horizontalOffset,    // add offset to account for viewbox
             100,
@@ -52,10 +55,10 @@ public class PauseMenu extends AMenu implements IDrawable {
      */
     public void draw() {
         this.mainSketch.image(
-            ResourceUtils.STAGE_BACKGROUND,
+            ResourceUtils.STAGE_BACKGROUND_IMAGE,
             this.horizontalOffset,  // add offset to account for viewbox
             0,
-            ResourceUtils.STAGE_BACKGROUND.width,
-            ResourceUtils.STAGE_BACKGROUND.height);
+            ResourceUtils.STAGE_BACKGROUND_IMAGE.width,
+            ResourceUtils.STAGE_BACKGROUND_IMAGE.height);
     }
 }

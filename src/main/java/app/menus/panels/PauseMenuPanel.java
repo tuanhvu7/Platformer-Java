@@ -35,11 +35,11 @@ public class PauseMenuPanel extends APanel implements IDrawable {
     protected void executeWhenClicked() {
         if (panelType == EPauseMenuButtonType.Continue) {
             ResourceUtils.loopSong(ESongType.Level);
-            this.mainSketch.getCurrentActiveLevel().isPaused = false; // TODO: encapsulate
+            this.mainSketch.getCurrentActiveLevel().setPaused(false);
             this.mainSketch.getCurrentActiveLevel().closePauseMenu();
 
         } else {
-            this.mainSketch.getCurrentActiveLevel().isPaused = false; // TODO: encapsulate
+            this.mainSketch.getCurrentActiveLevel().setPaused(false);
             this.mainSketch.getCurrentActiveLevel().closePauseMenu();
             this.mainSketch.getCurrentActiveLevel().deactivateLevel();
             this.mainSketch.setCurrentActiveLevelNumber(0);

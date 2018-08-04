@@ -10,6 +10,7 @@ import app.factories.LevelFactory;
 import app.levels.ALevel;
 import app.menus.LevelSelectMenu;
 import app.utils.ResourceUtils;
+import app.viewbox.ViewBox;
 import javafx.embed.swing.JFXPanel;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -21,6 +22,9 @@ import java.util.Set;
  * main app
  */
 public class Platformer extends PApplet {
+
+    // to pass into threads
+    private Platformer mainSketch = this;
 
 //    /*** LEVEL ***/
     // level select menu
@@ -38,7 +42,6 @@ public class Platformer extends PApplet {
     public void settings() {
         new JFXPanel(); // initialize JavaFx toolkit
         size(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
-        ResourceUtils.loopSong(ESongType.Level);
         this.levelSelectMenu = new LevelSelectMenu(this, true);
     }
 
@@ -62,16 +65,16 @@ public class Platformer extends PApplet {
             public void run()  {
                 try  {
                     println("running reset level thread!!!");
-                    if(this.levelCompleteThread != null) {
-                        this.levelCompleteThread.get().interrupt();
+                    if(levelCompleteThread != null) {
+                        levelCompleteThread.get().interrupt();
                     }
                     getCurrentActivePlayer().makeNotActive();
                     Thread.sleep( (long) ResourceUtils.PLAYER_DEATH_SONG.getDuration().toMillis() );  // wait for song duration
 
-                    boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().loadPlayerFromCheckPoint;    // TODO: encapsulate
+                    boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();    // TODO: encapsulate
                     getCurrentActiveLevel().deactivateLevel();
                     LevelFactory levelFactory = new LevelFactory();
-                    currentActiveLevel = new WeakReference( levelFactory.getLevel(this, true, loadPlayerFromCheckPoint) );
+                    currentActiveLevel = new WeakReference( levelFactory.getLevel(mainSketch, true, loadPlayerFromCheckPoint) );
                 }
                 catch (InterruptedException ie)  { }
             }
@@ -91,7 +94,7 @@ public class Platformer extends PApplet {
                 public void run()  {
                     try  {
                         println("running level complete thread!!!");
-                        getCurrentActiveLevel().isHandlingLevelComplete = true;    // TODO: encapsulate
+                        getCurrentActiveLevel().setHandlingLevelComplete(true);
                         getCurrentActivePlayer().resetControlPressed();
                         getCurrentActivePlayer().setVelocity(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
                         unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
@@ -140,35 +143,35 @@ public class Platformer extends PApplet {
      * return player of current active level
      */
     public Player getCurrentActivePlayer() {
-        return this.currentActiveLevel.get().player;    // TODO: encapsulate
+        return this.currentActiveLevel.get().getPlayer();    // TODO: encapsulate
     }
 
     /**
      * return non-player app.characters of current active level
      */
     public Set<ACharacter> getCurrentActiveCharactersList() {
-        return this.currentActiveLevel.get().charactersList;    // TODO: encapsulate
+        return this.currentActiveLevel.get().getCharactersList();    // TODO: encapsulate
     }
 
     /**
      * return app.blocks of current active level
      */
     public Set<ABlock> getCurrentActiveBlocksList() {
-        return this.currentActiveLevel.get().blocksList;    // TODO: encapsulate
+        return this.currentActiveLevel.get().getBlocksList();    // TODO: encapsulate
     }
 
     /**
      * return app.collectables of current active level
      */
     public Set<ACollectable> getCurrentActiveLevelCollectables() {
-        return this.currentActiveLevel.get().collectablesList;    // TODO: encapsulate
+        return this.currentActiveLevel.get().getCollectablesList();    // TODO: encapsulate
     }
 
     /**
      * return viewbox of current active level
      */
     public ViewBox getCurrentActiveViewBox() {
-        return this.currentActiveLevel.get().viewBox; // TODO: encapsulate
+        return this.currentActiveLevel.get().getViewBox(); // TODO: encapsulate
     }
 
     /**

@@ -35,6 +35,8 @@ public class ABlock {
     public ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
            boolean isActive) {
 
+        this.mainSketch = mainSketch;
+
         this.leftX = leftX;
         this.topY = topY;
         this.width = width;
@@ -79,6 +81,8 @@ public class ABlock {
      */
     public ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
            boolean isVisible, boolean isActive) {
+
+        this.mainSketch = mainSketch;
 
         this.leftX = leftX;
         this.topY = topY;

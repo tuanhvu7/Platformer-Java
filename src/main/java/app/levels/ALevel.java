@@ -8,9 +8,12 @@ import app.boundaries.VerticalBoundary;
 import app.characters.ACharacter;
 import app.characters.Player;
 import app.collectables.ACollectable;
+import app.collectables.LevelGoal;
 import app.constants.Constants;
 import app.enums.ESongType;
+import app.menus.PauseMenu;
 import app.utils.ResourceUtils;
+import app.viewbox.ViewBox;
 import processing.event.KeyEvent;
 
 import java.util.HashSet;
@@ -152,20 +155,20 @@ public abstract class ALevel {
         // draw background image horizontally until level width is filled
         int levelWidthLeftToDraw = this.mainSketch.getCurrentActiveLevelWidth();
         int numberHorizontalBackgroundIterations =
-            (int) Math.ceil( (double) this.mainSketch.getCurrentActiveLevelWidth() / global_background_image.width);
+            (int) Math.ceil( (double) this.mainSketch.getCurrentActiveLevelWidth() / ResourceUtils.STAGE_BACKGROUND_IMAGE.width);
 
         for(int i = 0; i < numberHorizontalBackgroundIterations; i++) {
             int widthToDraw =
                 Math.min(
-                    ResourceUtils.STAGE_BACKGROUND.width,
+                    ResourceUtils.STAGE_BACKGROUND_IMAGE.width,
                     levelWidthLeftToDraw);
 
             this.mainSketch.image(
-                ResourceUtils.STAGE_BACKGROUND,
-                i * ResourceUtils.STAGE_BACKGROUND.width,
+                ResourceUtils.STAGE_BACKGROUND_IMAGE,
+                i * ResourceUtils.STAGE_BACKGROUND_IMAGE.width,
                 0,
                 widthToDraw,
-                ResourceUtils.STAGE_BACKGROUND.height);
+                ResourceUtils.STAGE_BACKGROUND_IMAGE.height);
 
             levelWidthLeftToDraw -= widthToDraw;
         }
@@ -176,8 +179,8 @@ public abstract class ALevel {
     /**
      * handle character keypress controls
      */
-    private void keyEvent(KeyEvent keyEvent) {
-        if(this.player.isActive && !this.isHandlingLevelComplete) {  // only allow pause if player is active // TODO: encapsulate
+    public void keyEvent(KeyEvent keyEvent) {
+        if(this.player.isActive() && !this.isHandlingLevelComplete) {  // only allow pause if player is active // TODO: encapsulate
             // press 'p' for pause
             if(keyEvent.getAction() == KeyEvent.PRESS) {
                 char keyPressed = keyEvent.getKey();
@@ -189,7 +192,8 @@ public abstract class ALevel {
                         ResourceUtils.stopSong();
                         this.mainSketch.noLoop();
                         this.pauseMenu = new PauseMenu(
-                            (int) this.viewBox.pos.x, // TODO: encapsulate
+                            this.mainSketch,
+                            (int) this.viewBox.getPos().x, // TODO: encapsulate
                             true);
 
                     } else {
@@ -208,6 +212,7 @@ public abstract class ALevel {
     protected void setUpActivateFloorWallsGoal() {
         // stage goal
         this.collectablesList.add(new LevelGoal(
+            this.mainSketch,
             this.mainSketch.getCurrentActiveLevelWidth() - Constants.LEVEL_GOAL_BLOCK_WIDTH - 10,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.LEVEL_GOAL_BLOCK_HEIGHT,
             Constants.LEVEL_GOAL_BLOCK_WIDTH,
@@ -246,6 +251,103 @@ public abstract class ALevel {
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             this.isActive
         ));
+    }
+
+    /*** getters and setters ***/
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public ViewBox getViewBox() {
+        return viewBox;
+    }
+
+    public void setViewBox(ViewBox viewBox) {
+        this.viewBox = viewBox;
+    }
+
+    public Set<ACharacter> getCharactersList() {
+        return charactersList;
+    }
+
+    public void setCharactersList(Set<ACharacter> charactersList) {
+        this.charactersList = charactersList;
+    }
+
+    public Set<ABoundary> getBoundariesList() {
+        return boundariesList;
+    }
+
+    public void setBoundariesList(Set<ABoundary> boundariesList) {
+        this.boundariesList = boundariesList;
+    }
+
+    public Set<ABlock> getBlocksList() {
+        return blocksList;
+    }
+
+    public void setBlocksList(Set<ABlock> blocksList) {
+        this.blocksList = blocksList;
+    }
+
+    public Set<ACollectable> getCollectablesList() {
+        return collectablesList;
+    }
+
+    public void setCollectablesList(Set<ACollectable> collectablesList) {
+        this.collectablesList = collectablesList;
+    }
+
+    public PauseMenu getPauseMenu() {
+        return pauseMenu;
+    }
+
+    public void setPauseMenu(PauseMenu pauseMenu) {
+        this.pauseMenu = pauseMenu;
+    }
+
+    public boolean isPaused() {
+        return isPaused;
+    }
+
+    public void setPaused(boolean paused) {
+        isPaused = paused;
+    }
+
+    public int getCheckpointXPos() {
+        return checkpointXPos;
+    }
+
+    public void setCheckpointXPos(int checkpointXPos) {
+        this.checkpointXPos = checkpointXPos;
+    }
+
+    public boolean isLoadPlayerFromCheckPoint() {
+        return loadPlayerFromCheckPoint;
+    }
+
+    public void setLoadPlayerFromCheckPoint(boolean loadPlayerFromCheckPoint) {
+        this.loadPlayerFromCheckPoint = loadPlayerFromCheckPoint;
+    }
+
+    public boolean isHandlingLevelComplete() {
+        return isHandlingLevelComplete;
+    }
+
+    public void setHandlingLevelComplete(boolean handlingLevelComplete) {
+        isHandlingLevelComplete = handlingLevelComplete;
     }
 }
 

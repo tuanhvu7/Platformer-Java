@@ -9,6 +9,7 @@ import app.constants.Constants;
 import app.enums.ESongType;
 import app.interfaces.IDrawable;
 import app.utils.ResourceUtils;
+import app.viewbox.ViewBox;
 
 /**
  * Level two
@@ -28,7 +29,7 @@ public class LevelTwo extends ALevel implements IDrawable {
     public void setUpActivateLevel() {
         this.makeActive();
 
-        this.viewBox = new ViewBox(0, 0, this.isActive);
+        this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
         this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
 
         ResourceUtils.loopSong(ESongType.Level);

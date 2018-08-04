@@ -139,15 +139,15 @@ public class Block extends ABlock implements IDrawable {
         } else {
             this.isVisible = true;
             this.topSide.makeActive();
-            this.topSide.isVisible = true;  // TODO: encapsulate
+            this.topSide.setVisible(true);
 
-            this.bottomSide.isVisible = true;  // TODO: encapsulate
+            this.bottomSide.setVisible(true);
 
             this.leftSide.makeActive();
-            this.leftSide.isVisible = true;  // TODO: encapsulate
+            this.leftSide.setVisible(true);
 
             this.rightSide.makeActive();
-            this.rightSide.isVisible = true;  // TODO: encapsulate
+            this.rightSide.setVisible(true);
         }
     }
 
@@ -156,7 +156,7 @@ public class Block extends ABlock implements IDrawable {
      */
     private void removeBlockFromPlayerContact() {
         this.mainSketch.getCurrentActivePlayer().handleContactWithHorizontalBoundary(
-            this.bottomSide.startPoint.y,  // TODO: encapsulate
+            this.bottomSide.getStartPoint().y,
             false);
         ResourceUtils.playSong(ESongType.PlayerAction);
         this.makeNotActive();

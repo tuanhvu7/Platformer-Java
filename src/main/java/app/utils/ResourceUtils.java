@@ -89,7 +89,7 @@ public class ResourceUtils {
     /*** assets path ***/
     private static final String BACKGROUND_IMAGE_NAME = "sky-blue-bg.png";
     private static final ImageIcon BACKGROUND_IMAGE = new ImageIcon(getResourcePath(BACKGROUND_IMAGE_NAME));
-    public static final PImage STAGE_BACKGROUND = new PImage(BACKGROUND_IMAGE.getImage());
+    public static final PImage STAGE_BACKGROUND_IMAGE = new PImage(BACKGROUND_IMAGE.getImage());
 
     // level song
     private static final String LEVEL_SONG_NAME = "level-song.mp3";

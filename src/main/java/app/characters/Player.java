@@ -92,7 +92,7 @@ public class Player extends ACharacter implements IDrawable {
         if(this.isDescendingDownEventBlock) {
             this.handleEventBlockDescent();
         } else {
-            if(!this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete) {  // TODO: encapsulate
+            if(!this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete()) {  // TODO: encapsulate
                 this.handleHorizontalMovement();
             }
             this.handleVerticalMovement();
@@ -100,7 +100,7 @@ public class Player extends ACharacter implements IDrawable {
 
         this.pos.add(this.vel);
 
-        fill(Constants.PLAYER_COLOR);
+        this.mainSketch.fill(Constants.PLAYER_COLOR);
         this.show();
     }
 
@@ -167,7 +167,7 @@ public class Player extends ACharacter implements IDrawable {
             this.mainSketch.getCurrentActiveViewBox().setViewBoxHorizontalPosition(this.pos.x);
             this.vel.y = Constants.CHARACTER_WARP_EVENT_VERTICAL_VELOCITY;
         }
-        eventBlockTopBoundary.doesAffectPlayer = true;  // TODO: encapsulate
+        eventBlockTopBoundary.setDoesAffectPlayer(true);
     }
 
     /**
@@ -213,9 +213,9 @@ public class Player extends ACharacter implements IDrawable {
 
             // TODO: encapsulate
             int middleOfBoundary = Math.round(
-                (firstEventTopBoundaryContacts.endPoint.x + firstEventTopBoundaryContacts.startPoint.x) / 2);
+                (firstEventTopBoundaryContacts.getEndPoint().x + firstEventTopBoundaryContacts.getStartPoint().x) / 2);
 
-            firstEventTopBoundaryContacts.doesAffectPlayer = false; // TODO: encapsulate
+            firstEventTopBoundaryContacts.setDoesAffectPlayer(false);
             this.pos.x = middleOfBoundary;
             this.vel.x = 0;
             this.vel.y = Constants.EVENT_BLOCK_DESCENT_VERTICAL_VELOCITY;

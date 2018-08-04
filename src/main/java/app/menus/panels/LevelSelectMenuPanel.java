@@ -28,7 +28,7 @@ public class LevelSelectMenuPanel extends APanel implements IDrawable {
         this.mainSketch.getLevelSelectMenu().deactivateMenu();
         this.mainSketch.setCurrentActiveLevelNumber(this.panelLevel);;
         LevelFactory levelFactory = new LevelFactory();
-        this.mainSketch.setCurrentActiveLevel(levelFactory.getLevel(this.mainSketch, true, false);
+        this.mainSketch.setCurrentActiveLevel(levelFactory.getLevel(this.mainSketch, true, false));
     }
 }
 
