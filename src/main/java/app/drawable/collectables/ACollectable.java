@@ -7,7 +7,7 @@ import app.drawable.interfaces.IDrawable;
 /**
  * common for rectangular collectables
  */
-public class ACollectable implements IDrawable {
+public abstract class ACollectable implements IDrawable {
 
     // main sketch
     final Platformer mainSketch;

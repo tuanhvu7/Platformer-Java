@@ -7,7 +7,7 @@ import app.drawable.boundaries.VerticalBoundary;
 /**
  * common for blocks
  */
-public class ABlock {
+public abstract class ABlock {
 
     // main sketch
     final Platformer mainSketch;

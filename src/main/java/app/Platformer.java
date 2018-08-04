@@ -35,6 +35,7 @@ public class Platformer extends PApplet {
     // stores currently active level number
     private int currentActiveLevelNumber;
 
+    // thread to handle level completion; stored in variable to be able interrupt
     private Thread levelCompleteThread;
 
     /**
