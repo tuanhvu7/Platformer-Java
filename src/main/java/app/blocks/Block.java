@@ -14,7 +14,7 @@ import app.utils.ResourceUtils;
 public class Block extends ABlock implements IDrawable {
 
     // true means breakable from bottom
-    private boolean isBreakableFromBottom;
+    private final boolean isBreakableFromBottom;
 
     /**
      * set properties of this;

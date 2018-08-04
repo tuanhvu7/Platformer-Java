@@ -26,7 +26,7 @@ import java.util.Set;
 public abstract class ALevel implements IDrawable {
 
     // main sketch
-    Platformer mainSketch;
+    final Platformer mainSketch;
 
     // true means this is active
     boolean isActive;
@@ -38,16 +38,16 @@ public abstract class ALevel implements IDrawable {
     ViewBox viewBox;
 
     // set of all non-playable characters in level
-    Set<ACharacter> charactersList;
+    final Set<ACharacter> charactersList;
 
     // set of all boundaries in level
-    Set<ABoundary> boundariesList;
+    final Set<ABoundary> boundariesList;
 
     // set of all blocks in level
-    Set<ABlock> blocksList;
+    final Set<ABlock> blocksList;
 
     // set of all collectables in level
-    Set<ACollectable> collectablesList;
+    final Set<ACollectable> collectablesList;
 
     // pause menu for level
     private PauseMenu pauseMenu;

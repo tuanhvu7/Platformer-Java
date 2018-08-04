@@ -12,7 +12,7 @@ import app.interfaces.IDrawable;
 public class EventBlock extends ABlock implements IDrawable {
 
     // boundary that events player upon player contact
-    private EventTriggerHorizontalBoundary eventTriggerBoundary;
+    private final EventTriggerHorizontalBoundary eventTriggerBoundary;
 
     /**
      * set properties of this;

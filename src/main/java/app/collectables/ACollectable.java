@@ -10,16 +10,16 @@ import app.interfaces.IDrawable;
 public class ACollectable implements IDrawable {
 
     // main sketch
-    Platformer mainSketch;
+    final Platformer mainSketch;
 
     // position and dimensions
-    int leftX;
-    int topY;
-    int width;
-    int height;
+    final int leftX;
+    final int topY;
+    final int width;
+    final int height;
     private boolean isActive;
 
-    int blockLineThickness;
+    final int blockLineThickness;
 
     /**
      * set properties of this;

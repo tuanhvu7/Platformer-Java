@@ -11,7 +11,7 @@ import java.util.Set;
  */
 public class EnemyTriggerVerticalBoundary extends VerticalBoundary {
     // set of enemies to be added
-    private Set<Enemy> enemiesToAddSet;
+    private final Set<Enemy> enemiesToAddSet;
 
     /**
      * set properties of this

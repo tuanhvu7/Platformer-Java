@@ -13,15 +13,15 @@ import java.util.Set;
  */
 public abstract class ABoundary {
     // main sketch
-    Platformer mainSketch;
+    final Platformer mainSketch;
 
     // start point (smaller x and smaller y) coordinate for boundary
-    PVector startPoint;
+    final PVector startPoint;
     // end point (larger x and larger y) coordinate for boundary
-    PVector endPoint;
+    final PVector endPoint;
 
     // stoke thickness of boundary
-    private int boundaryLineThickness;
+    private final int boundaryLineThickness;
 
     // true means visible to player
     private boolean isVisible;
@@ -30,10 +30,10 @@ public abstract class ABoundary {
     boolean doesAffectPlayer;
 
     // true means check and handle collision between this and non-player characters
-    boolean doesAffectNonPlayers;
+    final boolean doesAffectNonPlayers;
 
     // set of all characters that are touching this
-    Set<ACharacter> charactersTouchingThis;
+    final Set<ACharacter> charactersTouchingThis;
 
     // true means this is active (character collision detection)
     private boolean isActive;

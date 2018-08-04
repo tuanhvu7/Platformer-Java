@@ -9,10 +9,10 @@ import processing.core.PVector;
  */
 public class EventTriggerHorizontalBoundary extends HorizontalBoundary {
     // top boundary of event block that this is part of
-    private EventBlockTopBoundary eventBlockTopBoundary;
+    private final EventBlockTopBoundary eventBlockTopBoundary;
 
     // if not null, end location of warp event; else, launch event
-    private PVector endWarpPosition;
+    private final PVector endWarpPosition;
 
     /**
      * set properties of this;

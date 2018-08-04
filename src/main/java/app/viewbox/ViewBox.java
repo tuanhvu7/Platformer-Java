@@ -12,7 +12,7 @@ import processing.core.PVector;
 public class ViewBox implements IDrawable {
 
     // main sketch
-    private Platformer mainSketch;
+    private final Platformer mainSketch;
 
     // top-left (x, y) coordinates of viewbox position
     private PVector pos;

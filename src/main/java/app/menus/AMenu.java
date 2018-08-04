@@ -12,16 +12,16 @@ import java.util.List;
 public abstract class AMenu {
 
     // main sketch
-    Platformer mainSketch;
+    final Platformer mainSketch;
 
     // horizontal offset of this from viewbox
-    int horizontalOffset;
+    final int horizontalOffset;
 
     // true means displayed
     boolean isActive;
 
     // list of panels in menu
-    List<APanel> panelsList;
+    final List<APanel> panelsList;
 
     /**
      * set properties of this;

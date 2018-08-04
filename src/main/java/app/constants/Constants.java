@@ -27,7 +27,6 @@ public class Constants {
     };
 
     /*** screen config ***/
-    public static final int SCREEN_BACKGROUND = 0x7EC0EE;
     public static final int SCREEN_HEIGHT = 900;
     public static final int SCREEN_WIDTH = 1000;
     public static final int LEVEL_FLOOR_Y_POSITION = SCREEN_HEIGHT - 100;
@@ -75,7 +74,6 @@ public class Constants {
     public static final int DEFAULT_BOUNDARY_LINE_THICKNESS = 1;
 
     public static final int DEFAULT_BLOCK_COLOR = 0xCD853F;
-    public static final int DEFAULT_BLOCK_SIZE = 100;
 
     public static final int CHECKPOINT_BLOCK_COLOR = 0xFFD700;
     public static final int CHECKPOINT_BLOCK_WIDTH = 40;

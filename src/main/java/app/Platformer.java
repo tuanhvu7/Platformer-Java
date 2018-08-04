@@ -24,7 +24,7 @@ import java.util.Set;
 public class Platformer extends PApplet {
 
     // to pass into threads
-    private Platformer mainSketch = this;
+    private final Platformer mainSketch = this;
 
 //    /*** LEVEL ***/
     // level select menu

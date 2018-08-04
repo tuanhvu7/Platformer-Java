@@ -23,7 +23,7 @@ public class Player extends ACharacter implements IDrawable {
     private int numberOfCeilingBoundaryContacts;
 
     // top boundary of event app.blocks that this is touching
-    private Set<EventBlockTopBoundary> eventTopBoundaryContacts;
+    private final Set<EventBlockTopBoundary> eventTopBoundaryContacts;
 
     // player pressed control states
     private boolean moveLeftPressed;

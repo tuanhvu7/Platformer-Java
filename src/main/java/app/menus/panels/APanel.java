@@ -11,18 +11,18 @@ import processing.event.MouseEvent;
 public abstract class APanel implements IDrawable {
 
     // main sketch
-    Platformer mainSketch;
+    final Platformer mainSketch;
 
-    int leftX;
-    int rightX;
+    final int leftX;
+    final int rightX;
 
-    int topY;
-    int bottomY;
+    final int topY;
+    final int bottomY;
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
-    private String panelText;
+    private final String panelText;
 
     // true means is displayed and clickable
     private boolean isActive;

@@ -12,10 +12,10 @@ import app.utils.ResourceUtils;
 public class Enemy extends ACharacter implements IDrawable {
 
     // true means flying enemy (not affected by gravity)
-    boolean isFlying;
+    final boolean isFlying;
 
     // true means invulnerable; always kills player on contact
-    private boolean isInvulnerable;
+    private final boolean isInvulnerable;
 
     private boolean isVisible;
 

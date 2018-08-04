@@ -12,10 +12,10 @@ import app.utils.ResourceUtils;
 public class PauseMenuPanel extends APanel implements IDrawable {
 
     // horizontal offset of this due to viewbox
-    private int horizontalOffset;
+    private final int horizontalOffset;
 
     // panel type
-    private EPauseMenuButtonType panelType;
+    private final EPauseMenuButtonType panelType;
 
     /**
      * set properties of this

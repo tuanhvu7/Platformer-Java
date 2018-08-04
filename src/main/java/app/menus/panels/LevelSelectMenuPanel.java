@@ -10,7 +10,7 @@ import app.interfaces.IDrawable;
 public class LevelSelectMenuPanel extends APanel implements IDrawable {
 
     // level associated with this
-    private int panelLevel;
+    private final int panelLevel;
 
     /**
      * set properties of this

@@ -10,23 +10,23 @@ import app.boundaries.VerticalBoundary;
 public class ABlock {
 
     // main sketch
-    Platformer mainSketch;
+    final Platformer mainSketch;
 
     boolean isActive;
     boolean isVisible;
 
     // position and dimensions
-    int leftX;
-    int topY;
-    int width;
-    int height;
+    final int leftX;
+    final int topY;
+    final int width;
+    final int height;
 
     // boundaries that make up block
     HorizontalBoundary topSide;
-    HorizontalBoundary bottomSide;
+    final HorizontalBoundary bottomSide;
 
-    VerticalBoundary leftSide;
-    VerticalBoundary rightSide;
+    final VerticalBoundary leftSide;
+    final VerticalBoundary rightSide;
 
     /**
      * set properties of this;

@@ -10,14 +10,14 @@ import processing.core.PVector;
 public abstract class ACharacter {
 
     // main sketch
-    Platformer mainSketch;
+    final Platformer mainSketch;
 
     // (x, y) coordinates of center of character (x, y)
-    PVector pos;
+    final PVector pos;
     // (x, y) velocity of character (x, y)
     PVector vel;
 
-    int diameter;
+    final int diameter;
 
     // number of floor-like app.boundaries this is touching;
     int numberOfFloorBoundaryContacts;
