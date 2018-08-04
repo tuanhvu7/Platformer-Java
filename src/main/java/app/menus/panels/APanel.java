@@ -22,7 +22,7 @@ public abstract class APanel implements IDrawable {
     protected int width;
     protected int height;
 
-    protected String panelText;
+    private String panelText;
 
     // true means is displayed and clickable
     protected boolean isActive;
@@ -69,6 +69,7 @@ public abstract class APanel implements IDrawable {
     /**
      * runs continuously; draws rectangle panel using this properties
      */
+    @Override
     public void draw() {
         this.mainSketch.fill(Constants.PANEL_COLOR);
         this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);

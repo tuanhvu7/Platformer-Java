@@ -110,10 +110,6 @@ public abstract class ACharacter {
         return pos;
     }
 
-    public void setPos(PVector pos) {
-        this.pos = pos;
-    }
-
     public PVector getVel() {
         return vel;
     }
@@ -124,18 +120,6 @@ public abstract class ACharacter {
 
     public int getDiameter() {
         return diameter;
-    }
-
-    public void setDiameter(int diameter) {
-        this.diameter = diameter;
-    }
-
-    public int getNumberOfFloorBoundaryContacts() {
-        return numberOfFloorBoundaryContacts;
-    }
-
-    public void setNumberOfFloorBoundaryContacts(int numberOfFloorBoundaryContacts) {
-        this.numberOfFloorBoundaryContacts = numberOfFloorBoundaryContacts;
     }
 
     public boolean isActive() {

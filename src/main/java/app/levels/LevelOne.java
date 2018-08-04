@@ -38,6 +38,7 @@ public class LevelOne extends ALevel implements IDrawable {
     /**
      * setup and activate this
      */
+    @Override
     public void setUpActivateLevel() {
         this.bigEnemyTriggerActivated = false;
         this.bigEnemyTriggerCharacterListSizeCondition = 0;
@@ -178,6 +179,7 @@ public class LevelOne extends ALevel implements IDrawable {
      * handle conditional enemy triggers in this;
      * to override in extended classes
      */
+    @Override
     public void handleConditionalEnemyTriggers() {
         if(!bigEnemyTriggerActivated && this.charactersList.size() == this.bigEnemyTriggerCharacterListSizeCondition) {
             Set<Enemy> enemySet = new HashSet<Enemy>();

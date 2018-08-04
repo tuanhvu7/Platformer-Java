@@ -21,7 +21,7 @@ public abstract class ABoundary {
     protected PVector endPoint;
 
     // stoke thickness of boundary
-    protected int boundaryLineThickness;
+    private int boundaryLineThickness;
 
     // true means visible to player
     protected boolean isVisible;
@@ -108,56 +108,16 @@ public abstract class ABoundary {
         return startPoint;
     }
 
-    public void setStartPoint(PVector startPoint) {
-        this.startPoint = startPoint;
-    }
-
     public PVector getEndPoint() {
         return endPoint;
-    }
-
-    public void setEndPoint(PVector endPoint) {
-        this.endPoint = endPoint;
-    }
-
-    public int getBoundaryLineThickness() {
-        return boundaryLineThickness;
-    }
-
-    public void setBoundaryLineThickness(int boundaryLineThickness) {
-        this.boundaryLineThickness = boundaryLineThickness;
-    }
-
-    public boolean isVisible() {
-        return isVisible;
     }
 
     public void setVisible(boolean visible) {
         isVisible = visible;
     }
 
-    public boolean isDoesAffectPlayer() {
-        return doesAffectPlayer;
-    }
-
     public void setDoesAffectPlayer(boolean doesAffectPlayer) {
         this.doesAffectPlayer = doesAffectPlayer;
-    }
-
-    public boolean isDoesAffectNonPlayers() {
-        return doesAffectNonPlayers;
-    }
-
-    public void setDoesAffectNonPlayers(boolean doesAffectNonPlayers) {
-        this.doesAffectNonPlayers = doesAffectNonPlayers;
-    }
-
-    public Set<ACharacter> getCharactersTouchingThis() {
-        return charactersTouchingThis;
-    }
-
-    public void setCharactersTouchingThis(Set<ACharacter> charactersTouchingThis) {
-        this.charactersTouchingThis = charactersTouchingThis;
     }
 
     public boolean isActive() {

@@ -44,6 +44,7 @@ public class ACollectable implements IDrawable {
     /**
      * runs continuously
      */
+    @Override
     public void draw() {
         this.show();
         this.checkHandleContactWithPlayer();
@@ -90,8 +91,6 @@ public class ACollectable implements IDrawable {
         boolean playerInVerticalRange =
             (curPlayer.getPos().y + (curPlayer.getDiameter() / 2) >= this.topY) &&
                 (curPlayer.getPos().y - (curPlayer.getDiameter() / 2) <= this.topY + this.height);
-        ;
-
 
         return playerInHorizontalRange && playerInVerticalRange;
     }

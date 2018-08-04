@@ -8,7 +8,7 @@ import app.interfaces.IDrawable;
 /**
  * horizontal line boundaries; floors or ceilings
  */
-public class HorizontalBoundary extends ABoundary implements IDrawable {
+public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundary {
     // true means character cannot go through top side of boundary
     // false means character cannot go through bottom side of boundary
     protected boolean isFloorBoundary;
@@ -53,6 +53,7 @@ public class HorizontalBoundary extends ABoundary implements IDrawable {
     /**
      * return true if valid collision with given character
      */
+    @Override
     public boolean contactWithCharacter(ACharacter character) {
 
         // if(this.isFloorBoundary && character.getVel().y > 0) {
@@ -90,17 +91,11 @@ public class HorizontalBoundary extends ABoundary implements IDrawable {
     /**
      * runs continuously. checks and handles contact between this and characters
      */
+    @Override
     public void draw() {
         this.show();
         this.checkHandleContactWithPlayer();
         this.checkHandleContactWithNonPlayerCharacters();
-    }
-
-    /**
-     * return this.isFloorBoundary
-     */
-    public boolean getIsFloorBoundary() {
-        return this.isFloorBoundary;
     }
 
     /**

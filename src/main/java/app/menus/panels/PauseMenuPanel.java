@@ -32,6 +32,7 @@ public class PauseMenuPanel extends APanel implements IDrawable {
     /**
      * to execute when this panel is clicked
      */
+    @Override
     protected void executeWhenClicked() {
         if (panelType == EPauseMenuButtonType.Continue) {
             ResourceUtils.loopSong(ESongType.Level);
@@ -52,6 +53,7 @@ public class PauseMenuPanel extends APanel implements IDrawable {
     /**
      * return if mouse position inside this panel
      */
+    @Override
     protected boolean isMouseIn() {
         return this.mainSketch.mouseX > this.leftX - horizontalOffset &&   // subtract offset since mouseX is unaffected by viewbox
             this.mainSketch.mouseX < this.rightX - horizontalOffset &&  // subtract offset since mouseX is unaffected by viewbox

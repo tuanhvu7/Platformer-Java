@@ -19,6 +19,7 @@ public class Checkpoint extends ACollectable {
     /**
      * display block
      */
+    @Override
     protected void show() {
         this.mainSketch.fill(Constants.CHECKPOINT_BLOCK_COLOR);
         this.mainSketch.strokeWeight(this.blockLineThickness);
@@ -28,6 +29,7 @@ public class Checkpoint extends ACollectable {
     /**
      *  check and handle contact with player
      */
+    @Override
     protected void checkHandleContactWithPlayer() {
         if(this.mainSketch.getCurrentActivePlayer().isActive() && this.contactWithPlayer()) {   // TODO: encapsulate
             this.mainSketch.getCurrentActiveLevel().setLoadPlayerFromCheckPoint(true);

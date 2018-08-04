@@ -22,6 +22,7 @@ public class PauseMenu extends AMenu implements IDrawable {
     /**
      * setup and activate this
      */
+    @Override
     public void setupActivateMenu() {
         // make this active
         this.isActive = true;
@@ -53,6 +54,7 @@ public class PauseMenu extends AMenu implements IDrawable {
     /**
      * runs continuously; draws background of this
      */
+    @Override
     public void draw() {
         this.mainSketch.image(
             ResourceUtils.STAGE_BACKGROUND_IMAGE,

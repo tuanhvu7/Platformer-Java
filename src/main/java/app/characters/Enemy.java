@@ -58,6 +58,7 @@ public class Enemy extends ACharacter implements IDrawable {
     /**
      * runs continuously. handles enemy movement and physics
      */
+    @Override
     public void draw() {
         this.checkHandleContactWithPlayer();
         this.handleMovement();

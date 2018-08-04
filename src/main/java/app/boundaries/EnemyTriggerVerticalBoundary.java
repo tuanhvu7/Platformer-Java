@@ -27,6 +27,7 @@ public class EnemyTriggerVerticalBoundary extends VerticalBoundary {
     /**
      * runs continuously. checks and handles contact between this and characters
      */
+    @Override
     public void draw() {
         this.show();
         this.checkHandleContactWithPlayer();

@@ -75,6 +75,7 @@ public class Block extends ABlock implements IDrawable {
     /**
      * runs continuously
      */
+    @Override
     public void draw() {
         if (this.isVisible) {
             this.show();
@@ -91,13 +92,6 @@ public class Block extends ABlock implements IDrawable {
         }
     }
 
-    /**
-     * display block
-     */
-    protected void show() {
-        this.mainSketch.fill(Constants.DEFAULT_BLOCK_COLOR);
-        this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
-    }
 
     /**
      * active and add this to game
@@ -119,6 +113,7 @@ public class Block extends ABlock implements IDrawable {
     /**
      * deactivate and remove this from game
      */
+    @Override
     public void makeNotActive() {
         this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
@@ -127,6 +122,14 @@ public class Block extends ABlock implements IDrawable {
         this.bottomSide.makeNotActive();
         this.leftSide.makeNotActive();
         this.rightSide.makeNotActive();
+    }
+
+    /**
+     * display block
+     */
+    protected void show() {
+        this.mainSketch.fill(Constants.DEFAULT_BLOCK_COLOR);
+        this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
     }
 
     /**

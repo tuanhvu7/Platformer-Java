@@ -88,16 +88,17 @@ public class EventBlock extends ABlock implements IDrawable {
     /**
      * runs continuously
      */
+    @Override
     public void draw() {
         if (this.isVisible) {
             this.show();
         }
     }
-
+    
     /**
      * display block
      */
-    private void show() {
+    protected void show() {
         this.mainSketch.fill(Constants.EVENT_BLOCK_COLOR);
         this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
     }
@@ -120,6 +121,7 @@ public class EventBlock extends ABlock implements IDrawable {
     /**
      * deactivate and remove this from game
      */
+    @Override
     public void makeNotActive() {
         this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()

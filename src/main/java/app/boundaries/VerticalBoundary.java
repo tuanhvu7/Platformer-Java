@@ -8,7 +8,7 @@ import app.interfaces.IDrawable;
 /**
  * vertical line boundaries; walls
  */
-public class VerticalBoundary extends ABoundary implements IDrawable {
+public class VerticalBoundary extends ABoundary implements IDrawable, IBoundary {
     /**
      * set properties of this;
      * sets this to affect all characters and be visible
@@ -42,6 +42,7 @@ public class VerticalBoundary extends ABoundary implements IDrawable {
     /**
      * return true if collide with given character
      */
+    @Override
     public boolean contactWithCharacter(ACharacter character) {
         if (character.getPos().x + (character.getDiameter() / 2) >= this.startPoint.x         // contact right of character
             && character.getPos().x - (character.getDiameter() / 2) <= this.startPoint.x      // contact left of character

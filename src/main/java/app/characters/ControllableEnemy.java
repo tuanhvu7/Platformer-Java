@@ -24,6 +24,7 @@ public class ControllableEnemy extends Enemy {
     /**
      * active and add this to game
      */
+    @Override
     public void makeActive() {
         this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
@@ -33,6 +34,7 @@ public class ControllableEnemy extends Enemy {
     /**
      * deactivate and remove this from game
      */
+    @Override
     public void makeNotActive() {
         this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
@@ -42,6 +44,7 @@ public class ControllableEnemy extends Enemy {
     /**
      * handle movement (position, velocity)
      */
+    @Override
     protected void handleMovement() {
         if(!this.isFlying) {
 

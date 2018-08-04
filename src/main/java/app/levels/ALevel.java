@@ -11,6 +11,7 @@ import app.collectables.ACollectable;
 import app.collectables.LevelGoal;
 import app.constants.Constants;
 import app.enums.ESongType;
+import app.interfaces.IDrawable;
 import app.menus.PauseMenu;
 import app.utils.ResourceUtils;
 import app.viewbox.ViewBox;
@@ -22,7 +23,7 @@ import java.util.Set;
 /**
  * common for levels
  */
-public abstract class ALevel {
+public abstract class ALevel implements IDrawable {
 
     // main sketch
     protected Platformer mainSketch;
@@ -151,6 +152,7 @@ public abstract class ALevel {
     /**
      * runs continuously
      */
+    @Override
     public void draw() {
         // draw background image horizontally until level width is filled
         int levelWidthLeftToDraw = this.mainSketch.getCurrentActiveLevelWidth();
@@ -274,64 +276,20 @@ public abstract class ALevel {
         return viewBox;
     }
 
-    public void setViewBox(ViewBox viewBox) {
-        this.viewBox = viewBox;
-    }
-
     public Set<ACharacter> getCharactersList() {
         return charactersList;
-    }
-
-    public void setCharactersList(Set<ACharacter> charactersList) {
-        this.charactersList = charactersList;
-    }
-
-    public Set<ABoundary> getBoundariesList() {
-        return boundariesList;
-    }
-
-    public void setBoundariesList(Set<ABoundary> boundariesList) {
-        this.boundariesList = boundariesList;
     }
 
     public Set<ABlock> getBlocksList() {
         return blocksList;
     }
 
-    public void setBlocksList(Set<ABlock> blocksList) {
-        this.blocksList = blocksList;
-    }
-
     public Set<ACollectable> getCollectablesList() {
         return collectablesList;
     }
 
-    public void setCollectablesList(Set<ACollectable> collectablesList) {
-        this.collectablesList = collectablesList;
-    }
-
-    public PauseMenu getPauseMenu() {
-        return pauseMenu;
-    }
-
-    public void setPauseMenu(PauseMenu pauseMenu) {
-        this.pauseMenu = pauseMenu;
-    }
-
-    public boolean isPaused() {
-        return isPaused;
-    }
-
     public void setPaused(boolean paused) {
         isPaused = paused;
-    }
-
-    public int getCheckpointXPos() {
-        return checkpointXPos;
-    }
-
-    public void setCheckpointXPos(int checkpointXPos) {
-        this.checkpointXPos = checkpointXPos;
     }
 
     public boolean isLoadPlayerFromCheckPoint() {

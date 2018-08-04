@@ -18,6 +18,7 @@ public class LevelGoal extends ACollectable {
     /**
      * display block
      */
+    @Override
     protected void show() {
         this.mainSketch.fill(Constants.LEVEL_GOAL_BLOCK_COLOR);
         this.mainSketch.strokeWeight(this.blockLineThickness);
@@ -27,6 +28,7 @@ public class LevelGoal extends ACollectable {
     /**
      * check and handle contact with player
      */
+    @Override
     protected void checkHandleContactWithPlayer() {
         if(this.mainSketch.getCurrentActivePlayer().isActive() && this.contactWithPlayer()) {   // TODO: encapsulate
             this.makeNotActive();

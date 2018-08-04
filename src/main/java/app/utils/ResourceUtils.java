@@ -141,10 +141,7 @@ public class ResourceUtils {
      * @return path to file in resources
      */
     private static String getResourcePath(String fileName) {
-        StringBuilder pathBuilder = new StringBuilder();
-        pathBuilder.append("src/main/resources/");
-        pathBuilder.append(fileName);
-        File file = new File(pathBuilder.toString());
+        File file = new File("src/main/resources/" + fileName);
         return file.getAbsolutePath();
     }
 }

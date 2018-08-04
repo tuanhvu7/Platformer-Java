@@ -26,6 +26,7 @@ public class LevelTwo extends ALevel implements IDrawable {
     /**
      * setup and activate this
      */
+    @Override
     public void setUpActivateLevel() {
         this.makeActive();
 

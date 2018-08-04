@@ -88,6 +88,7 @@ public class Player extends ACharacter implements IDrawable {
     /**
      * runs continuously. handles player movement and physics
      */
+    @Override
     public void draw() {
         if(this.isDescendingDownEventBlock) {
             this.handleEventBlockDescent();
@@ -107,6 +108,7 @@ public class Player extends ACharacter implements IDrawable {
     /**
      * active and add this to game
      */
+    @Override
     public void makeActive() {
         this.isActive = true;
         this.mainSketch.registerMethod("keyEvent", this);   // connect this keyEvent() from main keyEvent()
@@ -116,6 +118,7 @@ public class Player extends ACharacter implements IDrawable {
     /**
      * deactivate and remove this from game
      */
+    @Override
     public void makeNotActive() {
         this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
@@ -125,6 +128,7 @@ public class Player extends ACharacter implements IDrawable {
     /**
      * handle contact with horizontal boundary
      */
+    @Override
     public void handleContactWithHorizontalBoundary(float boundaryYPoint, boolean isFloorBoundary) {
         if(isFloorBoundary) { // floor-like boundary
             if(this.vel.y > 0) {    // boundary only act like floor if this is falling onto boundary
@@ -143,6 +147,7 @@ public class Player extends ACharacter implements IDrawable {
     /**
      * handle contact with vertical boundary
      */
+    @Override
     public void handleContactWithVerticalBoundary(float boundaryXPoint) {
         this.vel.x = 0;
         if(this.pos.x > boundaryXPoint) {   // left boundary
@@ -171,13 +176,6 @@ public class Player extends ACharacter implements IDrawable {
     }
 
     /**
-     * set velocity to given value
-     */
-    public void setVelocity(PVector vel) {
-        this.vel = vel;
-    }
-
-    /**
      * set controls pressed to false
      */
     public void resetControlPressed() {
@@ -196,7 +194,7 @@ public class Player extends ACharacter implements IDrawable {
     /**
      * handle jump on enemy physics
      */
-    public void handleJumpKillEnemyPhysics() {
+    protected void handleJumpKillEnemyPhysics() {
         this.vel.y = Constants.PLAYER_JUMP_KILL_ENEMY_HOP_VERTICAL_VELOCITY;
     }
 
@@ -280,75 +278,23 @@ public class Player extends ACharacter implements IDrawable {
 
 
     /*** getters and setters ***/
-    public int getNumberOfVerticalBoundaryContacts() {
-        return numberOfVerticalBoundaryContacts;
-    }
-
-    public void setNumberOfVerticalBoundaryContacts(int numberOfVerticalBoundaryContacts) {
-        this.numberOfVerticalBoundaryContacts = numberOfVerticalBoundaryContacts;
-    }
-
-    public int getNumberOfCeilingBoundaryContacts() {
-        return numberOfCeilingBoundaryContacts;
-    }
-
-    public void setNumberOfCeilingBoundaryContacts(int numberOfCeilingBoundaryContacts) {
-        this.numberOfCeilingBoundaryContacts = numberOfCeilingBoundaryContacts;
-    }
-
     public Set<EventBlockTopBoundary> getEventTopBoundaryContacts() {
         return eventTopBoundaryContacts;
-    }
-
-    public void setEventTopBoundaryContacts(Set<EventBlockTopBoundary> eventTopBoundaryContacts) {
-        this.eventTopBoundaryContacts = eventTopBoundaryContacts;
     }
 
     public boolean isMoveLeftPressed() {
         return moveLeftPressed;
     }
 
-    public void setMoveLeftPressed(boolean moveLeftPressed) {
-        this.moveLeftPressed = moveLeftPressed;
-    }
-
     public boolean isMoveRightPressed() {
         return moveRightPressed;
-    }
-
-    public void setMoveRightPressed(boolean moveRightPressed) {
-        this.moveRightPressed = moveRightPressed;
-    }
-
-    public boolean isJumpPressed() {
-        return jumpPressed;
-    }
-
-    public void setJumpPressed(boolean jumpPressed) {
-        this.jumpPressed = jumpPressed;
-    }
-
-    public boolean isAbleToMoveRight() {
-        return ableToMoveRight;
     }
 
     public void setAbleToMoveRight(boolean ableToMoveRight) {
         this.ableToMoveRight = ableToMoveRight;
     }
 
-    public boolean isAbleToMoveLeft() {
-        return ableToMoveLeft;
-    }
-
     public void setAbleToMoveLeft(boolean ableToMoveLeft) {
         this.ableToMoveLeft = ableToMoveLeft;
-    }
-
-    public boolean isDescendingDownEventBlock() {
-        return isDescendingDownEventBlock;
-    }
-
-    public void setDescendingDownEventBlock(boolean descendingDownEventBlock) {
-        isDescendingDownEventBlock = descendingDownEventBlock;
     }
 }

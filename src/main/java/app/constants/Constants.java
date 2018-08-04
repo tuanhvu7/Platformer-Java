@@ -59,7 +59,7 @@ public class Constants {
     public static final int PLAYER_JUMP_KILL_ENEMY_HOP_VERTICAL_VELOCITY = -7;
     public static final int PLAYER_COLOR = 0x000000;
     public static final int PLAYER_DIAMETER = 60;
-    // minimun angle (degrees) of collision between player and enemy
+    // minimum angle (degrees) of collision between player and enemy
     // for player to kill enemy
     public static final double MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE = 20.0;
 

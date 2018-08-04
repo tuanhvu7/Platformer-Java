@@ -96,7 +96,7 @@ public class Platformer extends PApplet {
                         println("running level complete thread!!!");
                         getCurrentActiveLevel().setHandlingLevelComplete(true);
                         getCurrentActivePlayer().resetControlPressed();
-                        getCurrentActivePlayer().setVelocity(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
+                        getCurrentActivePlayer().setVel(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
                         unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
 
                         Thread.sleep( (long) ResourceUtils.LEVEL_COMPLETE_SONG_.getDuration().toMillis() );  // wait for song duration
@@ -114,8 +114,7 @@ public class Platformer extends PApplet {
 
 
 
-    //////////////
-
+    /*** getters and setters ***/
     public LevelSelectMenu getLevelSelectMenu() {
         return levelSelectMenu;
     }
@@ -135,9 +134,6 @@ public class Platformer extends PApplet {
     public void setCurrentActiveLevelNumber(int currentActiveLevelNumber) {
         this.currentActiveLevelNumber = currentActiveLevelNumber;
     }
-
-
-    ////////////////
 
     /**
      * return player of current active level
