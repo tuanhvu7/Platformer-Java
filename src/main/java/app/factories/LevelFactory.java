@@ -1,9 +1,9 @@
 package app.factories;
 
 import app.Platformer;
-import app.levels.ALevel;
-import app.levels.LevelOne;
-import app.levels.LevelTwo;
+import app.drawable.levels.ALevel;
+import app.drawable.levels.LevelOne;
+import app.drawable.levels.LevelTwo;
 
 /**
  * for creating appropriate level

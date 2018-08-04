@@ -1,16 +1,16 @@
 package app;
 
-import app.blocks.ABlock;
-import app.characters.ACharacter;
-import app.characters.Player;
-import app.collectables.ACollectable;
+import app.drawable.blocks.ABlock;
+import app.drawable.characters.ACharacter;
+import app.drawable.characters.Player;
+import app.drawable.collectables.ACollectable;
 import app.constants.Constants;
 import app.enums.ESongType;
 import app.factories.LevelFactory;
-import app.levels.ALevel;
-import app.menus.LevelSelectMenu;
+import app.drawable.levels.ALevel;
+import app.drawable.menus.LevelSelectMenu;
 import app.utils.ResourceUtils;
-import app.viewbox.ViewBox;
+import app.drawable.viewbox.ViewBox;
 import javafx.embed.swing.JFXPanel;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -141,21 +141,21 @@ public class Platformer extends PApplet {
     }
 
     /**
-     * return non-player app.characters of current active level
+     * return non-player characters of current active level
      */
     public Set<ACharacter> getCurrentActiveCharactersList() {
         return this.currentActiveLevel.get().getCharactersList();
     }
 
     /**
-     * return app.blocks of current active level
+     * return blocks of current active level
      */
     public Set<ABlock> getCurrentActiveBlocksList() {
         return this.currentActiveLevel.get().getBlocksList();
     }
 
     /**
-     * return app.collectables of current active level
+     * return collectables of current active level
      */
     public Set<ACollectable> getCurrentActiveLevelCollectables() {
         return this.currentActiveLevel.get().getCollectablesList();

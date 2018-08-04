@@ -15,14 +15,14 @@ public class Constants {
     public static final int PANEL_WIDTH = 200;
     public static final int PANEL_COLOR = new Color(0x00FF00).getRGB();
 
-    // widths of all app.levels
+    // widths of all levels
     public final static int[] LEVELS_WIDTH_ARRAY = {
         0,          // non-existent level zero
         1500,       // 5632 level one
         1000
     };
 
-    // heights of all app.levels
+    // heights of all levels
     public final static int[] LEVELS_HEIGHT_ARRAY = {
         0,      // non-existent level zero
         900,    // level one

@@ -82,7 +82,7 @@ public class ResourceUtils {
         EVENT_BLOCK_DESCENT_SONG_PLAYER.stop();
     }
 
-    /*** assets path ***/
+    /*** assets ***/
     private static final String BACKGROUND_IMAGE_NAME = "sky-blue-bg.png";
     private static final ImageIcon BACKGROUND_IMAGE = new ImageIcon(getResourcePath(BACKGROUND_IMAGE_NAME));
     public static final PImage STAGE_BACKGROUND_IMAGE = new PImage(BACKGROUND_IMAGE.getImage());
