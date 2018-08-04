@@ -14,6 +14,8 @@ public class ABlock {
 
     boolean isVisible;
 
+    int fillColor;
+
     // position and dimensions
     final int leftX;
     final int topY;
@@ -120,6 +122,14 @@ public class ABlock {
             isVisible,
             isActive
         );
+    }
+
+    /**
+     * display block
+     */
+    void show() {
+        this.mainSketch.fill(this.fillColor);
+        this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
     }
 
     /**

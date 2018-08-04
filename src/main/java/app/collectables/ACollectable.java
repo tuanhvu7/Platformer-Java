@@ -12,6 +12,8 @@ public class ACollectable implements IDrawable {
     // main sketch
     final Platformer mainSketch;
 
+    int fillColor;
+
     // position and dimensions
     final int leftX;
     final int topY;
@@ -64,10 +66,13 @@ public class ACollectable implements IDrawable {
     }
 
     /**
-     * display collectable;
-     * to override in extended classes
+     * display block
      */
-    void show() { }
+    private void show() {
+        this.mainSketch.fill(this.fillColor);
+        this.mainSketch.strokeWeight(this.blockLineThickness);
+        this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
+    }
 
     /**
      * check and handle contact with player;
@@ -79,7 +84,6 @@ public class ACollectable implements IDrawable {
      * true means this contact with player
      */
     boolean contactWithPlayer() {
-        // TODO: encapsulate
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
         boolean playerInHorizontalRange =
             (curPlayer.getPos().x + (curPlayer.getDiameter() / 2) >= this.leftX) &&

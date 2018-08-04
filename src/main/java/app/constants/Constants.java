@@ -79,13 +79,13 @@ public class Constants {
     public static final int DEFAULT_BLOCK_COLOR = new Color(0xCD853F).getRGB();
     public static final int DEFAULT_BLOCK_SIZE = 100;
 
-    public static final int CHECKPOINT_BLOCK_COLOR = new Color(0xFFD700).getRGB();
-    public static final int CHECKPOINT_BLOCK_WIDTH = 40;
-    public static final int CHECKPOINT_BLOCK_HEIGHT = 100;
+    public static final int CHECKPOINT_COLOR = new Color(0xFFD700).getRGB();
+    public static final int CHECKPOINT_WIDTH = 40;
+    public static final int CHECKPOINT_HEIGHT = 100;
 
-    public static final int LEVEL_GOAL_BLOCK_COLOR = new Color(0xDCDCDC).getRGB();
-    public static final int LEVEL_GOAL_BLOCK_WIDTH = 40;
-    public static final int LEVEL_GOAL_BLOCK_HEIGHT = LEVEL_FLOOR_Y_POSITION;
+    public static final int LEVEL_GOAL_COLOR = new Color(0xDCDCDC).getRGB();
+    public static final int LEVEL_GOAL_WIDTH = 40;
+    public static final int LEVEL_GOAL_HEIGHT = LEVEL_FLOOR_Y_POSITION;
 
     public static final int EVENT_BLOCK_COLOR = new Color(0x00E500).getRGB();
     public static final int DEFAULT_EVENT_BLOCK_WIDTH = 125;

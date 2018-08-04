@@ -52,7 +52,7 @@ public class EventTriggerHorizontalBoundary extends HorizontalBoundary {
     public void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
 
-        if (this.doesAffectPlayer && curPlayer.isActive()) { // TODO: encapsulate
+        if (this.doesAffectPlayer && curPlayer.isActive()) {
             // boundary collision for player
             if (this.contactWithCharacter(curPlayer)) { // this has contact with player
                 curPlayer.handleConactWithEventBoundary(eventBlockTopBoundary, endWarpPosition);

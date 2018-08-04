@@ -66,7 +66,7 @@ public class VerticalBoundary extends ABoundary implements IDrawable, IBoundary 
     private void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
 
-        if (this.doesAffectPlayer && curPlayer.isActive()) {   // TODO: encapsulate
+        if (this.doesAffectPlayer && curPlayer.isActive()) {
             // boundary collision for player
             if (contactWithCharacter(curPlayer)) {  // this has contact with non-player
                 if (!this.charactersTouchingThis.contains(curPlayer)) {  // new collision detected
@@ -77,8 +77,8 @@ public class VerticalBoundary extends ABoundary implements IDrawable, IBoundary 
 
             } else {    // this DOES NOT have contact with player
                 if (this.charactersTouchingThis.contains(curPlayer)) {
-                    curPlayer.setAbleToMoveRight(true);    // TODO: encapsulate
-                    curPlayer.setAbleToMoveLeft(true);    // TODO: encapsulate
+                    curPlayer.setAbleToMoveRight(true);
+                    curPlayer.setAbleToMoveLeft(true);
                     curPlayer.changeNumberOfVerticalBoundaryContacts(-1);
                     this.charactersTouchingThis.remove(curPlayer);
                 }
@@ -93,7 +93,7 @@ public class VerticalBoundary extends ABoundary implements IDrawable, IBoundary 
         if (this.doesAffectNonPlayers) {
             // boundary collision for non-player characters
             for (ACharacter curCharacter : this.mainSketch.getCurrentActiveCharactersList()) {
-                if (curCharacter.isActive() && this.contactWithCharacter(curCharacter)) {  // TODO: encapsulate
+                if (curCharacter.isActive() && this.contactWithCharacter(curCharacter)) {
                     curCharacter.handleContactWithVerticalBoundary(this.startPoint.x);
                 }
             }

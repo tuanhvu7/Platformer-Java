@@ -182,7 +182,7 @@ public abstract class ALevel implements IDrawable {
      * handle character keypress controls
      */
     public void keyEvent(KeyEvent keyEvent) {
-        if(this.player.isActive() && !this.isHandlingLevelComplete) {  // only allow pause if player is active // TODO: encapsulate
+        if(this.player.isActive() && !this.isHandlingLevelComplete) {  // only allow pause if player is active
             // press 'p' for pause
             if(keyEvent.getAction() == KeyEvent.PRESS) {
                 char keyPressed = keyEvent.getKey();
@@ -195,7 +195,7 @@ public abstract class ALevel implements IDrawable {
                         this.mainSketch.noLoop();
                         this.pauseMenu = new PauseMenu(
                             this.mainSketch,
-                            (int) this.viewBox.getPos().x, // TODO: encapsulate
+                            (int) this.viewBox.getPos().x,
                             true);
 
                     } else {
@@ -215,10 +215,10 @@ public abstract class ALevel implements IDrawable {
         // stage goal
         this.collectablesList.add(new LevelGoal(
             this.mainSketch,
-            this.mainSketch.getCurrentActiveLevelWidth() - Constants.LEVEL_GOAL_BLOCK_WIDTH - 10,
-            Constants.LEVEL_FLOOR_Y_POSITION - Constants.LEVEL_GOAL_BLOCK_HEIGHT,
-            Constants.LEVEL_GOAL_BLOCK_WIDTH,
-            Constants.LEVEL_GOAL_BLOCK_HEIGHT,
+            this.mainSketch.getCurrentActiveLevelWidth() - Constants.LEVEL_GOAL_WIDTH - 10,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.LEVEL_GOAL_HEIGHT,
+            Constants.LEVEL_GOAL_WIDTH,
+            Constants.LEVEL_GOAL_HEIGHT,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             this.isActive)
         );

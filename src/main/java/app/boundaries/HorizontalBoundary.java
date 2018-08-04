@@ -73,7 +73,6 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
         //     return false;
         // }
 
-        // TODO: encapsulate
         boolean validBoundaryContactVelocity =
             this.isFloorBoundary && character.getVel().y > 0 || !this.isFloorBoundary && character.getVel().y < 0;
 
@@ -104,7 +103,7 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
     void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
 
-        if (this.doesAffectPlayer && curPlayer.isActive()) { // TODO: encapsulate
+        if (this.doesAffectPlayer && curPlayer.isActive()) {
             // boundary collision for player
             if (this.contactWithCharacter(curPlayer)) { // this has contact with player
                 if (!this.charactersTouchingThis.contains(curPlayer)) { // new collision detected
@@ -137,7 +136,7 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
         if (this.doesAffectNonPlayers) {
             // boundary collision for non-player characters
             for (ACharacter curCharacter : this.mainSketch.getCurrentActiveCharactersList()) { // this has contact with non-player
-                if (curCharacter.isActive()) { // TODO: encapsulate
+                if (curCharacter.isActive()) {
                     if (this.contactWithCharacter(curCharacter)) {
                         if (this.isFloorBoundary && !this.charactersTouchingThis.contains(curCharacter)) { // new collision detected
                             curCharacter.changeNumberOfFloorBoundaryContacts(1);

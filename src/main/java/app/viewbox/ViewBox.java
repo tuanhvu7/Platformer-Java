@@ -81,7 +81,7 @@ public class ViewBox implements IDrawable {
             this.vel.x = Constants.PLAYER_LEVEL_COMPLETE_SPEED;
 
         } else {
-            if(this.mainSketch.getCurrentActivePlayer().isMoveLeftPressed()) {    // TODO: encapsulate
+            if(this.mainSketch.getCurrentActivePlayer().isMoveLeftPressed()) {
                 if(this.pos.x > 0       // left edge of viewbox not at left edge of level
                     && this.playerAtViewBoxBoundary(true))
                 {
@@ -90,7 +90,7 @@ public class ViewBox implements IDrawable {
                     this.vel.x = 0;
                 }
             }
-            if(this.mainSketch.getCurrentActivePlayer().isMoveRightPressed()) {   // TODO: encapsulate
+            if(this.mainSketch.getCurrentActivePlayer().isMoveRightPressed()) {
                 if(this.pos.x < this.mainSketch.getCurrentActiveLevelWidth() - this.mainSketch.width   // right edge of viewbox not at right edge of level
                     && this.playerAtViewBoxBoundary(false))
                 {
@@ -99,8 +99,8 @@ public class ViewBox implements IDrawable {
                     this.vel.x = 0;
                 }
             }
-            if(!this.mainSketch.getCurrentActivePlayer().isMoveLeftPressed() && // TODO: encapsulate
-                !this.mainSketch.getCurrentActivePlayer().isMoveRightPressed())   // TODO: encapsulate
+            if(!this.mainSketch.getCurrentActivePlayer().isMoveLeftPressed() &&
+                !this.mainSketch.getCurrentActivePlayer().isMoveRightPressed())
             {
                 this.vel.x = 0;
             }
@@ -121,9 +121,9 @@ public class ViewBox implements IDrawable {
      */
     private boolean playerAtViewBoxBoundary(boolean isLowerLeftBoundary) {
         if(isLowerLeftBoundary) {
-            return this.mainSketch.getCurrentActivePlayer().getPos().x <= this.pos.x + Constants.VIEWBOX_BOUNDARY * this.mainSketch.width;  // TODO: encapsulate
+            return this.mainSketch.getCurrentActivePlayer().getPos().x <= this.pos.x + Constants.VIEWBOX_BOUNDARY * this.mainSketch.width;
         } else {
-            return this.mainSketch.getCurrentActivePlayer().getPos().x >= this.pos.x + (1.00 - Constants.VIEWBOX_BOUNDARY) * this.mainSketch.width; // TODO: encapsulate
+            return this.mainSketch.getCurrentActivePlayer().getPos().x >= this.pos.x + (1.00 - Constants.VIEWBOX_BOUNDARY) * this.mainSketch.width;
         }
     }
 

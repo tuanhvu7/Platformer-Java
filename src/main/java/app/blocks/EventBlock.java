@@ -23,6 +23,8 @@ public class EventBlock extends ABlock implements IDrawable {
 
         super(mainSketch, leftX, topY, width, height, blockLineThickness, false);   // initially not active, to be set in makeActive()
 
+        this.fillColor = Constants.EVENT_BLOCK_COLOR;
+
         this.topSide = new EventBlockTopBoundary(
             this.mainSketch,
             leftX,
@@ -57,6 +59,8 @@ public class EventBlock extends ABlock implements IDrawable {
                       boolean isEventTriggerFloorBoundary, boolean isActive) {
 
         super(mainSketch, leftX, topY, width, height, blockLineThickness, false);   // initially not active, to be set in makeActive()
+
+        this.fillColor = Constants.EVENT_BLOCK_COLOR;
 
         this.topSide = new EventBlockTopBoundary(
             this.mainSketch,
@@ -93,14 +97,6 @@ public class EventBlock extends ABlock implements IDrawable {
         if (this.isVisible) {
             this.show();
         }
-    }
-    
-    /**
-     * display block
-     */
-    private void show() {
-        this.mainSketch.fill(Constants.EVENT_BLOCK_COLOR);
-        this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
     }
 
     /**

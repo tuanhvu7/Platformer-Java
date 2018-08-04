@@ -25,6 +25,8 @@ public class Block extends ABlock implements IDrawable {
 
         super(mainSketch, leftX, topY, width, height, blockLineThickness, false);   // initially not active, to be set in makeActive()
 
+        this.fillColor = Constants.DEFAULT_BLOCK_COLOR;
+
         this.isBreakableFromBottom = isBreakableFromBottom;
 
         this.topSide = new HorizontalBoundary(
@@ -53,6 +55,8 @@ public class Block extends ABlock implements IDrawable {
 
         super(mainSketch, leftX, topY, width, height, blockLineThickness,
             isVisible, false);  // initially not active, to be set in makeActive(), isVisible
+
+        this.fillColor = Constants.DEFAULT_BLOCK_COLOR;
 
         this.isBreakableFromBottom = isBreakableFromBottom;
 
@@ -120,14 +124,6 @@ public class Block extends ABlock implements IDrawable {
         this.bottomSide.makeNotActive();
         this.leftSide.makeNotActive();
         this.rightSide.makeNotActive();
-    }
-
-    /**
-     * display block
-     */
-    private void show() {
-        this.mainSketch.fill(Constants.DEFAULT_BLOCK_COLOR);
-        this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
     }
 
     /**

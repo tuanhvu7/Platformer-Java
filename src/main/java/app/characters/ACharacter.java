@@ -19,6 +19,8 @@ public abstract class ACharacter {
 
     final int diameter;
 
+    int fillColor;
+
     // number of floor-like app.boundaries this is touching;
     int numberOfFloorBoundaryContacts;
 
@@ -46,6 +48,7 @@ public abstract class ACharacter {
      * draw circle character
      */
     void show() {
+        this.mainSketch.fill(this.fillColor);
         this.mainSketch.strokeWeight(0);
         this.mainSketch.ellipse(this.pos.x, this.pos.y, this.diameter, this.diameter);
     }

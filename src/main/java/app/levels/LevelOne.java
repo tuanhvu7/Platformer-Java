@@ -55,9 +55,9 @@ public class LevelOne extends ALevel implements IDrawable {
             this.collectablesList.add(new Checkpoint(
                 this.mainSketch,
                 this.checkpointXPos,
-                Constants.LEVEL_FLOOR_Y_POSITION - Constants.CHECKPOINT_BLOCK_HEIGHT,
-                Constants.CHECKPOINT_BLOCK_WIDTH,
-                Constants.CHECKPOINT_BLOCK_HEIGHT,
+                Constants.LEVEL_FLOOR_Y_POSITION - Constants.CHECKPOINT_HEIGHT,
+                Constants.CHECKPOINT_WIDTH,
+                Constants.CHECKPOINT_HEIGHT,
                 Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
                 this.isActive)
             );

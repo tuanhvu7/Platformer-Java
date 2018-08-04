@@ -13,16 +13,7 @@ public class LevelGoal extends ACollectable {
      */
     public LevelGoal(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness, boolean isActive) {
         super(mainSketch, leftX, topY, width, height, blockLineThickness, isActive);
-    }
-
-    /**
-     * display block
-     */
-    @Override
-    protected void show() {
-        this.mainSketch.fill(Constants.LEVEL_GOAL_BLOCK_COLOR);
-        this.mainSketch.strokeWeight(this.blockLineThickness);
-        this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
+        this.fillColor = Constants.LEVEL_GOAL_COLOR;
     }
 
     /**
@@ -30,7 +21,7 @@ public class LevelGoal extends ACollectable {
      */
     @Override
     protected void checkHandleContactWithPlayer() {
-        if(this.mainSketch.getCurrentActivePlayer().isActive() && this.contactWithPlayer()) {   // TODO: encapsulate
+        if(this.mainSketch.getCurrentActivePlayer().isActive() && this.contactWithPlayer()) {
             this.makeNotActive();
             this.mainSketch.getCurrentActiveLevelCollectables().remove(this);
             this.mainSketch.handleLevelComplete();

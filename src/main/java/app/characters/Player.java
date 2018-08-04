@@ -40,6 +40,9 @@ public class Player extends ACharacter implements IDrawable {
      */
     public Player(Platformer mainSketch, int x, int y, int diameter, boolean isActive) {
         super(mainSketch, x, y, diameter, isActive);
+
+        this.fillColor = Constants.PLAYER_COLOR;
+
         this.numberOfVerticalBoundaryContacts = 0;
         this.numberOfFloorBoundaryContacts = 0;
 
@@ -93,7 +96,7 @@ public class Player extends ACharacter implements IDrawable {
         if(this.isDescendingDownEventBlock) {
             this.handleEventBlockDescent();
         } else {
-            if(!this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete()) {  // TODO: encapsulate
+            if(!this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete()) {
                 this.handleHorizontalMovement();
             }
             this.handleVerticalMovement();
@@ -101,7 +104,6 @@ public class Player extends ACharacter implements IDrawable {
 
         this.pos.add(this.vel);
 
-        this.mainSketch.fill(Constants.PLAYER_COLOR);
         this.show();
     }
 
@@ -209,7 +211,6 @@ public class Player extends ACharacter implements IDrawable {
             EventBlockTopBoundary firstEventTopBoundaryContacts =
                 this.eventTopBoundaryContacts.stream().findFirst().get();
 
-            // TODO: encapsulate
             int middleOfBoundary = Math.round(
                 (firstEventTopBoundaryContacts.getEndPoint().x + firstEventTopBoundaryContacts.getStartPoint().x) / 2);
 

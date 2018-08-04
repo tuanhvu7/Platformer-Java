@@ -26,11 +26,9 @@ public class Platformer extends PApplet {
     // to pass into threads
     private final Platformer mainSketch = this;
 
-//    /*** LEVEL ***/
     // level select menu
     private LevelSelectMenu levelSelectMenu;
 
-    /*** MUSIC ***/
     // stores current active level
     private WeakReference<ALevel> currentActiveLevel;
 
@@ -39,25 +37,30 @@ public class Platformer extends PApplet {
 
     private Thread levelCompleteThread;
 
+    /**
+     * runs once
+     */
     public void settings() {
         new JFXPanel(); // initialize JavaFx toolkit
         size(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         this.levelSelectMenu = new LevelSelectMenu(this, true);
     }
 
+    /**
+     * runs continuously; need this to run draw() for levels
+     */
     public void draw() { }
 
 
     public static void main(String[] args) {
-        String str = "app.Platformer";
-        PApplet.main(str);
+        PApplet.main("app.Platformer");
     }
 
     /**
      * reset level
      */
     public void resetLevel() {
-        getCurrentActivePlayer().makeNotActive();
+        this.getCurrentActivePlayer().makeNotActive();
         ResourceUtils.stopSong();
         ResourceUtils.playSong(ESongType.PlayerDeath);
 
@@ -71,7 +74,7 @@ public class Platformer extends PApplet {
                     }
                     Thread.sleep( (long) ResourceUtils.PLAYER_DEATH_SONG.getDuration().toMillis() );  // wait for song duration
 
-                    boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();    // TODO: encapsulate
+                    boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();
                     getCurrentActiveLevel().deactivateLevel();
                     LevelFactory levelFactory = new LevelFactory();
                     currentActiveLevel = new WeakReference<>( levelFactory.getLevel(mainSketch, true, loadPlayerFromCheckPoint) );
@@ -115,11 +118,11 @@ public class Platformer extends PApplet {
 
     /*** getters and setters ***/
     public LevelSelectMenu getLevelSelectMenu() {
-        return levelSelectMenu;
+        return this.levelSelectMenu;
     }
 
     public ALevel getCurrentActiveLevel() {
-        return currentActiveLevel.get();
+        return this.currentActiveLevel.get();
     }
 
     public void setCurrentActiveLevel(ALevel currentActiveLevel) {
@@ -127,7 +130,7 @@ public class Platformer extends PApplet {
     }
 
     public int getCurrentActiveLevelNumber() {
-        return currentActiveLevelNumber;
+        return this.currentActiveLevelNumber;
     }
 
     public void setCurrentActiveLevelNumber(int currentActiveLevelNumber) {
@@ -138,42 +141,42 @@ public class Platformer extends PApplet {
      * return player of current active level
      */
     public Player getCurrentActivePlayer() {
-        return this.currentActiveLevel.get().getPlayer();    // TODO: encapsulate
+        return this.currentActiveLevel.get().getPlayer();
     }
 
     /**
      * return non-player app.characters of current active level
      */
     public Set<ACharacter> getCurrentActiveCharactersList() {
-        return this.currentActiveLevel.get().getCharactersList();    // TODO: encapsulate
+        return this.currentActiveLevel.get().getCharactersList();
     }
 
     /**
      * return app.blocks of current active level
      */
     public Set<ABlock> getCurrentActiveBlocksList() {
-        return this.currentActiveLevel.get().getBlocksList();    // TODO: encapsulate
+        return this.currentActiveLevel.get().getBlocksList();
     }
 
     /**
      * return app.collectables of current active level
      */
     public Set<ACollectable> getCurrentActiveLevelCollectables() {
-        return this.currentActiveLevel.get().getCollectablesList();    // TODO: encapsulate
+        return this.currentActiveLevel.get().getCollectablesList();
     }
 
     /**
      * return viewbox of current active level
      */
     public ViewBox getCurrentActiveViewBox() {
-        return this.currentActiveLevel.get().getViewBox(); // TODO: encapsulate
+        return this.currentActiveLevel.get().getViewBox();
     }
 
     /**
      * return width of current active level
      */
     public int getCurrentActiveLevelWidth() {
-        return Constants.LEVELS_WIDTH_ARRAY[currentActiveLevelNumber];
+        return Constants.LEVELS_WIDTH_ARRAY[this.currentActiveLevelNumber];
     }
 
 }

@@ -25,6 +25,9 @@ public class Enemy extends ACharacter implements IDrawable {
     public Enemy(Platformer mainSketch, int x, int y, int diameter, float runSpeed,
                  boolean isFlying, boolean isInvulnerable, boolean isVisible, boolean isActive) {
         super(mainSketch, x, y, diameter, isActive);
+
+        this.fillColor = Constants.ENEMY_COLOR;
+
         this.vel.x = runSpeed;
 
         this.isFlying = isFlying;
@@ -38,11 +41,11 @@ public class Enemy extends ACharacter implements IDrawable {
      * negative angle means no collision
      */
     private double collisionWithPlayer() {
-        float xDifference = Math.abs(this.pos.x - this.mainSketch.getCurrentActivePlayer().pos.x); // TODO: encapsulate
-        float yDifference = Math.abs(this.pos.y - this.mainSketch.getCurrentActivePlayer().pos.y); // TODO: encapsulate
+        float xDifference = Math.abs(this.pos.x - this.mainSketch.getCurrentActivePlayer().getPos().x);
+        float yDifference = Math.abs(this.pos.y - this.mainSketch.getCurrentActivePlayer().getPos().y);
 
         // distance between player and this must be sum of their radii for collision
-        float distanceNeededForCollision = (this.diameter / 2) + (this.mainSketch.getCurrentActivePlayer().diameter / 2); // TODO: encapsulate
+        float distanceNeededForCollision = (this.diameter / 2) + (this.mainSketch.getCurrentActivePlayer().getDiameter() / 2);
 
         // pythagorean theorem
         boolean isAtCollisionDistance =
@@ -64,7 +67,6 @@ public class Enemy extends ACharacter implements IDrawable {
         this.handleMovement();
 
         if(this.isVisible) {
-            this.mainSketch.fill(Constants.ENEMY_COLOR);
             this.show();
         }
     }
@@ -80,8 +82,8 @@ public class Enemy extends ACharacter implements IDrawable {
                 System.out.println("min angle: " + Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE);
 
                 if(Math.toDegrees(collisionAngle) >= Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE
-                    && this.pos.y > this.mainSketch.getCurrentActivePlayer().pos.y
-                    && !this.isInvulnerable)  // player is above this // TODO: encapsulate
+                    && this.pos.y > this.mainSketch.getCurrentActivePlayer().getPos().y
+                    && !this.isInvulnerable)  // player is above this
                 {
                     System.out.println("killed enemy: " + Math.toDegrees(collisionAngle));
                     ResourceUtils.playSong(ESongType.PlayerAction);
