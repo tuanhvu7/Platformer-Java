@@ -10,29 +10,29 @@ import app.boundaries.VerticalBoundary;
 public class ABlock {
 
     // main sketch
-    protected Platformer mainSketch;
+    Platformer mainSketch;
 
-    protected boolean isActive;
-    protected boolean isVisible;
+    boolean isActive;
+    boolean isVisible;
 
     // position and dimensions
-    protected int leftX;
-    protected int topY;
-    protected int width;
-    protected int height;
+    int leftX;
+    int topY;
+    int width;
+    int height;
 
     // boundaries that make up block
-    protected HorizontalBoundary topSide;
-    protected HorizontalBoundary bottomSide;
+    HorizontalBoundary topSide;
+    HorizontalBoundary bottomSide;
 
-    protected VerticalBoundary leftSide;
-    protected VerticalBoundary rightSide;
+    VerticalBoundary leftSide;
+    VerticalBoundary rightSide;
 
     /**
      * set properties of this;
      * sets this to affect all characters and be visible
      */
-    public ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
+    ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
            boolean isActive) {
 
         this.mainSketch = mainSketch;
@@ -79,7 +79,7 @@ public class ABlock {
      * if givien isVisible is false, only bottom boundary of block is active
      * to all characters
      */
-    public ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
+    ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
            boolean isVisible, boolean isActive) {
 
         this.mainSketch = mainSketch;

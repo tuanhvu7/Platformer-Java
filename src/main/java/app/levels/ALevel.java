@@ -26,48 +26,48 @@ import java.util.Set;
 public abstract class ALevel implements IDrawable {
 
     // main sketch
-    protected Platformer mainSketch;
+    Platformer mainSketch;
 
     // true means this is active
-    protected boolean isActive;
+    boolean isActive;
 
     // player-controllable character
-    protected Player player;
+    Player player;
 
     // level viewbox
-    protected ViewBox viewBox;
+    ViewBox viewBox;
 
     // set of all non-playable characters in level
-    protected Set<ACharacter> charactersList;
+    Set<ACharacter> charactersList;
 
     // set of all boundaries in level
-    protected Set<ABoundary> boundariesList;
+    Set<ABoundary> boundariesList;
 
     // set of all blocks in level
-    protected Set<ABlock> blocksList;
+    Set<ABlock> blocksList;
 
     // set of all collectables in level
-    protected Set<ACollectable> collectablesList;
+    Set<ACollectable> collectablesList;
 
     // pause menu for level
     private PauseMenu pauseMenu;
 
     // true means level is paused and menu appears
-    protected boolean isPaused;
+    private boolean isPaused;
 
     // checkpoint x position
-    protected int checkpointXPos;
+    int checkpointXPos;
 
     // true means load player at checkpoint position
-    protected boolean loadPlayerFromCheckPoint;
+    boolean loadPlayerFromCheckPoint;
 
     // true means running handleLevelComplete thread
-    protected boolean isHandlingLevelComplete;
+    private boolean isHandlingLevelComplete;
 
     /**
      * sets properties of this
      */
-    public ALevel(Platformer mainSketch, boolean isActive, boolean loadPlayerFromCheckPoint) {
+    ALevel(Platformer mainSketch, boolean isActive, boolean loadPlayerFromCheckPoint) {
 
         this.mainSketch = mainSketch;
 
@@ -91,7 +91,7 @@ public abstract class ALevel implements IDrawable {
     /**
      * active and add this to game
      */
-    public void makeActive() {
+    void makeActive() {
         this.isActive = true;
         this.mainSketch.registerMethod("keyEvent", this);   // connect this keyEvent() from main keyEvent()
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
@@ -100,13 +100,13 @@ public abstract class ALevel implements IDrawable {
     /**
      * setup and activate this; to override in extended classes
      */
-    public void setUpActivateLevel() { }
+    void setUpActivateLevel() { }
 
     /**
      * handle conditional enemy triggers in this;
      * to override in extended classes if needed
      */
-    public void handleConditionalEnemyTriggers() { }
+    void handleConditionalEnemyTriggers() { }
 
 
     /**
@@ -211,7 +211,7 @@ public abstract class ALevel implements IDrawable {
     /**
      * setup activate floor, walls, and goal
      */
-    protected void setUpActivateFloorWallsGoal() {
+    private void setUpActivateFloorWallsGoal() {
         // stage goal
         this.collectablesList.add(new LevelGoal(
             this.mainSketch,

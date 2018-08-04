@@ -11,26 +11,26 @@ import processing.event.MouseEvent;
 public abstract class APanel implements IDrawable {
 
     // main sketch
-    protected Platformer mainSketch;
+    Platformer mainSketch;
 
-    protected int leftX;
-    protected int rightX;
+    int leftX;
+    int rightX;
 
-    protected int topY;
-    protected int bottomY;
+    int topY;
+    int bottomY;
 
-    protected int width;
-    protected int height;
+    private int width;
+    private int height;
 
     private String panelText;
 
     // true means is displayed and clickable
-    protected boolean isActive;
+    private boolean isActive;
 
     /**
      * set properties of this
      */
-   public  APanel(Platformer mainSketch, String panelText, int leftX, int topY, int width, int height, boolean isActive) {
+   APanel(Platformer mainSketch, String panelText, int leftX, int topY, int width, int height, boolean isActive) {
        this.mainSketch = mainSketch;
 
        this.panelText = panelText;
@@ -51,7 +51,7 @@ public abstract class APanel implements IDrawable {
     /**
      * active and add this to game
      */
-    public void makeActive() {
+    private void makeActive() {
         this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
         this.mainSketch.registerMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
@@ -94,12 +94,12 @@ public abstract class APanel implements IDrawable {
     /**
      * to execute when this panel is clicked; to override in extended classes
      */
-    protected void executeWhenClicked() { }
+    void executeWhenClicked() { }
 
     /**
      * return if mouse position inside this panel
      */
-    protected boolean isMouseIn() {
+    boolean isMouseIn() {
         return  this.mainSketch.mouseX > this.leftX &&
             this.mainSketch.mouseX < this.rightX &&
             this.mainSketch.mouseY > this.topY &&

@@ -12,22 +12,22 @@ import java.util.List;
 public abstract class AMenu {
 
     // main sketch
-    protected Platformer mainSketch;
+    Platformer mainSketch;
 
     // horizontal offset of this from viewbox
-    protected int horizontalOffset;
+    int horizontalOffset;
 
     // true means displayed
-    protected boolean isActive;
+    boolean isActive;
 
     // list of panels in menu
-    protected List<APanel> panelsList;
+    List<APanel> panelsList;
 
     /**
      * set properties of this;
      * sets this is have no offsetted
      */
-    public AMenu(Platformer mainSketch, boolean isActive) {
+    AMenu(Platformer mainSketch, boolean isActive) {
         this.mainSketch = mainSketch;
 
         this.horizontalOffset = 0;
@@ -41,7 +41,7 @@ public abstract class AMenu {
      * set properties of this;
      * sets this to have given offset
      */
-    public AMenu(Platformer mainSketch, int horizontalOffset, boolean isActive) {
+    AMenu(Platformer mainSketch, int horizontalOffset, boolean isActive) {
         this.mainSketch = mainSketch;
 
         this.horizontalOffset = horizontalOffset;
@@ -54,7 +54,7 @@ public abstract class AMenu {
     /**
      * activate and setup this; to override in extended classes
      */
-    public void setupActivateMenu() { }
+    void setupActivateMenu() { }
 
     /**
      * deactiviate this

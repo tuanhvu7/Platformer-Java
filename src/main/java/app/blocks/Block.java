@@ -96,7 +96,7 @@ public class Block extends ABlock implements IDrawable {
     /**
      * active and add this to game
      */
-    public void makeActive() {
+    private void makeActive() {
         this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
 
@@ -127,7 +127,7 @@ public class Block extends ABlock implements IDrawable {
     /**
      * display block
      */
-    protected void show() {
+    private void show() {
         this.mainSketch.fill(Constants.DEFAULT_BLOCK_COLOR);
         this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
     }

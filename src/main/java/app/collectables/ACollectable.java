@@ -10,22 +10,22 @@ import app.interfaces.IDrawable;
 public class ACollectable implements IDrawable {
 
     // main sketch
-    protected Platformer mainSketch;
+    Platformer mainSketch;
 
     // position and dimensions
-    protected int leftX;
-    protected int topY;
-    protected int width;
-    protected int height;
-    protected boolean isActive;
+    int leftX;
+    int topY;
+    int width;
+    int height;
+    private boolean isActive;
 
-    protected int blockLineThickness;
+    int blockLineThickness;
 
     /**
      * set properties of this;
      * sets this to affect all characters and be visible
      */
-    public ACollectable(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness, boolean isActive) {
+    ACollectable(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness, boolean isActive) {
 
         this.mainSketch = mainSketch;
 
@@ -53,7 +53,7 @@ public class ACollectable implements IDrawable {
     /**
      * active and add this to game
      */
-    public void makeActive() {
+    private void makeActive() {
         this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
     }
@@ -70,18 +70,18 @@ public class ACollectable implements IDrawable {
      * display collectable;
      * to override in extended classes
      */
-    protected void show() { }
+    void show() { }
 
     /**
      * check and handle contact with player;
      * to override in extended classes
      */
-    protected void checkHandleContactWithPlayer() { }
+    void checkHandleContactWithPlayer() { }
 
     /**
      * true means this contact with player
      */
-    protected boolean contactWithPlayer() {
+    boolean contactWithPlayer() {
         // TODO: encapsulate
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
         boolean playerInHorizontalRange =

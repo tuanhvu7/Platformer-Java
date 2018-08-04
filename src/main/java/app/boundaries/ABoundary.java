@@ -13,30 +13,30 @@ import java.util.Set;
  */
 public abstract class ABoundary {
     // main sketch
-    protected Platformer mainSketch;
+    Platformer mainSketch;
 
     // start point (smaller x and smaller y) coordinate for boundary
-    protected PVector startPoint;
+    PVector startPoint;
     // end point (larger x and larger y) coordinate for boundary
-    protected PVector endPoint;
+    PVector endPoint;
 
     // stoke thickness of boundary
     private int boundaryLineThickness;
 
     // true means visible to player
-    protected boolean isVisible;
+    private boolean isVisible;
 
     // true means check and handle collision between this and player characters
-    protected boolean doesAffectPlayer;
+    boolean doesAffectPlayer;
 
     // true means check and handle collision between this and non-player characters
-    protected boolean doesAffectNonPlayers;
+    boolean doesAffectNonPlayers;
 
     // set of all characters that are touching this
-    protected Set<ACharacter> charactersTouchingThis;
+    Set<ACharacter> charactersTouchingThis;
 
     // true means this is active (character collision detection)
-    protected boolean isActive;
+    private boolean isActive;
 
     /**
      * set properties of this
@@ -46,7 +46,7 @@ public abstract class ABoundary {
      * @param x2Offset difference between first and second x coordinates (x2 - x1)
      * @param y2Offset difference between first and second y coordinates (y2 - y1)
      */
-    public ABoundary(Platformer mainSketch, int x1Point, int y1Point, int x2Offset, int y2Offset, int boundaryLineThickness,
+    ABoundary(Platformer mainSketch, int x1Point, int y1Point, int x2Offset, int y2Offset, int boundaryLineThickness,
                      boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
                      boolean isActive) {
 
@@ -78,7 +78,7 @@ public abstract class ABoundary {
     /**
      * display line boundary
      */
-    protected void show() {
+    void show() {
         if (this.isVisible) {
             this.mainSketch.stroke(Constants.BOUNDARY_COLOR);
             this.mainSketch.strokeWeight(this.boundaryLineThickness);

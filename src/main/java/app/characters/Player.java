@@ -194,7 +194,7 @@ public class Player extends ACharacter implements IDrawable {
     /**
      * handle jump on enemy physics
      */
-    protected void handleJumpKillEnemyPhysics() {
+    void handleJumpKillEnemyPhysics() {
         this.vel.y = Constants.PLAYER_JUMP_KILL_ENEMY_HOP_VERTICAL_VELOCITY;
     }
 

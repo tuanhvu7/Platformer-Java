@@ -11,7 +11,7 @@ import app.interfaces.IDrawable;
 public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundary {
     // true means character cannot go through top side of boundary
     // false means character cannot go through bottom side of boundary
-    protected boolean isFloorBoundary;
+    boolean isFloorBoundary;
 
     /**
      * set properties of this;
@@ -41,7 +41,7 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
     /**
      * set properties of this
      */
-    public HorizontalBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
+    HorizontalBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
                               boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
                               boolean isFloorBoundary, boolean isActive) {
         super(mainSketch, startXPoint, startYPoint, x2Offset, 0, boundaryLineThickness,
@@ -101,7 +101,7 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
     /**
      * check and handle contact with player
      */
-    public void checkHandleContactWithPlayer() {
+    void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
 
         if (this.doesAffectPlayer && curPlayer.isActive()) { // TODO: encapsulate

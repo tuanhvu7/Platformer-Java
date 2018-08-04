@@ -12,12 +12,12 @@ import app.utils.ResourceUtils;
 public class Enemy extends ACharacter implements IDrawable {
 
     // true means flying enemy (not affected by gravity)
-    protected boolean isFlying;
+    boolean isFlying;
 
     // true means invulnerable; always kills player on contact
-    protected boolean isInvulnerable;
+    private boolean isInvulnerable;
 
-    protected boolean isVisible;
+    private boolean isVisible;
 
     /**
      * set properties of this
@@ -37,7 +37,7 @@ public class Enemy extends ACharacter implements IDrawable {
      * range of collision angles (in degrees): [0, 90]
      * negative angle means no collision
      */
-    public double collisionWithPlayer() {
+    private double collisionWithPlayer() {
         float xDifference = Math.abs(this.pos.x - this.mainSketch.getCurrentActivePlayer().pos.x); // TODO: encapsulate
         float yDifference = Math.abs(this.pos.y - this.mainSketch.getCurrentActivePlayer().pos.y); // TODO: encapsulate
 
@@ -101,7 +101,7 @@ public class Enemy extends ACharacter implements IDrawable {
     /**
      * handle movement (position, velocity)
      */
-    protected void handleMovement() {
+    void handleMovement() {
         if(!this.isFlying && this.numberOfFloorBoundaryContacts == 0) {
             this.handleInAirPhysics();
         }

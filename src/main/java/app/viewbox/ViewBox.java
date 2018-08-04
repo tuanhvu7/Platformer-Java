@@ -50,7 +50,7 @@ public class ViewBox implements IDrawable {
     /**
      * activate and add this to game
      */
-    public void makeActive() {
+    private void makeActive() {
         this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
     }

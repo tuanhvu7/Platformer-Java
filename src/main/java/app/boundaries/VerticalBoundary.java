@@ -44,15 +44,11 @@ public class VerticalBoundary extends ABoundary implements IDrawable, IBoundary 
      */
     @Override
     public boolean contactWithCharacter(ACharacter character) {
-        if (character.getPos().x + (character.getDiameter() / 2) >= this.startPoint.x         // contact right of character
+        return
+            character.getPos().x + (character.getDiameter() / 2) >= this.startPoint.x         // contact right of character
             && character.getPos().x - (character.getDiameter() / 2) <= this.startPoint.x      // contact left of character
             && character.getPos().y > this.startPoint.y - (character.getDiameter() / 2)       // > lower y boundary
-            && character.getPos().y < this.endPoint.y + (character.getDiameter() / 2))         // < upper y boundary
-        {
-            return true;
-        } else {
-            return false;
-        }
+            && character.getPos().y < this.endPoint.y + (character.getDiameter() / 2);         // < upper y boundary
     }
 
     /**

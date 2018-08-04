@@ -1,7 +1,6 @@
 package app.levels;
 
 import app.Platformer;
-import app.blocks.Block;
 import app.blocks.EventBlock;
 import app.boundaries.EnemyTriggerVerticalBoundary;
 import app.boundaries.HorizontalBoundary;
@@ -120,16 +119,16 @@ public class LevelOne extends ALevel implements IDrawable {
 
         /*** START Blocks ***/
 
-         this.blocksList.add(new EventBlock( // launch event
-             this.mainSketch,
-             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300,
-             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
-             Constants.DEFAULT_EVENT_BLOCK_WIDTH,
-             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
-             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-             true,
-             this.isActive
-         ));
+//         this.blocksList.add(new EventBlock( // launch event
+//             this.mainSketch,
+//             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300,
+//             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+//             Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+//             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+//             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+//             true,
+//             this.isActive
+//         ));
 
          int playerWarpEndXPos = 1000;
          // int playerWarpEndXPos = getCurrentActiveLevelWidth() - Constants.PLAYER_DIAMETER - 1;  // test end of state
@@ -148,29 +147,29 @@ public class LevelOne extends ALevel implements IDrawable {
              this.isActive
          ));
 
-         this.blocksList.add(new Block(
-             this.mainSketch,
-             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300,
-             this.mainSketch.height - 300,
-             Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-             false,
-             false,
-             this.isActive
-         ));
-
-         this.blocksList.add(new Block(
-             this.mainSketch,
-             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300 + Constants.DEFAULT_BLOCK_SIZE,
-             this.mainSketch.height - 300 - Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BLOCK_SIZE,
-             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-             true,
-             true,
-             this.isActive
-         ));
+//         this.blocksList.add(new Block(
+//             this.mainSketch,
+//             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300,
+//             this.mainSketch.height - 300,
+//             Constants.DEFAULT_BLOCK_SIZE,
+//             Constants.DEFAULT_BLOCK_SIZE,
+//             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+//             false,
+//             false,
+//             this.isActive
+//         ));
+//
+//         this.blocksList.add(new Block(
+//             this.mainSketch,
+//             this.mainSketch.getCurrentActiveLevelWidth() / 2 - 300 + Constants.DEFAULT_BLOCK_SIZE,
+//             this.mainSketch.height - 300 - Constants.DEFAULT_BLOCK_SIZE,
+//             Constants.DEFAULT_BLOCK_SIZE,
+//             Constants.DEFAULT_BLOCK_SIZE,
+//             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+//             true,
+//             true,
+//             this.isActive
+//         ));
 
         /*** END Blocks ***/
     }

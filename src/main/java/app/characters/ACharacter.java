@@ -10,19 +10,19 @@ import processing.core.PVector;
 public abstract class ACharacter {
 
     // main sketch
-    protected Platformer mainSketch;
+    Platformer mainSketch;
 
     // (x, y) coordinates of center of character (x, y)
-    protected PVector pos;
+    PVector pos;
     // (x, y) velocity of character (x, y)
-    protected PVector vel;
+    PVector vel;
 
-    protected int diameter;
+    int diameter;
 
     // number of floor-like app.boundaries this is touching;
-    protected int numberOfFloorBoundaryContacts;
+    int numberOfFloorBoundaryContacts;
 
-    protected boolean isActive;
+    boolean isActive;
 
     /**
      * set properties of this
@@ -45,7 +45,7 @@ public abstract class ACharacter {
     /**
      * draw circle character
      */
-    protected void show() {
+    void show() {
         this.mainSketch.strokeWeight(0);
         this.mainSketch.ellipse(this.pos.x, this.pos.y, this.diameter, this.diameter);
     }
@@ -77,7 +77,7 @@ public abstract class ACharacter {
     /**
      * handle arial physics
      */
-    public void handleInAirPhysics() {
+    void handleInAirPhysics() {
         this.vel.y = Math.min(this.vel.y + Constants.GRAVITY.y, Constants.MAX_VERTICAL_VELOCITY);
     }
 
