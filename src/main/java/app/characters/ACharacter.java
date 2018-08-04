@@ -74,7 +74,7 @@ public abstract class ACharacter {
      * handle contact with vertical boundary
      */
     public void handleContactWithVerticalBoundary(float boundaryXPoint) {
-        this.vel.x = -this.vel.x; // move in oposite horizontal direction
+        this.vel.x = -this.vel.x; // move in opposite horizontal direction
     }
 
     /**
@@ -106,6 +106,22 @@ public abstract class ACharacter {
      */
     public void changeNumberOfFloorBoundaryContacts(int amount) {
         this.numberOfFloorBoundaryContacts += amount;
+    }
+
+    /**
+     * check and handle death of this by going offscreen
+     */
+    void checkHandleOffscreenDeath() {
+        if (this.pos.y + this.diameter / 2 <= 0 || this.pos.y - this.diameter / 2 >= this.mainSketch.height) {
+            this.handleDeath(true);
+        }
+    }
+
+    /**
+     * handle death of this;
+     * to override in extended methods
+     */
+    void handleDeath(boolean isOffscreenDeath) {
     }
 
     /*** getters and setters ***/

@@ -47,7 +47,7 @@ public class Block extends ABlock implements IDrawable {
     /**
      * set properties of this;
      * sets this to be active for all characters;
-     * if givien isVisible is false, only bottom boundary of block is active
+     * if given isVisible is false, only bottom boundary of block is active
      * to all characters
      */
     public Block(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,

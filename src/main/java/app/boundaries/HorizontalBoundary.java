@@ -80,8 +80,8 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
             return
                 character.getPos().x > this.startPoint.x - (character.getDiameter() / 2)      // > lower x boundary
                     && character.getPos().x < this.endPoint.x + (character.getDiameter() / 2)     // < upper x boundary
-                    && character.getPos().y - (character.getDiameter() / 2) <= this.startPoint.y  // top of character contact or in vincinity
-                    && character.getPos().y + (character.getDiameter() / 2) >= this.startPoint.y; // bottom of character contact or in vincinity
+                    && character.getPos().y - (character.getDiameter() / 2) <= this.startPoint.y  // top of character contact or in vicinity
+                    && character.getPos().y + (character.getDiameter() / 2) >= this.startPoint.y; // bottom of character contact or in vicinity
         } else {
             return false;
         }

@@ -61,14 +61,14 @@ public class Platformer extends PApplet {
      * reset level
      */
     public void resetLevel() {
-        this.getCurrentActivePlayer().makeNotActive();
-        ResourceUtils.stopSong();
-        ResourceUtils.playSong(ESongType.PlayerDeath);
-
         // to reset level after player death song finishes without freezing game
         new Thread(() -> {
             try {
-                println("running reset level thread!!!");
+                this.getCurrentActivePlayer().makeNotActive();
+                ResourceUtils.stopSong();
+                ResourceUtils.playSong(ESongType.PlayerDeath);
+
+//                println("running reset level thread!!!");
                 if (levelCompleteThread != null) {
                     levelCompleteThread.interrupt();
                 }
@@ -94,7 +94,7 @@ public class Platformer extends PApplet {
         this.levelCompleteThread =
             new Thread(() -> {
                 try {
-                    println("running level complete thread!!!");
+//                    println("running level complete thread!!!");
                     getCurrentActiveLevel().setHandlingLevelComplete(true);
                     getCurrentActivePlayer().resetControlPressed();
                     getCurrentActivePlayer().setVel(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));

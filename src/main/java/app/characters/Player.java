@@ -92,6 +92,8 @@ public class Player extends ACharacter implements IDrawable {
      */
     @Override
     public void draw() {
+        this.checkHandleOffscreenDeath();
+
         if (this.isDescendingDownEventBlock) {
             this.handleEventBlockDescent();
         } else {
@@ -124,6 +126,14 @@ public class Player extends ACharacter implements IDrawable {
         this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
         this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
+    }
+
+    /**
+     *
+     */
+    @Override
+    void handleDeath(boolean isOffscreenDeath) {
+        this.mainSketch.resetLevel();
     }
 
     /**
@@ -161,7 +171,7 @@ public class Player extends ACharacter implements IDrawable {
     /**
      * handle contact with this and event boundary
      */
-    public void handleConactWithEventBoundary(EventBlockTopBoundary eventBlockTopBoundary, PVector endWarpPosition) {
+    public void handleContactWithEventBoundary(EventBlockTopBoundary eventBlockTopBoundary, PVector endWarpPosition) {
         this.mainSketch.registerMethod("keyEvent", this); // connect this draw() from main draw()
         this.isDescendingDownEventBlock = false;
         if (endWarpPosition == null) {

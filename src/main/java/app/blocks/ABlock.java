@@ -77,7 +77,7 @@ public class ABlock {
     /**
      * set properties of this;
      * sets this to be active for all characters;
-     * if givien isVisible is false, only bottom boundary of block is active
+     * if given isVisible is false, only bottom boundary of block is active
      * to all characters
      */
     ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,

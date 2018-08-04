@@ -40,8 +40,8 @@ public class PauseMenuPanel extends APanel implements IDrawable {
             this.mainSketch.getCurrentActiveLevel().closePauseMenu();
 
         } else {
-            this.mainSketch.getCurrentActiveLevel().setPaused(false);
             this.mainSketch.getCurrentActiveLevel().closePauseMenu();
+            this.mainSketch.getCurrentActivePlayer().makeNotActive();   // deactivate level DOES NOT deactivate player
             this.mainSketch.getCurrentActiveLevel().deactivateLevel();
             this.mainSketch.setCurrentActiveLevelNumber(0);
             this.mainSketch.getLevelSelectMenu().setupActivateMenu();

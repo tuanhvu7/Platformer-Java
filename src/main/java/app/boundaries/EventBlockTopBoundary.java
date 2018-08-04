@@ -12,27 +12,27 @@ public class EventBlockTopBoundary extends HorizontalBoundary {
      * set properties of this;
      * sets this to affect all characters and be visible
      */
-    public EventBlockTopBoundary(Platformer mainSketch, int startXPoint, int startyPoint, int x2Offset, int boundaryLineThickness,
+    public EventBlockTopBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
                                  boolean isActive) {
-        super(mainSketch, startXPoint, startyPoint, x2Offset, boundaryLineThickness, true, isActive);
+        super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness, true, isActive);
     }
 
     /**
      * set properties of this
      * sets this to affect all characters
      */
-    public EventBlockTopBoundary(Platformer mainSketch, int startXPoint, int startyPoint, int x2Offset, int boundaryLineThickness,
+    public EventBlockTopBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
                                  boolean isVisible, boolean isActive) {
-        super(mainSketch, startXPoint, startyPoint, x2Offset, boundaryLineThickness, isVisible, true, isActive);
+        super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness, isVisible, true, isActive);
     }
 
     /**
      * set properties of this
      */
-    public EventBlockTopBoundary(Platformer mainSketch, int startXPoint, int startyPoint, int x2Offset, int boundaryLineThickness,
+    public EventBlockTopBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
                                  boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
                                  boolean isActive) {
-        super(mainSketch, startXPoint, startyPoint, x2Offset, boundaryLineThickness,
+        super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness,
             isVisible, doesAffectPlayer, doesAffectNonPlayers,
             true, isActive);
     }

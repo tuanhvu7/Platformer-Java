@@ -25,7 +25,7 @@ public abstract class AMenu {
 
     /**
      * set properties of this;
-     * sets this is have no offsetted
+     * sets this if have no offset
      */
     AMenu(Platformer mainSketch, boolean isActive) {
         this.mainSketch = mainSketch;
@@ -58,7 +58,7 @@ public abstract class AMenu {
     }
 
     /**
-     * deactiviate this
+     * deactivate this
      */
     public void deactivateMenu() {
         for (APanel curPanel : this.panelsList) {

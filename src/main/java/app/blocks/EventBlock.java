@@ -55,7 +55,7 @@ public class EventBlock extends ABlock implements IDrawable {
      * sets this to have warp event and affect all characters and be visible
      */
     public EventBlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
-                      int endWarpXPositon, int endWarpYPositon,
+                      int endWarpXPosition, int endWarpYPosition,
                       boolean isEventTriggerFloorBoundary, boolean isActive) {
 
         super(mainSketch, leftX, topY, width, height, blockLineThickness, false);   // initially not active, to be set in makeActive()
@@ -77,8 +77,8 @@ public class EventBlock extends ABlock implements IDrawable {
             topY + height - (height / 5),
             width - 20,
             blockLineThickness,
-            endWarpXPositon,
-            endWarpYPositon,
+            endWarpXPosition,
+            endWarpYPosition,
             isEventTriggerFloorBoundary,
             false,  // initially not active, to be set in makeActive()
             (EventBlockTopBoundary) this.topSide

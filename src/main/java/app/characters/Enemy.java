@@ -63,6 +63,8 @@ public class Enemy extends ACharacter implements IDrawable {
      */
     @Override
     public void draw() {
+        this.checkHandleOffscreenDeath();
+
         this.checkHandleContactWithPlayer();
         this.handleMovement();
 
@@ -78,23 +80,19 @@ public class Enemy extends ACharacter implements IDrawable {
         if (this.mainSketch.getCurrentActivePlayer().isActive()) {   // to prevent multiple consecutive deaths TODO: encapsulate
             double collisionAngle = this.collisionWithPlayer();
             if (collisionAngle >= 0) {
-                System.out.println("coll angle: " + Math.toDegrees(collisionAngle));
-                System.out.println("min angle: " + Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE);
+//                System.out.println("coll angle: " + Math.toDegrees(collisionAngle));
+//                System.out.println("min angle: " + Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE);
 
                 if (Math.toDegrees(collisionAngle) >= Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE
                     && this.pos.y > this.mainSketch.getCurrentActivePlayer().getPos().y
                     && !this.isInvulnerable)  // player is above this
                 {
-                    System.out.println("killed enemy: " + Math.toDegrees(collisionAngle));
-                    ResourceUtils.playSong(ESongType.PlayerAction);
-                    this.makeNotActive();
-                    this.mainSketch.getCurrentActiveCharactersList().remove(this);
-                    this.mainSketch.getCurrentActivePlayer().handleJumpKillEnemyPhysics();
+                    this.handleDeath(false);
 
                 } else {
                     this.isVisible = true;
-                    System.out.println("killed player: " + Math.toDegrees(collisionAngle));
-                    mainSketch.resetLevel();
+//                    System.out.println("killed player: " + Math.toDegrees(collisionAngle));
+                    this.mainSketch.getCurrentActivePlayer().handleDeath(false);
                 }
             }
         }
@@ -109,6 +107,20 @@ public class Enemy extends ACharacter implements IDrawable {
         }
 
         this.pos.add(this.vel);
+    }
+
+    /**
+     * handle death
+     */
+    @Override
+    void handleDeath(boolean isOffscreenDeath) {
+//                    System.out.println("killed enemy: " + Math.toDegrees(collisionAngle));
+        this.makeNotActive();
+        this.mainSketch.getCurrentActiveCharactersList().remove(this);
+        if (!isOffscreenDeath) {
+            ResourceUtils.playSong(ESongType.PlayerAction);
+            this.mainSketch.getCurrentActivePlayer().handleJumpKillEnemyPhysics();
+        }
     }
 
 }
