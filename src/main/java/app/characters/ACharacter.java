@@ -97,4 +97,45 @@ public abstract class ACharacter {
         this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
     }
+
+    /**
+     * @param amount change numberOfFloorBoundaryContacts by given value
+     */
+    public void changeNumberOfFloorBoundaryContacts(int amount) {
+        this.numberOfFloorBoundaryContacts += amount;
+    }
+
+    /*** getters and setters ***/
+    public PVector getPos() {
+        return pos;
+    }
+
+    public void setPos(PVector pos) {
+        this.pos = pos;
+    }
+
+    public PVector getVel() {
+        return vel;
+    }
+
+    public void setVel(PVector vel) {
+        this.vel = vel;
+    }
+
+    public int getDiameter() {
+        return diameter;
+    }
+
+    public void setDiameter(int diameter) {
+        this.diameter = diameter;
+    }
+
+    public int getNumberOfFloorBoundaryContacts() {
+        return numberOfFloorBoundaryContacts;
+    }
+
+    public void setNumberOfFloorBoundaryContacts(int numberOfFloorBoundaryContacts) {
+        this.numberOfFloorBoundaryContacts = numberOfFloorBoundaryContacts;
+    }
+
 }

@@ -72,7 +72,7 @@ public class Enemy extends ACharacter implements IDrawable {
      *  check and handle contact with player
      */
     private void checkHandleContactWithPlayer() {
-        if(this.mainSketch.getCurrentActivePlayer().isActive) {   // to prevent multiple consecutive deaths TODO: encapsulate
+        if(this.mainSketch.getCurrentActivePlayer().isActive()) {   // to prevent multiple consecutive deaths TODO: encapsulate
             double collisionAngle = this.collisionWithPlayer();
             if(collisionAngle >= 0) {
                 System.out.println("coll angle: " + Math.toDegrees(collisionAngle));

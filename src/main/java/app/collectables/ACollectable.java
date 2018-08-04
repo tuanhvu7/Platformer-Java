@@ -36,7 +36,7 @@ public class ACollectable implements IDrawable {
 
         this.blockLineThickness = blockLineThickness;
 
-        if(isActive) {
+        if (isActive) {
             this.makeActive();
         }
     }
@@ -84,13 +84,15 @@ public class ACollectable implements IDrawable {
         // TODO: encapsulate
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
         boolean playerInHorizontalRange =
-            (curPlayer.pos.x  + (curPlayer.diameter / 2) >= this.leftX) &&
-                (curPlayer.pos.x  - (curPlayer.diameter / 2) <= this.leftX + this.width);
+            (curPlayer.getPos().x + (curPlayer.getDiameter() / 2) >= this.leftX) &&
+                (curPlayer.getPos().x - (curPlayer.getDiameter() / 2) <= this.leftX + this.width);
 
         boolean playerInVerticalRange =
-            (curPlayer.pos.y  + (curPlayer.diameter / 2) >= this.topY) &&
-                (curPlayer.pos.y  - (curPlayer.diameter / 2) <= this.topY + this.height);;
+            (curPlayer.getPos().y + (curPlayer.getDiameter() / 2) >= this.topY) &&
+                (curPlayer.getPos().y - (curPlayer.getDiameter() / 2) <= this.topY + this.height);
+        ;
 
 
         return playerInHorizontalRange && playerInVerticalRange;
     }
+}

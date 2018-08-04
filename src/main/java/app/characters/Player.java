@@ -196,7 +196,7 @@ public class Player extends ACharacter implements IDrawable {
     /**
      * handle jump on enemy physics
      */
-    private void handleJumpKillEnemyPhysics() {
+    public void handleJumpKillEnemyPhysics() {
         this.vel.y = Constants.PLAYER_JUMP_KILL_ENEMY_HOP_VERTICAL_VELOCITY;
     }
 
@@ -262,5 +262,93 @@ public class Player extends ACharacter implements IDrawable {
                 this.handleInAirPhysics();
             }
         }
+    }
+
+    /**
+     * change numberOfCeilingBoundaryContacts by given amount
+     */
+    public void changeNumberOfCeilingBoundaryContacts(int amount) {
+        this.numberOfCeilingBoundaryContacts += amount;
+    }
+
+    /**
+     * change numberOfCeilingBoundaryContacts by given amount
+     */
+    public void changeNumberOfVerticalBoundaryContacts(int amount) {
+        this.numberOfVerticalBoundaryContacts += amount;
+    }
+
+
+    /*** getters and setters ***/
+    public int getNumberOfVerticalBoundaryContacts() {
+        return numberOfVerticalBoundaryContacts;
+    }
+
+    public void setNumberOfVerticalBoundaryContacts(int numberOfVerticalBoundaryContacts) {
+        this.numberOfVerticalBoundaryContacts = numberOfVerticalBoundaryContacts;
+    }
+
+    public int getNumberOfCeilingBoundaryContacts() {
+        return numberOfCeilingBoundaryContacts;
+    }
+
+    public void setNumberOfCeilingBoundaryContacts(int numberOfCeilingBoundaryContacts) {
+        this.numberOfCeilingBoundaryContacts = numberOfCeilingBoundaryContacts;
+    }
+
+    public Set<EventBlockTopBoundary> getEventTopBoundaryContacts() {
+        return eventTopBoundaryContacts;
+    }
+
+    public void setEventTopBoundaryContacts(Set<EventBlockTopBoundary> eventTopBoundaryContacts) {
+        this.eventTopBoundaryContacts = eventTopBoundaryContacts;
+    }
+
+    public boolean isMoveLeftPressed() {
+        return moveLeftPressed;
+    }
+
+    public void setMoveLeftPressed(boolean moveLeftPressed) {
+        this.moveLeftPressed = moveLeftPressed;
+    }
+
+    public boolean isMoveRightPressed() {
+        return moveRightPressed;
+    }
+
+    public void setMoveRightPressed(boolean moveRightPressed) {
+        this.moveRightPressed = moveRightPressed;
+    }
+
+    public boolean isJumpPressed() {
+        return jumpPressed;
+    }
+
+    public void setJumpPressed(boolean jumpPressed) {
+        this.jumpPressed = jumpPressed;
+    }
+
+    public boolean isAbleToMoveRight() {
+        return ableToMoveRight;
+    }
+
+    public void setAbleToMoveRight(boolean ableToMoveRight) {
+        this.ableToMoveRight = ableToMoveRight;
+    }
+
+    public boolean isAbleToMoveLeft() {
+        return ableToMoveLeft;
+    }
+
+    public void setAbleToMoveLeft(boolean ableToMoveLeft) {
+        this.ableToMoveLeft = ableToMoveLeft;
+    }
+
+    public boolean isDescendingDownEventBlock() {
+        return isDescendingDownEventBlock;
+    }
+
+    public void setDescendingDownEventBlock(boolean descendingDownEventBlock) {
+        isDescendingDownEventBlock = descendingDownEventBlock;
     }
 }

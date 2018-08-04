@@ -38,7 +38,7 @@ public class EnemyTriggerVerticalBoundary extends VerticalBoundary {
     private void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
 
-        if (this.doesAffectPlayer && curPlayer.isActive) {   // TODO: encapsulate
+        if (this.doesAffectPlayer && curPlayer.isActive()) {   // TODO: encapsulate
             // boundary collision for player
             if (contactWithCharacter(curPlayer)) {  // this has contact with non-player
                 for (Enemy curEnemy : enemiesToAddSet) {
