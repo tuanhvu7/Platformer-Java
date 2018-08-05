@@ -24,7 +24,7 @@ public class LevelSelectMenuPanel extends APanel implements IDrawable {
      * to execute when this panel is clicked
      */
     @Override
-    protected void executeWhenClicked() {
+    void executeWhenClicked() {
         // setup and load level associated with this
         this.mainSketch.getLevelSelectMenu().deactivateMenu();
         this.mainSketch.setCurrentActiveLevelNumber(this.panelLevel);

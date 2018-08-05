@@ -43,7 +43,7 @@ public class ControllableEnemy extends Enemy {
      * handle movement (position, velocity)
      */
     @Override
-    protected void handleMovement() {
+    void handleMovement() {
         if (!this.isFlying) {
 
             if (this.jumpPressed) {    // jump button pressed/held
