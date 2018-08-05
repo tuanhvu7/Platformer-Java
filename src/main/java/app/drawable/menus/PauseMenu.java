@@ -57,10 +57,10 @@ public class PauseMenu extends AMenu implements IDrawable {
     @Override
     public void draw() {
         this.mainSketch.image(
-            ResourceUtils.STAGE_BACKGROUND_IMAGE,
+            ResourceUtils.LEVEL_BACKGROUND_IMAGE,
             this.horizontalOffset,  // add offset to account for viewbox
             0,
-            ResourceUtils.STAGE_BACKGROUND_IMAGE.width,
-            ResourceUtils.STAGE_BACKGROUND_IMAGE.height);
+            ResourceUtils.LEVEL_BACKGROUND_IMAGE.width,
+            ResourceUtils.LEVEL_BACKGROUND_IMAGE.height);
     }
 }
