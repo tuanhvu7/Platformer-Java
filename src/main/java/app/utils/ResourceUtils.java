@@ -7,6 +7,7 @@ import processing.core.PImage;
 
 import javax.swing.*;
 import java.io.File;
+import java.nio.file.Paths;
 
 public class ResourceUtils {
 
@@ -137,7 +138,10 @@ public class ResourceUtils {
      * @return path to file in resources
      */
     private static String getResourcePath(String fileName) {
-        File file = new File("src/main/resources/" + fileName);
+        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
+        // to fix path to resources when running jar in target
+        currentPath = currentPath.replace("\\target", "");
+        File file = new File(currentPath + "/target/classes/" + fileName);
         return file.getAbsolutePath();
     }
 }
