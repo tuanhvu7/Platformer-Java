@@ -6,8 +6,7 @@ import javafx.scene.media.MediaPlayer;
 import processing.core.PImage;
 
 import javax.swing.*;
-import java.io.File;
-import java.nio.file.Paths;
+import java.net.URISyntaxException;
 
 public class ResourceUtils {
 
@@ -85,63 +84,57 @@ public class ResourceUtils {
 
     /*** assets ***/
     private static final String BACKGROUND_IMAGE_NAME = "sky-blue-bg.png";
-    private static final ImageIcon BACKGROUND_IMAGE = new ImageIcon(getResourcePath(BACKGROUND_IMAGE_NAME));
+    private static final ImageIcon BACKGROUND_IMAGE =
+        new ImageIcon(ResourceUtils.class.getClassLoader().getResource(BACKGROUND_IMAGE_NAME));
     public static final PImage LEVEL_BACKGROUND_IMAGE = new PImage(BACKGROUND_IMAGE.getImage());
 
     // level song
     private static final String LEVEL_SONG_NAME = "level-song.mp3";
     private static final Media LEVEL_SONG = new Media(
-        convertPathToValidUri(getResourcePath(LEVEL_SONG_NAME)));
+        getResourcePathUri(LEVEL_SONG_NAME));
     private static final MediaPlayer LEVEL_SONG_PLAYER =
         new MediaPlayer(LEVEL_SONG);
 
     // player death song
     private static final String PLAYER_DEATH_SONG_NAME = "player-death-song.mp3";
     public static final Media PLAYER_DEATH_SONG = new Media(
-        convertPathToValidUri(getResourcePath(PLAYER_DEATH_SONG_NAME)));
+        getResourcePathUri(PLAYER_DEATH_SONG_NAME));
     private static final MediaPlayer PLAYER_DEATH_SONG_PLAYER =
         new MediaPlayer(PLAYER_DEATH_SONG);
 
     // level complete song
     private static final String LEVEL_COMPLETE_SONG_NAME = "level-complete-song.mp3";
     public static final Media LEVEL_COMPLETE_SONG_ = new Media(
-        convertPathToValidUri(getResourcePath(LEVEL_COMPLETE_SONG_NAME)));
+        getResourcePathUri(LEVEL_COMPLETE_SONG_NAME));
     private static final MediaPlayer LEVEL_COMPLETION_SONG_PLAYER =
         new MediaPlayer(LEVEL_COMPLETE_SONG_);
 
     // player action song
     private static final String PLAYER_ACTION_SONG_NAME = "player-action-sound.mp3";
     private static final Media PLAYER_ACTION_SONG = new Media(
-        convertPathToValidUri(getResourcePath(PLAYER_ACTION_SONG_NAME)));
+        getResourcePathUri(PLAYER_ACTION_SONG_NAME));
     private static final MediaPlayer PLAYER_ACTION_SONG_PLAYER =
         new MediaPlayer(PLAYER_ACTION_SONG);
 
     // event block descent song
     private static final String EVENT_BLOCK_DESCENT_SONG_NAME = "event-block-descent-sound.mp3";
     private static final Media EVENT_BLOCK_DESCENT_SONG = new Media(
-        convertPathToValidUri(getResourcePath(EVENT_BLOCK_DESCENT_SONG_NAME)));
+        getResourcePathUri(EVENT_BLOCK_DESCENT_SONG_NAME));
     private static final MediaPlayer EVENT_BLOCK_DESCENT_SONG_PLAYER =
         new MediaPlayer(EVENT_BLOCK_DESCENT_SONG);
 
-    /**
-     * convert given string to valid uri path and return result
-     */
-    private static String convertPathToValidUri(String path) {
-        return path
-            .replace(" ", "%20")            // space is illegal character
-            .replace("\\", "/")             // back-slash illegal character
-            .replace("C:/", "file:///C:/"); // prevent unsupported protocol c
-    }
 
     /**
-     * @param fileName name of file in resources
-     * @return path to file in resources
+     * Used to create URI for JavaFx Media
+     * @param fileName name of file to get uri path of
+     * @return uri path to resource
      */
-    private static String getResourcePath(String fileName) {
-        String currentPath = Paths.get(".").toAbsolutePath().normalize().toString();
-        // to fix path to resources when running jar in target
-        currentPath = currentPath.replace("\\target", "");
-        File file = new File(currentPath + "/target/classes/" + fileName);
-        return file.getAbsolutePath();
+    private static String getResourcePathUri(String fileName) {
+        try {
+            return
+                ResourceUtils.class.getClassLoader().getResource(fileName).toURI().toString();
+        } catch (URISyntaxException e) {
+            return "";
+        }
     }
 }
