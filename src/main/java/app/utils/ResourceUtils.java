@@ -72,6 +72,20 @@ public class ResourceUtils {
     }
 
     /**
+     * get song duration
+     */
+    public static double getSongDuration(ESongType songType) {
+        switch (songType) {
+            case PlayerDeath:
+                return PLAYER_DEATH_SONG.getDuration().toMillis();
+            case LevelComplete:
+                return LEVEL_COMPLETE_SONG_.getDuration().toMillis();
+            default:
+                return 0;
+        }
+    }
+
+    /**
      * stop song
      */
     public static void stopSong() {
@@ -97,14 +111,14 @@ public class ResourceUtils {
 
     // player death song
     private static final String PLAYER_DEATH_SONG_NAME = "player-death-song.mp3";
-    public static final Media PLAYER_DEATH_SONG = new Media(
+    private static final Media PLAYER_DEATH_SONG = new Media(
         getResourcePathUri(PLAYER_DEATH_SONG_NAME));
     private static final MediaPlayer PLAYER_DEATH_SONG_PLAYER =
         new MediaPlayer(PLAYER_DEATH_SONG);
 
     // level complete song
     private static final String LEVEL_COMPLETE_SONG_NAME = "level-complete-song.mp3";
-    public static final Media LEVEL_COMPLETE_SONG_ = new Media(
+    private static final Media LEVEL_COMPLETE_SONG_ = new Media(
         getResourcePathUri(LEVEL_COMPLETE_SONG_NAME));
     private static final MediaPlayer LEVEL_COMPLETION_SONG_PLAYER =
         new MediaPlayer(LEVEL_COMPLETE_SONG_);
@@ -126,6 +140,7 @@ public class ResourceUtils {
 
     /**
      * Used to create URI for JavaFx Media
+     *
      * @param fileName name of file to get uri path of
      * @return uri path to resource
      */
@@ -136,5 +151,11 @@ public class ResourceUtils {
         } catch (URISyntaxException e) {
             return "";
         }
+    }
+
+    /**
+     * make this class "static"
+     */
+    private ResourceUtils() {
     }
 }

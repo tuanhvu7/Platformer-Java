@@ -73,7 +73,7 @@ public class Platformer extends PApplet {
                 if (levelCompleteThread != null) {
                     levelCompleteThread.interrupt();
                 }
-                Thread.sleep((long) ResourceUtils.PLAYER_DEATH_SONG.getDuration().toMillis());  // wait for song duration
+                Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.PlayerDeath));  // wait for song duration
 
                 boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();
                 getCurrentActiveLevel().deactivateLevel();
@@ -101,7 +101,7 @@ public class Platformer extends PApplet {
                     getCurrentActivePlayer().setVel(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
                     unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
 
-                    Thread.sleep((long) ResourceUtils.LEVEL_COMPLETE_SONG_.getDuration().toMillis());  // wait for song duration
+                    Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.LevelComplete));  // wait for song duration
                     getCurrentActiveLevel().deactivateLevel();
                     currentActiveLevelNumber = 0;
                     levelSelectMenu.setupActivateMenu();
