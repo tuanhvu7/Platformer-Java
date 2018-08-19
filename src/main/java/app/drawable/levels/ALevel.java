@@ -1,20 +1,19 @@
 package app.drawable.levels;
 
 import app.Platformer;
+import app.constants.Constants;
 import app.drawable.blocks.ABlock;
 import app.drawable.boundaries.ABoundary;
-import app.drawable.boundaries.HorizontalBoundary;
 import app.drawable.boundaries.VerticalBoundary;
 import app.drawable.characters.ACharacter;
 import app.drawable.characters.Player;
 import app.drawable.collectables.ACollectable;
 import app.drawable.collectables.LevelGoal;
-import app.constants.Constants;
-import app.enums.ESongType;
 import app.drawable.interfaces.IDrawable;
 import app.drawable.menus.PauseMenu;
-import app.utils.ResourceUtils;
 import app.drawable.viewbox.ViewBox;
+import app.enums.ESongType;
+import app.utils.ResourceUtils;
 import processing.event.KeyEvent;
 
 import java.util.HashSet;
@@ -84,7 +83,7 @@ public abstract class ALevel implements IDrawable {
 
         if (isActive) {
             this.setUpActivateLevel();
-            this.setUpActivateFloorWallsGoal();
+            this.setUpActivateWallsGoal();
         }
     }
 
@@ -213,9 +212,9 @@ public abstract class ALevel implements IDrawable {
     }
 
     /**
-     * setup activate floor, walls, and goal
+     * setup activate walls, and goal
      */
-    private void setUpActivateFloorWallsGoal() {
+    private void setUpActivateWallsGoal() {
         // stage goal
         this.collectablesList.add(new LevelGoal(
             this.mainSketch,
@@ -226,18 +225,6 @@ public abstract class ALevel implements IDrawable {
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             this.isActive)
         );
-
-
-        // stage floor
-        this.boundariesList.add(new HorizontalBoundary(
-            this.mainSketch,
-            0,
-            Constants.LEVEL_FLOOR_Y_POSITION,
-            this.mainSketch.getCurrentActiveLevelWidth(),
-            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            true,
-            this.isActive
-        ));
 
         // stage right and left walls
         this.boundariesList.add(new VerticalBoundary(

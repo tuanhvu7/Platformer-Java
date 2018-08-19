@@ -5,8 +5,6 @@ import app.drawable.characters.ACharacter;
 import app.drawable.characters.Player;
 import app.drawable.interfaces.IDrawable;
 
-import java.util.Optional;
-
 /**
  * horizontal line boundaries; floors or ceilings
  */
@@ -179,8 +177,8 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
      */
     boolean isPreviousContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
-        return Optional.ofNullable(curPlayer)
-            .map(Player::getPreviousFloorBoundaryContact)
-            .map(horBoundary -> horBoundary.equals(this)).orElse(false);
+        return
+            curPlayer.getPreviousFloorBoundaryContact() != null
+                && curPlayer.getPreviousFloorBoundaryContact().equals(this);
     }
 }

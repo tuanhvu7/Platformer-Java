@@ -18,7 +18,7 @@ public class Constants {
     // widths of all levels
     public static final int[] LEVELS_WIDTH_ARRAY = {
         0,          // non-existent level zero
-        1500,       // 5632 level one
+        5632,       // 5632 level one
         1000
     };
 
@@ -66,7 +66,9 @@ public class Constants {
     public static final double MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE = 20.0;
 
     /*** enemy config **/
-    public static final float ENEMY_RUN_SPEED = 2.5f;
+    public static final float ENEMY_SLOW_RUN_SPEED = 1.0f;
+    public static final float ENEMY_REGULAR_RUN_SPEED = 2.5f;
+    public static final float ENEMY_FAST_RUN_SPEED = 3.5f;
     public static final int ENEMY_COLOR = new Color(0xFF0000).getRGB();
     public static final int REGULAR_ENEMY_DIAMETER = 60;
     public static final int BIG_ENEMY_DIAMETER = 500;
