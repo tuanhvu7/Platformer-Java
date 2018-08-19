@@ -40,8 +40,7 @@ public class LevelOne extends ALevel implements IDrawable {
     @Override
     public void setUpActivateLevel() {
         this.bigEnemyTriggerActivated = false;
-        this.bigEnemyTriggerCharacterListSizeCondition = 0;
-        this.checkpointXPos = 4000;
+        this.checkpointXPos = 3100;
 
         this.makeActive();
         ResourceUtils.loopSong(ESongType.Level);
@@ -52,6 +51,8 @@ public class LevelOne extends ALevel implements IDrawable {
         } else {
             this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
             this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
+//            this.viewBox = new ViewBox(this.mainSketch, 2000, 0, this.isActive);
+//            this.player = new Player(this.mainSketch, 2300, 0, Constants.PLAYER_DIAMETER, this.isActive);
 
             this.collectablesList.add(new Checkpoint(
                 this.mainSketch,
@@ -64,8 +65,54 @@ public class LevelOne extends ALevel implements IDrawable {
             );
         }
 
-        /*** START BEFORE pit and checkpoint ***/
+        this.setupActivateBeforeCheckpoint();
+        this.setupActivateMiddlePartAfterCheckpoint();
 
+        this.bigEnemyTriggerCharacterListSizeCondition = this.charactersList.size() - 2;
+    }
+
+    /**
+     * handle conditional enemy triggers in this;
+     * to override in extended classes
+     */
+    @Override
+    public void handleConditionalEnemyTriggers() {
+        if (!bigEnemyTriggerActivated && this.charactersList.size() == this.bigEnemyTriggerCharacterListSizeCondition) {
+            Set<Enemy> enemySet = new HashSet<>();
+            Enemy triggerEnemy = new Enemy(
+                this.mainSketch,
+                3000,
+                0,
+                Constants.BIG_ENEMY_DIAMETER,
+                -Constants.ENEMY_REGULAR_RUN_SPEED,
+                false,
+                false,
+                true,
+                false
+            );
+
+            enemySet.add(triggerEnemy);
+            charactersList.add(triggerEnemy);
+
+            this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+                this.mainSketch,
+                2900,
+                0,
+                Constants.LEVEL_FLOOR_Y_POSITION,
+                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+                true,
+                this.isActive,
+                enemySet
+            ));
+
+            this.bigEnemyTriggerActivated = true;
+        }
+    }
+
+    /**
+     * setup activate content before checkpoint
+     */
+    private void setupActivateBeforeCheckpoint() {
         // stage floor
         this.boundariesList.add(new HorizontalBoundary(
             this.mainSketch,
@@ -77,17 +124,17 @@ public class LevelOne extends ALevel implements IDrawable {
             this.isActive
         ));
 
-//        charactersList.add(new Enemy(
-//            this.mainSketch,
-//            500,
-//            0,
-//            Constants.BIG_ENEMY_DIAMETER,
-//            -Constants.ENEMY_REGULAR_RUN_SPEED,
-//            false,
-//            false,
-//            true,
-//            this.isActive)
-//        );
+        charactersList.add(new Enemy(
+            this.mainSketch,
+            500,
+            0,
+            Constants.BIG_ENEMY_DIAMETER,
+            -Constants.ENEMY_REGULAR_RUN_SPEED,
+            false,
+            false,
+            true,
+            this.isActive)
+        );
 
         this.blocksList.add(new Block(
             this.mainSketch,
@@ -190,7 +237,7 @@ public class LevelOne extends ALevel implements IDrawable {
             this.isActive
         ));
 
-        int playerWarpEndXPos = 2750;
+        int playerWarpEndXPos = 2800;
         this.blocksList.add(new EventBlock( // warp event
             this.mainSketch,
             2000 + Constants.DEFAULT_EVENT_BLOCK_WIDTH + Constants.PLAYER_DIAMETER + 100,
@@ -204,47 +251,33 @@ public class LevelOne extends ALevel implements IDrawable {
             this.isActive
         ));
 
-
-        /*** END BEFORE pit and checkpoint ***/
-
+        this.blocksList.add(new Block(
+            this.mainSketch,
+            2550,
+            500 - Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            false,
+            false,
+            this.isActive
+        ));
     }
 
     /**
-     * handle conditional enemy triggers in this;
-     * to override in extended classes
+     * setup activate middle content after checkpoint
      */
-    @Override
-    public void handleConditionalEnemyTriggers() {
-        if (!bigEnemyTriggerActivated && this.charactersList.size() == this.bigEnemyTriggerCharacterListSizeCondition) {
-            Set<Enemy> enemySet = new HashSet<>();
-            Enemy triggerEnemy = new Enemy(
-                this.mainSketch,
-                1200,
-                0,
-                Constants.REGULAR_ENEMY_DIAMETER,
-                -Constants.ENEMY_REGULAR_RUN_SPEED,
-                false,
-                false,
-                true,
-                false
-            );
-
-            enemySet.add(triggerEnemy);
-            charactersList.add(triggerEnemy);
-
-            this.boundariesList.add(new EnemyTriggerVerticalBoundary(
-                this.mainSketch,
-                1000,
-                0,
-                Constants.LEVEL_FLOOR_Y_POSITION,
-                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-                true,
-                this.isActive,
-                enemySet
-            ));
-
-            this.bigEnemyTriggerActivated = true;
-        }
+    private void setupActivateMiddlePartAfterCheckpoint() {
+        // stage floor
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            3000,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            2500,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
+        ));
     }
 
 }
