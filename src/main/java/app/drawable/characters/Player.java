@@ -1,10 +1,11 @@
 package app.drawable.characters;
 
 import app.Platformer;
-import app.drawable.boundaries.EventBlockTopBoundary;
 import app.constants.Constants;
-import app.enums.ESongType;
+import app.drawable.boundaries.EventBlockTopBoundary;
+import app.drawable.boundaries.HorizontalBoundary;
 import app.drawable.interfaces.IDrawable;
+import app.enums.ESongType;
 import app.utils.ResourceUtils;
 import processing.core.PVector;
 import processing.event.KeyEvent;
@@ -24,6 +25,14 @@ public class Player extends ACharacter implements IDrawable {
 
     // top boundary of event blocks that this is touching
     private final Set<EventBlockTopBoundary> eventTopBoundaryContacts;
+
+    // stores floor boundary that this cannot contact with
+    // to prevent going on floor boundaries when walking from below
+    private HorizontalBoundary previousFloorBoundaryContact;
+
+    // true means should set previousFloorBoundaryContact
+    // when this loses contact with floor boundary
+    private boolean shouldSetPreviousFloorBoundaryContact;
 
     // player pressed control states
     private boolean moveLeftPressed;
@@ -47,6 +56,8 @@ public class Player extends ACharacter implements IDrawable {
         this.numberOfFloorBoundaryContacts = 0;
 
         this.eventTopBoundaryContacts = new HashSet<>();
+        this.previousFloorBoundaryContact = null;
+        this.shouldSetPreviousFloorBoundaryContact = true;
 
         this.resetControlPressed();
 
@@ -145,6 +156,7 @@ public class Player extends ACharacter implements IDrawable {
             if (this.vel.y > 0) {    // boundary only act like floor if this is falling onto boundary
                 this.vel.y = 0;
                 this.pos.y = boundaryYPoint - this.diameter / 2;
+                this.shouldSetPreviousFloorBoundaryContact = true;
             }
         } else {    // ceiling-like boundary
             if (this.vel.y < 0) {    // boundary only act like ceiling if this is rising into boundary
@@ -255,6 +267,9 @@ public class Player extends ACharacter implements IDrawable {
                 (this.numberOfVerticalBoundaryContacts > 0 && this.numberOfCeilingBoundaryContacts == 0)) { // able to jump
                 ResourceUtils.playSong(ESongType.PlayerAction);
                 this.vel.y = Constants.PLAYER_JUMP_VERTICAL_VELOCITY;
+
+                this.shouldSetPreviousFloorBoundaryContact = false;
+                this.previousFloorBoundaryContact = null;
             } else {
                 // for jumping higher the longer jump button is held
                 this.vel.y = Math.min(
@@ -305,5 +320,17 @@ public class Player extends ACharacter implements IDrawable {
 
     public void setAbleToMoveLeft(boolean ableToMoveLeft) {
         this.ableToMoveLeft = ableToMoveLeft;
+    }
+
+    public HorizontalBoundary getPreviousFloorBoundaryContact() {
+        return previousFloorBoundaryContact;
+    }
+
+    public void setPreviousFloorBoundaryContact(HorizontalBoundary previousFloorBoundaryContact) {
+        this.previousFloorBoundaryContact = previousFloorBoundaryContact;
+    }
+
+    public boolean isShouldSetPreviousFloorBoundaryContact() {
+        return shouldSetPreviousFloorBoundaryContact;
     }
 }

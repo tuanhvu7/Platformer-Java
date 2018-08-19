@@ -49,7 +49,7 @@ public class EventTriggerHorizontalBoundary extends HorizontalBoundary {
      * check and handle contact with player
      */
     @Override
-    public void checkHandleContactWithPlayer() {
+    void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
 
         if (this.doesAffectPlayer && curPlayer.isActive()) {

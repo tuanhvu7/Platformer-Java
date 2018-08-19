@@ -63,7 +63,7 @@ public class VerticalBoundary extends ABoundary implements IDrawable, IBoundary 
     /**
      * check and handle contact with player
      */
-    private void checkHandleContactWithPlayer() {
+    void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
 
         if (this.doesAffectPlayer && curPlayer.isActive()) {
