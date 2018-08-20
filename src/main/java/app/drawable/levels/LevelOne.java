@@ -6,6 +6,7 @@ import app.drawable.blocks.Block;
 import app.drawable.blocks.EventBlock;
 import app.drawable.boundaries.EnemyTriggerVerticalBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
+import app.drawable.characters.ControllableEnemy;
 import app.drawable.characters.Enemy;
 import app.drawable.characters.Player;
 import app.drawable.collectables.Checkpoint;
@@ -51,8 +52,8 @@ public class LevelOne extends ALevel implements IDrawable {
         } else {
             this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
             this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
-//            this.viewBox = new ViewBox(this.mainSketch, 2000, 0, this.isActive);
-//            this.player = new Player(this.mainSketch, 2300, 0, Constants.PLAYER_DIAMETER, this.isActive);
+//            this.viewBox = new ViewBox(this.mainSketch, this.checkpointXPos - 200, 0, this.isActive);
+//            this.player = new Player(this.mainSketch, this.checkpointXPos, 0, Constants.PLAYER_DIAMETER, this.isActive);
 
             this.collectablesList.add(new Checkpoint(
                 this.mainSketch,
@@ -66,7 +67,7 @@ public class LevelOne extends ALevel implements IDrawable {
         }
 
         this.setupActivateBeforeCheckpoint();
-        this.setupActivateMiddlePartAfterCheckpoint();
+        this.setupActivateMiddleSectionAfterCheckpoint();
 
         this.bigEnemyTriggerCharacterListSizeCondition = this.charactersList.size() - 2;
     }
@@ -110,7 +111,7 @@ public class LevelOne extends ALevel implements IDrawable {
     }
 
     /**
-     * setup activate content before checkpoint
+     * setup activate section before checkpoint
      */
     private void setupActivateBeforeCheckpoint() {
         // stage floor
@@ -124,7 +125,7 @@ public class LevelOne extends ALevel implements IDrawable {
             this.isActive
         ));
 
-        charactersList.add(new Enemy(
+        this.charactersList.add(new Enemy(
             this.mainSketch,
             500,
             0,
@@ -148,7 +149,7 @@ public class LevelOne extends ALevel implements IDrawable {
             this.isActive
         ));
 
-        charactersList.add(new Enemy(
+        this.charactersList.add(new Enemy(
             this.mainSketch,
             1750,
             0,
@@ -159,7 +160,7 @@ public class LevelOne extends ALevel implements IDrawable {
             true,
             this.isActive)
         );
-        charactersList.add(new Enemy(
+        this.charactersList.add(new Enemy(
             this.mainSketch,
             1750 + Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -170,7 +171,7 @@ public class LevelOne extends ALevel implements IDrawable {
             true,
             this.isActive)
         );
-        charactersList.add(new Enemy(
+        this.charactersList.add(new Enemy(
             this.mainSketch,
             1750 + 2 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -181,7 +182,7 @@ public class LevelOne extends ALevel implements IDrawable {
             true,
             this.isActive)
         );
-        charactersList.add(new Enemy(
+        this.charactersList.add(new Enemy(
             this.mainSketch,
             1750 + 3 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -192,7 +193,7 @@ public class LevelOne extends ALevel implements IDrawable {
             true,
             this.isActive)
         );
-        charactersList.add(new Enemy(
+        this.charactersList.add(new Enemy(
             this.mainSketch,
             1750 + 4 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -203,7 +204,7 @@ public class LevelOne extends ALevel implements IDrawable {
             true,
             this.isActive)
         );
-        charactersList.add(new Enemy(
+        this.charactersList.add(new Enemy(
             this.mainSketch,
             1750 + 5 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -214,7 +215,7 @@ public class LevelOne extends ALevel implements IDrawable {
             true,
             this.isActive)
         );
-        charactersList.add(new Enemy(
+        this.charactersList.add(new Enemy(
             this.mainSketch,
             1750 + 6 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -265,18 +266,105 @@ public class LevelOne extends ALevel implements IDrawable {
     }
 
     /**
-     * setup activate middle content after checkpoint
+     * setup activate middle section after checkpoint
      */
-    private void setupActivateMiddlePartAfterCheckpoint() {
+    private void setupActivateMiddleSectionAfterCheckpoint() {
+        int startMiddlePartXPos = 3000;
         // stage floor
         this.boundariesList.add(new HorizontalBoundary(
             this.mainSketch,
-            3000,
+            startMiddlePartXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
             2500,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
             this.isActive
+        ));
+
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            startMiddlePartXPos + 250,
+            Constants.LEVEL_FLOOR_Y_POSITION - 4 * Constants.PLAYER_DIAMETER,
+            4 * Constants.PLAYER_DIAMETER,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
+        ));
+
+        // controllable enemy
+        Set<Enemy> enemySet = new HashSet<>();
+        Enemy enemyToAdd = new ControllableEnemy(
+            this.mainSketch,
+            startMiddlePartXPos + 1000 + 4 * Constants.PLAYER_DIAMETER,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER - 10,
+            Constants.REGULAR_ENEMY_DIAMETER,
+            -Constants.ENEMY_FAST_RUN_SPEED,
+            false,
+            false,
+            true,
+            false
+        );
+        enemySet.add(enemyToAdd);
+        this.charactersList.add(enemyToAdd);
+        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+            this.mainSketch,
+            startMiddlePartXPos + 500 + 4 * Constants.PLAYER_DIAMETER,
+            0,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive,
+            enemySet
+        ));
+
+        // flying enemies
+        enemySet = new HashSet<>();
+        enemyToAdd = new Enemy(
+            this.mainSketch,
+            startMiddlePartXPos + 1600 + 4 * Constants.PLAYER_DIAMETER,
+            Constants.LEVEL_FLOOR_Y_POSITION - 4 * Constants.PLAYER_DIAMETER,
+            Constants.REGULAR_ENEMY_DIAMETER,
+            -Constants.ENEMY_FAST_RUN_SPEED,
+            true,
+            false,
+            true,
+            false);
+        enemySet.add(enemyToAdd);
+        this.charactersList.add(enemyToAdd);
+        enemyToAdd = new Enemy(
+            this.mainSketch,
+            startMiddlePartXPos + 1600 + 8 * Constants.PLAYER_DIAMETER,
+            Constants.LEVEL_FLOOR_Y_POSITION - 6 * Constants.PLAYER_DIAMETER,
+            Constants.REGULAR_ENEMY_DIAMETER,
+            -Constants.ENEMY_FAST_RUN_SPEED,
+            true,
+            false,
+            true,
+            false);
+        enemySet.add(enemyToAdd);
+        this.charactersList.add(enemyToAdd);
+        enemyToAdd = new Enemy(
+            this.mainSketch,
+            startMiddlePartXPos + 1600 + 14 * Constants.PLAYER_DIAMETER,
+            Constants.LEVEL_FLOOR_Y_POSITION - 5 * Constants.PLAYER_DIAMETER,
+            Constants.BIG_ENEMY_DIAMETER,
+            -Constants.ENEMY_FAST_RUN_SPEED,
+            true,
+            false,
+            true,
+            false);
+        enemySet.add(enemyToAdd);
+        this.charactersList.add(enemyToAdd);
+
+        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+            this.mainSketch,
+            startMiddlePartXPos + 1100 + 4 * Constants.PLAYER_DIAMETER,
+            0,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive,
+            enemySet
         ));
     }
 
