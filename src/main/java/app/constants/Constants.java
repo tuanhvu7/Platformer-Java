@@ -18,7 +18,7 @@ public class Constants {
     // widths of all levels
     public static final int[] LEVELS_WIDTH_ARRAY = {
         0,          // non-existent level zero
-        6000,       // 5632 level one
+        7000,
         1000
     };
 

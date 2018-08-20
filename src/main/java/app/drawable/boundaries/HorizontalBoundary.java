@@ -41,9 +41,9 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
     /**
      * set properties of this
      */
-    HorizontalBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
-                       boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
-                       boolean isFloorBoundary, boolean isActive) {
+    public HorizontalBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
+                              boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
+                              boolean isFloorBoundary, boolean isActive) {
         super(mainSketch, startXPoint, startYPoint, x2Offset, 0, boundaryLineThickness,
             isVisible, doesAffectPlayer, doesAffectNonPlayers, isActive);
 
@@ -117,18 +117,22 @@ public class HorizontalBoundary extends ABoundary implements IDrawable, IBoundar
     void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
 
-        if (this.doesAffectPlayer && curPlayer.isActive()) {
+        if (curPlayer.isActive()) {
             // boundary collision for player
             if (this.contactWithCharacter(curPlayer) && !this.isPreviousContactWithPlayer()) { // this has contact with player
-                if (!this.charactersTouchingThis.contains(curPlayer)) { // new collision detected
-                    this.charactersTouchingThis.add(curPlayer);
-                    if (this.isFloorBoundary) {
-                        curPlayer.changeNumberOfFloorBoundaryContacts(1);
-                    } else {
-                        curPlayer.changeNumberOfCeilingBoundaryContacts(1);
+                if (this.doesAffectPlayer) {
+                    if (!this.charactersTouchingThis.contains(curPlayer)) { // new collision detected
+                        this.charactersTouchingThis.add(curPlayer);
+                        if (this.isFloorBoundary) {
+                            curPlayer.changeNumberOfFloorBoundaryContacts(1);
+                        } else {
+                            curPlayer.changeNumberOfCeilingBoundaryContacts(1);
+                        }
                     }
+                    curPlayer.handleContactWithHorizontalBoundary(this.startPoint.y, this.isFloorBoundary);
+                } else {    // does NOT affect player
+                    this.setVisible(false);
                 }
-                curPlayer.handleContactWithHorizontalBoundary(this.startPoint.y, this.isFloorBoundary);
 
             } else {    // this DOES NOT have contact with player
                 if (this.charactersTouchingThis.contains(curPlayer)) {

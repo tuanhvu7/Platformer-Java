@@ -52,8 +52,8 @@ public class LevelOne extends ALevel implements IDrawable {
         } else {
             this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
             this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
-//            this.viewBox = new ViewBox(this.mainSketch, this.checkpointXPos - 200, 0, this.isActive);
-//            this.player = new Player(this.mainSketch, this.checkpointXPos, 0, Constants.PLAYER_DIAMETER, this.isActive);
+//            this.viewBox = new ViewBox(this.mainSketch, 4750 - 200, 0, this.isActive);
+//            this.player = new Player(this.mainSketch, 4750, 0, Constants.PLAYER_DIAMETER, this.isActive);
 
             this.collectablesList.add(new Checkpoint(
                 this.mainSketch,
@@ -68,7 +68,7 @@ public class LevelOne extends ALevel implements IDrawable {
 
         this.setupActivateBeforeCheckpoint();
         this.setupActivateMiddleSectionAfterCheckpoint();
-
+        this.setupActivateEndSection();
         this.bigEnemyTriggerCharacterListSizeCondition = this.charactersList.size() - 2;
     }
 
@@ -269,13 +269,13 @@ public class LevelOne extends ALevel implements IDrawable {
      * setup activate middle section after checkpoint
      */
     private void setupActivateMiddleSectionAfterCheckpoint() {
-        int startMiddlePartXPos = 3000;
+        int startMiddleSectionXPos = 3000;
         // stage floor
         this.boundariesList.add(new HorizontalBoundary(
             this.mainSketch,
-            startMiddlePartXPos,
+            startMiddleSectionXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
-            2500,
+            2000,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
             this.isActive
@@ -283,7 +283,7 @@ public class LevelOne extends ALevel implements IDrawable {
 
         this.boundariesList.add(new HorizontalBoundary(
             this.mainSketch,
-            startMiddlePartXPos + 250,
+            startMiddleSectionXPos + 250,
             Constants.LEVEL_FLOOR_Y_POSITION - 4 * Constants.PLAYER_DIAMETER,
             4 * Constants.PLAYER_DIAMETER,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -295,7 +295,7 @@ public class LevelOne extends ALevel implements IDrawable {
         Set<Enemy> enemySet = new HashSet<>();
         Enemy enemyToAdd = new ControllableEnemy(
             this.mainSketch,
-            startMiddlePartXPos + 1000 + 4 * Constants.PLAYER_DIAMETER,
+            startMiddleSectionXPos + 1000 + 4 * Constants.PLAYER_DIAMETER,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER - 10,
             Constants.REGULAR_ENEMY_DIAMETER,
             -Constants.ENEMY_FAST_RUN_SPEED,
@@ -308,7 +308,7 @@ public class LevelOne extends ALevel implements IDrawable {
         this.charactersList.add(enemyToAdd);
         this.boundariesList.add(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            startMiddlePartXPos + 500 + 4 * Constants.PLAYER_DIAMETER,
+            startMiddleSectionXPos + 500 + 4 * Constants.PLAYER_DIAMETER,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -321,7 +321,7 @@ public class LevelOne extends ALevel implements IDrawable {
         enemySet = new HashSet<>();
         enemyToAdd = new Enemy(
             this.mainSketch,
-            startMiddlePartXPos + 1600 + 4 * Constants.PLAYER_DIAMETER,
+            startMiddleSectionXPos + 1600 + 4 * Constants.PLAYER_DIAMETER,
             Constants.LEVEL_FLOOR_Y_POSITION - 4 * Constants.PLAYER_DIAMETER,
             Constants.REGULAR_ENEMY_DIAMETER,
             -Constants.ENEMY_FAST_RUN_SPEED,
@@ -333,7 +333,7 @@ public class LevelOne extends ALevel implements IDrawable {
         this.charactersList.add(enemyToAdd);
         enemyToAdd = new Enemy(
             this.mainSketch,
-            startMiddlePartXPos + 1600 + 8 * Constants.PLAYER_DIAMETER,
+            startMiddleSectionXPos + 1600 + 8 * Constants.PLAYER_DIAMETER,
             Constants.LEVEL_FLOOR_Y_POSITION - 6 * Constants.PLAYER_DIAMETER,
             Constants.REGULAR_ENEMY_DIAMETER,
             -Constants.ENEMY_FAST_RUN_SPEED,
@@ -345,7 +345,7 @@ public class LevelOne extends ALevel implements IDrawable {
         this.charactersList.add(enemyToAdd);
         enemyToAdd = new Enemy(
             this.mainSketch,
-            startMiddlePartXPos + 1600 + 14 * Constants.PLAYER_DIAMETER,
+            startMiddleSectionXPos + 1600 + 14 * Constants.PLAYER_DIAMETER,
             Constants.LEVEL_FLOOR_Y_POSITION - 5 * Constants.PLAYER_DIAMETER,
             Constants.BIG_ENEMY_DIAMETER,
             -Constants.ENEMY_FAST_RUN_SPEED,
@@ -358,13 +358,57 @@ public class LevelOne extends ALevel implements IDrawable {
 
         this.boundariesList.add(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            startMiddlePartXPos + 1100 + 4 * Constants.PLAYER_DIAMETER,
+            startMiddleSectionXPos + 1100 + 4 * Constants.PLAYER_DIAMETER,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
             this.isActive,
             enemySet
+        ));
+    }
+
+    /**
+     * setup activate middle section after checkpoint
+     */
+    private void setupActivateEndSection() {
+        int startEndSectionXPos = 5000;
+
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            startEndSectionXPos,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            250,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            false,
+            true,
+            false,
+            true,
+            this.isActive
+        ));
+
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            startEndSectionXPos + 250,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            250,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            false,
+            false,
+            true,
+            this.isActive
+        ));
+
+        // stage floor
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            startEndSectionXPos + 500,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            this.mainSketch.getCurrentActiveLevelWidth() - startEndSectionXPos,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
         ));
     }
 
