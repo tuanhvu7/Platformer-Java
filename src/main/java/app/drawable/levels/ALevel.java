@@ -215,7 +215,7 @@ public abstract class ALevel implements IDrawable {
      * setup activate walls, and goal
      *
      * @param goalRightSideOffsetWithStageWidth offset of goal's right side relative to stage width
-     *                                 (example: 50 means goal is 50 pixels less than stage width
+     *                                          (example: 50 means goal is 50 pixels less than stage width
      */
     private void setUpActivateWallsGoal(int goalRightSideOffsetWithStageWidth) {
         // stage goal

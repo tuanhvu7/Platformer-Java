@@ -22,7 +22,7 @@ public class EventTriggerHorizontalBoundary extends HorizontalBoundary {
                                           boolean isFloorBoundary, boolean isActive,
                                           EventBlockTopBoundary eventBlockTopBoundary) {
         super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness,
-            true, isFloorBoundary, isActive);
+            false, isFloorBoundary, isActive);
 
         this.endWarpPosition = null;
         this.isFloorBoundary = isFloorBoundary;
@@ -38,7 +38,7 @@ public class EventTriggerHorizontalBoundary extends HorizontalBoundary {
                                           boolean isFloorBoundary, boolean isActive,
                                           EventBlockTopBoundary eventBlockTopBoundary) {
         super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness,
-            true, isFloorBoundary, isActive);
+            false, isFloorBoundary, isActive);
 
         this.endWarpPosition = new PVector(endWarpXPosition, endWarpYPosition);
         this.isFloorBoundary = isFloorBoundary;

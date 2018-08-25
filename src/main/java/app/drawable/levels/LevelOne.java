@@ -101,7 +101,6 @@ public class LevelOne extends ALevel implements IDrawable {
                 0,
                 Constants.LEVEL_FLOOR_Y_POSITION,
                 Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-                true,
                 this.isActive,
                 triggerEnemySet
             ));
@@ -312,7 +311,6 @@ public class LevelOne extends ALevel implements IDrawable {
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            true,
             this.isActive,
             triggerEnemySet
         ));
@@ -362,7 +360,6 @@ public class LevelOne extends ALevel implements IDrawable {
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            true,
             this.isActive,
             triggerEnemySet
         ));
@@ -531,11 +528,10 @@ public class LevelOne extends ALevel implements IDrawable {
         charactersList.add(triggerEnemy);
         this.boundariesList.add(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            doubleEventBlockXReference + (int)(1.5 * Constants.DEFAULT_EVENT_BLOCK_WIDTH),
+            doubleEventBlockXReference + (int) (1.5 * Constants.DEFAULT_EVENT_BLOCK_WIDTH),
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            true,
             this.isActive,
             triggerEnemySet
         ));
