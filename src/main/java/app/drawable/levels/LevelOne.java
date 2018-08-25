@@ -32,7 +32,7 @@ public class LevelOne extends ALevel implements IDrawable {
      * sets properties, boundaries, and characters of this
      */
     public LevelOne(Platformer mainSketch, boolean isActive, boolean loadPlayerFromCheckPoint) {
-        super(mainSketch, isActive, loadPlayerFromCheckPoint);
+        super(mainSketch, isActive, loadPlayerFromCheckPoint, Constants.BIG_ENEMY_DIAMETER + 200);
     }
 
     /**
@@ -79,7 +79,7 @@ public class LevelOne extends ALevel implements IDrawable {
     @Override
     public void handleConditionalEnemyTriggers() {
         if (!bigEnemyTriggerActivated && this.charactersList.size() == this.bigEnemyTriggerCharacterListSizeCondition) {
-            Set<Enemy> enemySet = new HashSet<>();
+            Set<Enemy> triggerEnemySet = new HashSet<>();
             Enemy triggerEnemy = new Enemy(
                 this.mainSketch,
                 3000,
@@ -92,7 +92,7 @@ public class LevelOne extends ALevel implements IDrawable {
                 false
             );
 
-            enemySet.add(triggerEnemy);
+            triggerEnemySet.add(triggerEnemy);
             charactersList.add(triggerEnemy);
 
             this.boundariesList.add(new EnemyTriggerVerticalBoundary(
@@ -103,7 +103,7 @@ public class LevelOne extends ALevel implements IDrawable {
                 Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
                 true,
                 this.isActive,
-                enemySet
+                triggerEnemySet
             ));
 
             this.bigEnemyTriggerActivated = true;
@@ -292,7 +292,7 @@ public class LevelOne extends ALevel implements IDrawable {
         ));
 
         // controllable enemy
-        Set<Enemy> enemySet = new HashSet<>();
+        Set<Enemy> triggerEnemySet = new HashSet<>();
         Enemy enemyToAdd = new ControllableEnemy(
             this.mainSketch,
             startMiddleSectionXPos + 1000 + 4 * Constants.PLAYER_DIAMETER,
@@ -304,7 +304,7 @@ public class LevelOne extends ALevel implements IDrawable {
             true,
             false
         );
-        enemySet.add(enemyToAdd);
+        triggerEnemySet.add(enemyToAdd);
         this.charactersList.add(enemyToAdd);
         this.boundariesList.add(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
@@ -314,11 +314,11 @@ public class LevelOne extends ALevel implements IDrawable {
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
             this.isActive,
-            enemySet
+            triggerEnemySet
         ));
 
         // flying enemies
-        enemySet = new HashSet<>();
+        triggerEnemySet = new HashSet<>();
         enemyToAdd = new Enemy(
             this.mainSketch,
             startMiddleSectionXPos + 1600 + 4 * Constants.PLAYER_DIAMETER,
@@ -329,7 +329,7 @@ public class LevelOne extends ALevel implements IDrawable {
             false,
             true,
             false);
-        enemySet.add(enemyToAdd);
+        triggerEnemySet.add(enemyToAdd);
         this.charactersList.add(enemyToAdd);
         enemyToAdd = new Enemy(
             this.mainSketch,
@@ -341,7 +341,7 @@ public class LevelOne extends ALevel implements IDrawable {
             false,
             true,
             false);
-        enemySet.add(enemyToAdd);
+        triggerEnemySet.add(enemyToAdd);
         this.charactersList.add(enemyToAdd);
         enemyToAdd = new Enemy(
             this.mainSketch,
@@ -353,7 +353,7 @@ public class LevelOne extends ALevel implements IDrawable {
             false,
             true,
             false);
-        enemySet.add(enemyToAdd);
+        triggerEnemySet.add(enemyToAdd);
         this.charactersList.add(enemyToAdd);
 
         this.boundariesList.add(new EnemyTriggerVerticalBoundary(
@@ -364,7 +364,7 @@ public class LevelOne extends ALevel implements IDrawable {
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
             this.isActive,
-            enemySet
+            triggerEnemySet
         ));
     }
 
@@ -411,8 +411,8 @@ public class LevelOne extends ALevel implements IDrawable {
             this.isActive
         ));
 
-        final int eventBlockInvulnerableEnemyXReference = endStageFloorPosition + 300;
         // event block with invincible enemy
+        final int eventBlockInvulnerableEnemyXReference = endStageFloorPosition + 300;
         this.blocksList.add(new EventBlock( // launch event
             this.mainSketch,
             eventBlockInvulnerableEnemyXReference,
@@ -435,8 +435,72 @@ public class LevelOne extends ALevel implements IDrawable {
             this.isActive
         ));
 
-        // two event block section
-        final int doubleEventBlockXReference = endStageFloorPosition + 750;
+        /*** START two event blocks trap ***/
+        final int eventBlockGoingToTrapXReference = endStageFloorPosition + 750;
+        final int eventBlockTrapXReference = endStageFloorPosition + 2000;
+        this.blocksList.add(new EventBlock( // warp event
+            this.mainSketch,
+            eventBlockGoingToTrapXReference,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            eventBlockTrapXReference + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT + Constants.REGULAR_ENEMY_DIAMETER,
+            true,
+            this.isActive
+        ));
+
+        this.blocksList.add(new Block(  // block left of event block trap
+            this.mainSketch,
+            eventBlockTrapXReference - Constants.DEFAULT_BLOCK_SIZE,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - (4 * Constants.PLAYER_DIAMETER),
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_EVENT_BLOCK_HEIGHT + (4 * Constants.PLAYER_DIAMETER),
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            false,
+            this.isActive
+        ));
+        this.blocksList.add(new Block(  // block above event block trap
+            this.mainSketch,
+            eventBlockTrapXReference,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - (4 * Constants.PLAYER_DIAMETER),
+            Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            false,
+            this.isActive
+        ));
+        this.blocksList.add(new EventBlock( // warp event
+            this.mainSketch,
+            eventBlockTrapXReference,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            eventBlockInvulnerableEnemyXReference + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT + Constants.REGULAR_ENEMY_DIAMETER,
+            true,
+            this.isActive
+        ));
+        this.blocksList.add(new Block(  // block right of event block trap
+            this.mainSketch,
+            eventBlockTrapXReference + Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - (4 * Constants.PLAYER_DIAMETER),
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_EVENT_BLOCK_HEIGHT + (4 * Constants.PLAYER_DIAMETER),
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            false,
+            this.isActive
+        ));
+        /*** END two event blocks trap ***/
+
+
+        /*** START two event blocks NOT trap ***/
+        final int doubleEventBlockXReference = endStageFloorPosition + 1000;
         this.blocksList.add(new EventBlock( // warp event
             this.mainSketch,
             doubleEventBlockXReference,
@@ -448,6 +512,32 @@ public class LevelOne extends ALevel implements IDrawable {
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT + Constants.REGULAR_ENEMY_DIAMETER,
             true,
             this.isActive
+        ));
+
+        // invincible enemy at end of level
+        Set<Enemy> triggerEnemySet = new HashSet<>();
+        Enemy triggerEnemy = new Enemy(
+            this.mainSketch,
+            this.mainSketch.getCurrentActiveLevelWidth() - (Constants.BIG_ENEMY_DIAMETER / 2),
+            Constants.LEVEL_FLOOR_Y_POSITION - (Constants.BIG_ENEMY_DIAMETER / 2),
+            Constants.BIG_ENEMY_DIAMETER,
+            0,
+            false,
+            true,
+            true,
+            false
+        );
+        triggerEnemySet.add(triggerEnemy);
+        charactersList.add(triggerEnemy);
+        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+            this.mainSketch,
+            doubleEventBlockXReference + (int)(1.5 * Constants.DEFAULT_EVENT_BLOCK_WIDTH),
+            0,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive,
+            triggerEnemySet
         ));
         // warp to event block with invincible enemy
         this.blocksList.add(new EventBlock( // warp event
@@ -462,6 +552,7 @@ public class LevelOne extends ALevel implements IDrawable {
             true,
             this.isActive
         ));
+        /*** END two event blocks NOT trap ***/
     }
 
 }

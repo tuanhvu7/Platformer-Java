@@ -66,7 +66,7 @@ public abstract class ALevel implements IDrawable {
     /**
      * sets properties of this
      */
-    ALevel(Platformer mainSketch, boolean isActive, boolean loadPlayerFromCheckPoint) {
+    ALevel(Platformer mainSketch, boolean isActive, boolean loadPlayerFromCheckPoint, int goalRightSideOffsetWithStageWidth) {
 
         this.mainSketch = mainSketch;
 
@@ -83,7 +83,7 @@ public abstract class ALevel implements IDrawable {
 
         if (isActive) {
             this.setUpActivateLevel();
-            this.setUpActivateWallsGoal();
+            this.setUpActivateWallsGoal(goalRightSideOffsetWithStageWidth);
         }
     }
 
@@ -213,12 +213,15 @@ public abstract class ALevel implements IDrawable {
 
     /**
      * setup activate walls, and goal
+     *
+     * @param goalRightSideOffsetWithStageWidth offset of goal's right side relative to stage width
+     *                                 (example: 50 means goal is 50 pixels less than stage width
      */
-    private void setUpActivateWallsGoal() {
+    private void setUpActivateWallsGoal(int goalRightSideOffsetWithStageWidth) {
         // stage goal
         this.collectablesList.add(new LevelGoal(
             this.mainSketch,
-            this.mainSketch.getCurrentActiveLevelWidth() - Constants.LEVEL_GOAL_WIDTH - 10,
+            this.mainSketch.getCurrentActiveLevelWidth() - Constants.LEVEL_GOAL_WIDTH - goalRightSideOffsetWithStageWidth,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.LEVEL_GOAL_HEIGHT,
             Constants.LEVEL_GOAL_WIDTH,
             Constants.LEVEL_GOAL_HEIGHT,

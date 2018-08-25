@@ -20,7 +20,7 @@ public class LevelTwo extends ALevel implements IDrawable {
      * sets properties, boundaries, and characters of this
      */
     public LevelTwo(Platformer mainSketch, boolean isActive, boolean loadPlayerFromCheckPoint) {
-        super(mainSketch, isActive, loadPlayerFromCheckPoint);
+        super(mainSketch, isActive, loadPlayerFromCheckPoint, 0);
     }
 
     /**
