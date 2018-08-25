@@ -52,8 +52,8 @@ public class LevelOne extends ALevel implements IDrawable {
         } else {
             this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
             this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
-//            this.viewBox = new ViewBox(this.mainSketch, 4750 - 200, 0, this.isActive);
-//            this.player = new Player(this.mainSketch, 4750, 0, Constants.PLAYER_DIAMETER, this.isActive);
+//            this.viewBox = new ViewBox(this.mainSketch, 5500 - 200, 0, this.isActive);
+//            this.player = new Player(this.mainSketch, 5500, 0, Constants.PLAYER_DIAMETER, this.isActive);
 
             this.collectablesList.add(new Checkpoint(
                 this.mainSketch,
@@ -269,7 +269,7 @@ public class LevelOne extends ALevel implements IDrawable {
      * setup activate middle section after checkpoint
      */
     private void setupActivateMiddleSectionAfterCheckpoint() {
-        int startMiddleSectionXPos = 3000;
+        final int startMiddleSectionXPos = 3000;
         // stage floor
         this.boundariesList.add(new HorizontalBoundary(
             this.mainSketch,
@@ -372,7 +372,7 @@ public class LevelOne extends ALevel implements IDrawable {
      * setup activate middle section after checkpoint
      */
     private void setupActivateEndSection() {
-        int startEndSectionXPos = 5000;
+        final int startEndSectionXPos = 5000;
 
         this.boundariesList.add(new HorizontalBoundary(
             this.mainSketch,
@@ -386,7 +386,6 @@ public class LevelOne extends ALevel implements IDrawable {
             true,
             this.isActive
         ));
-
         this.boundariesList.add(new HorizontalBoundary(
             this.mainSketch,
             startEndSectionXPos + 250,
@@ -400,13 +399,66 @@ public class LevelOne extends ALevel implements IDrawable {
             this.isActive
         ));
 
+        final int endStageFloorPosition = startEndSectionXPos + 500;
         // stage floor
         this.boundariesList.add(new HorizontalBoundary(
             this.mainSketch,
-            startEndSectionXPos + 500,
+            endStageFloorPosition,
             Constants.LEVEL_FLOOR_Y_POSITION,
             this.mainSketch.getCurrentActiveLevelWidth() - startEndSectionXPos,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
+        ));
+
+        final int eventBlockInvulnerableEnemyXReference = endStageFloorPosition + 300;
+        // event block with invincible enemy
+        this.blocksList.add(new EventBlock( // launch event
+            this.mainSketch,
+            eventBlockInvulnerableEnemyXReference,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
+        ));
+        this.charactersList.add(new Enemy(
+            this.mainSketch,
+            eventBlockInvulnerableEnemyXReference + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - Constants.REGULAR_ENEMY_DIAMETER,
+            Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            0,
+            false,
+            true,
+            false,
+            this.isActive
+        ));
+
+        // two event block section
+        final int doubleEventBlockXReference = endStageFloorPosition + 750;
+        this.blocksList.add(new EventBlock( // warp event
+            this.mainSketch,
+            doubleEventBlockXReference,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            doubleEventBlockXReference + (2 * Constants.DEFAULT_EVENT_BLOCK_WIDTH) + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT + Constants.REGULAR_ENEMY_DIAMETER,
+            true,
+            this.isActive
+        ));
+        // warp to event block with invincible enemy
+        this.blocksList.add(new EventBlock( // warp event
+            this.mainSketch,
+            doubleEventBlockXReference + (2 * Constants.DEFAULT_EVENT_BLOCK_WIDTH),
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            eventBlockInvulnerableEnemyXReference + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT + Constants.REGULAR_ENEMY_DIAMETER,
             true,
             this.isActive
         ));

@@ -93,6 +93,10 @@ public class Constants {
     public static final int DEFAULT_EVENT_BLOCK_WIDTH = 125;
     public static final int DEFAULT_EVENT_BLOCK_HEIGHT = 200;
 
+    public static int RANDOM_COLOR_GENERATOR() {
+        return new Color((int)(Math.random() * Math.pow(16, 6)) - 1).getRGB();
+    }
+
     /**
      * make this class "static"
      */
