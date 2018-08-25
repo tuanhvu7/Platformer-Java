@@ -46,21 +46,21 @@ public class EventBlockTopBoundary extends HorizontalBoundary {
         if (this.doesAffectPlayer && curPlayer.isActive()) {
             // boundary collision for player
             if (this.contactWithCharacter(curPlayer) && !this.isPreviousContactWithPlayer()) { // this has contact with player
-                if (!curPlayer.getEventTopBoundaryContacts().contains(this)) { // new collision detected
+                if (!curPlayer.getEventTopBoundaryContacts().contains(this) && !this.charactersTouchingThis.contains(curPlayer)) { // new collision detected
                     curPlayer.getEventTopBoundaryContacts().add(this);
                     this.charactersTouchingThis.add(curPlayer);
                     curPlayer.changeNumberOfFloorBoundaryContacts(1);
-                    curPlayer.handleContactWithHorizontalBoundary(this.startPoint.y, true);
                 }
+                curPlayer.handleContactWithHorizontalBoundary(this.startPoint.y, true);
 
             } else {    // this DOES NOT have contact with player
-                if (curPlayer.getEventTopBoundaryContacts().contains(this)) {
+                if (curPlayer.getEventTopBoundaryContacts().contains(this) && this.charactersTouchingThis.contains(curPlayer)) {
                     if (curPlayer.isShouldSetPreviousFloorBoundaryContact()) {
                         curPlayer.setPreviousFloorBoundaryContact(this);
                     }
+                    curPlayer.changeNumberOfFloorBoundaryContacts(-1);
                     curPlayer.getEventTopBoundaryContacts().remove(this);
                     this.charactersTouchingThis.remove(curPlayer);
-                    curPlayer.changeNumberOfFloorBoundaryContacts(-1);
                 }
             }
         }

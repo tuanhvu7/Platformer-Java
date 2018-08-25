@@ -153,7 +153,7 @@ public class Player extends ACharacter implements IDrawable {
     @Override
     public void handleContactWithHorizontalBoundary(float boundaryYPoint, boolean isFloorBoundary) {
         if (isFloorBoundary) { // floor-like boundary
-            if (this.vel.y > 0) {    // boundary only act like floor if this is falling onto boundary
+            if (this.vel.y >= 0) {    // boundary only act like floor if this is on top or falling onto boundary
                 this.vel.y = 0;
                 this.pos.y = boundaryYPoint - this.diameter / 2;
                 this.shouldSetPreviousFloorBoundaryContact = true;
