@@ -79,7 +79,10 @@ public class Enemy extends ACharacter implements IDrawable {
     @Override
     void show() {
         if (this.isInvulnerable) {
-            this.mainSketch.fill(Constants.RANDOM_COLOR_GENERATOR());
+            this.mainSketch.fill(
+                this.mainSketch.random(0, 255),
+                this.mainSketch.random(0, 255),
+                this.mainSketch.random(0, 255));
         } else {
             this.mainSketch.fill(this.fillColor);
         }
