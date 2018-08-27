@@ -15,6 +15,11 @@ public class ResourceUtils {
      */
     public static void loopSong(ESongType songType) {
         switch (songType) {
+            case LevelSelectMenu:
+                LEVEL_SELECT_MENU_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
+                LEVEL_SELECT_MENU_SONG_PLAYER.play();
+                break;
+                
             case Level:
                 LEVEL_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
                 LEVEL_SONG_PLAYER.play();
@@ -89,6 +94,7 @@ public class ResourceUtils {
      * stop song
      */
     public static void stopSong() {
+        LEVEL_SELECT_MENU_SONG_PLAYER.stop();
         LEVEL_SONG_PLAYER.stop();
         PLAYER_DEATH_SONG_PLAYER.stop();
         LEVEL_COMPLETION_SONG_PLAYER.stop();
@@ -101,6 +107,13 @@ public class ResourceUtils {
     private static final ImageIcon BACKGROUND_IMAGE =
         new ImageIcon(ResourceUtils.class.getClassLoader().getResource(BACKGROUND_IMAGE_NAME));
     public static final PImage LEVEL_BACKGROUND_IMAGE = new PImage(BACKGROUND_IMAGE.getImage());
+
+    // level select menu song
+    private static final String LEVEL_SELECT_MENU_SONG_NAME = "level-select-menu-song.mp3";
+    private static final Media LEVEL_SELECT_MENU_SONG = new Media(
+        getResourcePathUri(LEVEL_SELECT_MENU_SONG_NAME));
+    private static final MediaPlayer LEVEL_SELECT_MENU_SONG_PLAYER =
+        new MediaPlayer(LEVEL_SELECT_MENU_SONG);
 
     // level song
     private static final String LEVEL_SONG_NAME = "level-song.mp3";

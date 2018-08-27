@@ -3,6 +3,7 @@ package app.drawable.menus.panels;
 import app.Platformer;
 import app.factories.LevelFactory;
 import app.drawable.interfaces.IDrawable;
+import app.utils.ResourceUtils;
 
 /**
  * panel in level select menu
@@ -25,8 +26,9 @@ public class LevelSelectMenuPanel extends APanel implements IDrawable {
      */
     @Override
     void executeWhenClicked() {
-        // setup and load level associated with this
         this.mainSketch.getLevelSelectMenu().deactivateMenu();
+        ResourceUtils.stopSong();
+        // setup and load level associated with this
         this.mainSketch.setCurrentActiveLevelNumber(this.panelLevel);
         LevelFactory levelFactory = new LevelFactory();
         this.mainSketch.setCurrentActiveLevel(levelFactory.getLevel(this.mainSketch, true, false));

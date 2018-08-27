@@ -4,6 +4,7 @@ import app.Platformer;
 import app.drawable.characters.Enemy;
 import app.drawable.characters.Player;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -14,8 +15,21 @@ public class EnemyTriggerVerticalBoundary extends VerticalBoundary {
     private final Set<Enemy> enemiesToAddSet;
 
     /**
-     * set properties of this
-     * sets this to affect all characters
+     * set properties of this;
+     * only one enemy to trigger
+     */
+    public EnemyTriggerVerticalBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int y2Offset, int boundaryLineThickness,
+                                        boolean isActive, Enemy enemy) {
+        super(mainSketch, startXPoint, startYPoint, y2Offset, boundaryLineThickness,
+            false, isActive);
+        Set<Enemy> set = new HashSet<>();
+        set.add(enemy);
+        this.enemiesToAddSet = set;
+    }
+
+    /**
+     * set properties of this;
+     * set of enemies to trigger
      */
     public EnemyTriggerVerticalBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int y2Offset, int boundaryLineThickness,
                                         boolean isActive, Set<Enemy> enemySet) {

@@ -4,6 +4,7 @@ import app.Platformer;
 import app.constants.Constants;
 import app.drawable.interfaces.IDrawable;
 import app.drawable.menus.panels.LevelSelectMenuPanel;
+import app.enums.ESongType;
 import app.utils.ResourceUtils;
 
 /**
@@ -46,6 +47,8 @@ public class LevelSelectMenu extends AMenu implements IDrawable {
             Constants.PANEL_HEIGHT,
             this.isActive
         ));
+
+        ResourceUtils.loopSong(ESongType.LevelSelectMenu);
     }
 
     /**
