@@ -252,7 +252,7 @@ public class LevelOne extends ALevel implements IDrawable {
         this.blocksList.add(new Block(
             this.mainSketch,
             2550,
-            500 - Constants.DEFAULT_BLOCK_SIZE,
+            Constants.LEVEL_FLOOR_Y_POSITION - 300 - Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
