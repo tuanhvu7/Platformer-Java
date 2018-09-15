@@ -118,13 +118,13 @@ public class EventBlock extends ABlock implements IDrawable {
      */
     @Override
     public void makeNotActive() {
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
-
         this.topSide.makeNotActive();
         this.bottomSide.makeNotActive();
         this.leftSide.makeNotActive();
         this.rightSide.makeNotActive();
         this.eventTriggerBoundary.makeNotActive();
+
+        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
     }
 }
 
