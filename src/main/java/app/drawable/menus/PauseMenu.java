@@ -30,7 +30,7 @@ public class PauseMenu extends AMenu implements IDrawable {
 
         this.panelsList.add(new PauseMenuPanel(
             this.mainSketch,
-            EPauseMenuButtonType.Continue,
+            EPauseMenuButtonType.CONTINUE,
             100 + this.horizontalOffset,    // add offset to account for viewbox
             100,
             Constants.PANEL_WIDTH,
@@ -41,7 +41,7 @@ public class PauseMenu extends AMenu implements IDrawable {
 
         this.panelsList.add(new PauseMenuPanel(
             this.mainSketch,
-            EPauseMenuButtonType.Quit,
+            EPauseMenuButtonType.QUIT,
             400 + this.horizontalOffset,    // add offset to account for viewbox
             100,
             Constants.PANEL_WIDTH,

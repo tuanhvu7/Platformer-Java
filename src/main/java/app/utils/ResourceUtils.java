@@ -15,12 +15,12 @@ public class ResourceUtils {
      */
     public static void loopSong(ESongType songType) {
         switch (songType) {
-            case LevelSelectMenu:
+            case LEVEL_SELECT_MENU:
                 LEVEL_SELECT_MENU_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
                 LEVEL_SELECT_MENU_SONG_PLAYER.play();
                 break;
                 
-            case Level:
+            case LEVEL:
                 LEVEL_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
                 LEVEL_SONG_PLAYER.play();
                 break;
@@ -35,17 +35,17 @@ public class ResourceUtils {
      */
     public static void playSong(ESongType songType) {
         switch (songType) {
-            case PlayerDeath:
+            case PLAYER_DEATH:
                 PLAYER_DEATH_SONG_PLAYER.setCycleCount(1);
                 PLAYER_DEATH_SONG_PLAYER.play();
                 break;
 
-            case LevelComplete:
+            case LEVEL_COMPLETE:
                 LEVEL_COMPLETION_SONG_PLAYER.setCycleCount(1);
                 LEVEL_COMPLETION_SONG_PLAYER.play();
                 break;
 
-            case PlayerAction:
+            case PLAYER_ACTION:
                 // to reset level after player death song finishes without freezing game
                 new Thread(() -> {
                     try {
@@ -58,7 +58,7 @@ public class ResourceUtils {
                 }).start();
                 break;
 
-            case EventBlockDescent:
+            case EVENT_BLOCK_DESCENT:
                 // to reset level after player death song finishes without freezing game
                 new Thread(() -> {
                     try {
@@ -81,9 +81,9 @@ public class ResourceUtils {
      */
     public static double getSongDuration(ESongType songType) {
         switch (songType) {
-            case PlayerDeath:
+            case PLAYER_DEATH:
                 return PLAYER_DEATH_SONG.getDuration().toMillis();
-            case LevelComplete:
+            case LEVEL_COMPLETE:
                 return LEVEL_COMPLETE_SONG_.getDuration().toMillis();
             default:
                 return 0;

@@ -34,8 +34,8 @@ public class PauseMenuPanel extends APanel implements IDrawable {
      */
     @Override
     void executeWhenClicked() {
-        if (panelType == EPauseMenuButtonType.Continue) {
-            ResourceUtils.loopSong(ESongType.Level);
+        if (panelType == EPauseMenuButtonType.CONTINUE) {
+            ResourceUtils.loopSong(ESongType.LEVEL);
             this.mainSketch.getCurrentActiveLevel().setPaused(false);
             this.mainSketch.getCurrentActiveLevel().closePauseMenu();
 

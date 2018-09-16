@@ -67,13 +67,13 @@ public class Platformer extends PApplet {
             try {
                 this.getCurrentActivePlayer().makeNotActive();
                 ResourceUtils.stopSong();
-                ResourceUtils.playSong(ESongType.PlayerDeath);
+                ResourceUtils.playSong(ESongType.PLAYER_DEATH);
 
 //                println("running reset level thread!!!");
                 if (levelCompleteThread != null) {
                     levelCompleteThread.interrupt();
                 }
-                Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.PlayerDeath));  // wait for song duration
+                Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.PLAYER_DEATH));  // wait for song duration
 
                 boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();
                 getCurrentActiveLevel().deactivateLevel();
@@ -90,7 +90,7 @@ public class Platformer extends PApplet {
      */
     public void handleLevelComplete() {
         ResourceUtils.stopSong();
-        ResourceUtils.playSong(ESongType.LevelComplete);
+        ResourceUtils.playSong(ESongType.LEVEL_COMPLETE);
 
         this.levelCompleteThread =
             new Thread(() -> {
@@ -101,7 +101,7 @@ public class Platformer extends PApplet {
                     getCurrentActivePlayer().setVel(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
                     unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
 
-                    Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.LevelComplete));  // wait for song duration
+                    Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.LEVEL_COMPLETE));  // wait for song duration
                     getCurrentActiveLevel().deactivateLevel();
                     currentActiveLevelNumber = 0;
                     levelSelectMenu.setupActivateMenu();

@@ -33,7 +33,7 @@ public class LevelTwo extends ALevel implements IDrawable {
         this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
         this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
 
-        ResourceUtils.loopSong(ESongType.Level);
+        ResourceUtils.loopSong(ESongType.LEVEL);
 
         charactersList.add(new Enemy(
             this.mainSketch,

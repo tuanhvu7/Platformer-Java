@@ -202,7 +202,7 @@ public abstract class ALevel implements IDrawable {
                             true);
 
                     } else {
-                        ResourceUtils.loopSong(ESongType.Level);
+                        ResourceUtils.loopSong(ESongType.LEVEL);
                         this.mainSketch.loop();
                         this.closePauseMenu();
                     }

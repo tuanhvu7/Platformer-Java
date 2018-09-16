@@ -155,7 +155,7 @@ public class Block extends ABlock implements IDrawable {
         this.mainSketch.getCurrentActivePlayer().handleContactWithHorizontalBoundary(
             this.bottomSide.getStartPoint().y,
             false);
-        ResourceUtils.playSong(ESongType.PlayerAction);
+        ResourceUtils.playSong(ESongType.PLAYER_ACTION);
         this.makeNotActive();
         this.mainSketch.getCurrentActiveBlocksList().remove(this);
     }
