@@ -19,7 +19,7 @@ public class Constants {
     public static final int[] LEVELS_WIDTH_ARRAY = {
         0,          // non-existent level zero
         8750,
-        1000
+        10000
     };
 
     // heights of all levels
@@ -78,6 +78,7 @@ public class Constants {
     public static final int BOUNDARY_COLOR = new Color(0x000000).getRGB();
     public static final int DEFAULT_BOUNDARY_LINE_THICKNESS = 1;
 
+    public static final int BREAKABLE_BLOCK_COLOR = new Color(0x800000).getRGB();
     public static final int DEFAULT_BLOCK_COLOR = new Color(0xCD853F).getRGB();
     public static final int DEFAULT_BLOCK_SIZE = 100;
 

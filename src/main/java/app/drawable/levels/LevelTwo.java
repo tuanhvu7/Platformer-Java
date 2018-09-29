@@ -1,15 +1,12 @@
 package app.drawable.levels;
 
 import app.Platformer;
-import app.drawable.boundaries.HorizontalBoundary;
-import app.drawable.boundaries.VerticalBoundary;
-import app.drawable.characters.Enemy;
-import app.drawable.characters.Player;
 import app.constants.Constants;
-import app.enums.ESongType;
+import app.drawable.characters.Player;
 import app.drawable.interfaces.IDrawable;
-import app.utils.ResourceUtils;
 import app.drawable.viewbox.ViewBox;
+import app.enums.ESongType;
+import app.utils.ResourceUtils;
 
 /**
  * Level two
@@ -30,71 +27,14 @@ public class LevelTwo extends ALevel implements IDrawable {
     public void setUpActivateLevel() {
         this.makeActive();
 
-        this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
-        this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
-
         ResourceUtils.loopSong(ESongType.LEVEL);
 
-        charactersList.add(new Enemy(
-            this.mainSketch,
-            this.mainSketch.getCurrentActiveLevelWidth() - 500,
-            0,
-            Constants.BIG_ENEMY_DIAMETER,
-            -Constants.ENEMY_REGULAR_RUN_SPEED,
-            false,
-            false,
-            true,
-            this.isActive)
-        );
+        if (this.loadPlayerFromCheckPoint) {
 
-        this.boundariesList.add(new HorizontalBoundary(
-            this.mainSketch,
-            this.mainSketch.width / 2,
-            this.mainSketch.height / 2,
-            100,
-            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            true,
-            this.isActive
-        ));
-
-        this.boundariesList.add(new HorizontalBoundary(
-            this.mainSketch,
-            this.mainSketch.width / 2,
-            this.mainSketch.height / 4,
-            100,
-            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            true,
-            this.isActive
-        ));
-
-        this.boundariesList.add(new HorizontalBoundary(
-            this.mainSketch,
-            this.mainSketch.width / 2,
-            this.mainSketch.height / 6,
-            100,
-            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            false,
-            this.isActive
-        ));
-
-        this.boundariesList.add(new HorizontalBoundary(
-            this.mainSketch,
-            this.mainSketch.width / 2,
-            this.mainSketch.height / 8,
-            100,
-            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            true,
-            this.isActive
-        ));
-
-        this.boundariesList.add(new VerticalBoundary(
-            this.mainSketch,
-            this.mainSketch.width / 2,
-            this.mainSketch.height / 2,
-            this.mainSketch.height / 2 - 100,
-            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive
-        ));
+        } else {
+            this.viewBox = new ViewBox(this.mainSketch, Constants.LEVELS_WIDTH_ARRAY[2], 0, this.isActive);
+            this.player = new Player(this.mainSketch, Constants.LEVELS_WIDTH_ARRAY[2] + 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
+        }
     }
 
 }
