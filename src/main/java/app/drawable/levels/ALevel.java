@@ -162,20 +162,36 @@ public abstract class ALevel implements IDrawable {
         int numberHorizontalBackgroundIterations =
             (int) Math.ceil((double) this.mainSketch.getCurrentActiveLevelWidth() / ResourceUtils.LEVEL_BACKGROUND_IMAGE.width);
 
-        for (int i = 0; i < numberHorizontalBackgroundIterations; i++) {
-            int widthToDraw =
-                Math.min(
-                    ResourceUtils.LEVEL_BACKGROUND_IMAGE.width,
-                    levelWidthLeftToDraw);
+        int levelHeightLeftToDraw = this.mainSketch.getCurrentActiveLevelHeight();
+        int numberVerticalBackgroundIterations =
+            (int) Math.ceil((double) this.mainSketch.getCurrentActiveLevelHeight() / ResourceUtils.LEVEL_BACKGROUND_IMAGE.height);
 
-            this.mainSketch.image(
-                ResourceUtils.LEVEL_BACKGROUND_IMAGE,
-                i * ResourceUtils.LEVEL_BACKGROUND_IMAGE.width,
-                0,
-                widthToDraw,
-                ResourceUtils.LEVEL_BACKGROUND_IMAGE.height);
+        for (int i = 0; i < numberVerticalBackgroundIterations; i++) {
+            for (int j = 0; j < numberHorizontalBackgroundIterations; j++) {
+                int curIterationWidthToDraw =
+                    Math.min(
+                        ResourceUtils.LEVEL_BACKGROUND_IMAGE.width,
+                        levelWidthLeftToDraw);
 
-            levelWidthLeftToDraw -= widthToDraw;
+                int curIterationHeightToDraw =
+                    Math.min(
+                        ResourceUtils.LEVEL_BACKGROUND_IMAGE.height,
+                        levelHeightLeftToDraw);
+
+                int startYPosToDraw =
+                    -i * ResourceUtils.LEVEL_BACKGROUND_IMAGE.height
+                        - (ResourceUtils.LEVEL_BACKGROUND_IMAGE.height - curIterationHeightToDraw);
+
+                this.mainSketch.image(
+                    ResourceUtils.LEVEL_BACKGROUND_IMAGE,
+                    i * ResourceUtils.LEVEL_BACKGROUND_IMAGE.width, // start x pos
+                    startYPosToDraw,  // start y pos
+                    curIterationWidthToDraw,
+                    curIterationHeightToDraw);
+
+                levelWidthLeftToDraw -= curIterationWidthToDraw;
+                levelHeightLeftToDraw -= curIterationHeightToDraw;
+            }
         }
 
         this.handleConditionalEnemyTriggers();

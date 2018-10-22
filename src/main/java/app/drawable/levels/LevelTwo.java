@@ -2,6 +2,7 @@ package app.drawable.levels;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.drawable.boundaries.HorizontalBoundary;
 import app.drawable.characters.Player;
 import app.drawable.interfaces.IDrawable;
 import app.drawable.viewbox.ViewBox;
@@ -32,9 +33,29 @@ public class LevelTwo extends ALevel implements IDrawable {
         if (this.loadPlayerFromCheckPoint) {
 
         } else {
-            this.viewBox = new ViewBox(this.mainSketch, Constants.LEVELS_WIDTH_ARRAY[2], 0, this.isActive);
-            this.player = new Player(this.mainSketch, Constants.LEVELS_WIDTH_ARRAY[2] + 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
+            this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
+            this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
         }
+
+        this.setupActivateWrongSection();
+        this.setupActivateCorrectSection();
+    }
+
+    private void setupActivateWrongSection() {
+        // stage floor
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            0,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            2500,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
+        ));
+    }
+
+    private void setupActivateCorrectSection() {
+
     }
 
 }

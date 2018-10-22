@@ -26,7 +26,7 @@ public class Constants {
     public static final int[] LEVELS_HEIGHT_ARRAY = {
         0,      // non-existent level zero
         900,    // level one
-        900
+        1100
     };
 
     /*** screen config ***/
@@ -38,7 +38,8 @@ public class Constants {
      * viewbox will move to follow player if player goes past this screen size boundary
      * Example: 0.25 means viewbox follow player if player goes past upper and lower 25% screen size
      */
-    public static final double VIEWBOX_BOUNDARY = 0.35;
+    public static final double HORIZONTAL_VIEWBOX_BOUNDARY = 0.35;
+    public static final double VERTICAL_VIEWBOX_BOUNDARY = 0.1;
 
 
     /*** velocity and acceleration physics ***/

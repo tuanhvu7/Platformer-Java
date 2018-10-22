@@ -175,4 +175,11 @@ public class Platformer extends PApplet {
         return Constants.LEVELS_WIDTH_ARRAY[this.currentActiveLevelNumber];
     }
 
+    /**
+     * return height of current active level
+     */
+    public int getCurrentActiveLevelHeight() {
+        return Constants.LEVELS_HEIGHT_ARRAY[this.currentActiveLevelNumber];
+    }
+
 }
