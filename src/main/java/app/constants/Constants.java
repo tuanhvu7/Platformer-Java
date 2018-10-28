@@ -26,7 +26,7 @@ public class Constants {
     public static final int[] LEVELS_HEIGHT_ARRAY = {
         0,      // non-existent level zero
         900,    // level one
-        1100
+        1300
     };
 
     /*** screen config ***/
