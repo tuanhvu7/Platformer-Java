@@ -3,7 +3,7 @@ package app.drawable.viewbox;
 import app.Platformer;
 import app.constants.Constants;
 import app.drawable.characters.Player;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import processing.core.PVector;
 
 /**

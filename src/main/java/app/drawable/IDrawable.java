@@ -1,4 +1,4 @@
-package app.drawable.interfaces;
+package app.drawable;
 
 /**
  * Required methods for drawable classes;

@@ -5,7 +5,7 @@ import app.constants.Constants;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.drawable.characters.Enemy;
 import app.drawable.characters.Player;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import app.drawable.viewbox.ViewBox;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;
@@ -62,7 +62,6 @@ public class LevelTwo extends ALevel implements IDrawable {
             0,
             Constants.BIG_ENEMY_DIAMETER,
             Constants.ENEMY_REGULAR_RUN_SPEED,
-            false,
             true,
             true,
             this.isActive)
@@ -88,41 +87,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             this.isActive
         ));
 
-        for (int i = 0; i < 5; i++) {
-            this.boundariesList.add(new HorizontalBoundary(
-                this.mainSketch,
-                startWrongSectionXPos + 1000 + 200 * i,
-                Constants.LEVEL_FLOOR_Y_POSITION - 200 - 225 * i,
-                Constants.PLAYER_DIAMETER * 2,
-                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-                true,
-                this.isActive
-            ));
-        }
 
-        for (int i = 0; i < 4; i++) {
-            this.boundariesList.add(new HorizontalBoundary(
-                this.mainSketch,
-                startWrongSectionXPos + 2000 + 200 * i,
-                Constants.LEVEL_FLOOR_Y_POSITION - 975,
-                Constants.PLAYER_DIAMETER * 2,
-                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-                true,
-                this.isActive
-            ));
-        }
-
-        for (int i = 0; i < 5; i++) {
-            this.boundariesList.add(new HorizontalBoundary(
-                this.mainSketch,
-                startWrongSectionXPos + 1400 + 200 * i,
-                Constants.LEVEL_FLOOR_Y_POSITION - 300,
-                Constants.PLAYER_DIAMETER * 2,
-                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-                true,
-                this.isActive
-            ));
-        }
     }
 
     private void setupActivateCorrectSection() {

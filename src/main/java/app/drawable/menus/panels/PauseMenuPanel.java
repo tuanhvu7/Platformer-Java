@@ -3,7 +3,7 @@ package app.drawable.menus.panels;
 import app.Platformer;
 import app.enums.EPauseMenuButtonType;
 import app.enums.ESongType;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import app.utils.ResourceUtils;
 
 /**

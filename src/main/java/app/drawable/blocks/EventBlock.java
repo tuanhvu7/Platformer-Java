@@ -4,7 +4,7 @@ import app.Platformer;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.EventTriggerHorizontalBoundary;
 import app.constants.Constants;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 
 /**
  * event block;

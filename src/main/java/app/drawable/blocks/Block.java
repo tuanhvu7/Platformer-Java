@@ -4,7 +4,7 @@ import app.Platformer;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.constants.Constants;
 import app.enums.ESongType;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import app.utils.ResourceUtils;
 
 /**

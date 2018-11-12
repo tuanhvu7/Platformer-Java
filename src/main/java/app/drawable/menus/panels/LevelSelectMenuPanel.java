@@ -2,7 +2,7 @@ package app.drawable.menus.panels;
 
 import app.Platformer;
 import app.factories.LevelFactory;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import app.utils.ResourceUtils;
 
 /**

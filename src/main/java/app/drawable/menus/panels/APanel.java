@@ -2,7 +2,7 @@ package app.drawable.menus.panels;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import processing.event.MouseEvent;
 
 /**

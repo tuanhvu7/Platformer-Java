@@ -2,7 +2,7 @@ package app.drawable.collectables;
 
 import app.Platformer;
 import app.drawable.characters.Player;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 
 /**
  * common for rectangular collectables

@@ -4,7 +4,7 @@ import app.Platformer;
 import app.constants.Constants;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;
 import processing.core.PVector;

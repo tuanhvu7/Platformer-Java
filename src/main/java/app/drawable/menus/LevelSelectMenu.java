@@ -2,7 +2,7 @@ package app.drawable.menus;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import app.drawable.menus.panels.LevelSelectMenuPanel;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;

@@ -15,8 +15,8 @@ public class ControllableEnemy extends Enemy {
      * set properties of this
      */
     public ControllableEnemy(Platformer mainSketch, int x, int y, int diameter, float runSpeed,
-                             boolean isFlying, boolean isInvulnerable, boolean isVisible, boolean isActive) {
-        super(mainSketch, x, y, diameter, runSpeed, isFlying, isInvulnerable, isVisible, isActive);
+                             boolean isInvulnerable, boolean isVisible, boolean isActive) {
+        super(mainSketch, x, y, diameter, runSpeed, isInvulnerable, isVisible, isActive);
         this.jumpPressed = false;
     }
 
@@ -44,21 +44,18 @@ public class ControllableEnemy extends Enemy {
      */
     @Override
     void handleMovement() {
-        if (!this.isFlying) {
-
-            if (this.jumpPressed) {    // jump button pressed/held
-                if (this.numberOfFloorBoundaryContacts > 0) { // able to jump
-                    this.vel.y = Constants.PLAYER_JUMP_VERTICAL_VELOCITY;
-                } else {
-                    // for jumping higher the longer jump button is held
-                    this.vel.y = Math.min(
-                        this.vel.y + Constants.GRAVITY.y * Constants.VARIABLE_JUMP_GRAVITY_MULTIPLIER,
-                        Constants.MAX_VERTICAL_VELOCITY);
-                }
-
-            } else if (this.numberOfFloorBoundaryContacts == 0) {    // in air
-                this.handleInAirPhysics();
+        if (this.jumpPressed) {    // jump button pressed/held
+            if (this.numberOfFloorBoundaryContacts > 0) { // able to jump
+                this.vel.y = Constants.PLAYER_JUMP_VERTICAL_VELOCITY;
+            } else {
+                // for jumping higher the longer jump button is held
+                this.vel.y = Math.min(
+                    this.vel.y + Constants.GRAVITY.y * Constants.VARIABLE_JUMP_GRAVITY_MULTIPLIER,
+                    Constants.MAX_VERTICAL_VELOCITY);
             }
+
+        } else if (this.numberOfFloorBoundaryContacts == 0) {    // in air
+            this.handleInAirPhysics();
         }
 
         this.pos.add(this.vel);

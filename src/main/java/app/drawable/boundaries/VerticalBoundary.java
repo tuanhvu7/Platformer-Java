@@ -3,7 +3,7 @@ package app.drawable.boundaries;
 import app.Platformer;
 import app.drawable.characters.ACharacter;
 import app.drawable.characters.Player;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 
 /**
  * vertical line boundaries; walls

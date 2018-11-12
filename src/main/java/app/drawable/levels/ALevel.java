@@ -9,7 +9,7 @@ import app.drawable.characters.ACharacter;
 import app.drawable.characters.Player;
 import app.drawable.collectables.ACollectable;
 import app.drawable.collectables.LevelGoal;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import app.drawable.menus.PauseMenu;
 import app.drawable.viewbox.ViewBox;
 import app.enums.ESongType;

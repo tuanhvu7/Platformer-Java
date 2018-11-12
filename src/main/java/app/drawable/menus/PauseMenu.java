@@ -3,7 +3,7 @@ package app.drawable.menus;
 import app.Platformer;
 import app.constants.Constants;
 import app.enums.EPauseMenuButtonType;
-import app.drawable.interfaces.IDrawable;
+import app.drawable.IDrawable;
 import app.drawable.menus.panels.PauseMenuPanel;
 import app.utils.ResourceUtils;
 
