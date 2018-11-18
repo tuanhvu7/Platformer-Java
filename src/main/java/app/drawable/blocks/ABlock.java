@@ -136,6 +136,5 @@ public abstract class ABlock {
      * deactivate and remove this from game;
      * to override in extended classes
      */
-    public void makeNotActive() {
-    }
+    public abstract void makeNotActive();
 }

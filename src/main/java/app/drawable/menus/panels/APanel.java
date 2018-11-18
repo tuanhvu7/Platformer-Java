@@ -89,8 +89,7 @@ public abstract class APanel implements IDrawable {
     /**
      * to execute when this panel is clicked; to override in extended classes
      */
-    void executeWhenClicked() {
-    }
+    abstract void executeWhenClicked();
 
     /**
      * return if mouse position inside this panel

@@ -125,8 +125,7 @@ public abstract class ACharacter {
      * handle death of this;
      * to override in extended methods
      */
-    void handleDeath(boolean isOffscreenDeath) {
-    }
+    abstract void handleDeath(boolean isOffscreenDeath);
 
     /*** getters and setters ***/
     public PVector getPos() {

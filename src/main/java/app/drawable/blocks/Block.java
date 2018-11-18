@@ -20,8 +20,9 @@ public class Block extends ABlock implements IDrawable {
      * set properties of this;
      * sets this to affect all characters and be visible
      */
-    public Block(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness, boolean isBreakableFromBottom,
-                 boolean isActive) {
+    public Block(Platformer mainSketch, int leftX, int topY,
+                 int width, int height, int blockLineThickness,
+                 boolean isBreakableFromBottom, boolean isActive) {
 
         super(mainSketch, leftX, topY, width, height, blockLineThickness, false);   // initially not active, to be set in makeActive()
 

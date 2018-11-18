@@ -54,8 +54,7 @@ public abstract class AMenu {
     /**
      * activate and setup this; to override in extended classes
      */
-    void setupActivateMenu() {
-    }
+    abstract void setupActivateMenu();
 
     /**
      * deactivate this

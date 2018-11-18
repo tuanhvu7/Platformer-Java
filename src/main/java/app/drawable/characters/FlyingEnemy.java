@@ -61,7 +61,9 @@ public class FlyingEnemy extends Enemy implements IDrawable {
      */
     @Override
     void handleMovement() {
-        if (this.pos.y < this.topY || this.pos.y > this.bottomY) {
+        final boolean shouldReverseFromTopLimit = this.pos.y <= this.topY && this.vel.y < 0;
+        final boolean shouldReverseFromBottomLimit = this.pos.y >= this.bottomY && this.vel.y > 0;
+        if (shouldReverseFromTopLimit || shouldReverseFromBottomLimit) {
             this.vel.y = -this.vel.y;
         }
         this.pos.add(this.vel);

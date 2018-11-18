@@ -78,8 +78,7 @@ public abstract class ACollectable implements IDrawable {
      * check and handle contact with player;
      * to override in extended classes
      */
-    void checkHandleContactWithPlayer() {
-    }
+    abstract void checkHandleContactWithPlayer();
 
     /**
      * true means this contact with player

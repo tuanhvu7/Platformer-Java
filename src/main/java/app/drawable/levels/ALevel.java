@@ -99,8 +99,7 @@ public abstract class ALevel implements IDrawable {
     /**
      * setup and activate this; to override in extended classes
      */
-    void setUpActivateLevel() {
-    }
+    abstract void setUpActivateLevel();
 
     /**
      * handle conditional enemy triggers in this;
@@ -108,7 +107,6 @@ public abstract class ALevel implements IDrawable {
      */
     void handleConditionalEnemyTriggers() {
     }
-
 
     /**
      * deactivate this;
