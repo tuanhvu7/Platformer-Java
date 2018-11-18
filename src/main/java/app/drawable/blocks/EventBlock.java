@@ -15,8 +15,9 @@ public class EventBlock extends ABlock implements IDrawable {
     private final EventTriggerHorizontalBoundary eventTriggerBoundary;
 
     /**
+     * Launch event block;
      * set properties of this;
-     * sets this to have launch event and affect all characters and be visible
+     * affect all characters and be visible
      */
     public EventBlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
                       boolean isEventTriggerFloorBoundary, boolean isActive) {
@@ -51,8 +52,9 @@ public class EventBlock extends ABlock implements IDrawable {
     }
 
     /**
+     * Warp event;
      * set properties of this;
-     * sets this to have warp event and affect all characters and be visible
+     * affect all characters and be visible
      */
     public EventBlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
                       int endWarpXPosition, int endWarpYPosition,
