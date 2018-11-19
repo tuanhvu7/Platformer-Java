@@ -53,8 +53,6 @@ public class LevelOne extends ALevel implements IDrawable {
         } else {
             this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
             this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
-//            this.viewBox = new ViewBox(this.mainSketch, 5500 - 200, 0, this.isActive);
-//            this.player = new Player(this.mainSketch, 5500, 0, Constants.PLAYER_DIAMETER, this.isActive);
 
             this.collectablesList.add(new Checkpoint(
                 this.mainSketch,

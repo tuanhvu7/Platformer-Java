@@ -175,8 +175,10 @@ public class Player extends ACharacter implements IDrawable {
         this.vel.x = 0;
         if (this.pos.x > boundaryXPoint) {   // left boundary
             this.ableToMoveLeft = false;
+            this.pos.x = boundaryXPoint + this.diameter / 2;
         } else {    // right boundary
             this.ableToMoveRight = false;
+            this.pos.x = boundaryXPoint - this.diameter / 2;
         }
     }
 
