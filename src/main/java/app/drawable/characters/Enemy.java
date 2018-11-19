@@ -12,7 +12,7 @@ import app.utils.ResourceUtils;
 public class Enemy extends ACharacter implements IDrawable {
 
     // true means invulnerable; always kills player on contact
-    final boolean isInvulnerable;
+    private final boolean isInvulnerable;
 
     boolean isVisible;
 

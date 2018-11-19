@@ -11,6 +11,7 @@ import app.drawable.boundaries.VerticalBoundary;
 import app.drawable.characters.Enemy;
 import app.drawable.characters.FlyingEnemy;
 import app.drawable.characters.Player;
+import app.drawable.collectables.Checkpoint;
 import app.drawable.viewbox.ViewBox;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;
@@ -39,35 +40,68 @@ public class LevelTwo extends ALevel implements IDrawable {
 
         ResourceUtils.loopSong(ESongType.LEVEL);
 
-        final int startWrongSectionXPos = this.mainSketch.getCurrentActiveLevelWidth() / 2;
+        final int levelMiddleXPos = this.mainSketch.getCurrentActiveLevelWidth() / 2;
+        this.checkpointXPos = levelMiddleXPos - 1750 - 50;
 
-
+        this.loadPlayerFromCheckPoint = true;   // TODO: remove after finish level
         if (this.loadPlayerFromCheckPoint) {
-
-        } else {
             this.viewBox = new ViewBox(
                 this.mainSketch,
-                startWrongSectionXPos,
+                this.checkpointXPos - ((Constants.SCREEN_WIDTH / 2) + 75),
                 0,
                 this.isActive);
             this.player = new Player(
                 this.mainSketch,
-                (startWrongSectionXPos)
-                    + (Constants.SCREEN_WIDTH / 2) + 75,
+                this.checkpointXPos,
                 0,
                 Constants.PLAYER_DIAMETER,
                 this.isActive);
+        } else {
+            this.viewBox = new ViewBox(
+                this.mainSketch,
+                levelMiddleXPos,
+                0,
+                this.isActive);
+            this.player = new Player(
+                this.mainSketch,
+                levelMiddleXPos + (Constants.SCREEN_WIDTH / 2) + 75,
+                0,
+                Constants.PLAYER_DIAMETER,
+                this.isActive);
+
+            this.collectablesList.add(new Checkpoint(
+                this.mainSketch,
+                this.checkpointXPos,
+                Constants.LEVEL_FLOOR_Y_POSITION - Constants.CHECKPOINT_HEIGHT,
+                Constants.CHECKPOINT_WIDTH,
+                Constants.CHECKPOINT_HEIGHT,
+                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+                this.isActive)
+            );
         }
 
 
-        this.setupActivateStartWrongSection(startWrongSectionXPos);
-        this.setupActivateMiddleWrongSection(startWrongSectionXPos + 1750);
-        this.setupActivateEndWrongSection(startWrongSectionXPos + 1750 + 2250);
+        this.setupActivateStartWrongSection(levelMiddleXPos);
+        this.setupActivateMiddleWrongSection(levelMiddleXPos + 1750);
+        this.setupActivateEndWrongSection(levelMiddleXPos + 1750 + 2250);
 
-        this.setupActivateCorrectSection();
+        this.setupActivateStartCorrectSection(levelMiddleXPos);
+        this.setupActivateMiddleCorrectSection(levelMiddleXPos - 1750);
+        this.setupActivateEndCorrectSection(levelMiddleXPos - 1750 - 2250);
     }
 
     private void setupActivateStartWrongSection(final int startXPos) {
+        // section floor
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            startXPos,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            1000,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
+        ));
+
         this.boundariesList.add(new VerticalBoundary(
             this.mainSketch,
             startXPos,
@@ -79,7 +113,7 @@ public class LevelTwo extends ALevel implements IDrawable {
 
         this.charactersList.add(new Enemy(
             this.mainSketch,
-            startXPos + (Constants.BIG_ENEMY_DIAMETER / 2) + 1,
+            startXPos + (Constants.BIG_ENEMY_DIAMETER / 2),
             0,
             Constants.BIG_ENEMY_DIAMETER,
             Constants.ENEMY_REGULAR_RUN_SPEED,
@@ -87,17 +121,6 @@ public class LevelTwo extends ALevel implements IDrawable {
             true,
             this.isActive)
         );
-
-        // section floor
-        this.boundariesList.add(new HorizontalBoundary(
-            this.mainSketch,
-            startXPos,
-            Constants.LEVEL_FLOOR_Y_POSITION,
-            1000,
-            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            true,
-            this.isActive
-        ));
 
         for (int i = 0; i < 7; i++) {
             this.charactersList.add(new FlyingEnemy(
@@ -117,6 +140,17 @@ public class LevelTwo extends ALevel implements IDrawable {
     }
 
     private void setupActivateMiddleWrongSection(final int startXPos) {
+        // section floor
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            startXPos,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            2000,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
+        ));
+
         // stair section
         for (int i = 0; i < 3; i++) {
             this.blocksList.add(new Block(
@@ -126,7 +160,6 @@ public class LevelTwo extends ALevel implements IDrawable {
                 Constants.DEFAULT_BLOCK_SIZE,
                 (i + 1) * Constants.DEFAULT_BLOCK_SIZE,
                 Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-                true,
                 false,
                 this.isActive
             ));
@@ -151,17 +184,6 @@ public class LevelTwo extends ALevel implements IDrawable {
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             this.isActive,
             enemyToAddForTrigger
-        ));
-
-        // section floor
-        this.boundariesList.add(new HorizontalBoundary(
-            this.mainSketch,
-            startXPos,
-            Constants.LEVEL_FLOOR_Y_POSITION,
-            2000,
-            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            true,
-            this.isActive
         ));
     }
 
@@ -226,7 +248,121 @@ public class LevelTwo extends ALevel implements IDrawable {
 
     /* ****** CORRECT SECTION ****** */
 
-    private void setupActivateCorrectSection() {
+    private void setupActivateStartCorrectSection(final int startXPos) {
+        // section floor
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            startXPos,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            -1000,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
+        ));
+
+        Enemy enemyToAddForTrigger = new Enemy(
+            this.mainSketch,
+            startXPos - 700,
+            0,
+            Constants.BIG_ENEMY_DIAMETER,
+            Constants.ENEMY_REGULAR_RUN_SPEED,
+            true,
+            true,
+            false);
+        this.charactersList.add(enemyToAddForTrigger);
+        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+            this.mainSketch,
+            startXPos - 500,
+            0,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            this.isActive,
+            enemyToAddForTrigger
+        ));
+
+        for (int i = 0; i < 7; i++) {
+            this.charactersList.add(new FlyingEnemy(
+                this.mainSketch,
+                startXPos - (1100 + i * (Constants.REGULAR_ENEMY_DIAMETER + 30)),
+                Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
+                Constants.REGULAR_ENEMY_DIAMETER,
+                0,
+                Constants.ENEMY_SLOW_RUN_SPEED,
+                200,
+                Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
+                i % 2 == 0,
+                true,
+                this.isActive
+            ));
+        }
+    }
+
+    private void setupActivateMiddleCorrectSection(final int startXPos) {
+        // section floor
+        this.boundariesList.add(new HorizontalBoundary(
+            this.mainSketch,
+            startXPos,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            -2000,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            true,
+            this.isActive
+        ));
+
+        // stair section
+        for (int i = 0; i < 3; i++) {
+            this.blocksList.add(new Block(
+                this.mainSketch,
+                startXPos - (500 + (i + 2) * Constants.DEFAULT_BLOCK_SIZE),
+                this.mainSketch.height - (i + 2) * Constants.DEFAULT_BLOCK_SIZE,
+                Constants.DEFAULT_BLOCK_SIZE,
+                (i + 1) * Constants.DEFAULT_BLOCK_SIZE,
+                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+                false,
+                this.isActive
+            ));
+        }
+
+        Enemy enemyToAddForTrigger = new Enemy(
+            this.mainSketch,
+            startXPos - 2000,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
+            Constants.REGULAR_ENEMY_DIAMETER,
+            Constants.ENEMY_REGULAR_RUN_SPEED,
+            false,
+            true,
+            false
+        );
+        this.charactersList.add(enemyToAddForTrigger);
+        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+            this.mainSketch,
+            startXPos - (500 + 4 * Constants.DEFAULT_BLOCK_SIZE),
+            0,
+            Constants.LEVEL_FLOOR_Y_POSITION,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            this.isActive,
+            enemyToAddForTrigger
+        ));
+
+        // calculated using distance from pit to start from left most x pos of stairs
+        final int numTimesBlockIterate =
+            (2000 - (2000 - (500 + (4 + 2) * Constants.DEFAULT_BLOCK_SIZE))) / Constants.DEFAULT_BLOCK_SIZE;
+        for (int i = 0; i < numTimesBlockIterate; i++) {
+            this.blocksList.add(new Block(
+                this.mainSketch,
+                startXPos - (500 + (4 + i) * Constants.DEFAULT_BLOCK_SIZE), // start from left most x pos of stairs
+                Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_BLOCK_SIZE - Constants.PLAYER_DIAMETER - 10,
+                Constants.DEFAULT_BLOCK_SIZE,
+                Constants.DEFAULT_BLOCK_SIZE,
+                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+                false,
+                false,
+                this.isActive
+            ));
+        }
+    }
+
+    private void setupActivateEndCorrectSection(final int startXPos) {
 
     }
 

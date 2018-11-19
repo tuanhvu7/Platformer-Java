@@ -10,10 +10,10 @@ import app.drawable.IDrawable;
 public class FlyingEnemy extends Enemy implements IDrawable {
 
     // top y position this.pos.y can be at before vertical movement direction change
-    private int topY;
+    private final int topY;
 
     // bottom y position this.pos.y can be at before vertical movement direction change
-    private int bottomY;
+    private final int bottomY;
 
     /**
      * set properties of this;
