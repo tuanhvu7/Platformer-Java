@@ -195,7 +195,7 @@ public class LevelTwo extends ALevel implements IDrawable {
         this.charactersList.add(enemyToAddForTrigger);
         this.boundariesList.add(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            startXPos + 500 + 4 * Constants.DEFAULT_BLOCK_SIZE,
+            startXPos + 500 + 4 * Constants.DEFAULT_BLOCK_SIZE + 2 * Constants.DEFAULT_BLOCK_SIZE,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -227,21 +227,20 @@ public class LevelTwo extends ALevel implements IDrawable {
             this.isActive
         ));
 
-        Set<Enemy> enemyAfterStairToTrigger = new HashSet<>();
+        Set<Enemy> enemyAtEndToTrigger = new HashSet<>();
         for (int i = 0; i < 2; i++) {
-            Enemy enemyToAdd = new FlyingEnemy(
+            Enemy enemyToAdd = new Enemy(
                 this.mainSketch,
                 this.mainSketch.getCurrentActiveLevelWidth() - (i + 1) * Constants.REGULAR_ENEMY_DIAMETER,
                 Constants.LEVEL_FLOOR_Y_POSITION - (Constants.REGULAR_ENEMY_DIAMETER / 2),
                 Constants.REGULAR_ENEMY_DIAMETER,
                 -Constants.ENEMY_REGULAR_RUN_SPEED,
-                0,
                 false,
                 true,
                 false
             );
             this.charactersList.add(enemyToAdd);
-            enemyAfterStairToTrigger.add(enemyToAdd);
+            enemyAtEndToTrigger.add(enemyToAdd);
         }
         this.boundariesList.add(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
@@ -250,7 +249,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             this.isActive,
-            enemyAfterStairToTrigger
+            enemyAtEndToTrigger
         ));
     }
 
@@ -344,7 +343,7 @@ public class LevelTwo extends ALevel implements IDrawable {
         this.charactersList.add(enemyToAddForTrigger);
         this.boundariesList.add(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            startXPos - (500 + 4 * Constants.DEFAULT_BLOCK_SIZE),
+            startXPos - (500 + 4 * Constants.DEFAULT_BLOCK_SIZE) - 2 * Constants.DEFAULT_BLOCK_SIZE,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -405,33 +404,21 @@ public class LevelTwo extends ALevel implements IDrawable {
             this.isActive
         ));
 
-        // enemies in end
-        Set<Enemy> enemyAfterStairToTrigger = new HashSet<>();
-        Enemy enemyToAdd = new FlyingEnemy(
-            this.mainSketch,
-            2 * Constants.REGULAR_ENEMY_DIAMETER,
-            Constants.LEVEL_FLOOR_Y_POSITION - (Constants.REGULAR_ENEMY_DIAMETER / 2),
-            Constants.REGULAR_ENEMY_DIAMETER,
-            Constants.ENEMY_REGULAR_RUN_SPEED,
-            0,
-            false,
-            true,
-            false
-        );
-        this.charactersList.add(enemyToAdd);
-        enemyAfterStairToTrigger.add(enemyToAdd);
-        enemyToAdd = new Enemy(
-            this.mainSketch,
-            Constants.REGULAR_ENEMY_DIAMETER,
-            Constants.LEVEL_FLOOR_Y_POSITION - (Constants.REGULAR_ENEMY_DIAMETER / 2),
-            Constants.REGULAR_ENEMY_DIAMETER,
-            Constants.ENEMY_REGULAR_RUN_SPEED,
-            true,
-            true,
-            false
-        );
-        this.charactersList.add(enemyToAdd);
-        enemyAfterStairToTrigger.add(enemyToAdd);
+        Set<Enemy> enemyAtEndToTrigger = new HashSet<>();
+        for (int i = 0; i < 2; i++) {
+            Enemy enemyToAdd = new Enemy(
+                this.mainSketch,
+                (i + 1) * Constants.REGULAR_ENEMY_DIAMETER,
+                Constants.LEVEL_FLOOR_Y_POSITION - (Constants.REGULAR_ENEMY_DIAMETER / 2),
+                Constants.REGULAR_ENEMY_DIAMETER,
+                Constants.ENEMY_REGULAR_RUN_SPEED,
+                true,
+                true,
+                false
+            );
+            this.charactersList.add(enemyToAdd);
+            enemyAtEndToTrigger.add(enemyToAdd);
+        }
         this.boundariesList.add(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
             startXPos - Constants.DEFAULT_EVENT_BLOCK_WIDTH,
@@ -439,7 +426,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             this.isActive,
-            enemyAfterStairToTrigger
+            enemyAtEndToTrigger
         ));
 
         // correct goal post
