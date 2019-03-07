@@ -45,6 +45,19 @@ public class ResourceUtils {
                 LEVEL_COMPLETION_SONG_PLAYER.play();
                 break;
 
+            case PLAYER_DAMAGE:
+                // to player damage song in parallel with level song
+                new Thread(() -> {
+                    try {
+                        PLAYER_DAMAGE_SOUND_PLAYER.setCycleCount(1);
+                        PLAYER_DAMAGE_SOUND_PLAYER.play();
+                        Thread.sleep((long) PLAYER_DAMAGE_SOUND.getDuration().toMillis());  // wait for song duration
+                        PLAYER_DAMAGE_SOUND_PLAYER.stop();
+                    } catch (InterruptedException ie) {
+                    }
+                }).start();
+                break;
+
             case PLAYER_ACTION:
                 // to reset level after player death song finishes without freezing game
                 new Thread(() -> {
@@ -59,7 +72,7 @@ public class ResourceUtils {
                 break;
 
             case EVENT_BLOCK_DESCENT:
-                // to reset level after player death song finishes without freezing game
+                // to play event block descent song in parallel with level song
                 new Thread(() -> {
                     try {
                         EVENT_BLOCK_DESCENT_SONG_PLAYER.setCycleCount(1);
@@ -122,6 +135,13 @@ public class ResourceUtils {
     private static final MediaPlayer LEVEL_SONG_PLAYER =
         new MediaPlayer(LEVEL_SONG);
 
+    // player damage song
+    private static final String PLAYER_DAMAGE_SOUND_NAME = "player-damage-sound.mp3";
+    public static final Media PLAYER_DAMAGE_SOUND = new Media(
+        getResourcePathUri(PLAYER_DAMAGE_SOUND_NAME));
+    private static final MediaPlayer PLAYER_DAMAGE_SOUND_PLAYER =
+        new MediaPlayer(PLAYER_DAMAGE_SOUND);
+
     // player death song
     private static final String PLAYER_DEATH_SONG_NAME = "player-death-song.mp3";
     private static final Media PLAYER_DEATH_SONG = new Media(
@@ -149,7 +169,6 @@ public class ResourceUtils {
         getResourcePathUri(EVENT_BLOCK_DESCENT_SONG_NAME));
     private static final MediaPlayer EVENT_BLOCK_DESCENT_SONG_PLAYER =
         new MediaPlayer(EVENT_BLOCK_DESCENT_SONG);
-
 
     /**
      * Used to create URI for JavaFx Media

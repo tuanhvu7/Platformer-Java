@@ -11,22 +11,23 @@ public class Constants {
 
     /*** level panel config ***/
     public static final int TEXT_SIZE = 24;
-    public static final int PANEL_HEIGHT = 200;
-    public static final int PANEL_WIDTH = 200;
+    public static final int PANEL_SIZE = 200;
     public static final int PANEL_COLOR = new Color(0x00FF00).getRGB();
 
     // widths of all levels
     public static final int[] LEVELS_WIDTH_ARRAY = {
         0,          // non-existent level zero
         8750,
-        12000
+        12000,
+        2000
     };
 
     // heights of all levels
     public static final int[] LEVELS_HEIGHT_ARRAY = {
         0,      // non-existent level zero
         900,    // level one
-        1300
+        1300,
+        900
     };
 
     /*** screen config ***/
@@ -60,8 +61,10 @@ public class Constants {
     public static final int PLAYER_LEVEL_COMPLETE_SPEED = 1;
     public static final int PLAYER_JUMP_VERTICAL_VELOCITY = -12;
     public static final int PLAYER_JUMP_KILL_ENEMY_HOP_VERTICAL_VELOCITY = -7;
-    public static final int PLAYER_COLOR = new Color(0x000000).getRGB();
+    public static final int PLAYER_DEFAULT_COLOR = new Color(0x000000).getRGB();
+    public static final int PLAYER_DAMAGED_COLOR = new Color(0x888888).getRGB();
     public static final int PLAYER_DIAMETER = 60;
+    public  static final int PLAYER_HEALTH_TEXT_COLOR = new Color(0xFFFFFF).getRGB();
     // minimum angle (degrees) of collision between player and enemy
     // for player to kill enemy
     public static final double MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE = 20.0;
@@ -83,6 +86,11 @@ public class Constants {
     public static final int DEFAULT_BLOCK_COLOR = new Color(0xCD853F).getRGB();
     public static final int DEFAULT_BLOCK_SIZE = 100;
 
+    public static final int EVENT_BLOCK_COLOR = new Color(0x00E500).getRGB();
+    public static final int DEFAULT_EVENT_BLOCK_WIDTH = 125;
+    public static final int DEFAULT_EVENT_BLOCK_HEIGHT = 200;
+
+    /*** collectable config ***/
     public static final int CHECKPOINT_COLOR = new Color(0xFFD700).getRGB();
     public static final int CHECKPOINT_WIDTH = 40;
     public static final int CHECKPOINT_HEIGHT = 100;
@@ -91,9 +99,11 @@ public class Constants {
     public static final int LEVEL_GOAL_WIDTH = 40;
     public static final int LEVEL_GOAL_HEIGHT = LEVEL_FLOOR_Y_POSITION;
 
-    public static final int EVENT_BLOCK_COLOR = new Color(0x00E500).getRGB();
-    public static final int DEFAULT_EVENT_BLOCK_WIDTH = 125;
-    public static final int DEFAULT_EVENT_BLOCK_HEIGHT = 200;
+    public static final int HEALTH_ITEM_COLOR = new Color(0xDCDCDC).getRGB();
+    public static final int NEGATIVE_HEALTH_ITEM_TEXT_COLOR = new Color(0xFF0000).getRGB();
+    public static final int ZERO_HEALTH_ITEM_TEXT_COLOR = new Color(0x888888).getRGB();
+    public static final int POSITIVE_HEALTH_ITEM_TEXT_COLOR = new Color(0x008000).getRGB();
+    public static final int HEALTH_ITEM_SIZE = 60;
 
     /**
      * make this class "static"

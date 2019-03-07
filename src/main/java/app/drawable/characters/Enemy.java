@@ -67,18 +67,19 @@ public class Enemy extends ACharacter implements IDrawable {
      * check and handle contact with player
      */
     private void checkHandleContactWithPlayer() {
-        if (this.mainSketch.getCurrentActivePlayer().isActive()) {   // to prevent multiple consecutive deaths TODO: encapsulate
+        Player curPlayer = this.mainSketch.getCurrentActivePlayer();
+        if (curPlayer.isActive() && curPlayer.isCanHaveContactWithEnemies()) {   // to prevent multiple consecutive deaths and damage
             double collisionAngle = this.collisionWithPlayer();
             if (collisionAngle >= 0) {
                 if (Math.toDegrees(collisionAngle) >= Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE
-                    && this.pos.y > this.mainSketch.getCurrentActivePlayer().getPos().y
+                    && this.pos.y > curPlayer.getPos().y
                     && !this.isInvulnerable)  // player is above this
                 {
                     this.handleDeath(false);
 
                 } else {
                     this.isVisible = true;
-                    this.mainSketch.getCurrentActivePlayer().handleDeath(false);
+                    curPlayer.changeHealth(-1);
                 }
             }
         }
@@ -90,11 +91,12 @@ public class Enemy extends ACharacter implements IDrawable {
      * negative angle means no collision
      */
     private double collisionWithPlayer() {
-        float xDifference = Math.abs(this.pos.x - this.mainSketch.getCurrentActivePlayer().getPos().x);
-        float yDifference = Math.abs(this.pos.y - this.mainSketch.getCurrentActivePlayer().getPos().y);
+        Player curPlayer = this.mainSketch.getCurrentActivePlayer();
+        float xDifference = Math.abs(this.pos.x - curPlayer.getPos().x);
+        float yDifference = Math.abs(this.pos.y - curPlayer.getPos().y);
 
         // distance between player and this must be sum of their radii for collision
-        float distanceNeededForCollision = (this.diameter / 2) + (this.mainSketch.getCurrentActivePlayer().getDiameter() / 2);
+        float distanceNeededForCollision = (this.diameter / 2) + (curPlayer.getDiameter() / 2);
 
         // pythagorean theorem
         boolean isAtCollisionDistance =

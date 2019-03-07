@@ -28,25 +28,26 @@ public class LevelSelectMenu extends AMenu implements IDrawable {
         this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
 
-        this.panelsList.add(new LevelSelectMenuPanel(
-            this.mainSketch,
-            1,
-            100,
-            100,
-            Constants.PANEL_WIDTH,
-            Constants.PANEL_HEIGHT,
-            this.isActive
-        ));
+        int leftXPanelPosition = 100;
+        int topYPanelPosition = 100;
+        for (int i = 1; i < Constants.LEVELS_HEIGHT_ARRAY.length; i++) {
+            if (leftXPanelPosition + Constants.PANEL_SIZE > ResourceUtils.LEVEL_BACKGROUND_IMAGE.width) {
+                leftXPanelPosition = 100;
+                topYPanelPosition += (100 + Constants.PANEL_SIZE);
+            }
 
-        this.panelsList.add(new LevelSelectMenuPanel(
-            this.mainSketch,
-            2,
-            400,
-            100,
-            Constants.PANEL_WIDTH,
-            Constants.PANEL_HEIGHT,
-            this.isActive
-        ));
+            this.panelsList.add(new LevelSelectMenuPanel(
+                this.mainSketch,
+                i,
+                leftXPanelPosition,
+                topYPanelPosition,
+                Constants.PANEL_SIZE,
+                Constants.PANEL_SIZE,
+                this.isActive
+            ));
+
+            leftXPanelPosition += Constants.PANEL_SIZE + 100;
+        }
 
         ResourceUtils.loopSong(ESongType.LEVEL_SELECT_MENU);
     }

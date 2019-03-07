@@ -3,6 +3,7 @@ package app.factories;
 import app.Platformer;
 import app.drawable.levels.ALevel;
 import app.drawable.levels.LevelOne;
+import app.drawable.levels.LevelThree;
 import app.drawable.levels.LevelTwo;
 
 /**
@@ -20,6 +21,9 @@ public class LevelFactory {
 
             case 2:
                 return new LevelTwo(mainSketch, makeActive, loadPlayerFromCheckPoint);
+
+            case 3:
+                return new LevelThree(mainSketch, makeActive, loadPlayerFromCheckPoint);
 
             default:
                 return null;

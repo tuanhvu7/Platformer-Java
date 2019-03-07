@@ -33,8 +33,8 @@ public class PauseMenu extends AMenu implements IDrawable {
             EPauseMenuButtonType.CONTINUE,
             100 + this.horizontalOffset,    // add offset to account for viewbox
             100,
-            Constants.PANEL_WIDTH,
-            Constants.PANEL_HEIGHT,
+            Constants.PANEL_SIZE,
+            Constants.PANEL_SIZE,
             this.horizontalOffset,
             this.isActive
         ));
@@ -44,8 +44,8 @@ public class PauseMenu extends AMenu implements IDrawable {
             EPauseMenuButtonType.QUIT,
             400 + this.horizontalOffset,    // add offset to account for viewbox
             100,
-            Constants.PANEL_WIDTH,
-            Constants.PANEL_HEIGHT,
+            Constants.PANEL_SIZE,
+            Constants.PANEL_SIZE,
             this.horizontalOffset,
             this.isActive
         ));

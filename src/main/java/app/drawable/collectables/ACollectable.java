@@ -15,18 +15,20 @@ public abstract class ACollectable implements IDrawable {
     int fillColor;
 
     // position and dimensions
-    private final int leftX;
-    private final int topY;
-    private final int width;
-    private final int height;
+    final int leftX;
+    final int topY;
+    final int width;
+    final int height;
 
-    private final int blockLineThickness;
+    final int blockLineThickness;
 
     /**
      * set properties of this;
      * sets this to affect all characters and be visible
      */
-    ACollectable(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness, boolean isActive) {
+    ACollectable(Platformer mainSketch,
+                 int leftX, int topY, int width, int height,
+                 int blockLineThickness, boolean isActive) {
 
         this.mainSketch = mainSketch;
 
@@ -68,7 +70,7 @@ public abstract class ACollectable implements IDrawable {
     /**
      * display block
      */
-    private void show() {
+    void show() {
         this.mainSketch.fill(this.fillColor);
         this.mainSketch.strokeWeight(this.blockLineThickness);
         this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
