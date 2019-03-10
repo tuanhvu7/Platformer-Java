@@ -14,7 +14,7 @@ import app.utils.ResourceUtils;
 public class Block extends ABlock implements IDrawable {
 
     // true means breakable from bottom
-    private final boolean isBreakableFromBottom;
+    final boolean isBreakableFromBottom;
 
     /**
      * set properties of this;
@@ -107,7 +107,7 @@ public class Block extends ABlock implements IDrawable {
     /**
      * active and add this to game
      */
-    private void makeActive() {
+    void makeActive() {
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
 
         // make horizontal boundaries first since their detection takes precedence
@@ -136,7 +136,7 @@ public class Block extends ABlock implements IDrawable {
     /**
      * handle invisible block player contact
      */
-    private void handleInvisibleBlockCollisionWithPlayer() {
+    void handleInvisibleBlockCollisionWithPlayer() {
         if (this.isBreakableFromBottom) {
             this.removeBlockFromPlayerContact();
 
@@ -158,7 +158,7 @@ public class Block extends ABlock implements IDrawable {
     /**
      * remove block from player contact
      */
-    private void removeBlockFromPlayerContact() {
+    void removeBlockFromPlayerContact() {
         this.mainSketch.getCurrentActivePlayer().handleContactWithHorizontalBoundary(
             this.bottomSide.getStartPoint().y,
             false);

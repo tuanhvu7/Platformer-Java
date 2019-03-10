@@ -33,7 +33,7 @@ public class HealthItem extends ACollectable {
             this.mainSketch.fill(Constants.NEGATIVE_HEALTH_ITEM_TEXT_COLOR);
         }
         this.mainSketch.textAlign(this.mainSketch.CENTER, this.mainSketch.CENTER);
-        this.mainSketch.textSize(this.width / 2);
+        this.mainSketch.textSize(Math.min(this.width / 2, this.height / 2));
         this.mainSketch.text(
             Math.abs(this.healthChangeAmount) + "",
             this.leftX,

@@ -5,6 +5,7 @@ import app.constants.Constants;
 import app.drawable.IDrawable;
 import app.drawable.blocks.Block;
 import app.drawable.blocks.EventBlock;
+import app.drawable.blocks.ItemBlock;
 import app.drawable.boundaries.EnemyTriggerVerticalBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.drawable.boundaries.VerticalBoundary;
@@ -12,6 +13,7 @@ import app.drawable.characters.Enemy;
 import app.drawable.characters.FlyingEnemy;
 import app.drawable.characters.Player;
 import app.drawable.collectables.Checkpoint;
+import app.drawable.collectables.HealthItem;
 import app.drawable.collectables.LevelGoal;
 import app.drawable.viewbox.ViewBox;
 import app.enums.ESongType;
@@ -43,7 +45,6 @@ public class LevelTwo extends ALevel implements IDrawable {
 
         final int levelMiddleXPos = this.mainSketch.getCurrentActiveLevelWidth() / 2;
         this.checkpointXPos = levelMiddleXPos - 1750 - 50;
-
         if (this.loadPlayerFromCheckPoint) {
             this.viewBox = new ViewBox(
                 this.mainSketch,
@@ -86,8 +87,9 @@ public class LevelTwo extends ALevel implements IDrawable {
         this.setupActivateEndWrongSection(levelMiddleXPos + 1750 + 2250);
 
         this.setupActivateStartCorrectSection(levelMiddleXPos);
-        this.setupActivateMiddleCorrectSection(levelMiddleXPos - 1750);
-        this.setupActivateEndCorrectSection(levelMiddleXPos - 1750 - 2250);
+        final int widthOfMiddleCorrectSection = 2000;
+        this.setupActivateMiddleCorrectSection(levelMiddleXPos - 1750, widthOfMiddleCorrectSection);
+        this.setupActivateEndCorrectSection(levelMiddleXPos - 1750 - widthOfMiddleCorrectSection - 250);
     }
 
     /* ****** WRONG SECTION ****** */
@@ -168,6 +170,31 @@ public class LevelTwo extends ALevel implements IDrawable {
             this.isActive
         ));
 
+        // item block before stair section
+        HealthItem healthItemForBlock =
+            new HealthItem(
+                mainSketch,
+                -1,
+                0,
+                0,
+                Constants.HEALTH_ITEM_SIZE,
+                Constants.HEALTH_ITEM_SIZE,
+                1,
+                false
+            );
+        this.collectablesList.add((healthItemForBlock));
+        this.blocksList.add(new ItemBlock(
+            mainSketch,
+            startXPos + 250,
+            Constants.LEVEL_FLOOR_Y_POSITION - 3 * Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            healthItemForBlock,
+            1,
+            false,
+            isActive
+        ));
+
         // stair section
         for (int i = 0; i < 3; i++) {
             this.blocksList.add(new Block(
@@ -229,12 +256,13 @@ public class LevelTwo extends ALevel implements IDrawable {
 
         Set<Enemy> enemyAtEndToTrigger = new HashSet<>();
         for (int i = 0; i < 2; i++) {
-            Enemy enemyToAdd = new Enemy(
+            Enemy enemyToAdd = new FlyingEnemy(
                 this.mainSketch,
                 this.mainSketch.getCurrentActiveLevelWidth() - (i + 1) * Constants.REGULAR_ENEMY_DIAMETER,
                 Constants.LEVEL_FLOOR_Y_POSITION - (Constants.REGULAR_ENEMY_DIAMETER / 2),
                 Constants.REGULAR_ENEMY_DIAMETER,
                 -Constants.ENEMY_REGULAR_RUN_SPEED,
+                0,
                 false,
                 true,
                 false
@@ -304,23 +332,50 @@ public class LevelTwo extends ALevel implements IDrawable {
         }
     }
 
-    private void setupActivateMiddleCorrectSection(final int startXPos) {
+    private void setupActivateMiddleCorrectSection(final int startXPos, final int widthOfMiddleCorrectSection) {
         // section floor
         this.boundariesList.add(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
-            -2000,
+            -widthOfMiddleCorrectSection,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
             this.isActive
         ));
 
+        // item block before stair section
+        HealthItem healthItemForBlock =
+            new HealthItem(
+                mainSketch,
+                -1,
+                0,
+                0,
+                Constants.HEALTH_ITEM_SIZE,
+                Constants.HEALTH_ITEM_SIZE,
+                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+                false
+            );
+        this.collectablesList.add((healthItemForBlock));
+        this.blocksList.add(new ItemBlock(
+            mainSketch,
+            startXPos - 250 - Constants.DEFAULT_BLOCK_SIZE,
+            Constants.LEVEL_FLOOR_Y_POSITION - 3 * Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            healthItemForBlock,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            false,
+            isActive
+        ));
+
         // stair section
+        int leftXPosOfStairsSection = 0;
         for (int i = 0; i < 3; i++) {
+            leftXPosOfStairsSection = startXPos - (500 + (i + 2) * Constants.DEFAULT_BLOCK_SIZE);
             this.blocksList.add(new Block(
                 this.mainSketch,
-                startXPos - (500 + (i + 2) * Constants.DEFAULT_BLOCK_SIZE),
+                leftXPosOfStairsSection,
                 this.mainSketch.height - (i + 2) * Constants.DEFAULT_BLOCK_SIZE,
                 Constants.DEFAULT_BLOCK_SIZE,
                 (i + 1) * Constants.DEFAULT_BLOCK_SIZE,
@@ -353,19 +408,47 @@ public class LevelTwo extends ALevel implements IDrawable {
 
         // calculated using distance from pit to start from left most x pos of stairs
         final int numTimesBlockIterate =
-            (2000 - (2000 - (500 + (4 + 2) * Constants.DEFAULT_BLOCK_SIZE))) / Constants.DEFAULT_BLOCK_SIZE;
+            ((widthOfMiddleCorrectSection - (startXPos - leftXPosOfStairsSection))
+                / Constants.DEFAULT_BLOCK_SIZE) - 1; // -1 to not have block at end
         for (int i = 0; i < numTimesBlockIterate; i++) {
-            this.blocksList.add(new Block(
-                this.mainSketch,
-                startXPos - (500 + (4 + i) * Constants.DEFAULT_BLOCK_SIZE), // start from left most x pos of stairs
-                Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_BLOCK_SIZE - Constants.PLAYER_DIAMETER - 10,
-                Constants.DEFAULT_BLOCK_SIZE,
-                Constants.DEFAULT_BLOCK_SIZE,
-                Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-                false,
-                false,
-                this.isActive
-            ));
+            if (i == 0) {   // block closest to stairs is item block
+                healthItemForBlock =
+                    new HealthItem(
+                        mainSketch,
+                        1,
+                        0,
+                        0,
+                        Constants.HEALTH_ITEM_SIZE,
+                        Constants.HEALTH_ITEM_SIZE,
+                        Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+                        false
+                    );
+                this.collectablesList.add((healthItemForBlock));
+                this.blocksList.add(new ItemBlock(
+                    this.mainSketch,
+                    leftXPosOfStairsSection - (i + 1) * Constants.DEFAULT_BLOCK_SIZE, // start from left most x pos of stairs
+                    Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_BLOCK_SIZE - Constants.PLAYER_DIAMETER - 10,
+                    Constants.DEFAULT_BLOCK_SIZE,
+                    Constants.DEFAULT_BLOCK_SIZE,
+                    healthItemForBlock,
+                    Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+                    false,
+                    false,
+                    this.isActive
+                ));
+            } else {
+                this.blocksList.add(new Block(
+                    this.mainSketch,
+                    leftXPosOfStairsSection - (i + 1) * Constants.DEFAULT_BLOCK_SIZE, // start from left most x pos of stairs
+                    Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_BLOCK_SIZE - Constants.PLAYER_DIAMETER - 10,
+                    Constants.DEFAULT_BLOCK_SIZE,
+                    Constants.DEFAULT_BLOCK_SIZE,
+                    Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+                    false,
+                    false,
+                    this.isActive
+                ));
+            }
         }
     }
 
@@ -406,12 +489,13 @@ public class LevelTwo extends ALevel implements IDrawable {
 
         Set<Enemy> enemyAtEndToTrigger = new HashSet<>();
         for (int i = 0; i < 2; i++) {
-            Enemy enemyToAdd = new Enemy(
+            Enemy enemyToAdd = new FlyingEnemy(
                 this.mainSketch,
                 (i + 1) * Constants.REGULAR_ENEMY_DIAMETER,
                 Constants.LEVEL_FLOOR_Y_POSITION - (Constants.REGULAR_ENEMY_DIAMETER / 2),
                 Constants.REGULAR_ENEMY_DIAMETER,
                 Constants.ENEMY_REGULAR_RUN_SPEED,
+                0,
                 true,
                 true,
                 false

@@ -86,6 +86,8 @@ public class Constants {
     public static final int DEFAULT_BLOCK_COLOR = new Color(0xCD853F).getRGB();
     public static final int DEFAULT_BLOCK_SIZE = 100;
 
+    public static final int ITEM_BLOCK_TEXT_COLOR = new Color(0x000000).getRGB();
+
     public static final int EVENT_BLOCK_COLOR = new Color(0x00E500).getRGB();
     public static final int DEFAULT_EVENT_BLOCK_WIDTH = 125;
     public static final int DEFAULT_EVENT_BLOCK_HEIGHT = 200;

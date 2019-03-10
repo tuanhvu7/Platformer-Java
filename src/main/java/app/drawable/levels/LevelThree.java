@@ -3,6 +3,7 @@ package app.drawable.levels;
 import app.Platformer;
 import app.constants.Constants;
 import app.drawable.IDrawable;
+import app.drawable.blocks.ItemBlock;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.drawable.characters.Enemy;
 import app.drawable.characters.Player;
@@ -57,12 +58,36 @@ public class LevelThree extends ALevel implements IDrawable {
         this.charactersList.add(new Enemy(
             mainSketch,
             500,
-            Constants.LEVEL_FLOOR_Y_POSITION - 2 * Constants.REGULAR_ENEMY_DIAMETER,
+            Constants.LEVEL_FLOOR_Y_POSITION - (2 * Constants.REGULAR_ENEMY_DIAMETER),
             Constants.REGULAR_ENEMY_DIAMETER,
             -Constants.ENEMY_SLOW_RUN_SPEED,
             false,
             true,
             this.isActive
+        ));
+
+        HealthItem itemForBlockNearStart =
+            new HealthItem(
+                mainSketch,
+                1,
+                0,
+                0,
+                Constants.HEALTH_ITEM_SIZE,
+                Constants.HEALTH_ITEM_SIZE,
+                1,
+                false
+            );
+        this.collectablesList.add((itemForBlockNearStart));
+        this.blocksList.add(new ItemBlock(
+            mainSketch,
+            500,
+            Constants.LEVEL_FLOOR_Y_POSITION - 2 * Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            Constants.DEFAULT_BLOCK_SIZE,
+            itemForBlockNearStart,
+            1,
+            false,
+            isActive
         ));
     }
 

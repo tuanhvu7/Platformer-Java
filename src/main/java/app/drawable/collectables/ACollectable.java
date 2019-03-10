@@ -15,8 +15,8 @@ public abstract class ACollectable implements IDrawable {
     int fillColor;
 
     // position and dimensions
-    final int leftX;
-    final int topY;
+    int leftX;
+    int topY;
     final int width;
     final int height;
 
@@ -56,7 +56,7 @@ public abstract class ACollectable implements IDrawable {
     /**
      * active and add this to game
      */
-    private void makeActive() {
+    public void makeActive() {
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
     }
 
@@ -96,5 +96,22 @@ public abstract class ACollectable implements IDrawable {
                 (curPlayer.getPos().y - (curPlayer.getDiameter() / 2) <= this.topY + this.height);
 
         return playerInHorizontalRange && playerInVerticalRange;
+    }
+
+    /*** getters and setters ***/
+    public void setLeftX(int leftX) {
+        this.leftX = leftX;
+    }
+
+    public void setTopY(int topY) {
+        this.topY = topY;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

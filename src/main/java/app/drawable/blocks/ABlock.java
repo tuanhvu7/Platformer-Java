@@ -17,10 +17,10 @@ public abstract class ABlock {
     int fillColor;
 
     // position and dimensions
-    private final int leftX;
-    private final int topY;
-    private final int width;
-    private final int height;
+    final int leftX;
+    final int topY;
+    final int width;
+    final int height;
 
     // boundaries that make up block
     HorizontalBoundary topSide;
