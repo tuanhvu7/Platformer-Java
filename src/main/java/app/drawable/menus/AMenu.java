@@ -17,9 +17,6 @@ public abstract class AMenu {
     // horizontal offset of this from viewbox
     final int horizontalOffset;
 
-    // true means displayed
-    boolean isActive;
-
     // list of panels in menu
     final List<APanel> panelsList;
 
@@ -66,7 +63,6 @@ public abstract class AMenu {
 
         this.panelsList.clear();
         // make this not active
-        this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
     }
 

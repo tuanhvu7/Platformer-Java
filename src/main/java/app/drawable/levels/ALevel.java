@@ -27,9 +27,6 @@ public abstract class ALevel implements IDrawable {
     // main sketch
     final Platformer mainSketch;
 
-    // true means this is active
-    boolean isActive;
-
     // player-controllable character
     Player player;
 
@@ -91,7 +88,6 @@ public abstract class ALevel implements IDrawable {
      * active and add this to game
      */
     void makeActive() {
-        this.isActive = true;
         this.mainSketch.registerMethod("keyEvent", this);   // connect this keyEvent() from main keyEvent()
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
     }
@@ -138,7 +134,6 @@ public abstract class ALevel implements IDrawable {
         this.collectablesList.clear();
 
         // make this not active
-        this.isActive = false;
         this.mainSketch.unregisterMethod("keyEvent", this);   // connect this keyEvent() from main keyEvent()
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
     }
@@ -240,7 +235,7 @@ public abstract class ALevel implements IDrawable {
             Constants.LEVEL_GOAL_WIDTH,
             Constants.LEVEL_GOAL_HEIGHT,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive)
+            true)
         );
 
         // stage right and left walls
@@ -250,7 +245,7 @@ public abstract class ALevel implements IDrawable {
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive
+            true
         ));
 
         this.boundariesList.add(new VerticalBoundary(
@@ -259,7 +254,7 @@ public abstract class ALevel implements IDrawable {
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive
+            true
         ));
     }
 

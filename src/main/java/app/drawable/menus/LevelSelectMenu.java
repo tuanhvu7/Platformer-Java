@@ -25,7 +25,6 @@ public class LevelSelectMenu extends AMenu implements IDrawable {
     @Override
     public void setupActivateMenu() {
         // make this active
-        this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
 
         int leftXPanelPosition = 100;
@@ -43,7 +42,7 @@ public class LevelSelectMenu extends AMenu implements IDrawable {
                 topYPanelPosition,
                 Constants.PANEL_SIZE,
                 Constants.PANEL_SIZE,
-                this.isActive
+                true
             ));
 
             leftXPanelPosition += Constants.PANEL_SIZE + 100;

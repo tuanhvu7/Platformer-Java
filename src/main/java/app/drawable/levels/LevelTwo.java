@@ -50,25 +50,25 @@ public class LevelTwo extends ALevel implements IDrawable {
                 this.mainSketch,
                 this.checkpointXPos - ((Constants.SCREEN_WIDTH / 2) + 75),
                 0,
-                this.isActive);
+                true);
             this.player = new Player(
                 this.mainSketch,
                 this.checkpointXPos,
                 0,
                 Constants.PLAYER_DIAMETER,
-                this.isActive);
+                true);
         } else {
             this.viewBox = new ViewBox(
                 this.mainSketch,
                 levelMiddleXPos,
                 0,
-                this.isActive);
+                true);
             this.player = new Player(
                 this.mainSketch,
                 levelMiddleXPos + (Constants.SCREEN_WIDTH / 2) + 75,
                 0,
                 Constants.PLAYER_DIAMETER,
-                this.isActive);
+                true);
 
             this.collectablesList.add(new Checkpoint(
                 this.mainSketch,
@@ -77,7 +77,7 @@ public class LevelTwo extends ALevel implements IDrawable {
                 Constants.CHECKPOINT_WIDTH,
                 Constants.CHECKPOINT_HEIGHT,
                 Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-                this.isActive)
+                true)
             );
         }
 
@@ -103,7 +103,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             1000,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
-            this.isActive
+            true
         ));
 
         // level half split boundary
@@ -113,7 +113,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             Constants.LEVEL_FLOOR_Y_POSITION,
             -Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive
+            true
         ));
 
         for (int i = 0; i < 5; i++) {
@@ -126,7 +126,7 @@ public class LevelTwo extends ALevel implements IDrawable {
                 0,
                 true,
                 true,
-                this.isActive
+                true
             ));
         }
 
@@ -138,7 +138,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             Constants.ENEMY_REGULAR_RUN_SPEED,
             true,
             true,
-            this.isActive
+            true
         ));
 
         for (int i = 0; i < 7; i++) {
@@ -153,7 +153,7 @@ public class LevelTwo extends ALevel implements IDrawable {
                 Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
                 false,
                 true,
-                this.isActive
+                true
             ));
         }
     }
@@ -167,7 +167,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             2000,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
-            this.isActive
+            true
         ));
 
         // item block before stair section
@@ -192,7 +192,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             healthItemForBlock,
             1,
             false,
-            isActive
+            true
         ));
 
         // stair section
@@ -205,7 +205,7 @@ public class LevelTwo extends ALevel implements IDrawable {
                 (i + 1) * Constants.DEFAULT_BLOCK_SIZE,
                 Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
                 false,
-                this.isActive
+                true
             ));
         }
 
@@ -226,7 +226,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive,
+            true,
             enemyToAddForTrigger
         ));
     }
@@ -240,7 +240,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             this.mainSketch.getCurrentActiveLevelWidth() - startXPos - 2 * Constants.PLAYER_DIAMETER,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
-            this.isActive
+            true
         ));
 
         this.blocksList.add(new EventBlock(
@@ -251,7 +251,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
-            this.isActive
+            true
         ));
 
         Set<Enemy> enemyAtEndToTrigger = new HashSet<>();
@@ -276,7 +276,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive,
+            true,
             enemyAtEndToTrigger
         ));
     }
@@ -292,7 +292,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             -1000,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
-            this.isActive
+            true
         ));
 
         Enemy enemyToAddForTrigger = new Enemy(
@@ -311,7 +311,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive,
+            true,
             enemyToAddForTrigger
         ));
 
@@ -327,7 +327,7 @@ public class LevelTwo extends ALevel implements IDrawable {
                 Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
                 i % 2 == 0,
                 true,
-                this.isActive
+                true
             ));
         }
     }
@@ -341,7 +341,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             -widthOfMiddleCorrectSection,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
-            this.isActive
+            true
         ));
 
         // item block before stair section
@@ -366,7 +366,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             healthItemForBlock,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             false,
-            isActive
+            true
         ));
 
         // stair section
@@ -381,7 +381,7 @@ public class LevelTwo extends ALevel implements IDrawable {
                 (i + 1) * Constants.DEFAULT_BLOCK_SIZE,
                 Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
                 false,
-                this.isActive
+                true
             ));
         }
 
@@ -402,7 +402,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive,
+            true,
             enemyToAddForTrigger
         ));
 
@@ -434,7 +434,7 @@ public class LevelTwo extends ALevel implements IDrawable {
                     Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
                     false,
                     false,
-                    this.isActive
+                    true
                 ));
             } else {
                 this.blocksList.add(new Block(
@@ -446,7 +446,7 @@ public class LevelTwo extends ALevel implements IDrawable {
                     Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
                     false,
                     false,
-                    this.isActive
+                    true
                 ));
             }
         }
@@ -461,7 +461,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             -(this.mainSketch.getCurrentActiveLevelWidth() - (this.mainSketch.getCurrentActiveLevelWidth() / 2 + 1750 + 2250) - 2 * Constants.PLAYER_DIAMETER),
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
-            this.isActive
+            true
         ));
 
         // event block with invincible enemy
@@ -474,7 +474,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
-            this.isActive
+            true
         ));
         this.charactersList.add(new Enemy(
             this.mainSketch,
@@ -484,7 +484,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             0,
             true,
             false,
-            this.isActive
+            true
         ));
 
         Set<Enemy> enemyAtEndToTrigger = new HashSet<>();
@@ -509,7 +509,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive,
+            true,
             enemyAtEndToTrigger
         ));
 
@@ -521,7 +521,7 @@ public class LevelTwo extends ALevel implements IDrawable {
             Constants.LEVEL_GOAL_WIDTH,
             Constants.LEVEL_GOAL_HEIGHT,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive)
+            true)
         );
     }
 

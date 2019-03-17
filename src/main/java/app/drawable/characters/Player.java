@@ -52,12 +52,42 @@ public class Player extends ACharacter implements IDrawable {
     private boolean isDescendingDownEventBlock;
 
     /**
-     * set properties of this
+     * set properties of this;
+     * set this to have 1 health
      */
     public Player(Platformer mainSketch, int x, int y, int diameter, boolean isActive) {
         super(mainSketch, x, y, diameter, isActive);
 
         this.health = 1;
+        this.canHaveContactWithEnemies = true;
+        this.fillColor = Constants.PLAYER_DEFAULT_COLOR;
+
+        this.numberOfVerticalBoundaryContacts = 0;
+        this.numberOfFloorBoundaryContacts = 0;
+
+        this.eventBlockTopBoundaryContacts = new HashSet<>();
+        this.previousFloorBoundaryContact = null;
+        this.shouldSetPreviousFloorBoundaryContact = true;
+
+        this.resetControlPressed();
+
+        this.isDescendingDownEventBlock = false;
+
+        this.ableToMoveRight = true;
+        this.ableToMoveLeft = true;
+    }
+
+    /**
+     * set properties of this;
+     * set this to have 1 health
+     */
+    public Player(Platformer mainSketch, int x, int y, int diameter, int health, boolean isActive) {
+        super(mainSketch, x, y, diameter, isActive);
+        if (this.health < 1) {
+            throw new IllegalArgumentException("Initial player health must be greater than 1");
+        }
+
+        this.health = health;
         this.canHaveContactWithEnemies = true;
         this.fillColor = Constants.PLAYER_DEFAULT_COLOR;
 
@@ -257,7 +287,7 @@ public class Player extends ACharacter implements IDrawable {
         this.health += healthChangeAmount;
         if (this.health == 0) {
             this.handleDeath(false);
-        } else if(healthChangeAmount < 0) {
+        } else if (healthChangeAmount < 0) {
             this.canHaveContactWithEnemies = false;
             this.fillColor = Constants.PLAYER_DAMAGED_COLOR;
             ResourceUtils.playSong(ESongType.PLAYER_DAMAGE);

@@ -25,7 +25,6 @@ public class PauseMenu extends AMenu implements IDrawable {
     @Override
     public void setupActivateMenu() {
         // make this active
-        this.isActive = true;
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
 
         this.panelsList.add(new PauseMenuPanel(
@@ -36,7 +35,7 @@ public class PauseMenu extends AMenu implements IDrawable {
             Constants.PANEL_SIZE,
             Constants.PANEL_SIZE,
             this.horizontalOffset,
-            this.isActive
+            true
         ));
 
         this.panelsList.add(new PauseMenuPanel(
@@ -47,7 +46,7 @@ public class PauseMenu extends AMenu implements IDrawable {
             Constants.PANEL_SIZE,
             Constants.PANEL_SIZE,
             this.horizontalOffset,
-            this.isActive
+            true
         ));
     }
 

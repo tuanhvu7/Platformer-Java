@@ -26,8 +26,8 @@ public class LevelThree extends ALevel implements IDrawable {
         this.makeActive();
         ResourceUtils.loopSong(ESongType.LEVEL);
 
-        this.viewBox = new ViewBox(this.mainSketch, 0, 0, this.isActive);
-        this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, this.isActive);
+        this.viewBox = new ViewBox(this.mainSketch, 0, 0, true);
+        this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, true);
 
         this.collectablesList.add(new HealthItem(
             this.mainSketch,
@@ -37,7 +37,7 @@ public class LevelThree extends ALevel implements IDrawable {
             Constants.HEALTH_ITEM_SIZE,
             Constants.HEALTH_ITEM_SIZE,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            this.isActive)
+            true)
         );
 
         this.setupActivateBeforeCheckpoint();
@@ -52,7 +52,7 @@ public class LevelThree extends ALevel implements IDrawable {
             2500,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
-            this.isActive
+            true
         ));
 
         this.charactersList.add(new Enemy(
@@ -63,7 +63,7 @@ public class LevelThree extends ALevel implements IDrawable {
             -Constants.ENEMY_SLOW_RUN_SPEED,
             false,
             true,
-            this.isActive
+            true
         ));
 
         HealthItem itemForBlockNearStart =
@@ -87,7 +87,7 @@ public class LevelThree extends ALevel implements IDrawable {
             itemForBlockNearStart,
             1,
             false,
-            isActive
+            true
         ));
     }
 
