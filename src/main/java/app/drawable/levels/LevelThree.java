@@ -28,7 +28,7 @@ public class LevelThree extends ALevel {
         this.viewBox = new ViewBox(this.mainSketch, 0, 0, true);
         this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, true);
 
-        this.collectablesList.add(new HealthItem(
+        this.levelDrawableCollection.addDrawable(new HealthItem(
             this.mainSketch,
             -1,
             this.checkpointXPos,
@@ -44,7 +44,7 @@ public class LevelThree extends ALevel {
 
     private void setupActivateBeforeCheckpoint() {
         // stage floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -54,7 +54,7 @@ public class LevelThree extends ALevel {
             true
         ));
 
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             mainSketch,
             500,
             Constants.LEVEL_FLOOR_Y_POSITION - (2 * Constants.REGULAR_ENEMY_DIAMETER),
@@ -76,8 +76,8 @@ public class LevelThree extends ALevel {
                 1,
                 false
             );
-        this.collectablesList.add((itemForBlockNearStart));
-        this.blocksList.add(new ItemBlock(
+        this.levelDrawableCollection.addDrawable((itemForBlockNearStart));
+        this.levelDrawableCollection.addDrawable(new ItemBlock(
             mainSketch,
             500,
             Constants.LEVEL_FLOOR_Y_POSITION - 2 * Constants.DEFAULT_BLOCK_SIZE,

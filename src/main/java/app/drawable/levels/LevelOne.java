@@ -53,7 +53,7 @@ public class LevelOne extends ALevel {
             this.viewBox = new ViewBox(this.mainSketch, 0, 0, true);
             this.player = new Player(this.mainSketch, 200, 0, Constants.PLAYER_DIAMETER, true);
 
-            this.collectablesList.add(new Checkpoint(
+            this.levelDrawableCollection.addDrawable(new Checkpoint(
                 this.mainSketch,
                 this.checkpointXPos,
                 Constants.LEVEL_FLOOR_Y_POSITION - Constants.CHECKPOINT_HEIGHT,
@@ -69,7 +69,8 @@ public class LevelOne extends ALevel {
         final int startMiddleSectionXPos = 3000;
         this.setupActivateMiddleSectionAfterCheckpoint(startMiddleSectionXPos);
         this.setupActivateEndSection(startMiddleSectionXPos + 2000);
-        this.bigEnemyTriggerCharacterListSizeCondition = this.charactersList.size() - 2;
+        this.bigEnemyTriggerCharacterListSizeCondition
+            = this.levelDrawableCollection.getCharactersList().size() - 2;
     }
 
     /**
@@ -78,7 +79,9 @@ public class LevelOne extends ALevel {
      */
     @Override
     public void handleConditionalEnemyTriggers() {
-        if (!bigEnemyTriggerActivated && this.charactersList.size() == this.bigEnemyTriggerCharacterListSizeCondition) {
+        if (!bigEnemyTriggerActivated
+            && this.levelDrawableCollection.getCharactersList().size() == this.bigEnemyTriggerCharacterListSizeCondition) {
+
             Enemy triggerEnemy = new Enemy(
                 this.mainSketch,
                 3000,
@@ -90,9 +93,9 @@ public class LevelOne extends ALevel {
                 false
             );
 
-            charactersList.add(triggerEnemy);
+            this.levelDrawableCollection.addDrawable(triggerEnemy);
 
-            this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+            this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
                 this.mainSketch,
                 2900,
                 0,
@@ -111,7 +114,7 @@ public class LevelOne extends ALevel {
      */
     private void setupActivateBeforeCheckpoint() {
         // stage floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -121,7 +124,7 @@ public class LevelOne extends ALevel {
             true
         ));
 
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             500,
             0,
@@ -132,7 +135,7 @@ public class LevelOne extends ALevel {
             true)
         );
 
-        this.blocksList.add(new Block(
+        this.levelDrawableCollection.addDrawable(new Block(
             this.mainSketch,
             750,
             this.mainSketch.height - 300 - Constants.DEFAULT_BLOCK_SIZE,
@@ -143,7 +146,7 @@ public class LevelOne extends ALevel {
             true
         ));
 
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             1750,
             0,
@@ -153,7 +156,7 @@ public class LevelOne extends ALevel {
             true,
             true)
         );
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             1750 + Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -163,7 +166,7 @@ public class LevelOne extends ALevel {
             true,
             true)
         );
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             1750 + 2 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -173,7 +176,7 @@ public class LevelOne extends ALevel {
             true,
             true)
         );
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             1750 + 3 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -183,7 +186,7 @@ public class LevelOne extends ALevel {
             true,
             true)
         );
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             1750 + 4 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -193,7 +196,7 @@ public class LevelOne extends ALevel {
             true,
             true)
         );
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             1750 + 5 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -203,7 +206,7 @@ public class LevelOne extends ALevel {
             true,
             true)
         );
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             1750 + 6 * Constants.REGULAR_ENEMY_DIAMETER,
             0,
@@ -214,7 +217,7 @@ public class LevelOne extends ALevel {
             true)
         );
 
-        this.blocksList.add(new EventBlock( // launch event
+        this.levelDrawableCollection.addDrawable(new EventBlock( // launch event
             this.mainSketch,
             2000,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -226,7 +229,7 @@ public class LevelOne extends ALevel {
         ));
 
         int playerWarpEndXPos = 2800;
-        this.blocksList.add(new EventBlock( // warp event
+        this.levelDrawableCollection.addDrawable(new EventBlock( // warp event
             this.mainSketch,
             2000 + Constants.DEFAULT_EVENT_BLOCK_WIDTH + Constants.PLAYER_DIAMETER + 100,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -239,7 +242,7 @@ public class LevelOne extends ALevel {
             true
         ));
 
-        this.blocksList.add(new Block(
+        this.levelDrawableCollection.addDrawable(new Block(
             this.mainSketch,
             2550,
             Constants.LEVEL_FLOOR_Y_POSITION - 300 - Constants.DEFAULT_BLOCK_SIZE,
@@ -257,7 +260,7 @@ public class LevelOne extends ALevel {
      */
     private void setupActivateMiddleSectionAfterCheckpoint(final int startXPos) {
         // stage floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -267,7 +270,7 @@ public class LevelOne extends ALevel {
             true
         ));
 
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos + 250,
             Constants.LEVEL_FLOOR_Y_POSITION - 4 * Constants.PLAYER_DIAMETER,
@@ -288,8 +291,8 @@ public class LevelOne extends ALevel {
             true,
             false
         );
-        this.charactersList.add(enemyToAdd);
-        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+        this.levelDrawableCollection.addDrawable(enemyToAdd);
+        this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
             startXPos + 500 + 4 * Constants.PLAYER_DIAMETER,
             0,
@@ -312,7 +315,7 @@ public class LevelOne extends ALevel {
             true,
             false);
         triggerEnemySet.add(enemyToAdd);
-        this.charactersList.add(enemyToAdd);
+        this.levelDrawableCollection.addDrawable(enemyToAdd);
         enemyToAdd = new FlyingEnemy(
             this.mainSketch,
             startXPos + 1600 + 8 * Constants.PLAYER_DIAMETER,
@@ -324,7 +327,7 @@ public class LevelOne extends ALevel {
             true,
             false);
         triggerEnemySet.add(enemyToAdd);
-        this.charactersList.add(enemyToAdd);
+        this.levelDrawableCollection.addDrawable(enemyToAdd);
         enemyToAdd = new FlyingEnemy(
             this.mainSketch,
             startXPos + 1600 + 14 * Constants.PLAYER_DIAMETER,
@@ -336,9 +339,9 @@ public class LevelOne extends ALevel {
             true,
             false);
         triggerEnemySet.add(enemyToAdd);
-        this.charactersList.add(enemyToAdd);
+        this.levelDrawableCollection.addDrawable(enemyToAdd);
 
-        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+        this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
             startXPos + 1100 + 4 * Constants.PLAYER_DIAMETER,
             0,
@@ -353,7 +356,7 @@ public class LevelOne extends ALevel {
      * setup activate middle section after checkpoint
      */
     private void setupActivateEndSection(final int startXPos) {
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -365,7 +368,7 @@ public class LevelOne extends ALevel {
             true,
             true
         ));
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos + 250,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -380,7 +383,7 @@ public class LevelOne extends ALevel {
 
         final int endStageFloorPosition = startXPos + 500;
         // stage floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             endStageFloorPosition,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -392,7 +395,7 @@ public class LevelOne extends ALevel {
 
         // event block with invincible enemy
         final int eventBlockInvulnerableEnemyXReference = endStageFloorPosition + 300;
-        this.blocksList.add(new EventBlock( // launch event
+        this.levelDrawableCollection.addDrawable(new EventBlock( // launch event
             this.mainSketch,
             eventBlockInvulnerableEnemyXReference,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -402,7 +405,7 @@ public class LevelOne extends ALevel {
             true,
             true
         ));
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             eventBlockInvulnerableEnemyXReference + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - Constants.REGULAR_ENEMY_DIAMETER,
@@ -416,7 +419,7 @@ public class LevelOne extends ALevel {
         /*** START two event blocks trap ***/
         final int eventBlockGoingToTrapXReference = endStageFloorPosition + 750;
         final int eventBlockTrapXReference = endStageFloorPosition + 2000;
-        this.blocksList.add(new EventBlock( // warp event
+        this.levelDrawableCollection.addDrawable(new EventBlock( // warp event
             this.mainSketch,
             eventBlockGoingToTrapXReference,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -429,7 +432,7 @@ public class LevelOne extends ALevel {
             true
         ));
 
-        this.blocksList.add(new Block(  // block left of event block trap
+        this.levelDrawableCollection.addDrawable(new Block(  // block left of event block trap
             this.mainSketch,
             eventBlockTrapXReference - Constants.DEFAULT_BLOCK_SIZE,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - (4 * Constants.PLAYER_DIAMETER),
@@ -439,7 +442,7 @@ public class LevelOne extends ALevel {
             false,
             true
         ));
-        this.blocksList.add(new Block(  // block above event block trap
+        this.levelDrawableCollection.addDrawable(new Block(  // block above event block trap
             this.mainSketch,
             eventBlockTrapXReference,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - (4 * Constants.PLAYER_DIAMETER),
@@ -449,7 +452,7 @@ public class LevelOne extends ALevel {
             false,
             true
         ));
-        this.blocksList.add(new EventBlock( // warp event
+        this.levelDrawableCollection.addDrawable(new EventBlock( // warp event
             this.mainSketch,
             eventBlockTrapXReference,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -461,7 +464,7 @@ public class LevelOne extends ALevel {
             true,
             true
         ));
-        this.blocksList.add(new Block(  // block right of event block trap
+        this.levelDrawableCollection.addDrawable(new Block(  // block right of event block trap
             this.mainSketch,
             eventBlockTrapXReference + Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - (4 * Constants.PLAYER_DIAMETER),
@@ -476,14 +479,17 @@ public class LevelOne extends ALevel {
 
         /*** START two event blocks NOT trap ***/
         final int doubleEventBlockXReference = endStageFloorPosition + 1000;
-        this.blocksList.add(new EventBlock( // warp event
+        // for warp x position to line up with another event block's x position
+        final int eventBlockSurroundedByBlocksXPos
+            = doubleEventBlockXReference + (2 * Constants.DEFAULT_EVENT_BLOCK_WIDTH);
+        this.levelDrawableCollection.addDrawable(new EventBlock( // warp event
             this.mainSketch,
             doubleEventBlockXReference,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
             Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            doubleEventBlockXReference + (2 * Constants.DEFAULT_EVENT_BLOCK_WIDTH) + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
+            eventBlockSurroundedByBlocksXPos + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT + Constants.REGULAR_ENEMY_DIAMETER,
             true,
             true
@@ -500,8 +506,8 @@ public class LevelOne extends ALevel {
             true,
             false
         );
-        charactersList.add(triggerEnemy);
-        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+        this.levelDrawableCollection.addDrawable(triggerEnemy);
+        this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
             doubleEventBlockXReference + (int) (1.5 * Constants.DEFAULT_EVENT_BLOCK_WIDTH),
             0,
@@ -511,9 +517,9 @@ public class LevelOne extends ALevel {
             triggerEnemy
         ));
         // warp to event block with invincible enemy
-        this.blocksList.add(new EventBlock( // warp event
+        this.levelDrawableCollection.addDrawable(new EventBlock( // warp event
             this.mainSketch,
-            doubleEventBlockXReference + (2 * Constants.DEFAULT_EVENT_BLOCK_WIDTH),
+            eventBlockSurroundedByBlocksXPos,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
             Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,

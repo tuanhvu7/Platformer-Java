@@ -65,14 +65,16 @@ public class Platformer extends PApplet {
         // to reset level after player death song finishes without freezing game
         new Thread(() -> {
             try {
-                this.getCurrentActivePlayer().makeNotActive();
-                this.currentActiveLevel.get().setPlayer(null);  // to stop interactions with player
-                ResourceUtils.stopSong();
-                ResourceUtils.playSong(ESongType.PLAYER_DEATH);
-
                 if (levelCompleteThread != null) {
                     levelCompleteThread.interrupt();
+                    levelCompleteThread = null;
                 }
+
+                this.getCurrentActivePlayer().makeNotActive();
+                this.currentActiveLevel.get().setPlayer(null);  // to stop interactions with player
+
+                ResourceUtils.stopSong();
+                ResourceUtils.playSong(ESongType.PLAYER_DEATH);
                 Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.PLAYER_DEATH));  // wait for song duration
 
                 boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();
@@ -89,9 +91,6 @@ public class Platformer extends PApplet {
      * complete level
      */
     public void handleLevelComplete() {
-        ResourceUtils.stopSong();
-        ResourceUtils.playSong(ESongType.LEVEL_COMPLETE);
-
         this.levelCompleteThread =
             new Thread(() -> {
                 try {
@@ -100,7 +99,10 @@ public class Platformer extends PApplet {
                     getCurrentActivePlayer().setVel(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
                     unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
 
+                    ResourceUtils.stopSong();
+                    ResourceUtils.playSong(ESongType.LEVEL_COMPLETE);
                     Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.LEVEL_COMPLETE));  // wait for song duration
+
                     getCurrentActiveLevel().deactivateLevel();
                     currentActiveLevelNumber = 0;
                     levelSelectMenu.setupActivateMenu();
@@ -143,21 +145,21 @@ public class Platformer extends PApplet {
      * return non-player characters of current active level
      */
     public Set<ACharacter> getCurrentActiveCharactersList() {
-        return this.currentActiveLevel.get().getCharactersList();
+        return this.currentActiveLevel.get().getLevelDrawableCollection().getCharactersList();
     }
 
     /**
      * return blocks of current active level
      */
     public Set<ABlock> getCurrentActiveBlocksList() {
-        return this.currentActiveLevel.get().getBlocksList();
+        return this.currentActiveLevel.get().getLevelDrawableCollection().getBlocksList();
     }
 
     /**
      * return collectables of current active level
      */
     public Set<ACollectable> getCurrentActiveLevelCollectables() {
-        return this.currentActiveLevel.get().getCollectablesList();
+        return this.currentActiveLevel.get().getLevelDrawableCollection().getCollectablesList();
     }
 
     /**

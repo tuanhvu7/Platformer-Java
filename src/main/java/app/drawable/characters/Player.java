@@ -77,8 +77,7 @@ public class Player extends ACharacter {
     }
 
     /**
-     * set properties of this;
-     * set this to have 1 health
+     * set properties of this
      */
     public Player(Platformer mainSketch, int x, int y, int diameter, int health, boolean isActive) {
         super(mainSketch, x, y, diameter, isActive);
@@ -234,7 +233,8 @@ public class Player extends ACharacter {
     }
 
     /**
-     * handle contact with this and event boundary
+     * handle contact with this and event boundary;
+     * null endWarpPosition means launch event, non-null endWarpPosition means warp event
      */
     public void handleContactWithEventBoundary(EventBlockTopBoundary eventBlockTopBoundary, PVector endWarpPosition) {
         this.mainSketch.registerMethod("keyEvent", this); // connect this draw() from main draw()
@@ -381,7 +381,7 @@ public class Player extends ACharacter {
     }
 
     /*** getters and setters ***/
-    public boolean isCanHaveContactWithEnemies() {
+    boolean isCanHaveContactWithEnemies() {
         return canHaveContactWithEnemies;
     }
 

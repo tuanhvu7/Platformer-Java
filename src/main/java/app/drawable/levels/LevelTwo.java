@@ -69,7 +69,7 @@ public class LevelTwo extends ALevel {
                 Constants.PLAYER_DIAMETER,
                 true);
 
-            this.collectablesList.add(new Checkpoint(
+            this.levelDrawableCollection.addDrawable(new Checkpoint(
                 this.mainSketch,
                 this.checkpointXPos,
                 Constants.LEVEL_FLOOR_Y_POSITION - Constants.CHECKPOINT_HEIGHT,
@@ -95,7 +95,7 @@ public class LevelTwo extends ALevel {
 
     private void setupActivateStartWrongSection(final int startXPos) {
         // section floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -106,7 +106,7 @@ public class LevelTwo extends ALevel {
         ));
 
         // level half split boundary
-        this.boundariesList.add(new VerticalBoundary(
+        this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -116,7 +116,7 @@ public class LevelTwo extends ALevel {
         ));
 
         for (int i = 0; i < 5; i++) {
-            this.charactersList.add(new FlyingEnemy(
+            this.levelDrawableCollection.addDrawable(new FlyingEnemy(
                 this.mainSketch,
                 (startXPos + 2 * Constants.REGULAR_ENEMY_DIAMETER) - (i * Constants.REGULAR_ENEMY_DIAMETER),
                 (Constants.SCREEN_HEIGHT - this.mainSketch.getCurrentActiveLevelHeight()) / 2,
@@ -129,7 +129,7 @@ public class LevelTwo extends ALevel {
             ));
         }
 
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             startXPos + (Constants.BIG_ENEMY_DIAMETER / 2),
             0,
@@ -141,7 +141,7 @@ public class LevelTwo extends ALevel {
         ));
 
         for (int i = 0; i < 7; i++) {
-            this.charactersList.add(new FlyingEnemy(
+            this.levelDrawableCollection.addDrawable(new FlyingEnemy(
                 this.mainSketch,
                 startXPos + 1100 + i * (Constants.REGULAR_ENEMY_DIAMETER + 30),
                 Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
@@ -159,7 +159,7 @@ public class LevelTwo extends ALevel {
 
     private void setupActivateMiddleWrongSection(final int startXPos) {
         // section floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -181,8 +181,8 @@ public class LevelTwo extends ALevel {
                 1,
                 false
             );
-        this.collectablesList.add((healthItemForBlock));
-        this.blocksList.add(new ItemBlock(
+        this.levelDrawableCollection.addDrawable((healthItemForBlock));
+        this.levelDrawableCollection.addDrawable(new ItemBlock(
             mainSketch,
             startXPos + 250,
             Constants.LEVEL_FLOOR_Y_POSITION - 3 * Constants.DEFAULT_BLOCK_SIZE,
@@ -196,7 +196,7 @@ public class LevelTwo extends ALevel {
 
         // stair section
         for (int i = 0; i < 3; i++) {
-            this.blocksList.add(new Block(
+            this.levelDrawableCollection.addDrawable(new Block(
                 this.mainSketch,
                 startXPos + 500 + (i + 1) * Constants.DEFAULT_BLOCK_SIZE,
                 this.mainSketch.height - (i + 2) * Constants.DEFAULT_BLOCK_SIZE,
@@ -218,8 +218,8 @@ public class LevelTwo extends ALevel {
             true,
             false
         );
-        this.charactersList.add(enemyToAddForTrigger);
-        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+        this.levelDrawableCollection.addDrawable(enemyToAddForTrigger);
+        this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
             startXPos + 500 + 4 * Constants.DEFAULT_BLOCK_SIZE + 2 * Constants.DEFAULT_BLOCK_SIZE,
             0,
@@ -232,7 +232,7 @@ public class LevelTwo extends ALevel {
 
     private void setupActivateEndWrongSection(final int startXPos) {
         // section floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -242,7 +242,7 @@ public class LevelTwo extends ALevel {
             true
         ));
 
-        this.blocksList.add(new EventBlock(
+        this.levelDrawableCollection.addDrawable(new EventBlock(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -266,10 +266,10 @@ public class LevelTwo extends ALevel {
                 true,
                 false
             );
-            this.charactersList.add(enemyToAdd);
+            this.levelDrawableCollection.addDrawable(enemyToAdd);
             enemyAtEndToTrigger.add(enemyToAdd);
         }
-        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+        this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
             startXPos + Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             0,
@@ -284,7 +284,7 @@ public class LevelTwo extends ALevel {
 
     private void setupActivateStartCorrectSection(final int startXPos) {
         // section floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -303,8 +303,8 @@ public class LevelTwo extends ALevel {
             true,
             true,
             false);
-        this.charactersList.add(enemyToAddForTrigger);
-        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+        this.levelDrawableCollection.addDrawable(enemyToAddForTrigger);
+        this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
             startXPos - 500,
             0,
@@ -315,7 +315,7 @@ public class LevelTwo extends ALevel {
         ));
 
         for (int i = 0; i < 7; i++) {
-            this.charactersList.add(new FlyingEnemy(
+            this.levelDrawableCollection.addDrawable(new FlyingEnemy(
                 this.mainSketch,
                 startXPos - (1100 + i * (Constants.REGULAR_ENEMY_DIAMETER + 30)),
                 Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
@@ -333,7 +333,7 @@ public class LevelTwo extends ALevel {
 
     private void setupActivateMiddleCorrectSection(final int startXPos, final int widthOfMiddleCorrectSection) {
         // section floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -355,8 +355,8 @@ public class LevelTwo extends ALevel {
                 Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
                 false
             );
-        this.collectablesList.add((healthItemForBlock));
-        this.blocksList.add(new ItemBlock(
+        this.levelDrawableCollection.addDrawable((healthItemForBlock));
+        this.levelDrawableCollection.addDrawable(new ItemBlock(
             mainSketch,
             startXPos - 250 - Constants.DEFAULT_BLOCK_SIZE,
             Constants.LEVEL_FLOOR_Y_POSITION - 3 * Constants.DEFAULT_BLOCK_SIZE,
@@ -372,7 +372,7 @@ public class LevelTwo extends ALevel {
         int leftXPosOfStairsSection = 0;
         for (int i = 0; i < 3; i++) {
             leftXPosOfStairsSection = startXPos - (500 + (i + 2) * Constants.DEFAULT_BLOCK_SIZE);
-            this.blocksList.add(new Block(
+            this.levelDrawableCollection.addDrawable(new Block(
                 this.mainSketch,
                 leftXPosOfStairsSection,
                 this.mainSketch.height - (i + 2) * Constants.DEFAULT_BLOCK_SIZE,
@@ -394,8 +394,8 @@ public class LevelTwo extends ALevel {
             true,
             false
         );
-        this.charactersList.add(enemyToAddForTrigger);
-        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+        this.levelDrawableCollection.addDrawable(enemyToAddForTrigger);
+        this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
             startXPos - (500 + 4 * Constants.DEFAULT_BLOCK_SIZE) - 2 * Constants.DEFAULT_BLOCK_SIZE,
             0,
@@ -422,8 +422,8 @@ public class LevelTwo extends ALevel {
                         Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
                         false
                     );
-                this.collectablesList.add((healthItemForBlock));
-                this.blocksList.add(new ItemBlock(
+                this.levelDrawableCollection.addDrawable((healthItemForBlock));
+                this.levelDrawableCollection.addDrawable(new ItemBlock(
                     this.mainSketch,
                     leftXPosOfStairsSection - (i + 1) * Constants.DEFAULT_BLOCK_SIZE, // start from left most x pos of stairs
                     Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_BLOCK_SIZE - Constants.PLAYER_DIAMETER - 10,
@@ -436,7 +436,7 @@ public class LevelTwo extends ALevel {
                     true
                 ));
             } else {
-                this.blocksList.add(new Block(
+                this.levelDrawableCollection.addDrawable(new Block(
                     this.mainSketch,
                     leftXPosOfStairsSection - (i + 1) * Constants.DEFAULT_BLOCK_SIZE, // start from left most x pos of stairs
                     Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_BLOCK_SIZE - Constants.PLAYER_DIAMETER - 10,
@@ -453,7 +453,7 @@ public class LevelTwo extends ALevel {
 
     private void setupActivateEndCorrectSection(final int startXPos) {
         // section floor
-        this.boundariesList.add(new HorizontalBoundary(
+        this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
@@ -465,7 +465,7 @@ public class LevelTwo extends ALevel {
 
         // event block with invincible enemy
         final int eventBlockInvulnerableEnemyXReference = startXPos - Constants.DEFAULT_EVENT_BLOCK_WIDTH;
-        this.blocksList.add(new EventBlock(
+        this.levelDrawableCollection.addDrawable(new EventBlock(
             this.mainSketch,
             eventBlockInvulnerableEnemyXReference,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -475,7 +475,7 @@ public class LevelTwo extends ALevel {
             true,
             true
         ));
-        this.charactersList.add(new Enemy(
+        this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             eventBlockInvulnerableEnemyXReference + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - Constants.REGULAR_ENEMY_DIAMETER,
@@ -499,10 +499,10 @@ public class LevelTwo extends ALevel {
                 true,
                 false
             );
-            this.charactersList.add(enemyToAdd);
+            this.levelDrawableCollection.addDrawable(enemyToAdd);
             enemyAtEndToTrigger.add(enemyToAdd);
         }
-        this.boundariesList.add(new EnemyTriggerVerticalBoundary(
+        this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
             startXPos - Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             0,
@@ -513,7 +513,7 @@ public class LevelTwo extends ALevel {
         ));
 
         // correct goal post
-        this.collectablesList.add(new LevelGoal(
+        this.levelDrawableCollection.addDrawable(new LevelGoal(
             this.mainSketch,
             Constants.LEVEL_GOAL_WIDTH + 4 * Constants.PLAYER_DIAMETER,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.LEVEL_GOAL_HEIGHT,

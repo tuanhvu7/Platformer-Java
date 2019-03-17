@@ -2,22 +2,16 @@ package app.drawable.levels;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.drawable.blocks.ABlock;
-import app.drawable.boundaries.ABoundary;
-import app.drawable.boundaries.VerticalBoundary;
-import app.drawable.characters.ACharacter;
-import app.drawable.characters.Player;
-import app.drawable.collectables.ACollectable;
-import app.drawable.collectables.LevelGoal;
+import app.drawable.LevelDrawableCollection;
 import app.drawable.IDrawable;
+import app.drawable.boundaries.VerticalBoundary;
+import app.drawable.characters.Player;
+import app.drawable.collectables.LevelGoal;
 import app.drawable.menus.PauseMenu;
 import app.drawable.viewbox.ViewBox;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;
 import processing.event.KeyEvent;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * common for levels
@@ -33,17 +27,8 @@ public abstract class ALevel implements IDrawable {
     // level viewbox
     ViewBox viewBox;
 
-    // set of all non-playable characters in level
-    final Set<ACharacter> charactersList;
-
-    // set of all boundaries in level
-    final Set<ABoundary> boundariesList;
-
-    // set of all blocks in level
-    final Set<ABlock> blocksList;
-
-    // set of all collectables in level
-    final Set<ACollectable> collectablesList;
+    // drawables in this
+    final LevelDrawableCollection levelDrawableCollection;
 
     // pause menu for level
     private PauseMenu pauseMenu;
@@ -67,10 +52,7 @@ public abstract class ALevel implements IDrawable {
 
         this.mainSketch = mainSketch;
 
-        this.charactersList = new HashSet<>();
-        this.boundariesList = new HashSet<>();
-        this.blocksList = new HashSet<>();
-        this.collectablesList = new HashSet<>();
+        this.levelDrawableCollection = new LevelDrawableCollection();
 
         this.isPaused = false;
 
@@ -114,26 +96,7 @@ public abstract class ALevel implements IDrawable {
 
         this.viewBox.makeNotActive();
 
-        for (ACharacter curCharacter : this.charactersList) {
-            curCharacter.makeNotActive();
-        }
-
-        for (ABoundary curBoundary : this.boundariesList) {
-            curBoundary.makeNotActive();
-        }
-
-        for (ABlock curBlock : this.blocksList) {
-            curBlock.makeNotActive();
-        }
-
-        for (ACollectable curCollectable : this.collectablesList) {
-            curCollectable.makeNotActive();
-        }
-
-        this.charactersList.clear();
-        this.boundariesList.clear();
-        this.blocksList.clear();
-        this.collectablesList.clear();
+        this.levelDrawableCollection.deactivateClearAllDrawable();
 
         // make this not active
         this.mainSketch.unregisterMethod("keyEvent", this);   // connect this keyEvent() from main keyEvent()
@@ -230,7 +193,7 @@ public abstract class ALevel implements IDrawable {
      */
     private void setUpActivateWallsGoal(int goalRightSideOffsetWithStageWidth) {
         // stage goal
-        this.collectablesList.add(new LevelGoal(
+        this.levelDrawableCollection.addDrawable(new LevelGoal(
             this.mainSketch,
             this.mainSketch.getCurrentActiveLevelWidth() - Constants.LEVEL_GOAL_WIDTH - goalRightSideOffsetWithStageWidth,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.LEVEL_GOAL_HEIGHT,
@@ -241,7 +204,7 @@ public abstract class ALevel implements IDrawable {
         );
 
         // stage right and left walls
-        this.boundariesList.add(new VerticalBoundary(
+        this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
             0,
             0,
@@ -250,7 +213,7 @@ public abstract class ALevel implements IDrawable {
             true
         ));
 
-        this.boundariesList.add(new VerticalBoundary(
+        this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
             this.mainSketch.getCurrentActiveLevelWidth(),
             0,
@@ -273,16 +236,8 @@ public abstract class ALevel implements IDrawable {
         return viewBox;
     }
 
-    public Set<ACharacter> getCharactersList() {
-        return charactersList;
-    }
-
-    public Set<ABlock> getBlocksList() {
-        return blocksList;
-    }
-
-    public Set<ACollectable> getCollectablesList() {
-        return collectablesList;
+    public LevelDrawableCollection getLevelDrawableCollection() {
+        return levelDrawableCollection;
     }
 
     public void setPaused(boolean paused) {

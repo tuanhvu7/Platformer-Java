@@ -26,7 +26,7 @@ public class LevelFactory {
                 return new LevelThree(mainSketch, makeActive, loadPlayerFromCheckPoint);
 
             default:
-                return null;
+                throw new IllegalStateException("mainSketch.getCurrentActiveLevelNumber() is not valid level value");
         }
     }
 }
