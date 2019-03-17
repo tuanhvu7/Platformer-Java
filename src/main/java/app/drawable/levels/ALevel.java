@@ -2,7 +2,6 @@ package app.drawable.levels;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.drawable.LevelDrawableCollection;
 import app.drawable.IDrawable;
 import app.drawable.boundaries.VerticalBoundary;
 import app.drawable.characters.Player;

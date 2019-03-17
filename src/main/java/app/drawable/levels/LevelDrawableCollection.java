@@ -1,5 +1,6 @@
-package app.drawable;
+package app.drawable.levels;
 
+import app.drawable.IDrawable;
 import app.drawable.blocks.ABlock;
 import app.drawable.boundaries.ABoundary;
 import app.drawable.characters.ACharacter;
