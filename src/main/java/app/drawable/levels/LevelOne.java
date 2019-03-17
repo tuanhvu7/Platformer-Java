@@ -11,7 +11,6 @@ import app.drawable.characters.Enemy;
 import app.drawable.characters.FlyingEnemy;
 import app.drawable.characters.Player;
 import app.drawable.collectables.Checkpoint;
-import app.drawable.IDrawable;
 import app.drawable.viewbox.ViewBox;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;
@@ -22,7 +21,7 @@ import java.util.Set;
 /**
  * Level one
  */
-public class LevelOne extends ALevel implements IDrawable {
+public class LevelOne extends ALevel {
 
     // true means big enemy trigger boundary has been activated
     private boolean bigEnemyTriggerActivated;

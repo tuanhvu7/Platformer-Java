@@ -2,15 +2,14 @@ package app.drawable.menus;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.enums.EPauseMenuButtonType;
-import app.drawable.IDrawable;
 import app.drawable.menus.panels.PauseMenuPanel;
+import app.enums.EPauseMenuButtonType;
 import app.utils.ResourceUtils;
 
 /**
  * pause menu
  */
-public class PauseMenu extends AMenu implements IDrawable {
+public class PauseMenu extends AMenu {
 
     /**
      * set properties of this

@@ -1,13 +1,14 @@
 package app.drawable.blocks;
 
 import app.Platformer;
+import app.drawable.IDrawable;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.drawable.boundaries.VerticalBoundary;
 
 /**
  * common for blocks
  */
-public abstract class ABlock {
+public abstract class ABlock implements IDrawable {
 
     // main sketch
     final Platformer mainSketch;

@@ -22,7 +22,7 @@ public class Checkpoint extends ACollectable {
      */
     @Override
     void checkHandleContactWithPlayer() {
-        if (this.mainSketch.getCurrentActivePlayer().isActive() && this.contactWithPlayer()) {
+        if (this.contactWithPlayer()) {
             this.mainSketch.getCurrentActiveLevel().setLoadPlayerFromCheckPoint(true);
             this.makeNotActive();
             this.mainSketch.getCurrentActiveLevelCollectables().remove(this);

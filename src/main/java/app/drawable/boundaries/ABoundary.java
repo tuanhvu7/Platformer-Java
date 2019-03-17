@@ -1,6 +1,7 @@
 package app.drawable.boundaries;
 
 import app.Platformer;
+import app.drawable.IDrawable;
 import app.drawable.characters.ACharacter;
 import app.constants.Constants;
 import processing.core.PVector;
@@ -11,7 +12,7 @@ import java.util.Set;
 /**
  * Common for line boundaries
  */
-public abstract class ABoundary {
+public abstract class ABoundary implements IDrawable {
     // main sketch
     final Platformer mainSketch;
 
@@ -71,6 +72,27 @@ public abstract class ABoundary {
             this.makeActive();
         }
     }
+
+    /**
+     * runs continuously
+     */
+    public void draw() {
+        this.show();
+        if (this.mainSketch.getCurrentActivePlayer() != null) {
+            this.checkHandleContactWithPlayer();
+        }
+        this.checkHandleContactWithNonPlayerCharacters();
+    }
+
+    /**
+     * check and handle contact with player
+     */
+    abstract void checkHandleContactWithPlayer();
+
+    /**
+     * check and handle contact with non-player characters
+     */
+    abstract void checkHandleContactWithNonPlayerCharacters();
 
     /**
      * display line boundary

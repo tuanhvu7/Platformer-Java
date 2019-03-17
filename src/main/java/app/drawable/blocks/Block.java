@@ -1,17 +1,17 @@
 package app.drawable.blocks;
 
 import app.Platformer;
-import app.drawable.boundaries.HorizontalBoundary;
 import app.constants.Constants;
+import app.drawable.boundaries.HorizontalBoundary;
+import app.drawable.characters.Player;
 import app.enums.ESongType;
-import app.drawable.IDrawable;
 import app.utils.ResourceUtils;
 
 /**
  * Block;
  * invisible block only has bottom boundary active
  */
-public class Block extends ABlock implements IDrawable {
+public class Block extends ABlock {
 
     // true means breakable from bottom
     final boolean isBreakableFromBottom;
@@ -92,8 +92,9 @@ public class Block extends ABlock implements IDrawable {
             this.show();
         }
 
+        Player player = this.mainSketch.getCurrentActivePlayer();
         // handle player collision with invisible block
-        if (this.bottomSide.contactWithCharacter(this.mainSketch.getCurrentActivePlayer())) {
+        if (player != null && this.bottomSide.contactWithCharacter(player)) {
             if (!this.isVisible) {
                 this.handleInvisibleBlockCollisionWithPlayer();
 

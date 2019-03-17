@@ -50,7 +50,9 @@ public abstract class ACollectable implements IDrawable {
     @Override
     public void draw() {
         this.show();
-        this.checkHandleContactWithPlayer();
+        if (this.mainSketch.getCurrentActivePlayer() != null) {
+            this.checkHandleContactWithPlayer();
+        }
     }
 
     /**

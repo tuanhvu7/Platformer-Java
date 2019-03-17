@@ -2,13 +2,12 @@ package app.drawable.menus.panels;
 
 import app.Platformer;
 import app.factories.LevelFactory;
-import app.drawable.IDrawable;
 import app.utils.ResourceUtils;
 
 /**
  * panel in level select menu
  */
-public class LevelSelectMenuPanel extends APanel implements IDrawable {
+public class LevelSelectMenuPanel extends APanel {
 
     // level associated with this
     private final int panelLevel;

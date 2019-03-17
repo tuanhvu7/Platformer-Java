@@ -38,8 +38,9 @@ public class ViewBox implements IDrawable {
      */
     @Override
     public void draw() {
-        this.handleMovement();
-
+        if (this.mainSketch.getCurrentActivePlayer() != null) {
+            this.handleMovement();
+        }
         // move viewbox as necessary
         this.mainSketch.translate(-this.pos.x, -this.pos.y);
     }

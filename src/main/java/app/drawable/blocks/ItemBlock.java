@@ -2,6 +2,7 @@ package app.drawable.blocks;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.drawable.characters.Player;
 import app.drawable.collectables.ACollectable;
 
 /**
@@ -67,8 +68,10 @@ public class ItemBlock extends Block {
             this.show();
         }
 
+        Player player = this.mainSketch.getCurrentActivePlayer();
         // handle player collision with invisible block
-        if (this.bottomSide.contactWithCharacter(this.mainSketch.getCurrentActivePlayer())) {
+        if (player != null && this.bottomSide.contactWithCharacter(player)) {
+            
             if (!this.itemAppeared) {
                 this.item.makeActive();
                 this.itemAppeared = true;

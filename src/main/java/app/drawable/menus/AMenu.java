@@ -1,6 +1,7 @@
 package app.drawable.menus;
 
 import app.Platformer;
+import app.drawable.IDrawable;
 import app.drawable.menus.panels.APanel;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * common for menus
  */
-public abstract class AMenu {
+public abstract class AMenu implements IDrawable {
 
     // main sketch
     final Platformer mainSketch;

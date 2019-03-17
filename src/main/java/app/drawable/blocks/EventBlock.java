@@ -1,15 +1,14 @@
 package app.drawable.blocks;
 
 import app.Platformer;
+import app.constants.Constants;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.EventTriggerHorizontalBoundary;
-import app.constants.Constants;
-import app.drawable.IDrawable;
 
 /**
  * event block;
  */
-public class EventBlock extends ABlock implements IDrawable {
+public class EventBlock extends ABlock {
 
     // boundary that events player upon player contact
     private final EventTriggerHorizontalBoundary eventTriggerBoundary;

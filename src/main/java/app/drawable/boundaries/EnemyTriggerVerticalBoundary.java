@@ -44,7 +44,9 @@ public class EnemyTriggerVerticalBoundary extends VerticalBoundary {
     @Override
     public void draw() {
         this.show();
-        this.checkHandleContactWithPlayer();
+        if (this.mainSketch.getCurrentActivePlayer() != null) {
+            this.checkHandleContactWithPlayer();
+        }
     }
 
     /**
@@ -54,7 +56,7 @@ public class EnemyTriggerVerticalBoundary extends VerticalBoundary {
     void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
 
-        if (this.doesAffectPlayer && curPlayer.isActive()) {
+        if (this.doesAffectPlayer) {
             // boundary collision for player
             if (contactWithCharacter(curPlayer)) {  // this has contact with non-player
                 for (Enemy curEnemy : enemiesToAddSet) {

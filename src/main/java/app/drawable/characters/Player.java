@@ -4,7 +4,6 @@ import app.Platformer;
 import app.constants.Constants;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
-import app.drawable.IDrawable;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;
 import processing.core.PVector;
@@ -16,7 +15,7 @@ import java.util.Set;
 /**
  * player controllable character in game
  */
-public class Player extends ACharacter implements IDrawable {
+public class Player extends ACharacter {
 
     // health of this, 0 means dead
     private int health;
@@ -178,7 +177,6 @@ public class Player extends ACharacter implements IDrawable {
      */
     @Override
     public void makeActive() {
-        this.isActive = true;
         this.mainSketch.registerMethod("keyEvent", this);   // connect this keyEvent() from main keyEvent()
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
     }
@@ -188,7 +186,6 @@ public class Player extends ACharacter implements IDrawable {
      */
     @Override
     public void makeNotActive() {
-        this.isActive = false;
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
         this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
     }

@@ -2,7 +2,6 @@ package app.drawable.menus;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.drawable.IDrawable;
 import app.drawable.menus.panels.LevelSelectMenuPanel;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;
@@ -10,7 +9,7 @@ import app.utils.ResourceUtils;
 /**
  * menu to select level to play;
  */
-public class LevelSelectMenu extends AMenu implements IDrawable {
+public class LevelSelectMenu extends AMenu {
 
     /**
      * set properties of this

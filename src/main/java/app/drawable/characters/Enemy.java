@@ -3,13 +3,12 @@ package app.drawable.characters;
 import app.Platformer;
 import app.constants.Constants;
 import app.enums.ESongType;
-import app.drawable.IDrawable;
 import app.utils.ResourceUtils;
 
 /**
  * enemy
  */
-public class Enemy extends ACharacter implements IDrawable {
+public class Enemy extends ACharacter {
 
     // true means invulnerable; always kills player on contact
     private final boolean isInvulnerable;
@@ -38,7 +37,9 @@ public class Enemy extends ACharacter implements IDrawable {
     public void draw() {
         this.checkHandleOffscreenDeath();
 
-        this.checkHandleContactWithPlayer();
+        if (this.mainSketch.getCurrentActivePlayer() != null) {
+            this.checkHandleContactWithPlayer();
+        }
         this.handleMovement();
 
         if (this.isVisible) {
@@ -68,7 +69,7 @@ public class Enemy extends ACharacter implements IDrawable {
      */
     private void checkHandleContactWithPlayer() {
         Player curPlayer = this.mainSketch.getCurrentActivePlayer();
-        if (curPlayer.isActive() && curPlayer.isCanHaveContactWithEnemies()) {   // to prevent multiple consecutive deaths and damage
+        if (curPlayer.isCanHaveContactWithEnemies()) {   // to prevent multiple consecutive deaths and damage
             double collisionAngle = this.collisionWithPlayer();
             if (collisionAngle >= 0) {
                 if (Math.toDegrees(collisionAngle) >= Constants.MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE

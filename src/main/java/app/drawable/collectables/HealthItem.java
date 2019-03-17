@@ -44,7 +44,7 @@ public class HealthItem extends ACollectable {
 
     @Override
     void checkHandleContactWithPlayer() {
-        if (this.mainSketch.getCurrentActivePlayer().isActive() && this.contactWithPlayer()) {
+        if (this.contactWithPlayer()) {
             this.mainSketch.getCurrentActivePlayer().changeHealth(this.healthChangeAmount);
             this.makeNotActive();
             this.mainSketch.getCurrentActiveLevelCollectables().remove(this);

@@ -2,7 +2,6 @@ package app.drawable.levels;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.drawable.IDrawable;
 import app.drawable.blocks.ItemBlock;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.drawable.characters.Enemy;
@@ -12,7 +11,7 @@ import app.drawable.viewbox.ViewBox;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;
 
-public class LevelThree extends ALevel implements IDrawable {
+public class LevelThree extends ALevel {
 
     /**
      * sets properties, boundaries, and characters of this

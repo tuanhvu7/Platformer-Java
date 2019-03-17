@@ -2,7 +2,6 @@ package app.drawable.levels;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.drawable.IDrawable;
 import app.drawable.blocks.Block;
 import app.drawable.blocks.EventBlock;
 import app.drawable.blocks.ItemBlock;
@@ -25,7 +24,7 @@ import java.util.Set;
 /**
  * Level two
  */
-public class LevelTwo extends ALevel implements IDrawable {
+public class LevelTwo extends ALevel {
 
     /**
      * sets properties, boundaries, and characters of this

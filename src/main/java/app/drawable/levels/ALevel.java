@@ -108,7 +108,9 @@ public abstract class ALevel implements IDrawable {
      * deactivate this;
      */
     public void deactivateLevel() {
-        this.player.makeNotActive();
+        if (this.player != null) {
+            this.player.makeNotActive();
+        }
 
         this.viewBox.makeNotActive();
 
@@ -194,7 +196,7 @@ public abstract class ALevel implements IDrawable {
      * handle character keypress controls
      */
     public void keyEvent(KeyEvent keyEvent) {
-        if (this.player.isActive() && !this.isHandlingLevelComplete) {  // only allow pause if player is active
+        if (this.player != null && !this.isHandlingLevelComplete) {  // only allow pause if player is active
             // press 'p' for pause
             if (keyEvent.getAction() == KeyEvent.PRESS) {
                 char keyPressed = keyEvent.getKey();
@@ -261,6 +263,10 @@ public abstract class ALevel implements IDrawable {
     /*** getters and setters ***/
     public Player getPlayer() {
         return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public ViewBox getViewBox() {

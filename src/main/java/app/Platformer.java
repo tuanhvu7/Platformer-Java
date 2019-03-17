@@ -66,6 +66,7 @@ public class Platformer extends PApplet {
         new Thread(() -> {
             try {
                 this.getCurrentActivePlayer().makeNotActive();
+                this.currentActiveLevel.get().setPlayer(null);  // to stop interactions with player
                 ResourceUtils.stopSong();
                 ResourceUtils.playSong(ESongType.PLAYER_DEATH);
 
