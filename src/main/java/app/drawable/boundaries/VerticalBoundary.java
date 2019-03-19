@@ -81,7 +81,7 @@ public class VerticalBoundary extends ABoundary {
     void checkHandleContactWithNonPlayerCharacters() {
         if (this.doesAffectNonPlayers) {
             // boundary collision for non-player characters
-            for (ACharacter curCharacter : this.mainSketch.getCurrentActiveCharactersList()) {
+            for (ACharacter curCharacter : this.mainSketch.getCurrentActiveLevelDrawableCollection().getCharactersList()) {
                 if (this.contactWithCharacter(curCharacter)) {
                     curCharacter.handleContactWithVerticalBoundary(this.startPoint.x);
                 }

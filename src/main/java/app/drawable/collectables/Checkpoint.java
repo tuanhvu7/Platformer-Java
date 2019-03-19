@@ -25,7 +25,7 @@ public class Checkpoint extends ACollectable {
         if (this.contactWithPlayer()) {
             this.mainSketch.getCurrentActiveLevel().setLoadPlayerFromCheckPoint(true);
             this.makeNotActive();
-            this.mainSketch.getCurrentActiveLevelCollectables().remove(this);
+            this.mainSketch.getCurrentActiveLevelDrawableCollection().removeDrawable(this);
         }
     }
 

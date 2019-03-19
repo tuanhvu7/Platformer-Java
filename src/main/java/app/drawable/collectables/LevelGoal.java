@@ -23,7 +23,7 @@ public class LevelGoal extends ACollectable {
     void checkHandleContactWithPlayer() {
         if (this.contactWithPlayer()) {
             this.makeNotActive();
-            this.mainSketch.getCurrentActiveLevelCollectables().remove(this);
+            this.mainSketch.getCurrentActiveLevelDrawableCollection().removeDrawable(this);
             this.mainSketch.handleLevelComplete();
         }
     }

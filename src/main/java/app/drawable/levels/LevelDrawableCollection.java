@@ -28,7 +28,7 @@ public class LevelDrawableCollection {
     /**
      * sets properties of this
      */
-    public LevelDrawableCollection() {
+    LevelDrawableCollection() {
         this.charactersList = new HashSet<>();
         this.boundariesList = new HashSet<>();
         this.blocksList = new HashSet<>();
@@ -36,9 +36,27 @@ public class LevelDrawableCollection {
     }
 
     /**
+     * remove given drawable from appropriate set
+     */
+    public void removeDrawable(IDrawable drawable) {
+        if (drawable instanceof ACharacter) {
+            this.charactersList.remove(drawable);
+
+        } else if (drawable instanceof ABoundary) {
+            this.boundariesList.remove(drawable);
+
+        } else if (drawable instanceof ABlock) {
+            this.blocksList.remove(drawable);
+
+        } else if (drawable instanceof ACollectable) {
+            this.collectablesList.remove(drawable);
+        }
+    }
+
+    /**
      * add given drawable to correct set
      */
-    public void addDrawable(IDrawable drawable) {
+    void addDrawable(IDrawable drawable) {
         if (drawable instanceof ACharacter) {
             this.charactersList.add((ACharacter) drawable);
 
@@ -56,7 +74,7 @@ public class LevelDrawableCollection {
     /**
      * make all drawables not active and clears all sets
      */
-    public void deactivateClearAllDrawable() {
+    void deactivateClearAllDrawable() {
         for (ACharacter curCharacter : this.charactersList) {
             curCharacter.makeNotActive();
         }
@@ -81,13 +99,5 @@ public class LevelDrawableCollection {
 
     public Set<ACharacter> getCharactersList() {
         return charactersList;
-    }
-
-    public Set<ABlock> getBlocksList() {
-        return blocksList;
-    }
-
-    public Set<ACollectable> getCollectablesList() {
-        return collectablesList;
     }
 }

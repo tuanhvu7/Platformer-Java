@@ -143,8 +143,8 @@ public class HorizontalBoundary extends ABoundary {
     void checkHandleContactWithNonPlayerCharacters() {
         if (this.doesAffectNonPlayers) {
             // boundary collision for non-player characters
-            for (ACharacter curCharacter : this.mainSketch.getCurrentActiveCharactersList()) { // this has contact with non-player
-                if (this.contactWithCharacter(curCharacter)) {
+            for (ACharacter curCharacter : this.mainSketch.getCurrentActiveLevelDrawableCollection().getCharactersList()) {
+                if (this.contactWithCharacter(curCharacter)) { // this has contact with non-player
                     if (this.isFloorBoundary && !this.charactersTouchingThis.contains(curCharacter)) { // new collision detected
                         curCharacter.changeNumberOfFloorBoundaryContacts(1);
                         this.charactersTouchingThis.add(curCharacter);

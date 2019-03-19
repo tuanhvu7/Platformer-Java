@@ -165,7 +165,7 @@ public class Block extends ABlock {
             false);
         ResourceUtils.playSong(ESongType.PLAYER_ACTION);
         this.makeNotActive();
-        this.mainSketch.getCurrentActiveBlocksList().remove(this);
+        this.mainSketch.getCurrentActiveLevelDrawableCollection().removeDrawable(this);
     }
 }
 

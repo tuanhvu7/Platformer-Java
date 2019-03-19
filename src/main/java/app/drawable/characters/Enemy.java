@@ -124,7 +124,7 @@ public class Enemy extends ACharacter {
     @Override
     void handleDeath(boolean isOffscreenDeath) {
         this.makeNotActive();
-        this.mainSketch.getCurrentActiveCharactersList().remove(this);
+        this.mainSketch.getCurrentActiveLevelDrawableCollection().removeDrawable(this);
         if (!isOffscreenDeath) {
             ResourceUtils.playSong(ESongType.PLAYER_ACTION);
             this.mainSketch.getCurrentActivePlayer().handleJumpKillEnemyPhysics();
