@@ -287,12 +287,12 @@ public class Player extends ACharacter {
         } else if (healthChangeAmount < 0) {
             this.canHaveContactWithEnemies = false;
             this.fillColor = Constants.PLAYER_DAMAGED_COLOR;
-            ResourceUtils.playSong(ESongType.PLAYER_DAMAGE);
 
             // make this unaffected by enemies for a duration
             new Thread(() -> {
                 try {
-                    Thread.sleep((long) ResourceUtils.PLAYER_DAMAGE_SOUND.getDuration().toMillis());  // wait for song duration
+                    ResourceUtils.playSong(ESongType.PLAYER_DAMAGE);
+                    Thread.sleep((long) ResourceUtils.getSongDurationMilliSec(ESongType.PLAYER_DAMAGE));  // wait for song duration
                     this.canHaveContactWithEnemies = true;
                     this.fillColor = Constants.PLAYER_DEFAULT_COLOR;
                 } catch (InterruptedException ie) {

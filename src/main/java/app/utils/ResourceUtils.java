@@ -49,10 +49,10 @@ public class ResourceUtils {
                 // to player damage song in parallel with level song
                 new Thread(() -> {
                     try {
-                        PLAYER_DAMAGE_SOUND_PLAYER.setCycleCount(1);
-                        PLAYER_DAMAGE_SOUND_PLAYER.play();
-                        Thread.sleep((long) PLAYER_DAMAGE_SOUND.getDuration().toMillis());  // wait for song duration
-                        PLAYER_DAMAGE_SOUND_PLAYER.stop();
+                        PLAYER_DAMAGE_SONG_PLAYER.setCycleCount(1);
+                        PLAYER_DAMAGE_SONG_PLAYER.play();
+                        Thread.sleep((long) PLAYER_DAMAGE_SONG.getDuration().toMillis());  // wait for song duration
+                        PLAYER_DAMAGE_SONG_PLAYER.stop();
                     } catch (InterruptedException ie) {
                     }
                 }).start();
@@ -90,12 +90,14 @@ public class ResourceUtils {
     }
 
     /**
-     * get song duration
+     * get song duration in milliseconds
      */
-    public static double getSongDuration(ESongType songType) {
+    public static double getSongDurationMilliSec(ESongType songType) {
         switch (songType) {
             case PLAYER_DEATH:
                 return PLAYER_DEATH_SONG.getDuration().toMillis();
+            case PLAYER_DAMAGE:
+                return PLAYER_DAMAGE_SONG.getDuration().toMillis();
             case LEVEL_COMPLETE:
                 return LEVEL_COMPLETE_SONG_.getDuration().toMillis();
             default:
@@ -136,11 +138,11 @@ public class ResourceUtils {
         new MediaPlayer(LEVEL_SONG);
 
     // player damage song
-    private static final String PLAYER_DAMAGE_SOUND_NAME = "player-damage-sound.mp3";
-    public static final Media PLAYER_DAMAGE_SOUND = new Media(
-        getResourcePathUri(PLAYER_DAMAGE_SOUND_NAME));
-    private static final MediaPlayer PLAYER_DAMAGE_SOUND_PLAYER =
-        new MediaPlayer(PLAYER_DAMAGE_SOUND);
+    private static final String PLAYER_DAMAGE_SONG_NAME = "player-damage-song.mp3";
+    private static final Media PLAYER_DAMAGE_SONG = new Media(
+        getResourcePathUri(PLAYER_DAMAGE_SONG_NAME));
+    private static final MediaPlayer PLAYER_DAMAGE_SONG_PLAYER =
+        new MediaPlayer(PLAYER_DAMAGE_SONG);
 
     // player death song
     private static final String PLAYER_DEATH_SONG_NAME = "player-death-song.mp3";
@@ -157,14 +159,14 @@ public class ResourceUtils {
         new MediaPlayer(LEVEL_COMPLETE_SONG_);
 
     // player action song
-    private static final String PLAYER_ACTION_SONG_NAME = "player-action-sound.mp3";
+    private static final String PLAYER_ACTION_SONG_NAME = "player-action-song.mp3";
     private static final Media PLAYER_ACTION_SONG = new Media(
         getResourcePathUri(PLAYER_ACTION_SONG_NAME));
     private static final MediaPlayer PLAYER_ACTION_SONG_PLAYER =
         new MediaPlayer(PLAYER_ACTION_SONG);
 
     // event block descent song
-    private static final String EVENT_BLOCK_DESCENT_SONG_NAME = "event-block-descent-sound.mp3";
+    private static final String EVENT_BLOCK_DESCENT_SONG_NAME = "event-block-descent-song.mp3";
     private static final Media EVENT_BLOCK_DESCENT_SONG = new Media(
         getResourcePathUri(EVENT_BLOCK_DESCENT_SONG_NAME));
     private static final MediaPlayer EVENT_BLOCK_DESCENT_SONG_PLAYER =

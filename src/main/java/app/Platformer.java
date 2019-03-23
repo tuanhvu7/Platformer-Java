@@ -72,7 +72,7 @@ public class Platformer extends PApplet {
 
                 ResourceUtils.stopSong();
                 ResourceUtils.playSong(ESongType.PLAYER_DEATH);
-                Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.PLAYER_DEATH));  // wait for song duration
+                Thread.sleep((long) ResourceUtils.getSongDurationMilliSec(ESongType.PLAYER_DEATH));  // wait for song duration
 
                 boolean loadPlayerFromCheckPoint = getCurrentActiveLevel().isLoadPlayerFromCheckPoint();
                 getCurrentActiveLevel().deactivateLevel();
@@ -98,7 +98,7 @@ public class Platformer extends PApplet {
 
                     ResourceUtils.stopSong();
                     ResourceUtils.playSong(ESongType.LEVEL_COMPLETE);
-                    Thread.sleep((long) ResourceUtils.getSongDuration(ESongType.LEVEL_COMPLETE));  // wait for song duration
+                    Thread.sleep((long) ResourceUtils.getSongDurationMilliSec(ESongType.LEVEL_COMPLETE));  // wait for song duration
 
                     getCurrentActiveLevel().deactivateLevel();
                     currentActiveLevelNumber = 0;
