@@ -118,9 +118,9 @@ public class LevelTwo extends ALevel {
         for (int i = 0; i < 5; i++) {
             this.levelDrawableCollection.addDrawable(new FlyingEnemy(
                 this.mainSketch,
-                (startXPos + 2 * Constants.REGULAR_ENEMY_DIAMETER) - (i * Constants.REGULAR_ENEMY_DIAMETER),
+                (startXPos + 2 * Constants.SMALL_ENEMY_DIAMETER) - (i * Constants.SMALL_ENEMY_DIAMETER),
                 (Constants.SCREEN_HEIGHT - this.mainSketch.getCurrentActiveLevelHeight()) / 2,
-                Constants.REGULAR_ENEMY_DIAMETER,
+                Constants.SMALL_ENEMY_DIAMETER,
                 0,
                 0,
                 true,
@@ -134,7 +134,7 @@ public class LevelTwo extends ALevel {
             startXPos + (Constants.BIG_ENEMY_DIAMETER / 2),
             0,
             Constants.BIG_ENEMY_DIAMETER,
-            Constants.ENEMY_REGULAR_RUN_SPEED,
+            Constants.ENEMY_REGULAR_MOVEMENT_SPEED,
             true,
             true,
             true
@@ -143,13 +143,13 @@ public class LevelTwo extends ALevel {
         for (int i = 0; i < 7; i++) {
             this.levelDrawableCollection.addDrawable(new FlyingEnemy(
                 this.mainSketch,
-                startXPos + 1100 + i * (Constants.REGULAR_ENEMY_DIAMETER + 30),
-                Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
-                Constants.REGULAR_ENEMY_DIAMETER,
+                startXPos + 1100 + i * (Constants.SMALL_ENEMY_DIAMETER + 30),
+                Constants.LEVEL_FLOOR_Y_POSITION - Constants.SMALL_ENEMY_DIAMETER,
+                Constants.SMALL_ENEMY_DIAMETER,
                 0,
-                Constants.ENEMY_SLOW_RUN_SPEED,
+                Constants.ENEMY_SLOW_MOVEMENT_SPEED,
                 200,
-                Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
+                Constants.LEVEL_FLOOR_Y_POSITION - Constants.SMALL_ENEMY_DIAMETER,
                 false,
                 true,
                 true
@@ -211,9 +211,9 @@ public class LevelTwo extends ALevel {
         Enemy enemyToAddForTrigger = new Enemy(
             this.mainSketch,
             startXPos + 2000,
-            Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
-            Constants.REGULAR_ENEMY_DIAMETER,
-            -Constants.ENEMY_REGULAR_RUN_SPEED,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.SMALL_ENEMY_DIAMETER,
+            Constants.SMALL_ENEMY_DIAMETER,
+            -Constants.ENEMY_REGULAR_MOVEMENT_SPEED,
             false,
             true,
             false
@@ -257,10 +257,10 @@ public class LevelTwo extends ALevel {
         for (int i = 0; i < 2; i++) {
             Enemy enemyToAdd = new FlyingEnemy(
                 this.mainSketch,
-                this.mainSketch.getCurrentActiveLevelWidth() - (i + 1) * Constants.REGULAR_ENEMY_DIAMETER,
-                Constants.LEVEL_FLOOR_Y_POSITION - (Constants.REGULAR_ENEMY_DIAMETER / 2),
-                Constants.REGULAR_ENEMY_DIAMETER,
-                -Constants.ENEMY_REGULAR_RUN_SPEED,
+                this.mainSketch.getCurrentActiveLevelWidth() - (i + 1) * Constants.SMALL_ENEMY_DIAMETER,
+                Constants.LEVEL_FLOOR_Y_POSITION - (Constants.SMALL_ENEMY_DIAMETER / 2),
+                Constants.SMALL_ENEMY_DIAMETER,
+                -Constants.ENEMY_REGULAR_MOVEMENT_SPEED,
                 0,
                 false,
                 true,
@@ -299,7 +299,7 @@ public class LevelTwo extends ALevel {
             startXPos - 700,
             0,
             Constants.BIG_ENEMY_DIAMETER,
-            Constants.ENEMY_REGULAR_RUN_SPEED,
+            Constants.ENEMY_REGULAR_MOVEMENT_SPEED,
             true,
             true,
             false);
@@ -317,13 +317,13 @@ public class LevelTwo extends ALevel {
         for (int i = 0; i < 7; i++) {
             this.levelDrawableCollection.addDrawable(new FlyingEnemy(
                 this.mainSketch,
-                startXPos - (1100 + i * (Constants.REGULAR_ENEMY_DIAMETER + 30)),
-                Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
-                Constants.REGULAR_ENEMY_DIAMETER,
+                startXPos - (1100 + i * (Constants.SMALL_ENEMY_DIAMETER + 30)),
+                Constants.LEVEL_FLOOR_Y_POSITION - Constants.SMALL_ENEMY_DIAMETER,
+                Constants.SMALL_ENEMY_DIAMETER,
                 0,
-                Constants.ENEMY_SLOW_RUN_SPEED,
+                Constants.ENEMY_SLOW_MOVEMENT_SPEED,
                 200,
-                Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
+                Constants.LEVEL_FLOOR_Y_POSITION - Constants.SMALL_ENEMY_DIAMETER,
                 i % 2 == 0,
                 true,
                 true
@@ -387,9 +387,9 @@ public class LevelTwo extends ALevel {
         Enemy enemyToAddForTrigger = new Enemy(
             this.mainSketch,
             startXPos - 2000,
-            Constants.LEVEL_FLOOR_Y_POSITION - Constants.REGULAR_ENEMY_DIAMETER,
-            Constants.REGULAR_ENEMY_DIAMETER,
-            Constants.ENEMY_REGULAR_RUN_SPEED,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.SMALL_ENEMY_DIAMETER,
+            Constants.SMALL_ENEMY_DIAMETER,
+            Constants.ENEMY_REGULAR_MOVEMENT_SPEED,
             false,
             true,
             false
@@ -478,7 +478,7 @@ public class LevelTwo extends ALevel {
         this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
             eventBlockInvulnerableEnemyXReference + (Constants.DEFAULT_EVENT_BLOCK_WIDTH / 2),
-            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - Constants.REGULAR_ENEMY_DIAMETER,
+            Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT - Constants.SMALL_ENEMY_DIAMETER,
             Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             0,
             true,
@@ -490,10 +490,10 @@ public class LevelTwo extends ALevel {
         for (int i = 0; i < 2; i++) {
             Enemy enemyToAdd = new FlyingEnemy(
                 this.mainSketch,
-                (i + 1) * Constants.REGULAR_ENEMY_DIAMETER,
-                Constants.LEVEL_FLOOR_Y_POSITION - (Constants.REGULAR_ENEMY_DIAMETER / 2),
-                Constants.REGULAR_ENEMY_DIAMETER,
-                Constants.ENEMY_REGULAR_RUN_SPEED,
+                (i + 1) * Constants.SMALL_ENEMY_DIAMETER,
+                Constants.LEVEL_FLOOR_Y_POSITION - (Constants.SMALL_ENEMY_DIAMETER / 2),
+                Constants.SMALL_ENEMY_DIAMETER,
+                Constants.ENEMY_REGULAR_MOVEMENT_SPEED,
                 0,
                 true,
                 true,

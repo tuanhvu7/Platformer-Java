@@ -16,7 +16,7 @@ public class FlyingEnemy extends Enemy {
 
     /**
      * set properties of this;
-     * set upper and lower Y boundaries of level
+     * set upper and lower Y limits to boundaries of level
      */
     public FlyingEnemy(Platformer mainSketch, int x, int y, int diameter,
                        float horizontalVel, float verticalVel,
@@ -25,8 +25,8 @@ public class FlyingEnemy extends Enemy {
 
         this.fillColor = Constants.ENEMY_COLOR;
 
-        this.topY = Constants.SCREEN_HEIGHT - this.mainSketch.getCurrentActiveLevelHeight() - this.diameter / 2;
-        this.bottomY = Constants.SCREEN_HEIGHT + this.diameter / 2;
+        this.topY = Constants.SCREEN_HEIGHT - this.mainSketch.getCurrentActiveLevelHeight() + this.diameter / 2;
+        this.bottomY = Constants.SCREEN_HEIGHT - this.diameter / 2;
 
         this.vel.x = horizontalVel;
         this.vel.y = verticalVel;
@@ -60,8 +60,8 @@ public class FlyingEnemy extends Enemy {
      */
     @Override
     void handleMovement() {
-        final boolean shouldReverseFromTopLimit = this.pos.y <= this.topY && this.vel.y < 0;
-        final boolean shouldReverseFromBottomLimit = this.pos.y >= this.bottomY && this.vel.y > 0;
+        final boolean shouldReverseFromTopLimit = (this.pos.y <= this.topY) && this.vel.y < 0;
+        final boolean shouldReverseFromBottomLimit = (this.pos.y >= this.bottomY) && this.vel.y > 0;
         if (shouldReverseFromTopLimit || shouldReverseFromBottomLimit) {
             this.vel.y = -this.vel.y;
         }

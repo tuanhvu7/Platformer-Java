@@ -19,7 +19,7 @@ public class Constants {
         0,          // non-existent level zero
         8750,
         12000,
-        2000
+        9000
     };
 
     // heights of all levels
@@ -57,24 +57,25 @@ public class Constants {
     public static final int CHARACTER_WARP_EVENT_VERTICAL_VELOCITY = -10;
 
     /*** player config ***/
-    public static final int PLAYER_RUN_SPEED = 3;
+    public static final int PLAYER_MOVEMENT_SPEED = 3;
     public static final int PLAYER_LEVEL_COMPLETE_SPEED = 1;
     public static final int PLAYER_JUMP_VERTICAL_VELOCITY = -12;
     public static final int PLAYER_JUMP_KILL_ENEMY_HOP_VERTICAL_VELOCITY = -7;
     public static final int PLAYER_DEFAULT_COLOR = new Color(0x000000).getRGB();
     public static final int PLAYER_DAMAGED_COLOR = new Color(0x888888).getRGB();
     public static final int PLAYER_DIAMETER = 60;
-    public  static final int PLAYER_HEALTH_TEXT_COLOR = new Color(0xFFFFFF).getRGB();
+    public static final int PLAYER_HEALTH_TEXT_COLOR = new Color(0xFFFFFF).getRGB();
     // minimum angle (degrees) of collision between player and enemy
     // for player to kill enemy
     public static final double MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE = 20.0;
 
     /*** enemy config **/
-    public static final float ENEMY_SLOW_RUN_SPEED = 1.0f;
-    public static final float ENEMY_REGULAR_RUN_SPEED = 2.5f;
-    public static final float ENEMY_FAST_RUN_SPEED = 5.0f;
+    public static final float ENEMY_SLOW_MOVEMENT_SPEED = 1.0f;
+    public static final float ENEMY_REGULAR_MOVEMENT_SPEED = 2.5f;
+    public static final float ENEMY_FAST_MOVEMENT_SPEED = 5.0f;
     public static final int ENEMY_COLOR = new Color(0xFF0000).getRGB();
-    public static final int REGULAR_ENEMY_DIAMETER = 60;
+    public static final int SMALL_ENEMY_DIAMETER = 60;
+    public static final int MEDIUM_ENEMY_DIAMETER = 250;
     public static final int BIG_ENEMY_DIAMETER = 500;
 
 

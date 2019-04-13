@@ -282,7 +282,7 @@ public class Player extends ACharacter {
      */
     public void changeHealth(int healthChangeAmount) {
         this.health += healthChangeAmount;
-        if (this.health == 0) {
+        if (this.health <= 0) {
             this.handleDeath(false);
         } else if (healthChangeAmount < 0) {
             this.canHaveContactWithEnemies = false;
@@ -328,10 +328,10 @@ public class Player extends ACharacter {
      */
     private void handleHorizontalMovement() {
         if (this.moveLeftPressed && this.ableToMoveLeft) {
-            this.vel.x = -Constants.PLAYER_RUN_SPEED;
+            this.vel.x = -Constants.PLAYER_MOVEMENT_SPEED;
         }
         if (this.moveRightPressed && this.ableToMoveRight) {
-            this.vel.x = Constants.PLAYER_RUN_SPEED;
+            this.vel.x = Constants.PLAYER_MOVEMENT_SPEED;
         }
         if (!this.moveLeftPressed && !this.moveRightPressed) {
             this.vel.x = 0;

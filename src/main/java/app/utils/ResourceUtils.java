@@ -19,7 +19,7 @@ public class ResourceUtils {
                 LEVEL_SELECT_MENU_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
                 LEVEL_SELECT_MENU_SONG_PLAYER.play();
                 break;
-                
+
             case LEVEL:
                 LEVEL_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
                 LEVEL_SONG_PLAYER.play();

@@ -87,7 +87,7 @@ public class ViewBox implements IDrawable {
             if (player.isMoveLeftPressed()) {
                 if (this.pos.x > 0       // left edge of viewbox not at left edge of level
                     && this.playerAtHorizontalViewBoxBoundary(true)) {
-                    this.vel.x = -Constants.PLAYER_RUN_SPEED;
+                    this.vel.x = -Constants.PLAYER_MOVEMENT_SPEED;
                 } else {
                     this.vel.x = 0;
                 }
@@ -95,7 +95,7 @@ public class ViewBox implements IDrawable {
             if (player.isMoveRightPressed()) {
                 if (this.pos.x < this.mainSketch.getCurrentActiveLevelWidth() - this.mainSketch.width   // right edge of viewbox not at right edge of level
                     && this.playerAtHorizontalViewBoxBoundary(false)) {
-                    this.vel.x = Constants.PLAYER_RUN_SPEED;
+                    this.vel.x = Constants.PLAYER_MOVEMENT_SPEED;
                 } else {
                     this.vel.x = 0;
                 }
