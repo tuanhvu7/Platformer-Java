@@ -28,11 +28,13 @@ public class LevelThree extends ALevel {
         final int playerStartXPos = Constants.SCREEN_WIDTH / 6;
         final int playerStartYPos = Constants.SCREEN_HEIGHT / 4;
 
-        this.viewBox = new ViewBox(this.mainSketch,
+        this.viewBox = new ViewBox(
+            this.mainSketch,
             0,
             playerStartYPos,
             true);
-        this.player = new Player(this.mainSketch,
+        this.player = new Player(
+            this.mainSketch,
             playerStartXPos,
             playerStartYPos,
             Constants.PLAYER_DIAMETER,
@@ -79,6 +81,8 @@ public class LevelThree extends ALevel {
             Constants.SMALL_ENEMY_DIAMETER,
             0,
             Constants.ENEMY_FAST_MOVEMENT_SPEED,
+            false,
+            false,
             true,
             true,
             true
@@ -96,7 +100,7 @@ public class LevelThree extends ALevel {
         this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             4 * playerStartXPos,
-            this.mainSketch.getCurrentActiveLevelHeight() + Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
+            this.mainSketch.getCurrentActiveLevelHeight(),
             1000,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
@@ -111,6 +115,8 @@ public class LevelThree extends ALevel {
                 Constants.SMALL_ENEMY_DIAMETER,
                 0,
                 Constants.ENEMY_FAST_MOVEMENT_SPEED,
+                false,
+                false,
                 true,
                 true,
                 true
@@ -125,6 +131,8 @@ public class LevelThree extends ALevel {
                 Constants.SMALL_ENEMY_DIAMETER,
                 0,
                 -Constants.ENEMY_FAST_MOVEMENT_SPEED,
+                true,
+                false,
                 true,
                 true,
                 true
