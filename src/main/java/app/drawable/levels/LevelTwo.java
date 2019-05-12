@@ -176,7 +176,7 @@ public class LevelTwo extends ALevel {
         // item block before stair section
         HealthItem healthItemForBlock =
             new HealthItem(
-                mainSketch,
+                this.mainSketch,
                 -1,
                 0,
                 0,
@@ -187,7 +187,7 @@ public class LevelTwo extends ALevel {
             );
         this.levelDrawableCollection.addDrawable((healthItemForBlock));
         this.levelDrawableCollection.addDrawable(new ItemBlock(
-            mainSketch,
+            this.mainSketch,
             startXPos + 250,
             Constants.LEVEL_FLOOR_Y_POSITION - 3 * Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BLOCK_SIZE,
@@ -355,7 +355,7 @@ public class LevelTwo extends ALevel {
         // item block before stair section
         HealthItem healthItemForBlock =
             new HealthItem(
-                mainSketch,
+                this.mainSketch,
                 -1,
                 0,
                 0,
@@ -366,7 +366,7 @@ public class LevelTwo extends ALevel {
             );
         this.levelDrawableCollection.addDrawable((healthItemForBlock));
         this.levelDrawableCollection.addDrawable(new ItemBlock(
-            mainSketch,
+            this.mainSketch,
             startXPos - 250 - Constants.DEFAULT_BLOCK_SIZE,
             Constants.LEVEL_FLOOR_Y_POSITION - 3 * Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BLOCK_SIZE,
@@ -422,7 +422,7 @@ public class LevelTwo extends ALevel {
             if (i == 0) {   // block closest to stairs is item block
                 healthItemForBlock =
                     new HealthItem(
-                        mainSketch,
+                        this.mainSketch,
                         1,
                         0,
                         0,

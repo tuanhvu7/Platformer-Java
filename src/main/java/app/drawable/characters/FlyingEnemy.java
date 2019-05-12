@@ -74,8 +74,8 @@ public class FlyingEnemy extends Enemy {
      */
     @Override
     void handleMovement() {
-        final boolean shouldReverseFromTopLimit = (this.pos.y <= this.topYLimit) && this.vel.y < 0;
-        final boolean shouldReverseFromBottomLimit = (this.pos.y >= this.bottomYLimit) && this.vel.y > 0;
+        final boolean shouldReverseFromTopLimit = this.pos.y <= this.topYLimit && this.vel.y < 0;
+        final boolean shouldReverseFromBottomLimit = this.pos.y >= this.bottomYLimit && this.vel.y > 0;
         if (shouldReverseFromTopLimit || shouldReverseFromBottomLimit) {
             this.vel.y = -this.vel.y;
         }

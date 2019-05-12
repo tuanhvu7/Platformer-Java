@@ -365,10 +365,10 @@ public class LevelOne extends ALevel {
         this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             startXPos,
-            Constants.LEVEL_FLOOR_Y_POSITION,
+            this.mainSketch.getCurrentActiveLevelHeight(),
             250,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
-            false,
+            true,
             true,
             false,
             true,
