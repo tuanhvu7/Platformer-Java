@@ -113,6 +113,7 @@ public class Enemy extends ACharacter {
     /**
      * handle movement (position, velocity)
      */
+    @Override
     void handleMovement() {
         this.handleInAirPhysics();
         this.pos.add(this.vel);

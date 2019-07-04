@@ -286,6 +286,8 @@ public class LevelOne extends ALevel {
             startXPos + 1000 + 4 * Constants.PLAYER_DIAMETER,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.SMALL_ENEMY_DIAMETER - 10,
             Constants.SMALL_ENEMY_DIAMETER,
+            true,
+            false,
             -Constants.ENEMY_FAST_MOVEMENT_SPEED,
             false,
             true,

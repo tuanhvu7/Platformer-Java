@@ -2,6 +2,7 @@ package app.drawable.boundaries;
 
 import app.Platformer;
 import app.drawable.characters.ACharacter;
+import app.drawable.characters.ControllableEnemy;
 import app.drawable.characters.Player;
 
 /**
@@ -84,6 +85,10 @@ public class VerticalBoundary extends ABoundary {
             for (ACharacter curCharacter : this.mainSketch.getCurrentActiveLevelDrawableCollection().getCharactersList()) {
                 if (this.contactWithCharacter(curCharacter)) {
                     curCharacter.handleContactWithVerticalBoundary(this.startPoint.x);
+
+                } else if (curCharacter instanceof ControllableEnemy) { // this DOES NOT have contact with character AND character is controllable
+                    ((ControllableEnemy) curCharacter).setAbleToMoveLeft(true);
+                    ((ControllableEnemy) curCharacter).setAbleToMoveRight(true);
                 }
             }
         }

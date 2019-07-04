@@ -47,6 +47,7 @@ public class Constants {
     public static final PVector GRAVITY = new PVector(0, 0.4f);
     // gravity multiplier for jumping higher when holding jump button
     public static final PVector WALL_SLIDE_ACCELERATION = new PVector(0, 0.1f);
+    public static final int CHARACTER_JUMP_VERTICAL_VELOCITY = -12;
     public static final float VARIABLE_JUMP_GRAVITY_MULTIPLIER = 0.55f;
     public static final float EVENT_BLOCK_DESCENT_VERTICAL_VELOCITY = 1.5f;
     public static final float MAX_VERTICAL_VELOCITY = 15;
@@ -59,7 +60,6 @@ public class Constants {
     /*** player config ***/
     public static final int PLAYER_MOVEMENT_SPEED = 3;
     public static final int PLAYER_LEVEL_COMPLETE_SPEED = 1;
-    public static final int PLAYER_JUMP_VERTICAL_VELOCITY = -12;
     public static final int PLAYER_JUMP_KILL_ENEMY_HOP_VERTICAL_VELOCITY = -7;
     public static final int PLAYER_DEFAULT_COLOR = new Color(0x000000).getRGB();
     public static final int PLAYER_DAMAGED_COLOR = new Color(0x888888).getRGB();
@@ -70,9 +70,9 @@ public class Constants {
     public static final double MIN_PLAYER_KILL_ENEMY_COLLISION_ANGLE = 20.0;
 
     /*** enemy config **/
-    public static final float ENEMY_SLOW_MOVEMENT_SPEED = 1.0f;
+    public static final int ENEMY_SLOW_MOVEMENT_SPEED = 1;
     public static final float ENEMY_REGULAR_MOVEMENT_SPEED = 2.5f;
-    public static final float ENEMY_FAST_MOVEMENT_SPEED = 5.0f;
+    public static final int ENEMY_FAST_MOVEMENT_SPEED = 5;
     public static final int ENEMY_COLOR = new Color(0xFF0000).getRGB();
     public static final int SMALL_ENEMY_DIAMETER = 60;
     public static final int MEDIUM_ENEMY_DIAMETER = 250;

@@ -15,7 +15,7 @@ import java.util.Set;
 /**
  * player controllable character in game
  */
-public class Player extends ACharacter {
+public class Player extends ACharacter implements IControllableCharacter {
 
     // health of this, 0 means dead
     private int health;
@@ -141,18 +141,7 @@ public class Player extends ACharacter {
     @Override
     public void draw() {
         this.checkHandleOffscreenDeath();
-
-        if (this.isDescendingDownEventBlock) {
-            this.handleEventBlockDescent();
-        } else {
-            if (!this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete()) {
-                this.handleHorizontalMovement();
-            }
-            this.handleVerticalMovement();
-        }
-
-        this.pos.add(this.vel);
-
+        this.handleMovement();
         this.show();
     }
 
@@ -190,7 +179,25 @@ public class Player extends ACharacter {
     }
 
     /**
-     *
+     * handle movement (position, velocity)
+     */
+    @Override
+    void handleMovement() {
+        if (this.isDescendingDownEventBlock) {
+            this.handleEventBlockDescent();
+        } else {
+            // this is NOT controllable horizontally when level is finished
+            if (!this.mainSketch.getCurrentActiveLevel().isHandlingLevelComplete()) {
+                this.handleHorizontalMovement();
+            }
+            this.handleVerticalMovement();
+        }
+
+        this.pos.add(this.vel);
+    }
+
+    /**
+     * handle death of this
      */
     @Override
     void handleDeath(boolean isOffscreenDeath) {
@@ -346,7 +353,7 @@ public class Player extends ACharacter {
             if (this.numberOfFloorBoundaryContacts > 0 ||
                 (this.numberOfVerticalBoundaryContacts > 0 && this.numberOfCeilingBoundaryContacts == 0)) { // able to jump
                 ResourceUtils.playSong(ESongType.PLAYER_ACTION);
-                this.vel.y = Constants.PLAYER_JUMP_VERTICAL_VELOCITY;
+                this.vel.y = Constants.CHARACTER_JUMP_VERTICAL_VELOCITY;
 
                 this.shouldSetPreviousFloorBoundaryContact = false;
                 this.previousFloorBoundaryContact = null;
