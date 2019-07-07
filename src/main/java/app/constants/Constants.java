@@ -19,7 +19,7 @@ public class Constants {
         0,          // non-existent level zero
         8750,
         12000,
-        9000
+        8000
     };
 
     // heights of all levels

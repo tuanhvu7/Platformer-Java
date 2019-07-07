@@ -14,11 +14,15 @@ public class EventTriggerHorizontalBoundary extends HorizontalBoundary {
     // if not null, end location of warp event; else, launch event
     private final PVector endWarpPosition;
 
+    // set character vel to this on character contact with this
+    private final int launchEventVerticalVelocity;
+
     /**
      * set properties of this;
      * sets this to have launch event and affect all characters and be invisible
      */
-    public EventTriggerHorizontalBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
+    public EventTriggerHorizontalBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset,
+                                          int boundaryLineThickness, int launchEventVerticalVelocity,
                                           boolean isFloorBoundary, boolean isActive,
                                           EventBlockTopBoundary eventBlockTopBoundary) {
         super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness,
@@ -27,6 +31,7 @@ public class EventTriggerHorizontalBoundary extends HorizontalBoundary {
         this.endWarpPosition = null;
         this.isFloorBoundary = isFloorBoundary;
         this.eventBlockTopBoundary = eventBlockTopBoundary;
+        this.launchEventVerticalVelocity = launchEventVerticalVelocity;
     }
 
     /**
@@ -43,6 +48,7 @@ public class EventTriggerHorizontalBoundary extends HorizontalBoundary {
         this.endWarpPosition = new PVector(endWarpXPosition, endWarpYPosition);
         this.isFloorBoundary = isFloorBoundary;
         this.eventBlockTopBoundary = eventBlockTopBoundary;
+        this.launchEventVerticalVelocity = 0;   // this value is not used for warp events
     }
 
     /**
@@ -55,7 +61,7 @@ public class EventTriggerHorizontalBoundary extends HorizontalBoundary {
         if (this.doesAffectPlayer) {
             // boundary collision for player
             if (this.contactWithCharacter(curPlayer)) { // this has contact with player
-                curPlayer.handleContactWithEventBoundary(eventBlockTopBoundary, endWarpPosition);
+                curPlayer.handleContactWithEventBoundary(eventBlockTopBoundary, launchEventVerticalVelocity, endWarpPosition);
             }
         }
     }

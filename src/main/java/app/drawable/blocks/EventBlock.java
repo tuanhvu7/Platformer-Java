@@ -13,12 +13,16 @@ public class EventBlock extends ABlock {
     // boundary that events player upon player contact
     private final EventTriggerHorizontalBoundary eventTriggerBoundary;
 
+    // set character vel to this on character contact with this.eventTriggerBoundary
+    private final int launchEventVerticalVelocity;
+
     /**
      * Launch event block;
      * set properties of this;
      * affect all characters and be visible
      */
     public EventBlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
+                      int launchEventVerticalVelocity,
                       boolean isEventTriggerFloorBoundary, boolean isActive) {
 
         super(mainSketch, leftX, topY, width, height, blockLineThickness, false);   // initially not active, to be set in makeActive()
@@ -34,12 +38,15 @@ public class EventBlock extends ABlock {
             false  // initially not active, to be set in makeActive()
         );
 
+        this.launchEventVerticalVelocity = launchEventVerticalVelocity;
+
         this.eventTriggerBoundary = new EventTriggerHorizontalBoundary(
             this.mainSketch,
             leftX + 10,
             topY + height - (height / 5),
             width - 20,
             blockLineThickness,
+            this.launchEventVerticalVelocity,
             isEventTriggerFloorBoundary,
             false,  // initially not active, to be set in makeActive()
             (EventBlockTopBoundary) this.topSide
@@ -71,6 +78,8 @@ public class EventBlock extends ABlock {
             blockLineThickness,
             false  // initially not active, to be set in makeActive()
         );
+
+        this.launchEventVerticalVelocity = 0;   // this value is not used for warp events
 
         this.eventTriggerBoundary = new EventTriggerHorizontalBoundary(
             this.mainSketch,

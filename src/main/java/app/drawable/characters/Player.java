@@ -201,6 +201,7 @@ public class Player extends ACharacter implements IControllableCharacter {
      */
     @Override
     void handleDeath(boolean isOffscreenDeath) {
+        this.canHaveContactWithEnemies = false; // prevent enemy contact with this after this' death
         this.mainSketch.resetLevel();
     }
 
@@ -243,11 +244,12 @@ public class Player extends ACharacter implements IControllableCharacter {
      * handle contact with this and event boundary;
      * null endWarpPosition means launch event, non-null endWarpPosition means warp event
      */
-    public void handleContactWithEventBoundary(EventBlockTopBoundary eventBlockTopBoundary, PVector endWarpPosition) {
-        this.mainSketch.registerMethod("keyEvent", this); // connect this draw() from main draw()
+    public void handleContactWithEventBoundary(EventBlockTopBoundary eventBlockTopBoundary,
+                                               int launchEventVerticalVelocity, PVector endWarpPosition) {
+        this.mainSketch.registerMethod("keyEvent", this); // enable controls for this
         this.isDescendingDownEventBlock = false;
         if (endWarpPosition == null) {
-            this.vel.y = Constants.CHARACTER_LAUNCH_EVENT_VERTICAL_VELOCITY;
+            this.vel.y = launchEventVerticalVelocity;
         } else {
             this.pos.x = endWarpPosition.x;
             this.pos.y = endWarpPosition.y;
