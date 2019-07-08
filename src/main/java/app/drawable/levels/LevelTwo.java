@@ -246,7 +246,7 @@ public class LevelTwo extends ALevel {
             true
         ));
 
-        this.levelDrawableCollection.addDrawable(new EventBlock(
+        this.levelDrawableCollection.addDrawable(new EventBlock(    // launch event
             this.mainSketch,
             startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -475,7 +475,7 @@ public class LevelTwo extends ALevel {
 
         // event block with invincible enemy
         final int eventBlockInvulnerableEnemyXReference = startXPos - Constants.DEFAULT_EVENT_BLOCK_WIDTH;
-        this.levelDrawableCollection.addDrawable(new EventBlock(
+        this.levelDrawableCollection.addDrawable(new EventBlock(    // launch event
             this.mainSketch,
             eventBlockInvulnerableEnemyXReference,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,

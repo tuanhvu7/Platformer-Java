@@ -246,7 +246,6 @@ public class Player extends ACharacter implements IControllableCharacter {
      */
     public void handleContactWithEventBoundary(EventBlockTopBoundary eventBlockTopBoundary,
                                                int launchEventVerticalVelocity, PVector endWarpPosition) {
-        this.mainSketch.registerMethod("keyEvent", this); // enable controls for this
         this.isDescendingDownEventBlock = false;
         if (endWarpPosition == null) {
             this.vel.y = launchEventVerticalVelocity;
@@ -257,9 +256,13 @@ public class Player extends ACharacter implements IControllableCharacter {
             this.mainSketch.getCurrentActiveViewBox().setViewBoxHorizontalPosition(this.pos.x);
             this.vel.y = Constants.CHARACTER_WARP_EVENT_VERTICAL_VELOCITY;
         }
+
+        this.previousFloorBoundaryContact = null;   // to prevent this going through floor boundaries
+
         // event block top boundary can affect player again
         this.shouldSetPreviousFloorBoundaryContact = false;
         eventBlockTopBoundary.setDoesAffectPlayer(true);
+        this.mainSketch.registerMethod("keyEvent", this); // enable controls for this
     }
 
     /**
