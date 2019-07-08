@@ -1,6 +1,7 @@
 package app.drawable.menus.panels;
 
 import app.Platformer;
+import app.constants.Constants;
 import app.enums.EPauseMenuButtonType;
 import app.enums.ESongType;
 import app.utils.ResourceUtils;
@@ -23,7 +24,7 @@ public class PauseMenuPanel extends APanel {
                           EPauseMenuButtonType panelType,
                           int leftX, int topY, int width, int height,
                           int horizontalOffset, boolean isActive) {
-        super(mainSketch, panelType.name(), leftX, topY, width, height, isActive);
+        super(mainSketch, Constants.DEFAULT_PANEL_COLOR, panelType.name(), leftX, topY, width, height, isActive);
         this.horizontalOffset = horizontalOffset;
         this.panelType = panelType;
     }

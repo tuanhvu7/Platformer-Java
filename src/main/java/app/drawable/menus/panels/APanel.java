@@ -19,6 +19,8 @@ public abstract class APanel implements IDrawable {
     final int topY;
     final int bottomY;
 
+    int panelColor;
+
     private final int width;
     private final int height;
 
@@ -27,10 +29,11 @@ public abstract class APanel implements IDrawable {
     /**
      * set properties of this
      */
-    APanel(Platformer mainSketch, String panelText, int leftX, int topY, int width, int height, boolean isActive) {
+    APanel(Platformer mainSketch, int panelColor, String panelText, int leftX, int topY, int width, int height, boolean isActive) {
         this.mainSketch = mainSketch;
 
         this.panelText = panelText;
+        this.panelColor = panelColor;
         this.width = width;
         this.height = height;
 
@@ -48,7 +51,7 @@ public abstract class APanel implements IDrawable {
     /**
      * active and add this to game
      */
-    private void makeActive() {
+    void makeActive() {
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
         this.mainSketch.registerMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
     }
@@ -66,7 +69,7 @@ public abstract class APanel implements IDrawable {
      */
     @Override
     public void draw() {
-        this.mainSketch.fill(Constants.PANEL_COLOR);
+        this.mainSketch.fill(this.panelColor);
         this.mainSketch.rect(this.leftX, this.topY, this.width, this.height);
 
         this.mainSketch.fill(0);
