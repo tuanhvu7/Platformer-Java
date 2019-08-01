@@ -119,36 +119,36 @@ public abstract class ALevel implements IDrawable {
         int levelWidthLeftToDraw = this.mainSketch.getCurrentActiveLevelWidth();
         int numberHorizontalBackgroundIterations =
             (int) Math.ceil((double) this.mainSketch.getCurrentActiveLevelWidth() / Constants.SCREEN_WIDTH);
-        for (int i = 0; i < numberHorizontalBackgroundIterations; i++) {
+        for (int curHorizontalItr = 0; curHorizontalItr < numberHorizontalBackgroundIterations; curHorizontalItr++) {
             int curIterationWidthToDraw =
                 Math.min(
                     Constants.SCREEN_WIDTH,
                     levelWidthLeftToDraw);
 
             final boolean viewBoxInCurXRange =
-                (i * Constants.SCREEN_WIDTH <= this.viewBox.getPos().x &&
-                    i * Constants.SCREEN_WIDTH + Constants.SCREEN_WIDTH >= this.viewBox.getPos().x)
-                    || (i * Constants.SCREEN_WIDTH <= this.viewBox.getPos().x + Constants.SCREEN_WIDTH &&
-                    i * Constants.SCREEN_WIDTH + Constants.SCREEN_WIDTH >= this.viewBox.getPos().x + Constants.SCREEN_WIDTH);
+                (curHorizontalItr * Constants.SCREEN_WIDTH <= this.viewBox.getPos().x
+                    && curHorizontalItr * Constants.SCREEN_WIDTH + Constants.SCREEN_WIDTH >= this.viewBox.getPos().x)
+                || (curHorizontalItr * Constants.SCREEN_WIDTH <= this.viewBox.getPos().x + Constants.SCREEN_WIDTH
+                    && curHorizontalItr * Constants.SCREEN_WIDTH + Constants.SCREEN_WIDTH >= this.viewBox.getPos().x + Constants.SCREEN_WIDTH);
 
             if (viewBoxInCurXRange) {
                 int levelHeightLeftToDraw = this.mainSketch.getCurrentActiveLevelHeight();
                 int numberVerticalBackgroundIterations =
                     (int) Math.ceil((double) this.mainSketch.getCurrentActiveLevelHeight() / Constants.SCREEN_HEIGHT);
 
-                for (int j = 0; j < numberVerticalBackgroundIterations; j++) {
+                for (int curVerticalItr = 0; curVerticalItr < numberVerticalBackgroundIterations; curVerticalItr++) {
                     int curIterationHeightToDraw =
                         Math.min(
                             Constants.SCREEN_HEIGHT,
                             levelHeightLeftToDraw);
 
                     int startYPosToDraw =
-                        -j * Constants.SCREEN_HEIGHT
+                        -curVerticalItr * Constants.SCREEN_HEIGHT
                             + (Constants.SCREEN_HEIGHT - curIterationHeightToDraw);
 
                     this.mainSketch.image(
                         ResourceUtils.LEVEL_BACKGROUND_IMAGE,
-                        (i * Constants.SCREEN_WIDTH), // start x pos
+                        (curHorizontalItr * Constants.SCREEN_WIDTH), // start x pos
                         startYPosToDraw,  // start y pos
                         curIterationWidthToDraw,
                         curIterationHeightToDraw,

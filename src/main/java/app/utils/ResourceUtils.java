@@ -118,10 +118,10 @@ public class ResourceUtils {
     }
 
     /*** assets ***/
-    private static final String BACKGROUND_IMAGE_NAME = "sky-blue-bg.png";
-    private static final ImageIcon BACKGROUND_IMAGE =
-        new ImageIcon(ResourceUtils.class.getClassLoader().getResource(BACKGROUND_IMAGE_NAME));
-    public static final PImage LEVEL_BACKGROUND_IMAGE = new PImage(BACKGROUND_IMAGE.getImage());
+    private static final String LEVEL_BACKGROUND_IMAGE_NAME = "sky-bg.png";
+    private static final ImageIcon LEVEL_BACKGROUND_IMAGE_ICON =
+        new ImageIcon(ResourceUtils.class.getClassLoader().getResource(LEVEL_BACKGROUND_IMAGE_NAME));
+    public static final PImage LEVEL_BACKGROUND_IMAGE = new PImage(LEVEL_BACKGROUND_IMAGE_ICON.getImage());
 
     // level select menu song
     private static final String LEVEL_SELECT_MENU_SONG_NAME = "level-select-menu-song.mp3";
