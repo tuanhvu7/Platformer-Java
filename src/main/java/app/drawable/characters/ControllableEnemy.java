@@ -104,25 +104,26 @@ public class ControllableEnemy extends Enemy implements IControllableCharacter {
      */
     @Override
     public void keyEvent(KeyEvent keyEvent) {
+        String key = keyEvent.getKey() + "";
         if (keyEvent.getAction() == KeyEvent.PRESS) {
-            if (keyEvent.getKey() == 'a') {   //left
+            if ("a".equalsIgnoreCase(key)) {   //left
                 this.moveLeftPressed = true;
             }
-            if (keyEvent.getKey() == 'd') {   //right
+            if ("d".equalsIgnoreCase(key)) {   //right
                 this.moveRightPressed = true;
             }
-            if (keyEvent.getKey() == 'w') {
+            if ("w".equalsIgnoreCase(key)) {
                 this.jumpPressed = true;
             }
 
         } else if (keyEvent.getAction() == KeyEvent.RELEASE) {
-            if (keyEvent.getKey() == 'a') {       //left
+            if ("a".equalsIgnoreCase(key)) {       //left
                 this.moveLeftPressed = false;
             }
-            if (keyEvent.getKey() == 'd') {       //right
+            if ("d".equalsIgnoreCase(key)) {       //right
                 this.moveRightPressed = false;
             }
-            if (keyEvent.getKey() == 'w') {
+            if ("w".equalsIgnoreCase(key)) {
                 this.jumpPressed = false;
             }
         }

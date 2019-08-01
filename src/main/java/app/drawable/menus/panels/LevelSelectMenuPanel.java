@@ -64,7 +64,8 @@ public class LevelSelectMenuPanel extends APanel {
      */
     public void keyEvent(KeyEvent keyEvent) {
         if (keyEvent.getAction() == KeyEvent.PRESS) {
-            if (keyEvent.getKey() == 'c') {
+            String keyPressed = keyEvent.getKey() + "";
+            if ("c".equalsIgnoreCase(keyPressed)) {
                 this.loadLevelFromCheckpoint = !this.loadLevelFromCheckpoint;
                 if (this.loadLevelFromCheckpoint) {
                     this.panelColor = Constants.LEVEL_CHECKPOINT_LOAD_PANEL_COLOR;

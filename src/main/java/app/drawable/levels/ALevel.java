@@ -114,6 +114,7 @@ public abstract class ALevel implements IDrawable {
      */
     @Override
     public void draw() {
+        // for scrolling background
         this.mainSketch.translate(-this.viewBox.getPos().x, -this.viewBox.getPos().y);
 
         int levelWidthLeftToDraw = this.mainSketch.getCurrentActiveLevelWidth();
@@ -125,11 +126,13 @@ public abstract class ALevel implements IDrawable {
                     Constants.SCREEN_WIDTH,
                     levelWidthLeftToDraw);
 
+            // lazy load level background
+            final int curItrLeftX = curHorizontalItr * Constants.SCREEN_WIDTH;
             final boolean viewBoxInCurXRange =
-                (curHorizontalItr * Constants.SCREEN_WIDTH <= this.viewBox.getPos().x
-                    && curHorizontalItr * Constants.SCREEN_WIDTH + Constants.SCREEN_WIDTH >= this.viewBox.getPos().x)
-                    || (curHorizontalItr * Constants.SCREEN_WIDTH <= this.viewBox.getPos().x + Constants.SCREEN_WIDTH
-                    && curHorizontalItr * Constants.SCREEN_WIDTH + Constants.SCREEN_WIDTH >= this.viewBox.getPos().x + Constants.SCREEN_WIDTH);
+                (curItrLeftX <= this.viewBox.getPos().x
+                    && curItrLeftX + Constants.SCREEN_WIDTH >= this.viewBox.getPos().x)
+                || (curItrLeftX <= this.viewBox.getPos().x + Constants.SCREEN_WIDTH
+                    && curItrLeftX + Constants.SCREEN_WIDTH >= this.viewBox.getPos().x + Constants.SCREEN_WIDTH);
 
             if (viewBoxInCurXRange) {
                 int levelHeightLeftToDraw = this.mainSketch.getCurrentActiveLevelHeight();
@@ -174,9 +177,9 @@ public abstract class ALevel implements IDrawable {
         if (this.player != null && !this.isHandlingLevelComplete) {  // only allow pause if player is active
             // press 'p' for pause
             if (keyEvent.getAction() == KeyEvent.PRESS) {
-                char keyPressed = keyEvent.getKey();
+                String keyPressed = keyEvent.getKey() + "";
 
-                if (keyPressed == 'p') {   // pause
+                if ("p".equalsIgnoreCase(keyPressed)) {   // pause
                     this.isPaused = !this.isPaused;
 
                     if (this.isPaused) {
