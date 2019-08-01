@@ -43,7 +43,7 @@ public class ViewBox implements IDrawable {
             this.handleVerticalMovement();
         }
         // move viewbox as necessary
-        this.mainSketch.translate(-this.pos.x, -this.pos.y);
+//        this.mainSketch.translate(-this.pos.x, -this.pos.y);
     }
 
     /**
