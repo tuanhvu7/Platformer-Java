@@ -114,13 +114,6 @@ public abstract class ALevel implements IDrawable {
      */
     @Override
     public void draw() {
-//       this.mainSketch.image(
-//           ResourceUtils.LEVEL_BACKGROUND_IMAGE,
-//           0, // start x pos
-//           0,  // start y pos
-//           Constants.SCREEN_WIDTH,
-//           Constants.SCREEN_HEIGHT);
-
         this.mainSketch.translate(-this.viewBox.getPos().x, -this.viewBox.getPos().y);
 
         int levelWidthLeftToDraw = this.mainSketch.getCurrentActiveLevelWidth();
@@ -155,10 +148,10 @@ public abstract class ALevel implements IDrawable {
 
                     this.mainSketch.image(
                         ResourceUtils.LEVEL_BACKGROUND_IMAGE,
-                        (int) (i * Constants.SCREEN_WIDTH), // start x pos
-                        (int) startYPosToDraw,  // start y pos
-                        (int) curIterationWidthToDraw,
-                        (int) curIterationHeightToDraw,
+                        (i * Constants.SCREEN_WIDTH), // start x pos
+                        startYPosToDraw,  // start y pos
+                        curIterationWidthToDraw,
+                        curIterationHeightToDraw,
 
                         0,
                         0,
@@ -167,70 +160,9 @@ public abstract class ALevel implements IDrawable {
 
                     levelHeightLeftToDraw -= curIterationHeightToDraw;
                 }
-
-//                this.mainSketch.image(
-//                    ResourceUtils.LEVEL_BACKGROUND_IMAGE,
-//                    i * Constants.SCREEN_WIDTH, // start x pos
-//                    0,  // start y pos
-//                    curIterationWidthToDraw,
-//                    Constants.SCREEN_HEIGHT,
-//                    0,
-//                    0,
-//                    curIterationWidthToDraw,
-//                    Constants.SCREEN_HEIGHT);
             }
-
-//             System.out.println(this.mainSketch.frameRate);
-
             levelWidthLeftToDraw -= curIterationWidthToDraw;
         }
-
-        //////
-
-        // draw background image horizontally until level width is filled
-//        int levelWidthLeftToDraw = this.mainSketch.getCurrentActiveLevelWidth();
-//        int numberHorizontalBackgroundIterations =
-//            (int) Math.ceil((double) this.mainSketch.getCurrentActiveLevelWidth() / Constants.SCREEN_WIDTH);
-//
-//        for (int i = 0; i < numberHorizontalBackgroundIterations; i++) {
-//            int curIterationWidthToDraw =
-//                Math.min(
-//                    Constants.SCREEN_WIDTH,
-//                    levelWidthLeftToDraw);
-//
-//
-//            int levelHeightLeftToDraw = this.mainSketch.getCurrentActiveLevelHeight();
-//            int numberVerticalBackgroundIterations =
-//                (int) Math.ceil((double) this.mainSketch.getCurrentActiveLevelHeight() / Constants.SCREEN_HEIGHT);
-//
-//
-//            for (int j = 0; j < numberVerticalBackgroundIterations; j++) {
-//                int curIterationHeightToDraw =
-//                    Math.min(
-//                        Constants.SCREEN_HEIGHT,
-//                        levelHeightLeftToDraw);
-//
-//                int startYPosToDraw =
-//                    -j * Constants.SCREEN_HEIGHT
-//                        + (Constants.SCREEN_HEIGHT - curIterationHeightToDraw);
-//
-//                this.mainSketch.image(
-//                    ResourceUtils.LEVEL_BACKGROUND_IMAGE,
-//                    i * Constants.SCREEN_WIDTH, // start x pos
-//                    startYPosToDraw,  // start y pos
-//                    curIterationWidthToDraw,
-//                    curIterationHeightToDraw,
-//
-//                    0,
-//                    0,
-//                    curIterationWidthToDraw,
-//                    curIterationHeightToDraw);
-//
-//                levelHeightLeftToDraw -= curIterationHeightToDraw;
-//            }
-//
-//            levelWidthLeftToDraw -= curIterationWidthToDraw;
-//        }
 
         this.handleConditionalEnemyTriggers();
     }
