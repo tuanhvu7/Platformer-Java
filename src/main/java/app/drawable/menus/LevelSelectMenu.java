@@ -55,13 +55,7 @@ public class LevelSelectMenu extends AMenu {
      */
     @Override
     public void draw() {
-        this.mainSketch.image(
-            ResourceUtils.LEVEL_BACKGROUND_IMAGE,
-            0,
-            0,
-            ResourceUtils.LEVEL_BACKGROUND_IMAGE.width,
-            ResourceUtils.LEVEL_BACKGROUND_IMAGE.height);
+        this.mainSketch.background(ResourceUtils.LEVEL_BACKGROUND_IMAGE);
     }
 
 }
-

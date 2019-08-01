@@ -50,15 +50,8 @@ public class PauseMenu extends AMenu {
     }
 
     /**
-     * runs continuously; draws background of this
+     * runs continuously
      */
     @Override
-    public void draw() {
-        this.mainSketch.image(
-            ResourceUtils.LEVEL_BACKGROUND_IMAGE,
-            this.horizontalOffset,  // add offset to account for viewbox
-            0,
-            ResourceUtils.LEVEL_BACKGROUND_IMAGE.width,
-            ResourceUtils.LEVEL_BACKGROUND_IMAGE.height);
-    }
+    public void draw() { }
 }
