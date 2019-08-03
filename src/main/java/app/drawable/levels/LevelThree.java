@@ -76,14 +76,17 @@ public class LevelThree extends ALevel {
             );
         }
 
-        this.setupActivateBeginningBeforeCheckpoint(playerStartXPos, playerStartYPos);
-        this.setupActivateEndBeforeCheckpoint(10 * playerStartXPos);
-        final int gapWidthAfterCheckpoint = 500;
-        this.setupActivateBeginningAfterCheckpoint(15 * playerStartXPos, gapWidthAfterCheckpoint);
-        this.setupActivateEndAfterCheckpoint((15 * playerStartXPos) + gapWidthAfterCheckpoint + 2000);
+        int levelFloorXPosReference = this.setupActivateBeginningBeforeCheckpoint(playerStartXPos, playerStartYPos);
+        levelFloorXPosReference = this.setupActivateEndBeforeCheckpoint(levelFloorXPosReference + 332);
+
+        levelFloorXPosReference = this.setupActivateBeginningAfterCheckpoint(levelFloorXPosReference + 300);
+        this.setupActivateEndAfterCheckpoint(levelFloorXPosReference);
     }
 
-    private void setupActivateBeginningBeforeCheckpoint(final int playerStartXPos, final int playerStartYPos) {
+    /**
+     * @return x-pos of left-most drawable in section
+     */
+    private int setupActivateBeginningBeforeCheckpoint(final int beginningGoalXPos, final int beginningGoalYPos) {
         // extend left wall to bottom of level
         this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
@@ -97,8 +100,8 @@ public class LevelThree extends ALevel {
 
         this.levelDrawableCollection.addDrawable(new LevelGoal(
             this.mainSketch,
-            playerStartXPos,
-            playerStartYPos + 2 * Constants.PLAYER_DIAMETER,
+            beginningGoalXPos,
+            beginningGoalYPos + 2 * Constants.PLAYER_DIAMETER,
             Constants.CHECKPOINT_WIDTH,
             Constants.SCREEN_HEIGHT,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -107,16 +110,16 @@ public class LevelThree extends ALevel {
 
         this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
-            2 * playerStartXPos,
-            playerStartYPos,
-            this.mainSketch.getCurrentActiveLevelHeight() - (playerStartYPos / 2),
+            2 * beginningGoalXPos,
+            beginningGoalYPos,
+            this.mainSketch.getCurrentActiveLevelHeight() - (beginningGoalYPos / 2),
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true
         ));
 
         this.levelDrawableCollection.addDrawable(new FlyingEnemy(
             this.mainSketch,
-            2 * playerStartXPos,
+            2 * beginningGoalXPos,
             Constants.SMALL_ENEMY_DIAMETER,
             Constants.SMALL_ENEMY_DIAMETER,
             0,
@@ -130,7 +133,7 @@ public class LevelThree extends ALevel {
 
         this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
-            4 * playerStartXPos,
+            4 * beginningGoalXPos,
             this.mainSketch.getCurrentActiveLevelHeight() / 2,
             Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -150,7 +153,7 @@ public class LevelThree extends ALevel {
         this.levelDrawableCollection.addDrawable((healthItemForBlock));
         this.levelDrawableCollection.addDrawable(new ItemBlock(
             this.mainSketch,
-            4 * playerStartXPos + Constants.PLAYER_DIAMETER,
+            4 * beginningGoalXPos + Constants.PLAYER_DIAMETER,
             (this.mainSketch.getCurrentActiveLevelHeight() / 2) - (2 * Constants.DEFAULT_BLOCK_SIZE),
             Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BLOCK_SIZE,
@@ -164,17 +167,17 @@ public class LevelThree extends ALevel {
         // double flying enemy groups
         this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
-            6 * playerStartXPos,
-            playerStartYPos,
-            this.mainSketch.getCurrentActiveLevelHeight() - (playerStartYPos / 2),
+            6 * beginningGoalXPos,
+            beginningGoalYPos,
+            this.mainSketch.getCurrentActiveLevelHeight() - (beginningGoalYPos / 2),
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true
         ));
         this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
-            6 * playerStartXPos,
+            6 * beginningGoalXPos,
             this.mainSketch.getCurrentActiveLevelHeight(),
-            2 * playerStartXPos,
+            2 * beginningGoalXPos,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
             true
@@ -182,7 +185,7 @@ public class LevelThree extends ALevel {
         for (int i = 0; i < 10; i++) {
             this.levelDrawableCollection.addDrawable(new FlyingEnemy(
                 this.mainSketch,
-                7 * playerStartXPos,
+                7 * beginningGoalXPos,
                 (Constants.SMALL_ENEMY_DIAMETER / 2) + (Constants.SMALL_ENEMY_DIAMETER * i),
                 Constants.SMALL_ENEMY_DIAMETER,
                 0,
@@ -197,7 +200,7 @@ public class LevelThree extends ALevel {
         for (int i = 0; i < 10; i++) {
             this.levelDrawableCollection.addDrawable(new FlyingEnemy(
                 this.mainSketch,
-                7 * playerStartXPos,
+                7 * beginningGoalXPos,
                 (this.mainSketch.getCurrentActiveLevelHeight() - (Constants.SMALL_ENEMY_DIAMETER / 2)) - (Constants.SMALL_ENEMY_DIAMETER * i),
                 Constants.SMALL_ENEMY_DIAMETER,
                 0,
@@ -209,22 +212,29 @@ public class LevelThree extends ALevel {
                 true
             ));
         }
+
+        final int leftMostDrawableXPos = 8 * beginningGoalXPos;
         this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
-            8 * playerStartXPos,
-            playerStartYPos,
-            this.mainSketch.getCurrentActiveLevelHeight() - (playerStartYPos / 2),
+            leftMostDrawableXPos,
+            beginningGoalYPos,
+            this.mainSketch.getCurrentActiveLevelHeight() - (beginningGoalYPos / 2),
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true
         ));
 
+        return leftMostDrawableXPos;
+
     }
 
-    private void setupActivateEndBeforeCheckpoint(final int playerStartXPos) {
+    /**
+     * @return x-pos of left-most drawable in section
+     */
+    private int setupActivateEndBeforeCheckpoint(final int startXPos) {
         // small middle gap with enemies
         this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
-            playerStartXPos,
+            startXPos,
             0,
             this.mainSketch.getCurrentActiveLevelHeight() / 2 - Constants.PLAYER_DIAMETER,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -232,7 +242,7 @@ public class LevelThree extends ALevel {
         ));
         this.levelDrawableCollection.addDrawable(new VerticalBoundary(
             this.mainSketch,
-            playerStartXPos,
+            startXPos,
             this.mainSketch.getCurrentActiveLevelHeight() / 2 + Constants.PLAYER_DIAMETER,
             this.mainSketch.getCurrentActiveLevelHeight()
                 - (this.mainSketch.getCurrentActiveLevelHeight() / 2 + Constants.PLAYER_DIAMETER),
@@ -241,7 +251,7 @@ public class LevelThree extends ALevel {
         ));
         this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
-            playerStartXPos,
+            startXPos,
             this.mainSketch.getCurrentActiveLevelHeight() / 3,
             5 * Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -251,7 +261,7 @@ public class LevelThree extends ALevel {
         for (int i = 0; i < 4; i++) {
             this.levelDrawableCollection.addDrawable(new FlyingEnemy(
                 this.mainSketch,
-                playerStartXPos + (3 * Constants.SMALL_ENEMY_DIAMETER / 2),
+                startXPos + (3 * Constants.SMALL_ENEMY_DIAMETER / 2),
                 this.mainSketch.getCurrentActiveLevelHeight() / 2 + i * Constants.PLAYER_DIAMETER,
                 Constants.SMALL_ENEMY_DIAMETER,
                 0,
@@ -264,7 +274,7 @@ public class LevelThree extends ALevel {
             ));
         }
 
-        final int mediumEnemyWallXPos = (playerStartXPos * 3) / 2;
+        final int mediumEnemyWallXPos = (startXPos * 3) / 2;
         // medium enemy wall
         for (int i = 0; i < 3; i++) {
             this.levelDrawableCollection.addDrawable(new FlyingEnemy(
@@ -281,11 +291,13 @@ public class LevelThree extends ALevel {
                 true
             ));
         }
+
+        final int sectionFloorXOffset = this.checkpointXPos - (mediumEnemyWallXPos);
         this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
             mediumEnemyWallXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
-            this.checkpointXPos - (mediumEnemyWallXPos),
+            sectionFloorXOffset,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
             true,
@@ -293,16 +305,21 @@ public class LevelThree extends ALevel {
             true,
             true
         ));
+
+        return mediumEnemyWallXPos + sectionFloorXOffset;
     }
 
-    private void setupActivateBeginningAfterCheckpoint(final int playerStartXPos, final int gapWidth) {
-        final int floorStartXPosAfterGap = playerStartXPos + gapWidth;
+    /**
+     * @return sum of given startXPos and section floor x offset
+     */
+    private int setupActivateBeginningAfterCheckpoint(final int startXPos) {
+        final int sectionFloorXOffset = 2000;
         // section floor
         this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
-            floorStartXPosAfterGap,
+            startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
-            2000,
+            sectionFloorXOffset,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             true,
             true
@@ -311,7 +328,7 @@ public class LevelThree extends ALevel {
         // fast up flying enemy and trigger
         Enemy enemyToAddForTrigger = new FlyingEnemy(
             this.mainSketch,
-            playerStartXPos + 350,
+            startXPos - 150,
             Constants.SCREEN_HEIGHT,
             Constants.MEDIUM_ENEMY_DIAMETER,
             0,
@@ -327,7 +344,7 @@ public class LevelThree extends ALevel {
         this.levelDrawableCollection.addDrawable(enemyToAddForTrigger);
         this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            playerStartXPos + 250,
+            startXPos - 250,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -337,7 +354,7 @@ public class LevelThree extends ALevel {
 
         this.levelDrawableCollection.addDrawable(new EventBlock(    // launch event
             this.mainSketch,
-            floorStartXPosAfterGap,
+            startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
             Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -348,7 +365,7 @@ public class LevelThree extends ALevel {
         ));
         this.levelDrawableCollection.addDrawable(new EventBlock(    // launch event
             this.mainSketch,
-            floorStartXPosAfterGap + Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            startXPos + Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
             Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             Constants.DEFAULT_EVENT_BLOCK_HEIGHT,
@@ -363,7 +380,7 @@ public class LevelThree extends ALevel {
         for (int i = 0; i < 5; i++) {
             enemyToAddForTrigger = new FlyingEnemy(
                 this.mainSketch,
-                floorStartXPosAfterGap + 8 * Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+                startXPos + 8 * Constants.DEFAULT_EVENT_BLOCK_WIDTH,
                 Constants.LEVEL_FLOOR_Y_POSITION - (Constants.SMALL_ENEMY_DIAMETER / 2) - (Constants.SMALL_ENEMY_DIAMETER * i),
                 Constants.SMALL_ENEMY_DIAMETER,
                 -Constants.ENEMY_FAST_MOVEMENT_SPEED,
@@ -379,7 +396,7 @@ public class LevelThree extends ALevel {
         }
         this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            floorStartXPosAfterGap + 4 * Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            startXPos + 4 * Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -393,7 +410,7 @@ public class LevelThree extends ALevel {
         while (currFlyingEnemyYPos > Constants.SMALL_ENEMY_DIAMETER / 2) {
             enemyToAddForTrigger = new FlyingEnemy(
                 this.mainSketch,
-                floorStartXPosAfterGap + 11 * Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+                startXPos + 11 * Constants.DEFAULT_EVENT_BLOCK_WIDTH,
                 currFlyingEnemyYPos,
                 Constants.SMALL_ENEMY_DIAMETER,
                 -Constants.ENEMY_FAST_MOVEMENT_SPEED,
@@ -410,7 +427,7 @@ public class LevelThree extends ALevel {
         }
         this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            floorStartXPosAfterGap + 6 * Constants.DEFAULT_EVENT_BLOCK_WIDTH,
+            startXPos + 6 * Constants.DEFAULT_EVENT_BLOCK_WIDTH,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -418,13 +435,14 @@ public class LevelThree extends ALevel {
             enemiesToAddForTrigger
         ));
 
+        return startXPos + sectionFloorXOffset;
     }
 
-    private void setupActivateEndAfterCheckpoint(final int playerStartXPos) {
+    private void setupActivateEndAfterCheckpoint(final int startXPos) {
         // section floor
         this.levelDrawableCollection.addDrawable(new HorizontalBoundary(
             this.mainSketch,
-            playerStartXPos,
+            startXPos,
             Constants.LEVEL_FLOOR_Y_POSITION,
             3500,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -435,7 +453,7 @@ public class LevelThree extends ALevel {
         // big falling enemy with trigger; and block
         Enemy enemyToAddForTrigger = new Enemy(
             this.mainSketch,
-            playerStartXPos + 250,
+            startXPos + 250,
             -Constants.BIG_ENEMY_DIAMETER / 2 + 1,
             Constants.BIG_ENEMY_DIAMETER,
             0,
@@ -446,7 +464,7 @@ public class LevelThree extends ALevel {
         this.levelDrawableCollection.addDrawable(enemyToAddForTrigger);
         this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            playerStartXPos + 250,
+            startXPos + 250,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -455,7 +473,7 @@ public class LevelThree extends ALevel {
         ));
         this.levelDrawableCollection.addDrawable(new Block(
             this.mainSketch,
-            playerStartXPos + 250,
+            startXPos + 250,
             Constants.SCREEN_HEIGHT / 2,
             Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BLOCK_SIZE,
@@ -468,7 +486,7 @@ public class LevelThree extends ALevel {
         this.levelDrawableCollection.addDrawable(new HealthItem(
             this.mainSketch,
             1,
-            playerStartXPos + 1000,
+            startXPos + 1000,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.HEALTH_ITEM_SIZE,
             Constants.HEALTH_ITEM_SIZE,
             Constants.HEALTH_ITEM_SIZE,
@@ -481,7 +499,7 @@ public class LevelThree extends ALevel {
         for (int i = 0; i < 8; i++) {
             enemyToAddForTrigger = new FlyingEnemy(
                 this.mainSketch,
-                playerStartXPos + 1500 + (250 * i),
+                startXPos + 1500 + (250 * i),
                 Constants.LEVEL_FLOOR_Y_POSITION - (2 * Constants.SMALL_ENEMY_DIAMETER),
                 Constants.SMALL_ENEMY_DIAMETER,
                 -Constants.ENEMY_FAST_MOVEMENT_SPEED,
@@ -499,7 +517,7 @@ public class LevelThree extends ALevel {
         }
         this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            playerStartXPos + 1000,
+            startXPos + 1000,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
@@ -510,7 +528,7 @@ public class LevelThree extends ALevel {
         // invincible enemy near end
         this.levelDrawableCollection.addDrawable(new Enemy(
             this.mainSketch,
-            playerStartXPos + 2000,
+            startXPos + 2000,
             Constants.LEVEL_FLOOR_Y_POSITION - Constants.BIG_ENEMY_DIAMETER,
             Constants.BIG_ENEMY_DIAMETER,
             0,
@@ -535,7 +553,7 @@ public class LevelThree extends ALevel {
         this.levelDrawableCollection.addDrawable(enemyToAddForTrigger);
         this.levelDrawableCollection.addDrawable(new EnemyTriggerVerticalBoundary(
             this.mainSketch,
-            playerStartXPos + 1500,
+            startXPos + 1500,
             0,
             Constants.LEVEL_FLOOR_Y_POSITION,
             Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
