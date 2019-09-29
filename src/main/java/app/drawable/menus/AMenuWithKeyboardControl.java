@@ -12,14 +12,6 @@ public abstract class AMenuWithKeyboardControl extends AMenu {
     }
 
     /**
-     * set properties of this;
-     * sets this to have given offset
-     */
-    AMenuWithKeyboardControl(Platformer mainSketch, int horizontalOffset, boolean isActive) {
-        super(mainSketch, horizontalOffset, isActive);
-    }
-
-    /**
      * deactivate this
      */
     @Override
