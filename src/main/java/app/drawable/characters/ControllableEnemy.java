@@ -2,7 +2,7 @@ package app.drawable.characters;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.constants.PlayerControlConstants;
+import app.utils.PlayerControlSettings;
 import processing.event.KeyEvent;
 
 /**
@@ -107,24 +107,24 @@ public class ControllableEnemy extends Enemy implements IControllableCharacter {
     public void keyEvent(KeyEvent keyEvent) {
         int keyCode = Character.toLowerCase(keyEvent.getKeyCode());
         if (keyEvent.getAction() == KeyEvent.PRESS) {
-            if (PlayerControlConstants.getPlayerLeft() == keyCode) {   //left
+            if (PlayerControlSettings.getPlayerLeft() == keyCode) {   //left
                 this.moveLeftPressed = true;
             }
-            if (PlayerControlConstants.getPlayerRight() == keyCode) {   //right
+            if (PlayerControlSettings.getPlayerRight() == keyCode) {   //right
                 this.moveRightPressed = true;
             }
-            if (PlayerControlConstants.getPlayerUp() == keyCode) {
+            if (PlayerControlSettings.getPlayerUp() == keyCode) {
                 this.jumpPressed = true;
             }
 
         } else if (keyEvent.getAction() == KeyEvent.RELEASE) {
-            if (PlayerControlConstants.getPlayerLeft() == (keyCode)) {  //left
+            if (PlayerControlSettings.getPlayerLeft() == (keyCode)) {  //left
                 this.moveLeftPressed = false;
             }
-            if (PlayerControlConstants.getPlayerRight() == (keyCode)) { //right
+            if (PlayerControlSettings.getPlayerRight() == (keyCode)) { //right
                 this.moveRightPressed = false;
             }
-            if (PlayerControlConstants.getPlayerUp() == (keyCode)) {
+            if (PlayerControlSettings.getPlayerUp() == (keyCode)) {
                 this.jumpPressed = false;
             }
         }
