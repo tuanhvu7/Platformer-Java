@@ -13,7 +13,7 @@ public class Constants {
     public static final int TEXT_SIZE = 24;
     public static final int PANEL_SIZE = 200;
     public static final int DEFAULT_PANEL_COLOR = new Color(0x00FF00).getRGB();
-    public static final int LEVEL_CHECKPOINT_LOAD_PANEL_COLOR = new Color(0XFFDAB9).getRGB();
+    public static final int ALTERNATE_PANEL_COLOR = new Color(0XFFDAB9).getRGB();
 
     // widths of all levels
     public static final int[] LEVELS_WIDTH_ARRAY = {

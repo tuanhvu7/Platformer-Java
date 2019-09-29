@@ -2,9 +2,11 @@ package app.drawable.characters;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.constants.PlayerControlConstants;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.enums.ESongType;
+import app.utils.DataTypeUtils;
 import app.utils.ResourceUtils;
 import processing.core.PVector;
 import processing.event.KeyEvent;
@@ -109,29 +111,30 @@ public class Player extends ACharacter implements IControllableCharacter {
      */
     @Override
     public void keyEvent(KeyEvent keyEvent) {
-        String key = keyEvent.getKey() + "";
+        int keyCode = DataTypeUtils.getLowercaseNumericValue(keyEvent.getKey());
         if (keyEvent.getAction() == KeyEvent.PRESS) {
-            if ("a".equalsIgnoreCase(key)) {   //left
+            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerLeft()) == keyCode) {   //left
                 this.moveLeftPressed = true;
             }
-            if ("d".equalsIgnoreCase(key)) {   //right
+            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerRight()) == keyCode) {   //right
                 this.moveRightPressed = true;
             }
-            if ("w".equalsIgnoreCase(key)) {
+            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerUp()) == keyCode) {
                 this.jumpPressed = true;
             }
-            if ("s".equalsIgnoreCase(key) && this.eventBlockTopBoundaryContacts.size() == 1 && !isDescendingDownEventBlock) {
+            if ((DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerDown()) == keyCode)
+                    && this.eventBlockTopBoundaryContacts.size() == 1 && !isDescendingDownEventBlock) {
                 this.isDescendingDownEventBlock = true;
             }
 
         } else if (keyEvent.getAction() == KeyEvent.RELEASE) {
-            if ("a".equalsIgnoreCase(key)) {       //left
+            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerLeft()) == (keyCode)) {       //left
                 this.moveLeftPressed = false;
             }
-            if ("d".equalsIgnoreCase(key)) {       //right
+            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerRight()) == (keyCode)) {       //right
                 this.moveRightPressed = false;
             }
-            if ("w".equalsIgnoreCase(key)) {
+            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerUp()) == (keyCode)) {
                 this.jumpPressed = false;
             }
         }
@@ -288,6 +291,9 @@ public class Player extends ACharacter implements IControllableCharacter {
      */
     void handleJumpKillEnemyPhysics() {
         this.vel.y = Constants.PLAYER_JUMP_KILL_ENEMY_HOP_VERTICAL_VELOCITY;
+        //  prevent fall through floor after killing enemy while touching floor
+        this.shouldSetPreviousFloorBoundaryContact = false;
+        this.previousFloorBoundaryContact = null;
     }
 
     /**
