@@ -3,9 +3,7 @@ package app.drawable.menus.panels;
 import app.Platformer;
 import app.constants.Constants;
 import app.factories.LevelFactory;
-import app.utils.ControlUtils;
 import app.utils.ResourceUtils;
-import processing.event.KeyEvent;
 
 /**
  * panel in level select menu
@@ -34,7 +32,6 @@ public class LevelSelectMenuPanel extends APanel {
     void makeActive() {
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
         this.mainSketch.registerMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
-        this.mainSketch.registerMethod("keyEvent", this); // connect this keyEvent() from main keyEvent()
     }
 
     /**
@@ -44,7 +41,6 @@ public class LevelSelectMenuPanel extends APanel {
     public void makeNotActive() {
         this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
         this.mainSketch.unregisterMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
-        this.mainSketch.unregisterMethod("keyEvent", this); // connect this keyEvent() from main keyEvent()
     }
 
     /**
@@ -61,22 +57,14 @@ public class LevelSelectMenuPanel extends APanel {
     }
 
     /**
-     * handle panel keypress controls
+     * toggle loadLevelFromCheckpoint
      */
-    public void keyEvent(KeyEvent keyEvent) {
-        if (keyEvent.getAction() == KeyEvent.PRESS) {
-            String keyPressed = keyEvent.getKey() + "";
-            if (ControlUtils.EReservedControlKeys.c.toString().equalsIgnoreCase(keyPressed)) {  // toggle checkpoint start
-                this.loadLevelFromCheckpoint = !this.loadLevelFromCheckpoint;
-                if (this.loadLevelFromCheckpoint) {
-                    this.panelColor = Constants.ALTERNATE_PANEL_COLOR;
-                } else {
-                    this.panelColor = Constants.DEFAULT_PANEL_COLOR;
-                }
-            } else if (ControlUtils.EReservedControlKeys.u.toString().equalsIgnoreCase(keyPressed)) {   // open user control menu
-                this.mainSketch.getLevelSelectMenu().deactivateMenu();
-                this.mainSketch.getChangePlayerControlMenu().setupActivateMenu();
-            }
+    public void toggleLoadLevelFromCheckpoint() {
+        this.loadLevelFromCheckpoint = !this.loadLevelFromCheckpoint;
+        if (this.loadLevelFromCheckpoint) {
+            this.panelColor = Constants.ALTERNATE_PANEL_COLOR;
+        } else {
+            this.panelColor = Constants.DEFAULT_PANEL_COLOR;
         }
     }
 }

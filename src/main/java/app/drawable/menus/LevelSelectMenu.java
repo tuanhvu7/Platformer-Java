@@ -2,14 +2,17 @@ package app.drawable.menus;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.drawable.menus.panels.APanel;
 import app.drawable.menus.panels.LevelSelectMenuPanel;
 import app.enums.ESongType;
+import app.utils.ControlUtils;
 import app.utils.ResourceUtils;
+import processing.event.KeyEvent;
 
 /**
  * menu to select level to play;
  */
-public class LevelSelectMenu extends AMenu {
+public class LevelSelectMenu extends AMenuWithKeyboardControl {
 
     /**
      * set properties of this
@@ -25,6 +28,7 @@ public class LevelSelectMenu extends AMenu {
     public void setupActivateMenu() {
         // make this active
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod("keyEvent", this); // connect this keyEvent() from main keyEvent()
 
         int leftXPanelPosition = 100;
         int topYPanelPosition = 100;
@@ -56,6 +60,24 @@ public class LevelSelectMenu extends AMenu {
     @Override
     public void draw() {
         this.mainSketch.background(ResourceUtils.DEFAULT_MENU_IMAGE);
+    }
+
+
+    /**
+     * handle keypress
+     */
+    public void keyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getAction() == KeyEvent.PRESS) {
+            String keyPressed = keyEvent.getKey() + "";
+            if (ControlUtils.EReservedControlKeys.c.toString().equalsIgnoreCase(keyPressed)) {  // toggle checkpoint start
+                for (APanel curPanel : this.panelsList) {
+                    ((LevelSelectMenuPanel) curPanel).toggleLoadLevelFromCheckpoint();
+                }
+            } else if (ControlUtils.EReservedControlKeys.u.toString().equalsIgnoreCase(keyPressed)) {   // switch to user control menu
+                this.mainSketch.getLevelSelectMenu().deactivateMenu();
+                this.mainSketch.getChangePlayerControlMenu().setupActivateMenu();
+            }
+        }
     }
 
 }
