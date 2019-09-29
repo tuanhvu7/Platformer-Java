@@ -5,7 +5,7 @@ import app.constants.Constants;
 import app.drawable.menus.panels.APanel;
 import app.drawable.menus.panels.LevelSelectMenuPanel;
 import app.enums.ESongType;
-import app.utils.ControlUtils;
+import app.utils.ReservedControlUtils;
 import app.utils.ResourceUtils;
 import processing.event.KeyEvent;
 
@@ -69,11 +69,11 @@ public class LevelSelectMenu extends AMenuWithKeyboardControl {
     public void keyEvent(KeyEvent keyEvent) {
         if (keyEvent.getAction() == KeyEvent.PRESS) {
             String keyPressed = keyEvent.getKey() + "";
-            if (ControlUtils.EReservedControlKeys.c.toString().equalsIgnoreCase(keyPressed)) {  // toggle checkpoint start
+            if (ReservedControlUtils.EReservedControlKeys.c.toString().equalsIgnoreCase(keyPressed)) {  // toggle checkpoint start
                 for (APanel curPanel : this.panelsList) {
                     ((LevelSelectMenuPanel) curPanel).toggleLoadLevelFromCheckpoint();
                 }
-            } else if (ControlUtils.EReservedControlKeys.u.toString().equalsIgnoreCase(keyPressed)) {   // switch to user control menu
+            } else if (ReservedControlUtils.EReservedControlKeys.u.toString().equalsIgnoreCase(keyPressed)) {   // switch to user control menu
                 this.mainSketch.getLevelSelectMenu().deactivateMenu();
                 this.mainSketch.getChangePlayerControlMenu().setupActivateMenu();
             }

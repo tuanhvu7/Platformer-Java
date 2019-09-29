@@ -9,7 +9,7 @@ import app.drawable.collectables.LevelGoal;
 import app.drawable.menus.PauseMenu;
 import app.drawable.viewbox.ViewBox;
 import app.enums.ESongType;
-import app.utils.ControlUtils;
+import app.utils.ReservedControlUtils;
 import app.utils.ResourceUtils;
 import processing.event.KeyEvent;
 
@@ -180,7 +180,7 @@ public abstract class ALevel implements IDrawable {
             if (keyEvent.getAction() == KeyEvent.PRESS) {
                 String keyPressed = keyEvent.getKey() + "";
 
-                if (ControlUtils.EReservedControlKeys.p.toString().equalsIgnoreCase(keyPressed)) {   // pause
+                if (ReservedControlUtils.EReservedControlKeys.p.toString().equalsIgnoreCase(keyPressed)) {   // pause
                     this.isPaused = !this.isPaused;
 
                     if (this.isPaused) {

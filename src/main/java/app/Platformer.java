@@ -4,7 +4,7 @@ import app.constants.Constants;
 import app.drawable.characters.Player;
 import app.drawable.levels.ALevel;
 import app.drawable.levels.LevelDrawableCollection;
-import app.drawable.menus.ChangePlayerControlMenu;
+import app.drawable.menus.ConfigurePlayerControlMenu;
 import app.drawable.menus.LevelSelectMenu;
 import app.drawable.viewbox.ViewBox;
 import app.enums.ESongType;
@@ -28,7 +28,7 @@ public class Platformer extends PApplet {
     private LevelSelectMenu levelSelectMenu;
 
     // set control menu
-    private ChangePlayerControlMenu changePlayerControlMenu;
+    private ConfigurePlayerControlMenu configurePlayerControlMenu;
 
     // stores current active level
     private WeakReference<ALevel> currentActiveLevel;
@@ -46,7 +46,7 @@ public class Platformer extends PApplet {
         new JFXPanel(); // initialize JavaFx toolkit
         size(Constants.SCREEN_WIDTH, Constants.SCREEN_HEIGHT);
         this.levelSelectMenu = new LevelSelectMenu(this, true);
-        this.changePlayerControlMenu = new ChangePlayerControlMenu(this.mainSketch, false);
+        this.configurePlayerControlMenu = new ConfigurePlayerControlMenu(this.mainSketch, false);
     }
 
     /**
@@ -120,8 +120,8 @@ public class Platformer extends PApplet {
         return this.levelSelectMenu;
     }
 
-    public ChangePlayerControlMenu getChangePlayerControlMenu() {
-        return this.changePlayerControlMenu;
+    public ConfigurePlayerControlMenu getChangePlayerControlMenu() {
+        return this.configurePlayerControlMenu;
     }
 
     public ALevel getCurrentActiveLevel() {

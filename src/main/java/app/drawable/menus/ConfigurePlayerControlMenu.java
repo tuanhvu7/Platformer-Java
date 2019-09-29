@@ -2,22 +2,23 @@ package app.drawable.menus;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.drawable.menus.panels.ChangePlayerControlPanel;
+import app.drawable.menus.panels.APanel;
+import app.drawable.menus.panels.ConfigurePlayerControlPanel;
 import app.enums.EConfigurablePlayerControls;
 import app.enums.ESongType;
-import app.utils.ControlUtils;
+import app.utils.ReservedControlUtils;
 import app.utils.ResourceUtils;
 import processing.event.KeyEvent;
 
 /**
  * Menu to change player controls
  */
-public class ChangePlayerControlMenu extends AMenuWithKeyboardControl {
+public class ConfigurePlayerControlMenu extends AMenuWithKeyboardControl {
 
     /**
      * set properties of this
      */
-    public ChangePlayerControlMenu(Platformer mainSketch, boolean isActive) {
+    public ConfigurePlayerControlMenu(Platformer mainSketch, boolean isActive) {
         super(mainSketch, isActive);
     }
 
@@ -37,7 +38,7 @@ public class ChangePlayerControlMenu extends AMenuWithKeyboardControl {
                 topYPanelPosition += (100 + Constants.PANEL_SIZE);
             }
 
-            this.panelsList.add(new ChangePlayerControlPanel(
+            this.panelsList.add(new ConfigurePlayerControlPanel(
                 this.mainSketch,
                 curConfigurablePlayerControls,
                 leftXPanelPosition,
@@ -66,10 +67,19 @@ public class ChangePlayerControlMenu extends AMenuWithKeyboardControl {
     public void keyEvent(KeyEvent keyEvent) {
         if (keyEvent.getAction() == KeyEvent.PRESS) {
             String keyPressed = keyEvent.getKey() + "";
-            if (ControlUtils.EReservedControlKeys.u.toString().equalsIgnoreCase(keyPressed)) {   // switch to level select
+            if (ReservedControlUtils.EReservedControlKeys.u.toString().equalsIgnoreCase(keyPressed)) {   // switch to level select
                 this.deactivateMenu();
                 this.mainSketch.getLevelSelectMenu().setupActivateMenu();
             }
+        }
+    }
+
+    /**
+     * reset all of this' panel colors and unregister from all of this' panel keyEvent
+     */
+    public void resetPanelsColorAndUnregisterKeyEvent() {
+        for (APanel curPanel : this.panelsList) {
+            ((ConfigurePlayerControlPanel) curPanel).resetColorAndUnregisterKeyEvent();
         }
     }
 }

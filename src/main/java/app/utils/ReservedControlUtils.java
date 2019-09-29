@@ -1,13 +1,13 @@
 package app.utils;
 
 /**
- * Game control utils
+ * For handling reserved key controls
  */
-public class ControlUtils {
+public class ReservedControlUtils {
     /**
      * to make class 'static'
      */
-    private ControlUtils() {
+    private ReservedControlUtils() {
     }
 
     /**
@@ -27,8 +27,8 @@ public class ControlUtils {
      * reserved control keys
      */
     public enum EReservedControlKeys {
-        c,  // toggle checkpoint
-        u,  // user controls set
-        p   // game pause
+        c,  // used for toggle checkpoint
+        u,  // used for configure player controls
+        p   // used for game pause
     }
 }
