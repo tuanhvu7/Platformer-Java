@@ -8,6 +8,9 @@ import processing.core.PImage;
 import javax.swing.*;
 import java.net.URISyntaxException;
 
+/**
+ * Handle game assets
+ */
 public class ResourceUtils {
 
     /**
@@ -15,9 +18,9 @@ public class ResourceUtils {
      */
     public static void loopSong(ESongType songType) {
         switch (songType) {
-            case LEVEL_SELECT_MENU:
-                LEVEL_SELECT_MENU_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
-                LEVEL_SELECT_MENU_SONG_PLAYER.play();
+            case OUT_OF_LEVEL_MENU:
+                OUT_OF_LEVEL_MENU_SONG_PLAYER.setCycleCount(Integer.MAX_VALUE);
+                OUT_OF_LEVEL_MENU_SONG_PLAYER.play();
                 break;
 
             case LEVEL:
@@ -109,7 +112,7 @@ public class ResourceUtils {
      * stop song
      */
     public static void stopSong() {
-        LEVEL_SELECT_MENU_SONG_PLAYER.stop();
+        OUT_OF_LEVEL_MENU_SONG_PLAYER.stop();
         LEVEL_SONG_PLAYER.stop();
         PLAYER_DEATH_SONG_PLAYER.stop();
         LEVEL_COMPLETION_SONG_PLAYER.stop();
@@ -118,17 +121,22 @@ public class ResourceUtils {
     }
 
     /*** assets ***/
+    private static final String DEFAULT_MENU_IMAGE_NAME = "sky-blue-bg.png";
+    private static final ImageIcon DEFAULT_MENU_IMAGE_ICON =
+        new ImageIcon(ResourceUtils.class.getClassLoader().getResource(DEFAULT_MENU_IMAGE_NAME));
+    public static final PImage DEFAULT_MENU_IMAGE = new PImage(DEFAULT_MENU_IMAGE_ICON.getImage());
+
     private static final String LEVEL_BACKGROUND_IMAGE_NAME = "sky-bg.png";
     private static final ImageIcon LEVEL_BACKGROUND_IMAGE_ICON =
         new ImageIcon(ResourceUtils.class.getClassLoader().getResource(LEVEL_BACKGROUND_IMAGE_NAME));
     public static final PImage LEVEL_BACKGROUND_IMAGE = new PImage(LEVEL_BACKGROUND_IMAGE_ICON.getImage());
 
-    // level select menu song
-    private static final String LEVEL_SELECT_MENU_SONG_NAME = "level-select-menu-song.mp3";
-    private static final Media LEVEL_SELECT_MENU_SONG = new Media(
-        getResourcePathUri(LEVEL_SELECT_MENU_SONG_NAME));
-    private static final MediaPlayer LEVEL_SELECT_MENU_SONG_PLAYER =
-        new MediaPlayer(LEVEL_SELECT_MENU_SONG);
+    // out-of-level menu song
+    private static final String OUT_OF_LEVEL_MENU_SONG_NAME = "level-select-menu-song.mp3";
+    private static final Media OUT_OF_LEVEL_MENU_SONG = new Media(
+        getResourcePathUri(OUT_OF_LEVEL_MENU_SONG_NAME));
+    private static final MediaPlayer OUT_OF_LEVEL_MENU_SONG_PLAYER =
+        new MediaPlayer(OUT_OF_LEVEL_MENU_SONG);
 
     // level song
     private static final String LEVEL_SONG_NAME = "level-song.mp3";

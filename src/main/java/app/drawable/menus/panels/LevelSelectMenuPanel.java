@@ -3,6 +3,7 @@ package app.drawable.menus.panels;
 import app.Platformer;
 import app.constants.Constants;
 import app.factories.LevelFactory;
+import app.utils.ControlUtils;
 import app.utils.ResourceUtils;
 import processing.event.KeyEvent;
 
@@ -65,13 +66,16 @@ public class LevelSelectMenuPanel extends APanel {
     public void keyEvent(KeyEvent keyEvent) {
         if (keyEvent.getAction() == KeyEvent.PRESS) {
             String keyPressed = keyEvent.getKey() + "";
-            if ("c".equalsIgnoreCase(keyPressed)) {
+            if (ControlUtils.EReservedControlKeys.c.toString().equalsIgnoreCase(keyPressed)) {  // toggle checkpoint start
                 this.loadLevelFromCheckpoint = !this.loadLevelFromCheckpoint;
                 if (this.loadLevelFromCheckpoint) {
-                    this.panelColor = Constants.LEVEL_CHECKPOINT_LOAD_PANEL_COLOR;
+                    this.panelColor = Constants.ALTERNATE_PANEL_COLOR;
                 } else {
                     this.panelColor = Constants.DEFAULT_PANEL_COLOR;
                 }
+            } else if (ControlUtils.EReservedControlKeys.u.toString().equalsIgnoreCase(keyPressed)) {   // open user control menu
+                this.mainSketch.getLevelSelectMenu().deactivateMenu();
+                this.mainSketch.getChangePlayerControlMenu().setupActivateMenu();
             }
         }
     }

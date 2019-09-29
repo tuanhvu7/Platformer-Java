@@ -4,7 +4,7 @@ package app.enums;
  * song types
  */
 public enum ESongType {
-    LEVEL_SELECT_MENU,
+    OUT_OF_LEVEL_MENU,
     LEVEL,
     PLAYER_DAMAGE,
     PLAYER_DEATH,
