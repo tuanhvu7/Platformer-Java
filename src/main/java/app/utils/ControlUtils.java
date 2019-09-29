@@ -4,14 +4,17 @@ package app.utils;
  * Game control utils
  */
 public class ControlUtils {
+    /**
+     * to make class 'static'
+     */
     private ControlUtils() {
     }
 
     /**
-     * @return true if given key is reserved
+     * @return true if given keycode is reserved
      */
-    public static boolean isKeyReserved(char keyToTest) {
-        String keyStr = keyToTest + "";
+    public static boolean isKeyCodeReserved(int keyToTest) {
+        String keyStr = (char) keyToTest + "";
         try {
             EReservedControlKeys.valueOf(keyStr.toLowerCase());
             return true;

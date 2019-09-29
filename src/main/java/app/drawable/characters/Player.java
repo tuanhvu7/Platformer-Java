@@ -6,7 +6,6 @@ import app.constants.PlayerControlConstants;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.enums.ESongType;
-import app.utils.DataTypeUtils;
 import app.utils.ResourceUtils;
 import processing.core.PVector;
 import processing.event.KeyEvent;
@@ -111,30 +110,30 @@ public class Player extends ACharacter implements IControllableCharacter {
      */
     @Override
     public void keyEvent(KeyEvent keyEvent) {
-        int keyCode = DataTypeUtils.getLowercaseNumericValue(keyEvent.getKey());
+        int keyCode = Character.toLowerCase(keyEvent.getKeyCode());
         if (keyEvent.getAction() == KeyEvent.PRESS) {
-            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerLeft()) == keyCode) {   //left
+            if (PlayerControlConstants.getPlayerLeft() == keyCode) {   //left
                 this.moveLeftPressed = true;
             }
-            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerRight()) == keyCode) {   //right
+            if (PlayerControlConstants.getPlayerRight() == keyCode) {   //right
                 this.moveRightPressed = true;
             }
-            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerUp()) == keyCode) {
+            if (PlayerControlConstants.getPlayerUp() == keyCode) {
                 this.jumpPressed = true;
             }
-            if ((DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerDown()) == keyCode)
+            if ((PlayerControlConstants.getPlayerDown() == keyCode)
                     && this.eventBlockTopBoundaryContacts.size() == 1 && !isDescendingDownEventBlock) {
                 this.isDescendingDownEventBlock = true;
             }
 
         } else if (keyEvent.getAction() == KeyEvent.RELEASE) {
-            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerLeft()) == (keyCode)) {       //left
+            if (PlayerControlConstants.getPlayerLeft() == (keyCode)) {       //left
                 this.moveLeftPressed = false;
             }
-            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerRight()) == (keyCode)) {       //right
+            if (PlayerControlConstants.getPlayerRight() == (keyCode)) {       //right
                 this.moveRightPressed = false;
             }
-            if (DataTypeUtils.getLowercaseNumericValue(PlayerControlConstants.getPlayerUp()) == (keyCode)) {
+            if (PlayerControlConstants.getPlayerUp() == (keyCode)) {
                 this.jumpPressed = false;
             }
         }

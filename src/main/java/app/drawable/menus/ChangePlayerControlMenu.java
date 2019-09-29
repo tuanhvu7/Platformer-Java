@@ -5,12 +5,14 @@ import app.constants.Constants;
 import app.drawable.menus.panels.ChangePlayerControlPanel;
 import app.enums.EConfigurablePlayerControls;
 import app.enums.ESongType;
+import app.utils.ControlUtils;
 import app.utils.ResourceUtils;
+import processing.event.KeyEvent;
 
 /**
  * Menu to change player controls
  */
-public class ChangePlayerControlMenu extends AMenu {
+public class ChangePlayerControlMenu extends AMenuWithKeyboardControl {
 
     /**
      * set properties of this
@@ -19,10 +21,14 @@ public class ChangePlayerControlMenu extends AMenu {
         super(mainSketch, isActive);
     }
 
+    /**
+     * setup and activate this
+     */
     @Override
     public void setupActivateMenu() {
         // make this active
         this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod("keyEvent", this); // connect this draw() from main draw()
         int leftXPanelPosition = 100;
         int topYPanelPosition = 100;
         for (EConfigurablePlayerControls curConfigurablePlayerControls : EConfigurablePlayerControls.values()) {
@@ -52,5 +58,18 @@ public class ChangePlayerControlMenu extends AMenu {
     @Override
     public void draw() {
         this.mainSketch.background(ResourceUtils.DEFAULT_MENU_IMAGE);
+    }
+
+    /**
+     * handle keypress
+     */
+    public void keyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getAction() == KeyEvent.PRESS) {
+            String keyPressed = keyEvent.getKey() + "";
+            if (ControlUtils.EReservedControlKeys.u.toString().equalsIgnoreCase(keyPressed)) {   // switch to level select
+                this.deactivateMenu();
+                this.mainSketch.getLevelSelectMenu().setupActivateMenu();
+            }
+        }
     }
 }

@@ -4,10 +4,10 @@ package app.constants;
  * player control key bindings
  */
 public class PlayerControlConstants {
-    private static char PLAYER_UP = 'w';
-    private static char PLAYER_DOWN = 's';
-    private static char PLAYER_LEFT = 'a';
-    private static char PLAYER_RIGHT = 'd';
+    private static int PLAYER_UP = 'w';
+    private static int PLAYER_DOWN = 's';
+    private static int PLAYER_LEFT = 'a';
+    private static int PLAYER_RIGHT = 'd';
 
     /**
      * make this class "static"
@@ -17,35 +17,35 @@ public class PlayerControlConstants {
 
 
     /*** getters and setters ***/
-    public static char getPlayerUp() {
+    public static int getPlayerUp() {
         return PLAYER_UP;
     }
 
-    public static void setPlayerUp(char playerUp) {
+    public static void setPlayerUp(int playerUp) {
         PLAYER_UP = playerUp;
     }
 
-    public static char getPlayerDown() {
+    public static int getPlayerDown() {
         return PLAYER_DOWN;
     }
 
-    public static void setPlayerDown(char playerDown) {
+    public static void setPlayerDown(int playerDown) {
         PLAYER_DOWN = playerDown;
     }
 
-    public static char getPlayerLeft() {
+    public static int getPlayerLeft() {
         return PLAYER_LEFT;
     }
 
-    public static void setPlayerLeft(char playerLeft) {
+    public static void setPlayerLeft(int playerLeft) {
         PLAYER_LEFT = playerLeft;
     }
 
-    public static char getPlayerRight() {
+    public static int getPlayerRight() {
         return PLAYER_RIGHT;
     }
 
-    public static void setPlayerRight(char playerRight) {
+    public static void setPlayerRight(int playerRight) {
         PLAYER_RIGHT = playerRight;
     }
 }

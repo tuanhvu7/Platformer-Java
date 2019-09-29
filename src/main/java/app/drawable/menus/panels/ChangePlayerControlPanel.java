@@ -7,6 +7,8 @@ import app.enums.EConfigurablePlayerControls;
 import app.utils.ControlUtils;
 import processing.event.KeyEvent;
 
+import static java.nio.charset.StandardCharsets.UTF_16;
+
 /**
  * Used to display and change player control settings
  */
@@ -18,8 +20,8 @@ public class ChangePlayerControlPanel extends APanel {
      * set properties of this
      */
     public ChangePlayerControlPanel(Platformer mainSketch,
-                                 EConfigurablePlayerControls configurableControlPanelText,
-                                 int leftX, int topY, int width, int height, boolean isActive) {
+                                    EConfigurablePlayerControls configurableControlPanelText,
+                                    int leftX, int topY, int width, int height, boolean isActive) {
         super(mainSketch, Constants.DEFAULT_PANEL_COLOR, "", leftX, topY, width, height, isActive);
         this.configurablePlayerControlType = configurableControlPanelText;
         switch (this.configurablePlayerControlType) {
@@ -61,34 +63,39 @@ public class ChangePlayerControlPanel extends APanel {
      */
     public void keyEvent(KeyEvent keyEvent) {
         if (keyEvent.getAction() == KeyEvent.PRESS) {
-            char keyPressed = keyEvent.getKey();
-            if (!ControlUtils.isKeyReserved(keyPressed)) {   // did not try to bind with reserved key
+            int keyCode = Character.toLowerCase(keyEvent.getKeyCode());
+            if (!ControlUtils.isKeyCodeReserved(keyCode)) {   // did not try to bind with reserved key
                 switch (this.configurablePlayerControlType) {
                     case UP:
-                        PlayerControlConstants.setPlayerUp(keyPressed);
+                        PlayerControlConstants.setPlayerUp(keyCode);
                         break;
                     case DOWN:
-                        PlayerControlConstants.setPlayerDown(keyPressed);
+                        PlayerControlConstants.setPlayerDown(keyCode);
                         break;
                     case LEFT:
-                        PlayerControlConstants.setPlayerLeft(keyPressed);
+                        PlayerControlConstants.setPlayerLeft(keyCode);
                         break;
                     case RIGHT:
-                        PlayerControlConstants.setPlayerRight(keyPressed);
+                        PlayerControlConstants.setPlayerRight(keyCode);
                         break;
                     default:
                         break;
                 }
-                this.panelText = this.configurablePlayerControlType + ": " + keyPressed;
-                this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
+                this.panelText = this.createFormattedPanelText(keyCode);
             }
+
+            // unselect panel after key is inputted; to avoid registerMethod again
+            this.panelColor = Constants.DEFAULT_PANEL_COLOR;
+            this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
         }
     }
 
     /**
      * @return formatted panel text that contains player control type and player control key
      */
-    private String createFormattedPanelText(char playerControlKey) {
-        return this.configurablePlayerControlType.toString() + ": " + playerControlKey;
+    private String createFormattedPanelText(int playerControlKey) {
+        String playerControlKeyStr = playerControlKey + "";
+        new String(playerControlKeyStr.getBytes(UTF_16));
+        return this.configurablePlayerControlType.toString() + ": " + (char) playerControlKey;
     }
 }
