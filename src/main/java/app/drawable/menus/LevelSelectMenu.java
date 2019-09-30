@@ -33,7 +33,7 @@ public class LevelSelectMenu extends AMenuWithKeyboardControl {
         int leftXPanelPosition = 100;
         int topYPanelPosition = 100;
         for (int i = 1; i < Constants.LEVELS_HEIGHT_ARRAY.length; i++) {
-            if (leftXPanelPosition + Constants.PANEL_SIZE > ResourceUtils.LEVEL_BACKGROUND_IMAGE.width) {
+            if (leftXPanelPosition + Constants.PANEL_SIZE > ResourceUtils.DEFAULT_MENU_IMAGE.width) {
                 leftXPanelPosition = 100;
                 topYPanelPosition += (100 + Constants.PANEL_SIZE);
             }

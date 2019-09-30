@@ -33,7 +33,7 @@ public class ConfigurePlayerControlMenu extends AMenuWithKeyboardControl {
         int leftXPanelPosition = 100;
         int topYPanelPosition = 100;
         for (EConfigurablePlayerControls curConfigurablePlayerControls : EConfigurablePlayerControls.values()) {
-            if (leftXPanelPosition + Constants.PANEL_SIZE > ResourceUtils.LEVEL_BACKGROUND_IMAGE.width) {
+            if (leftXPanelPosition + Constants.PANEL_SIZE > ResourceUtils.DEFAULT_MENU_IMAGE.width) {
                 leftXPanelPosition = 100;
                 topYPanelPosition += (100 + Constants.PANEL_SIZE);
             }
