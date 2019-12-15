@@ -323,6 +323,7 @@ public class LevelOne extends ALevel {
                 true,
                 false);
             triggerEnemySet.add(enemyToAdd);
+            this.levelDrawableCollection.addDrawable(enemyToAdd);
         }
 
         enemyToAdd = new FlyingEnemy(
