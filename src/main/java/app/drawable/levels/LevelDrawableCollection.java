@@ -6,8 +6,9 @@ import app.drawable.boundaries.ABoundary;
 import app.drawable.characters.ACharacter;
 import app.drawable.collectables.ACollectable;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * For storing and managing drawables in levels
@@ -29,10 +30,10 @@ public class LevelDrawableCollection {
      * sets properties of this
      */
     LevelDrawableCollection() {
-        this.charactersList = new HashSet<>();
-        this.boundariesList = new HashSet<>();
-        this.blocksList = new HashSet<>();
-        this.collectablesList = new HashSet<>();
+        this.charactersList = Collections.newSetFromMap(new ConcurrentHashMap<>());
+        this.boundariesList = Collections.newSetFromMap(new ConcurrentHashMap<>());
+        this.blocksList = Collections.newSetFromMap(new ConcurrentHashMap<>());
+        this.collectablesList = Collections.newSetFromMap(new ConcurrentHashMap<>());
     }
 
     /**

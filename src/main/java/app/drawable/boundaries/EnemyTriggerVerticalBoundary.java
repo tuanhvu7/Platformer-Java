@@ -4,8 +4,9 @@ import app.Platformer;
 import app.drawable.characters.Enemy;
 import app.drawable.characters.Player;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * boundary to add enemies upon player contact
@@ -22,7 +23,7 @@ public class EnemyTriggerVerticalBoundary extends VerticalBoundary {
                                         boolean isActive, Enemy enemy) {
         super(mainSketch, startXPoint, startYPoint, y2Offset, boundaryLineThickness,
             false, isActive);
-        Set<Enemy> set = new HashSet<>();
+        Set<Enemy> set = Collections.newSetFromMap(new ConcurrentHashMap<>());
         set.add(enemy);
         this.enemiesToAddSet = set;
     }

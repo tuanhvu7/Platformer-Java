@@ -2,16 +2,17 @@ package app.drawable.characters;
 
 import app.Platformer;
 import app.constants.Constants;
-import app.utils.PlayerControlSettings;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.enums.ESongType;
+import app.utils.PlayerControlSettings;
 import app.utils.ResourceUtils;
 import processing.core.PVector;
 import processing.event.KeyEvent;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * player controllable character in game
@@ -65,7 +66,7 @@ public class Player extends ACharacter implements IControllableCharacter {
         this.numberOfVerticalBoundaryContacts = 0;
         this.numberOfFloorBoundaryContacts = 0;
 
-        this.eventBlockTopBoundaryContacts = new HashSet<>();
+        this.eventBlockTopBoundaryContacts = Collections.newSetFromMap(new ConcurrentHashMap<>());
         this.previousFloorBoundaryContact = null;
         this.shouldSetPreviousFloorBoundaryContact = true;
 
@@ -93,7 +94,7 @@ public class Player extends ACharacter implements IControllableCharacter {
         this.numberOfVerticalBoundaryContacts = 0;
         this.numberOfFloorBoundaryContacts = 0;
 
-        this.eventBlockTopBoundaryContacts = new HashSet<>();
+        this.eventBlockTopBoundaryContacts = Collections.newSetFromMap(new ConcurrentHashMap<>());
         this.previousFloorBoundaryContact = null;
         this.shouldSetPreviousFloorBoundaryContact = true;
 
@@ -122,7 +123,7 @@ public class Player extends ACharacter implements IControllableCharacter {
                 this.jumpPressed = true;
             }
             if ((PlayerControlSettings.getPlayerDown() == keyCode)
-                    && this.eventBlockTopBoundaryContacts.size() == 1 && !isDescendingDownEventBlock) {
+                && this.eventBlockTopBoundaryContacts.size() == 1 && !isDescendingDownEventBlock) {
                 this.isDescendingDownEventBlock = true;
             }
 

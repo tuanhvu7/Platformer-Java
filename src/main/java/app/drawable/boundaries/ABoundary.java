@@ -6,8 +6,9 @@ import app.drawable.characters.ACharacter;
 import app.constants.Constants;
 import processing.core.PVector;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Common for line boundaries
@@ -66,7 +67,7 @@ public abstract class ABoundary implements IDrawable {
         this.doesAffectPlayer = doesAffectPlayer;
         this.doesAffectNonPlayers = doesAffectNonPlayers;
 
-        this.charactersTouchingThis = new HashSet<>();
+        this.charactersTouchingThis = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
         if (isActive) {
             this.makeActive();
