@@ -2,6 +2,7 @@ package app.drawable.menus;
 
 import app.Platformer;
 import app.drawable.menus.panels.APanel;
+import app.enums.EProcessingMethods;
 
 /**
  * common for menus with keyboard controls
@@ -22,7 +23,7 @@ public abstract class AMenuWithKeyboardControl extends AMenu {
 
         this.panelsList.clear();
         // make this not active
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
-        this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.KEY_EVENT.toString(), this); // disconnect this keyEvent() from main keyEvent()
     }
 }

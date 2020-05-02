@@ -2,6 +2,7 @@ package app.drawable.menus.panels;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.enums.EProcessingMethods;
 import app.factories.LevelFactory;
 import app.utils.ResourceUtils;
 
@@ -30,8 +31,8 @@ public class LevelSelectMenuPanel extends APanel {
      */
     @Override
     void makeActive() {
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
-        this.mainSketch.registerMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.MOUSE_EVENT.toString(), this); // connect this mouseEvent() from main mouseEvent()
     }
 
     /**
@@ -39,8 +40,8 @@ public class LevelSelectMenuPanel extends APanel {
      */
     @Override
     public void makeNotActive() {
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
-        this.mainSketch.unregisterMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.MOUSE_EVENT.toString(), this); // connect this mouseEvent() from main mouseEvent()
     }
 
     /**

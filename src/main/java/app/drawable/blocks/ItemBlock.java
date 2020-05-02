@@ -4,6 +4,7 @@ import app.Platformer;
 import app.constants.Constants;
 import app.drawable.characters.Player;
 import app.drawable.collectables.ACollectable;
+import app.enums.EProcessingMethods;
 
 /**
  * Block with item that appears when hit from below by player
@@ -105,7 +106,7 @@ public class ItemBlock extends Block {
      * active and add this to game
      */
     void makeActive() {
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
 
         // make horizontal boundaries first since their detection takes precedence
         this.bottomSide.makeActive();

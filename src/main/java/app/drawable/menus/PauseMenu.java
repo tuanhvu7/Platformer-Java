@@ -4,6 +4,7 @@ import app.Platformer;
 import app.constants.Constants;
 import app.drawable.menus.panels.PauseMenuPanel;
 import app.enums.EPauseMenuButtonType;
+import app.enums.EProcessingMethods;
 
 /**
  * pause menu
@@ -23,7 +24,7 @@ public class PauseMenu extends AMenu {
     @Override
     public void setupActivateMenu() {
         // make this active
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
 
         this.panelsList.add(new PauseMenuPanel(
             this.mainSketch,

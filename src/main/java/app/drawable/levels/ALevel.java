@@ -8,6 +8,7 @@ import app.drawable.characters.Player;
 import app.drawable.collectables.LevelGoal;
 import app.drawable.menus.PauseMenu;
 import app.drawable.viewbox.ViewBox;
+import app.enums.EProcessingMethods;
 import app.enums.ESongType;
 import app.utils.ReservedControlUtils;
 import app.utils.ResourceUtils;
@@ -70,8 +71,8 @@ public abstract class ALevel implements IDrawable {
      * active and add this to game
      */
     void makeActive() {
-        this.mainSketch.registerMethod("keyEvent", this);   // connect this keyEvent() from main keyEvent()
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.KEY_EVENT.toString(), this);   // connect this keyEvent() from main keyEvent()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
     }
 
     /**
@@ -99,8 +100,8 @@ public abstract class ALevel implements IDrawable {
         this.levelDrawableCollection.deactivateClearAllDrawable();
 
         // make this not active
-        this.mainSketch.unregisterMethod("keyEvent", this);   // connect this keyEvent() from main keyEvent()
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.KEY_EVENT.toString(), this);   // connect this keyEvent() from main keyEvent()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
     }
 
     /**

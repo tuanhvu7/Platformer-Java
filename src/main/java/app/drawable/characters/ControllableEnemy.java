@@ -2,6 +2,7 @@ package app.drawable.characters;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.enums.EProcessingMethods;
 import app.utils.PlayerControlSettings;
 import processing.event.KeyEvent;
 
@@ -53,8 +54,8 @@ public class ControllableEnemy extends Enemy implements IControllableCharacter {
      */
     @Override
     public void makeActive() {
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
-        this.mainSketch.registerMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.KEY_EVENT.toString(), this); // disconnect this keyEvent() from main keyEvent()
     }
 
     /**
@@ -62,8 +63,8 @@ public class ControllableEnemy extends Enemy implements IControllableCharacter {
      */
     @Override
     public void makeNotActive() {
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
-        this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.KEY_EVENT.toString(), this); // disconnect this keyEvent() from main keyEvent()
     }
 
     /**

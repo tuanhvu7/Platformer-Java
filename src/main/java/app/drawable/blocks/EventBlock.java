@@ -4,6 +4,7 @@ import app.Platformer;
 import app.constants.Constants;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.EventTriggerHorizontalBoundary;
+import app.enums.EProcessingMethods;
 
 /**
  * event block;
@@ -113,7 +114,7 @@ public class EventBlock extends ABlock {
      * active and add this to game
      */
     private void makeActive() {
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
 
         // make horizontal boundaries first since their detection takes precedence
         this.bottomSide.makeActive();
@@ -134,7 +135,7 @@ public class EventBlock extends ABlock {
         this.rightSide.makeNotActive();
         this.eventTriggerBoundary.makeNotActive();
 
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
     }
 }
 

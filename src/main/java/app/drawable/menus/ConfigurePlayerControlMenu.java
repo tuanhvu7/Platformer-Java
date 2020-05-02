@@ -5,6 +5,7 @@ import app.constants.Constants;
 import app.drawable.menus.panels.APanel;
 import app.drawable.menus.panels.ConfigurePlayerControlPanel;
 import app.enums.EConfigurablePlayerControls;
+import app.enums.EProcessingMethods;
 import app.enums.ESongType;
 import app.utils.ReservedControlUtils;
 import app.utils.ResourceUtils;
@@ -28,8 +29,8 @@ public class ConfigurePlayerControlMenu extends AMenuWithKeyboardControl {
     @Override
     public void setupActivateMenu() {
         // make this active
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
-        this.mainSketch.registerMethod("keyEvent", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.KEY_EVENT.toString(), this); // connect this draw() from main draw()
         int leftXPanelPosition = 100;
         int topYPanelPosition = 100;
         for (EConfigurablePlayerControls curConfigurablePlayerControls : EConfigurablePlayerControls.values()) {

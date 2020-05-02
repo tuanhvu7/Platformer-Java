@@ -4,6 +4,7 @@ import app.Platformer;
 import app.constants.Constants;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
+import app.enums.EProcessingMethods;
 import app.enums.ESongType;
 import app.utils.PlayerControlSettings;
 import app.utils.ResourceUtils;
@@ -170,8 +171,8 @@ public class Player extends ACharacter implements IControllableCharacter {
      */
     @Override
     public void makeActive() {
-        this.mainSketch.registerMethod("keyEvent", this);   // connect this keyEvent() from main keyEvent()
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.KEY_EVENT.toString(), this);   // connect this keyEvent() from main keyEvent()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
     }
 
     /**
@@ -179,8 +180,8 @@ public class Player extends ACharacter implements IControllableCharacter {
      */
     @Override
     public void makeNotActive() {
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
-        this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.KEY_EVENT.toString(), this); // disconnect this keyEvent() from main keyEvent()
     }
 
     /**
@@ -267,7 +268,7 @@ public class Player extends ACharacter implements IControllableCharacter {
         // event block top boundary can affect player again
         this.shouldSetPreviousFloorBoundaryContact = false;
         eventBlockTopBoundary.setDoesAffectPlayer(true);
-        this.mainSketch.registerMethod("keyEvent", this); // enable controls for this
+        this.mainSketch.registerMethod(EProcessingMethods.KEY_EVENT.toString(), this); // enable controls for this
     }
 
     /**
@@ -327,7 +328,7 @@ public class Player extends ACharacter implements IControllableCharacter {
     private void handleEventBlockDescent() {
         if (this.eventBlockTopBoundaryContacts.size() == 1) {
             this.resetControlPressed();
-            this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
+            this.mainSketch.unregisterMethod(EProcessingMethods.KEY_EVENT.toString(), this); // disconnect this keyEvent() from main keyEvent()
 
             EventBlockTopBoundary firstEventTopBoundaryContacts =
                 this.eventBlockTopBoundaryContacts.stream().findFirst().get();

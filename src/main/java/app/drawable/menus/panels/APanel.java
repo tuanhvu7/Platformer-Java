@@ -3,6 +3,7 @@ package app.drawable.menus.panels;
 import app.Platformer;
 import app.constants.Constants;
 import app.drawable.IDrawable;
+import app.enums.EProcessingMethods;
 import processing.event.MouseEvent;
 
 /**
@@ -52,16 +53,16 @@ public abstract class APanel implements IDrawable {
      * active and add this to game
      */
     void makeActive() {
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
-        this.mainSketch.registerMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.MOUSE_EVENT.toString(), this); // connect this mouseEvent() from main mouseEvent()
     }
 
     /**
      * deactivate and remove this from game
      */
     public void makeNotActive() {
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
-        this.mainSketch.unregisterMethod("mouseEvent", this); // connect this mouseEvent() from main mouseEvent()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.MOUSE_EVENT.toString(), this); // connect this mouseEvent() from main mouseEvent()
     }
 
     /**

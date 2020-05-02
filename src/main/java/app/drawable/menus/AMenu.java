@@ -3,6 +3,7 @@ package app.drawable.menus;
 import app.Platformer;
 import app.drawable.IDrawable;
 import app.drawable.menus.panels.APanel;
+import app.enums.EProcessingMethods;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public abstract class AMenu implements IDrawable {
 
         this.panelsList.clear();
         // make this not active
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
     }
 
 }

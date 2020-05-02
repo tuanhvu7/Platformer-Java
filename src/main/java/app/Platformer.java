@@ -7,6 +7,7 @@ import app.drawable.levels.LevelDrawableCollection;
 import app.drawable.menus.ConfigurePlayerControlMenu;
 import app.drawable.menus.LevelSelectMenu;
 import app.drawable.viewbox.ViewBox;
+import app.enums.EProcessingMethods;
 import app.enums.ESongType;
 import app.factories.LevelFactory;
 import app.utils.ResourceUtils;
@@ -99,7 +100,7 @@ public class Platformer extends PApplet {
                     getCurrentActiveLevel().setHandlingLevelComplete(true);
                     getCurrentActivePlayer().resetControlPressed();
                     getCurrentActivePlayer().setVel(new PVector(Constants.PLAYER_LEVEL_COMPLETE_SPEED, 0));
-                    unregisterMethod("keyEvent", getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
+                    unregisterMethod(EProcessingMethods.KEY_EVENT.toString(), getCurrentActivePlayer()); // disconnect this keyEvent() from main keyEvent()
 
                     ResourceUtils.stopSong();
                     ResourceUtils.playSong(ESongType.LEVEL_COMPLETE);

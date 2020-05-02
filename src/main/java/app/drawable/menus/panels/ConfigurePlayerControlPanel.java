@@ -2,6 +2,7 @@ package app.drawable.menus.panels;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.enums.EProcessingMethods;
 import app.utils.PlayerControlSettings;
 import app.enums.EConfigurablePlayerControls;
 import app.utils.ReservedControlUtils;
@@ -44,7 +45,7 @@ public class ConfigurePlayerControlPanel extends APanel {
     void executeWhenClicked() {
         this.mainSketch.getChangePlayerControlMenu().resetPanelsColorAndUnregisterKeyEvent();
         this.panelColor = Constants.ALTERNATE_PANEL_COLOR;
-        this.mainSketch.registerMethod("keyEvent", this);
+        this.mainSketch.registerMethod(EProcessingMethods.KEY_EVENT.toString(), this);
     }
 
     /**
@@ -52,9 +53,9 @@ public class ConfigurePlayerControlPanel extends APanel {
      */
     @Override
     public void makeNotActive() {
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
-        this.mainSketch.unregisterMethod("mouseEvent", this); // disconnect this mouseEvent() from main mouseEvent()
-        this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.MOUSE_EVENT.toString(), this); // disconnect this mouseEvent() from main mouseEvent()
+        this.mainSketch.unregisterMethod(EProcessingMethods.KEY_EVENT.toString(), this); // disconnect this keyEvent() from main keyEvent()
     }
 
     /**
@@ -94,7 +95,7 @@ public class ConfigurePlayerControlPanel extends APanel {
      */
     public void resetColorAndUnregisterKeyEvent() {
         this.panelColor = Constants.DEFAULT_PANEL_COLOR;
-        this.mainSketch.unregisterMethod("keyEvent", this); // disconnect this keyEvent() from main keyEvent()
+        this.mainSketch.unregisterMethod(EProcessingMethods.KEY_EVENT.toString(), this); // disconnect this keyEvent() from main keyEvent()
     }
 
     /**

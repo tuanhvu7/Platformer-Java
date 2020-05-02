@@ -4,6 +4,7 @@ import app.Platformer;
 import app.drawable.IDrawable;
 import app.drawable.characters.ACharacter;
 import app.constants.Constants;
+import app.enums.EProcessingMethods;
 import processing.core.PVector;
 
 import java.util.Collections;
@@ -111,14 +112,14 @@ public abstract class ABoundary implements IDrawable {
      */
     public void makeActive() {
         this.charactersTouchingThis.clear();
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
     }
 
     /**
      * deactivate and remove this from game
      */
     public void makeNotActive() {
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
     }
 
     /*** getters and setters ***/

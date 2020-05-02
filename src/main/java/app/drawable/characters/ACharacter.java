@@ -3,6 +3,7 @@ package app.drawable.characters;
 import app.Platformer;
 import app.constants.Constants;
 import app.drawable.IDrawable;
+import app.enums.EProcessingMethods;
 import processing.core.PVector;
 
 /**
@@ -96,14 +97,14 @@ public abstract class ACharacter implements IDrawable {
      * active and add this to game
      */
     public void makeActive() {
-        this.mainSketch.registerMethod("draw", this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
     }
 
     /**
      * deactivate and remove this from game
      */
     public void makeNotActive() {
-        this.mainSketch.unregisterMethod("draw", this); // disconnect this draw() from main draw()
+        this.mainSketch.unregisterMethod(EProcessingMethods.DRAW.toString(), this); // disconnect this draw() from main draw()
     }
 
     /**
