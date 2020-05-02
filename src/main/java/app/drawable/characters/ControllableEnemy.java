@@ -2,6 +2,7 @@ package app.drawable.characters;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.drawable.IKeyControllable;
 import app.enums.EProcessingMethods;
 import app.utils.PlayerControlSettings;
 import processing.event.KeyEvent;
@@ -9,7 +10,7 @@ import processing.event.KeyEvent;
 /**
  * controllable enemy
  */
-public class ControllableEnemy extends Enemy implements IControllableCharacter {
+public class ControllableEnemy extends Enemy implements IKeyControllable {
 
     // true means left and right button controls affect this
     final private boolean isHorizontalControllable;

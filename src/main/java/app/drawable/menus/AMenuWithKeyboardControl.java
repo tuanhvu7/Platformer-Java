@@ -1,13 +1,14 @@
 package app.drawable.menus;
 
 import app.Platformer;
+import app.drawable.IKeyControllable;
 import app.drawable.menus.panels.APanel;
 import app.enums.EProcessingMethods;
 
 /**
  * common for menus with keyboard controls
  */
-public abstract class AMenuWithKeyboardControl extends AMenu {
+public abstract class AMenuWithKeyboardControl extends AMenu implements IKeyControllable {
     AMenuWithKeyboardControl(Platformer mainSketch, boolean isActive) {
         super(mainSketch, isActive);
     }

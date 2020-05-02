@@ -3,13 +3,14 @@ package app.drawable.menus.panels;
 import app.Platformer;
 import app.constants.Constants;
 import app.drawable.IDrawable;
+import app.drawable.IMouseControllable;
 import app.enums.EProcessingMethods;
 import processing.event.MouseEvent;
 
 /**
  * Common for panels
  */
-public abstract class APanel implements IDrawable {
+public abstract class APanel implements IDrawable, IMouseControllable {
 
     // main sketch
     final Platformer mainSketch;
@@ -82,6 +83,7 @@ public abstract class APanel implements IDrawable {
     /**
      * Execute appropriate method (executeWhenClicked) when this is clicked
      */
+    @Override
     public void mouseEvent(MouseEvent event) {
         if (event.getAction() == MouseEvent.CLICK) {
             if (isMouseIn()) {

@@ -3,6 +3,7 @@ package app.drawable.levels;
 import app.Platformer;
 import app.constants.Constants;
 import app.drawable.IDrawable;
+import app.drawable.IKeyControllable;
 import app.drawable.boundaries.VerticalBoundary;
 import app.drawable.characters.Player;
 import app.drawable.collectables.LevelGoal;
@@ -17,7 +18,7 @@ import processing.event.KeyEvent;
 /**
  * common for levels
  */
-public abstract class ALevel implements IDrawable {
+public abstract class ALevel implements IDrawable, IKeyControllable {
 
     // main sketch
     final Platformer mainSketch;
@@ -175,6 +176,7 @@ public abstract class ALevel implements IDrawable {
     /**
      * handle character keypress controls
      */
+    @Override
     public void keyEvent(KeyEvent keyEvent) {
         if (this.player != null && !this.isHandlingLevelComplete) {  // only allow pause if player is active
             // press 'p' for pause

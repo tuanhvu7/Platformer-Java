@@ -2,6 +2,7 @@ package app.drawable.characters;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.drawable.IKeyControllable;
 import app.drawable.boundaries.EventBlockTopBoundary;
 import app.drawable.boundaries.HorizontalBoundary;
 import app.enums.EProcessingMethods;
@@ -18,7 +19,7 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * player controllable character in game
  */
-public class Player extends ACharacter implements IControllableCharacter {
+public class Player extends ACharacter implements IKeyControllable {
 
     // health of this, 0 means dead
     private int health;

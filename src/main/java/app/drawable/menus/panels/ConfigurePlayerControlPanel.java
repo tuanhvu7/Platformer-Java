@@ -2,6 +2,7 @@ package app.drawable.menus.panels;
 
 import app.Platformer;
 import app.constants.Constants;
+import app.drawable.IKeyControllable;
 import app.enums.EProcessingMethods;
 import app.utils.PlayerControlSettings;
 import app.enums.EConfigurablePlayerControls;
@@ -11,7 +12,7 @@ import processing.event.KeyEvent;
 /**
  * Used to display and change player control settings
  */
-public class ConfigurePlayerControlPanel extends APanel {
+public class ConfigurePlayerControlPanel extends APanel implements IKeyControllable {
     // player control type linked to this
     private final EConfigurablePlayerControls configurablePlayerControlType;
 
@@ -61,6 +62,7 @@ public class ConfigurePlayerControlPanel extends APanel {
     /**
      * handle panel keypress controls
      */
+    @Override
     public void keyEvent(KeyEvent keyEvent) {
         if (keyEvent.getAction() == KeyEvent.PRESS) {
             int keyCode = Character.toLowerCase(keyEvent.getKeyCode());
