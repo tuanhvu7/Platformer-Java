@@ -201,7 +201,7 @@ public class LevelTwo extends ALevel {
             Constants.DEFAULT_BLOCK_SIZE,
             Constants.DEFAULT_BLOCK_SIZE,
             healthItemForBlock,
-            1,
+            Constants.DEFAULT_BOUNDARY_LINE_THICKNESS,
             false,
             true
         ));
