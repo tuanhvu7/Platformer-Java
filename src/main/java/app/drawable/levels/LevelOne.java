@@ -145,76 +145,18 @@ public class LevelOne extends ALevel {
             true
         ));
 
-        this.levelDrawableCollection.addDrawable(new Enemy(
-            this.mainSketch,
-            1750,
-            0,
-            Constants.SMALL_ENEMY_DIAMETER,
-            -Constants.ENEMY_SLOW_MOVEMENT_SPEED,
-            false,
-            true,
-            true)
-        );
-        this.levelDrawableCollection.addDrawable(new Enemy(
-            this.mainSketch,
-            1750 + Constants.SMALL_ENEMY_DIAMETER,
-            0,
-            Constants.SMALL_ENEMY_DIAMETER,
-            -Constants.ENEMY_SLOW_MOVEMENT_SPEED,
-            false,
-            true,
-            true)
-        );
-        this.levelDrawableCollection.addDrawable(new Enemy(
-            this.mainSketch,
-            1750 + 2 * Constants.SMALL_ENEMY_DIAMETER,
-            0,
-            Constants.SMALL_ENEMY_DIAMETER,
-            -Constants.ENEMY_SLOW_MOVEMENT_SPEED,
-            false,
-            true,
-            true)
-        );
-        this.levelDrawableCollection.addDrawable(new Enemy(
-            this.mainSketch,
-            1750 + 3 * Constants.SMALL_ENEMY_DIAMETER,
-            0,
-            Constants.SMALL_ENEMY_DIAMETER,
-            -Constants.ENEMY_SLOW_MOVEMENT_SPEED,
-            false,
-            true,
-            true)
-        );
-        this.levelDrawableCollection.addDrawable(new Enemy(
-            this.mainSketch,
-            1750 + 4 * Constants.SMALL_ENEMY_DIAMETER,
-            0,
-            Constants.SMALL_ENEMY_DIAMETER,
-            -Constants.ENEMY_SLOW_MOVEMENT_SPEED,
-            false,
-            true,
-            true)
-        );
-        this.levelDrawableCollection.addDrawable(new Enemy(
-            this.mainSketch,
-            1750 + 5 * Constants.SMALL_ENEMY_DIAMETER,
-            0,
-            Constants.SMALL_ENEMY_DIAMETER,
-            -Constants.ENEMY_SLOW_MOVEMENT_SPEED,
-            false,
-            true,
-            true)
-        );
-        this.levelDrawableCollection.addDrawable(new Enemy(
-            this.mainSketch,
-            1750 + 6 * Constants.SMALL_ENEMY_DIAMETER,
-            0,
-            Constants.SMALL_ENEMY_DIAMETER,
-            -Constants.ENEMY_SLOW_MOVEMENT_SPEED,
-            false,
-            true,
-            true)
-        );
+        for (int i = 0; i < 7; i++) {
+            this.levelDrawableCollection.addDrawable(new Enemy(
+                this.mainSketch,
+                1750 + i * Constants.SMALL_ENEMY_DIAMETER,
+                0,
+                Constants.SMALL_ENEMY_DIAMETER,
+                -Constants.ENEMY_SLOW_MOVEMENT_SPEED,
+                false,
+                true,
+                true)
+            );
+        }
 
         this.levelDrawableCollection.addDrawable(new EventBlock( // launch event
             this.mainSketch,

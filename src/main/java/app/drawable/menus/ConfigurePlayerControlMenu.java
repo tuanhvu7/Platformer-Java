@@ -30,7 +30,7 @@ public class ConfigurePlayerControlMenu extends AMenuWithKeyboardControl {
     public void setupActivateMenu() {
         // make this active
         this.mainSketch.registerMethod(EProcessingMethods.DRAW.toString(), this); // connect this draw() from main draw()
-        this.mainSketch.registerMethod(EProcessingMethods.KEY_EVENT.toString(), this); // connect this draw() from main draw()
+        this.mainSketch.registerMethod(EProcessingMethods.KEY_EVENT.toString(), this); // connect this keyEvent() from main keyEvent()
         int leftXPanelPosition = 100;
         int topYPanelPosition = 100;
         for (EConfigurablePlayerControls curConfigurablePlayerControls : EConfigurablePlayerControls.values()) {
