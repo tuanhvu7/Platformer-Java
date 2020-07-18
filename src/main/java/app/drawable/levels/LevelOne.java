@@ -36,6 +36,15 @@ public class LevelOne extends ALevel {
     }
 
     /**
+     * runs continuously
+     */
+    @Override
+    public void draw() {
+        this.drawBackground();
+        this.handleConditionalEnemyTriggers();
+    }
+
+    /**
      * setup and activate this
      */
     @Override
@@ -73,11 +82,9 @@ public class LevelOne extends ALevel {
     }
 
     /**
-     * handle conditional enemy triggers in this;
-     * to override in extended classes
+     * handle conditional enemy triggers in this
      */
-    @Override
-    public void handleConditionalEnemyTriggers() {
+    private void handleConditionalEnemyTriggers() {
         if (!bigEnemyTriggerActivated
             && this.levelDrawableCollection.getCharactersList().size() == this.bigEnemyTriggerCharacterListSizeCondition) {
 

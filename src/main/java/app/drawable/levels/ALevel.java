@@ -82,13 +82,6 @@ public abstract class ALevel implements IDrawable, IKeyControllable {
     abstract void setUpActivateLevel();
 
     /**
-     * handle conditional enemy triggers in this;
-     * to override in extended classes if needed
-     */
-    void handleConditionalEnemyTriggers() {
-    }
-
-    /**
      * deactivate this;
      */
     public void deactivateLevel() {
@@ -117,6 +110,44 @@ public abstract class ALevel implements IDrawable, IKeyControllable {
      */
     @Override
     public void draw() {
+        this.drawBackground();
+    }
+
+    /**
+     * handle character keypress controls
+     */
+    @Override
+    public void keyEvent(KeyEvent keyEvent) {
+        if (this.player != null && !this.isHandlingLevelComplete) {  // only allow pause if player is active
+            // press 'p' for pause
+            if (keyEvent.getAction() == KeyEvent.PRESS) {
+                String keyPressed = keyEvent.getKey() + "";
+
+                if (ReservedControlUtils.EReservedControlKeys.p.toString().equalsIgnoreCase(keyPressed)) {   // pause
+                    this.isPaused = !this.isPaused;
+
+                    if (this.isPaused) {
+                        ResourceUtils.stopSong();
+                        this.mainSketch.noLoop();
+                        this.pauseMenu = new PauseMenu(
+                            this.mainSketch,
+                            (int) this.viewBox.getPos().x,
+                            true);
+
+                    } else {
+                        ResourceUtils.loopSong(ESongType.LEVEL);
+                        this.mainSketch.loop();
+                        this.closePauseMenu();
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * draw background at proper location
+     */
+    void drawBackground() {
         // for scrolling background
         this.mainSketch.translate(-this.viewBox.getPos().x, -this.viewBox.getPos().y);
 
@@ -168,39 +199,6 @@ public abstract class ALevel implements IDrawable, IKeyControllable {
                 }
             }
             levelWidthLeftToDraw -= curIterationWidthToDraw;
-        }
-
-        this.handleConditionalEnemyTriggers();
-    }
-
-    /**
-     * handle character keypress controls
-     */
-    @Override
-    public void keyEvent(KeyEvent keyEvent) {
-        if (this.player != null && !this.isHandlingLevelComplete) {  // only allow pause if player is active
-            // press 'p' for pause
-            if (keyEvent.getAction() == KeyEvent.PRESS) {
-                String keyPressed = keyEvent.getKey() + "";
-
-                if (ReservedControlUtils.EReservedControlKeys.p.toString().equalsIgnoreCase(keyPressed)) {   // pause
-                    this.isPaused = !this.isPaused;
-
-                    if (this.isPaused) {
-                        ResourceUtils.stopSong();
-                        this.mainSketch.noLoop();
-                        this.pauseMenu = new PauseMenu(
-                            this.mainSketch,
-                            (int) this.viewBox.getPos().x,
-                            true);
-
-                    } else {
-                        ResourceUtils.loopSong(ESongType.LEVEL);
-                        this.mainSketch.loop();
-                        this.closePauseMenu();
-                    }
-                }
-            }
         }
     }
 
