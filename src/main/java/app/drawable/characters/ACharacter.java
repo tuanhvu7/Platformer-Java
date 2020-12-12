@@ -29,7 +29,7 @@ public abstract class ACharacter implements IDrawable {
     /**
      * set properties of this
      */
-    ACharacter(Platformer mainSketch, int x, int y, int diameter, boolean isActive) {
+    ACharacter(Platformer mainSketch, int x, int y, int diameter, boolean initAsActive) {
         this.mainSketch = mainSketch;
         this.pos = new PVector(x, y);
         this.vel = new PVector();
@@ -37,7 +37,7 @@ public abstract class ACharacter implements IDrawable {
 
         this.numberOfFloorBoundaryContacts = 0;
 
-        if (isActive) {
+        if (initAsActive) {
             this.makeActive();
         }
     }

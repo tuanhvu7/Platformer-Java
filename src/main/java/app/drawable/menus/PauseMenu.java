@@ -14,8 +14,8 @@ public class PauseMenu extends AMenu {
     /**
      * set properties of this
      */
-    public PauseMenu(Platformer mainSketch, int horizontalOffset, boolean isActive) {
-        super(mainSketch, horizontalOffset, isActive);
+    public PauseMenu(Platformer mainSketch, int horizontalOffset, boolean initAsActive) {
+        super(mainSketch, horizontalOffset, initAsActive);
     }
 
     /**

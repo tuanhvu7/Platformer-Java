@@ -19,8 +19,8 @@ public class ConfigurePlayerControlMenu extends AMenuWithKeyboardControl {
     /**
      * set properties of this
      */
-    public ConfigurePlayerControlMenu(Platformer mainSketch, boolean isActive) {
-        super(mainSketch, isActive);
+    public ConfigurePlayerControlMenu(Platformer mainSketch, boolean initAsActive) {
+        super(mainSketch, initAsActive);
     }
 
     /**

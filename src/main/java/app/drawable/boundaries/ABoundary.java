@@ -48,7 +48,7 @@ public abstract class ABoundary implements IDrawable {
      */
     ABoundary(Platformer mainSketch, int x1Point, int y1Point, int x2Offset, int y2Offset, int boundaryLineThickness,
               boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
-              boolean isActive) {
+              boolean initAsActive) {
 
         this.mainSketch = mainSketch;
 
@@ -70,7 +70,7 @@ public abstract class ABoundary implements IDrawable {
 
         this.charactersTouchingThis = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
-        if (isActive) {
+        if (initAsActive) {
             this.makeActive();
         }
     }

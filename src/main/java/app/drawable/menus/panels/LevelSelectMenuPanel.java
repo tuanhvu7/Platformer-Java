@@ -20,8 +20,8 @@ public class LevelSelectMenuPanel extends APanel {
     /**
      * set properties of this
      */
-    public LevelSelectMenuPanel(Platformer mainSketch, int panelLevel, int leftX, int topY, int width, int height, boolean isActive) {
-        super(mainSketch, Constants.DEFAULT_PANEL_COLOR, panelLevel + "", leftX, topY, width, height, isActive);
+    public LevelSelectMenuPanel(Platformer mainSketch, int panelLevel, int leftX, int topY, int width, int height, boolean initAsActive) {
+        super(mainSketch, Constants.DEFAULT_PANEL_COLOR, panelLevel + "", leftX, topY, width, height, initAsActive);
         this.panelLevel = panelLevel;
         this.loadLevelFromCheckpoint = false;
     }

@@ -29,8 +29,8 @@ public class LevelTwo extends ALevel {
     /**
      * sets properties, boundaries, and characters of this
      */
-    public LevelTwo(Platformer mainSketch, boolean isActive, boolean loadPlayerFromCheckPoint) {
-        super(mainSketch, isActive, loadPlayerFromCheckPoint, 4 * Constants.PLAYER_DIAMETER);
+    public LevelTwo(Platformer mainSketch, boolean initAsActive, boolean loadPlayerFromCheckPoint) {
+        super(mainSketch, initAsActive, loadPlayerFromCheckPoint, 4 * Constants.PLAYER_DIAMETER);
     }
 
     /**

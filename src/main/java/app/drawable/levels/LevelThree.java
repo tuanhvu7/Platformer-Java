@@ -27,8 +27,8 @@ public class LevelThree extends ALevel {
     /**
      * sets properties, boundaries, and characters of this
      */
-    public LevelThree(Platformer mainSketch, boolean isActive, boolean loadPlayerFromCheckPoint) {
-        super(mainSketch, isActive, loadPlayerFromCheckPoint, 200);
+    public LevelThree(Platformer mainSketch, boolean initAsActive, boolean loadPlayerFromCheckPoint) {
+        super(mainSketch, initAsActive, loadPlayerFromCheckPoint, 200);
     }
 
     @Override

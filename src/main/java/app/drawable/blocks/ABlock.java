@@ -34,8 +34,7 @@ public abstract class ABlock implements IDrawable {
      * set properties of this;
      * sets this to affect all characters and be visible
      */
-    ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
-           boolean isActive) {
+    ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness) {
 
         this.mainSketch = mainSketch;
 
@@ -46,6 +45,7 @@ public abstract class ABlock implements IDrawable {
 
         this.isVisible = true;
 
+        // pass initAsActive=false to constructors since need this and its boundaries active state to be synced
         this.bottomSide = new HorizontalBoundary(
             mainSketch,
             leftX,
@@ -53,7 +53,7 @@ public abstract class ABlock implements IDrawable {
             width,
             blockLineThickness,
             false,
-            isActive
+            false
         );
 
         this.leftSide = new VerticalBoundary(
@@ -62,7 +62,7 @@ public abstract class ABlock implements IDrawable {
             topY + 1,
             height - 2,
             blockLineThickness,
-            isActive
+            false
         );
 
         this.rightSide = new VerticalBoundary(
@@ -71,7 +71,7 @@ public abstract class ABlock implements IDrawable {
             topY + 1,
             height - 2,
             blockLineThickness,
-            isActive
+            false
         );
     }
 
@@ -82,7 +82,7 @@ public abstract class ABlock implements IDrawable {
      * to all characters
      */
     ABlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
-           boolean isVisible, boolean isActive) {
+           boolean isVisible) {
 
         this.mainSketch = mainSketch;
 
@@ -93,6 +93,7 @@ public abstract class ABlock implements IDrawable {
 
         this.isVisible = isVisible;
 
+        // pass initAsActive=false to constructors since need this and its boundaries active state to be synced
         this.bottomSide = new HorizontalBoundary(
             mainSketch,
             leftX + 1,
@@ -101,7 +102,7 @@ public abstract class ABlock implements IDrawable {
             blockLineThickness,
             isVisible,
             false,
-            isActive
+            false
         );
 
         this.leftSide = new VerticalBoundary(
@@ -111,7 +112,7 @@ public abstract class ABlock implements IDrawable {
             height,
             blockLineThickness,
             isVisible,
-            isActive
+            false
         );
 
         this.rightSide = new VerticalBoundary(
@@ -121,7 +122,7 @@ public abstract class ABlock implements IDrawable {
             height,
             blockLineThickness,
             isVisible,
-            isActive
+            false
         );
     }
 

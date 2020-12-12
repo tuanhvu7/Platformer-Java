@@ -58,8 +58,8 @@ public class Player extends ACharacter implements IKeyControllable {
      * set properties of this;
      * set this to have 1 health
      */
-    public Player(Platformer mainSketch, int x, int y, int diameter, boolean isActive) {
-        super(mainSketch, x, y, diameter, isActive);
+    public Player(Platformer mainSketch, int x, int y, int diameter, boolean initAsActive) {
+        super(mainSketch, x, y, diameter, initAsActive);
 
         this.health = 1;
         this.canHaveContactWithEnemies = true;
@@ -83,8 +83,8 @@ public class Player extends ACharacter implements IKeyControllable {
     /**
      * set properties of this
      */
-    public Player(Platformer mainSketch, int x, int y, int diameter, int health, boolean isActive) {
-        super(mainSketch, x, y, diameter, isActive);
+    public Player(Platformer mainSketch, int x, int y, int diameter, int health, boolean initAsActive) {
+        super(mainSketch, x, y, diameter, initAsActive);
         if (health < 1) {
             throw new IllegalArgumentException("Initial player health must be at least 1");
         }

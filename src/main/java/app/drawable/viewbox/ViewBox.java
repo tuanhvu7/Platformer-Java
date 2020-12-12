@@ -25,11 +25,11 @@ public class ViewBox implements IDrawable {
     /**
      * set properties of this
      */
-    public ViewBox(Platformer mainSketch, int startXPos, int startYPos, boolean isActive) {
+    public ViewBox(Platformer mainSketch, int startXPos, int startYPos, boolean initAsActive) {
         this.mainSketch = mainSketch;
         this.pos = new PVector(startXPos, startYPos);
         this.vel = new PVector(0, 0);
-        if (isActive) {
+        if (initAsActive) {
             this.makeActive();
         }
     }

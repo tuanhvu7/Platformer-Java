@@ -26,12 +26,12 @@ public abstract class AMenu implements IDrawable {
      * set properties of this;
      * sets this if have no offset
      */
-    AMenu(Platformer mainSketch, boolean isActive) {
+    AMenu(Platformer mainSketch, boolean initAsActive) {
         this.mainSketch = mainSketch;
 
         this.horizontalOffset = 0;
         this.panelsList = new ArrayList<>();
-        if (isActive) {
+        if (initAsActive) {
             this.setupActivateMenu();
         }
     }
@@ -40,12 +40,12 @@ public abstract class AMenu implements IDrawable {
      * set properties of this;
      * sets this to have given offset
      */
-    AMenu(Platformer mainSketch, int horizontalOffset, boolean isActive) {
+    AMenu(Platformer mainSketch, int horizontalOffset, boolean initAsActive) {
         this.mainSketch = mainSketch;
 
         this.horizontalOffset = horizontalOffset;
         this.panelsList = new ArrayList<>();
-        if (isActive) {
+        if (initAsActive) {
             this.setupActivateMenu();
         }
     }

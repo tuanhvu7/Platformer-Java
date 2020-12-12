@@ -23,8 +23,8 @@ public class PauseMenuPanel extends APanel {
     public PauseMenuPanel(Platformer mainSketch,
                           EPauseMenuButtonType panelType,
                           int leftX, int topY, int width, int height,
-                          int horizontalOffset, boolean isActive) {
-        super(mainSketch, Constants.DEFAULT_PANEL_COLOR, panelType.name(), leftX, topY, width, height, isActive);
+                          int horizontalOffset, boolean initAsActive) {
+        super(mainSketch, Constants.DEFAULT_PANEL_COLOR, panelType.name(), leftX, topY, width, height, initAsActive);
         this.horizontalOffset = horizontalOffset;
         this.panelType = panelType;
     }

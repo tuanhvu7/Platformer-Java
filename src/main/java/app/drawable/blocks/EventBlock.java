@@ -24,9 +24,9 @@ public class EventBlock extends ABlock {
      */
     public EventBlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
                       int launchEventVerticalVelocity,
-                      boolean isEventTriggerFloorBoundary, boolean isActive) {
+                      boolean isEventTriggerFloorBoundary, boolean initAsActive) {
 
-        super(mainSketch, leftX, topY, width, height, blockLineThickness, false);   // initially not active, to be set in makeActive()
+        super(mainSketch, leftX, topY, width, height, blockLineThickness);   // initially not active, to be set in makeActive()
 
         this.fillColor = Constants.EVENT_BLOCK_COLOR;
 
@@ -53,7 +53,7 @@ public class EventBlock extends ABlock {
             (EventBlockTopBoundary) this.topSide
         );
 
-        if (isActive) {
+        if (initAsActive) {
             this.makeActive();
         }
     }
@@ -65,9 +65,9 @@ public class EventBlock extends ABlock {
      */
     public EventBlock(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness,
                       int endWarpXPosition, int endWarpYPosition,
-                      boolean isEventTriggerFloorBoundary, boolean isActive) {
+                      boolean isEventTriggerFloorBoundary, boolean initAsActive) {
 
-        super(mainSketch, leftX, topY, width, height, blockLineThickness, false);   // initially not active, to be set in makeActive()
+        super(mainSketch, leftX, topY, width, height, blockLineThickness);   // initially not active, to be set in makeActive()
 
         this.fillColor = Constants.EVENT_BLOCK_COLOR;
 
@@ -95,7 +95,7 @@ public class EventBlock extends ABlock {
             (EventBlockTopBoundary) this.topSide
         );
 
-        if (isActive) {
+        if (initAsActive) {
             this.makeActive();
         }
     }

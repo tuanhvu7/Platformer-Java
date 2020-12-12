@@ -50,7 +50,7 @@ public abstract class ALevel implements IDrawable, IKeyControllable {
     /**
      * sets properties of this
      */
-    ALevel(Platformer mainSketch, boolean isActive, boolean loadPlayerFromCheckPoint, int goalRightSideOffsetWithStageWidth) {
+    ALevel(Platformer mainSketch, boolean initAsActive, boolean loadPlayerFromCheckPoint, int goalRightSideOffsetWithStageWidth) {
 
         this.mainSketch = mainSketch;
 
@@ -62,7 +62,7 @@ public abstract class ALevel implements IDrawable, IKeyControllable {
 
         this.isHandlingLevelComplete = false;
 
-        if (isActive) {
+        if (initAsActive) {
             this.setUpActivateLevel();
             this.setUpActivateWallsGoal(goalRightSideOffsetWithStageWidth);
         }

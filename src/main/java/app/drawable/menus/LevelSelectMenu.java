@@ -18,8 +18,8 @@ public class LevelSelectMenu extends AMenuWithKeyboardControl {
     /**
      * set properties of this
      */
-    public LevelSelectMenu(Platformer mainSketch, boolean isActive) {
-        super(mainSketch, isActive);
+    public LevelSelectMenu(Platformer mainSketch, boolean initAsActive) {
+        super(mainSketch, initAsActive);
     }
 
     /**

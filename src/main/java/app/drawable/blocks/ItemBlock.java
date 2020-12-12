@@ -25,10 +25,10 @@ public class ItemBlock extends Block {
      */
     public ItemBlock(Platformer mainSketch, int leftX, int topY,
                      int width, int height, ACollectable item,
-                     int blockLineThickness, boolean isBreakableFromBottom, boolean isActive) {
+                     int blockLineThickness, boolean isBreakableFromBottom, boolean initAsActive) {
 
         super(mainSketch, leftX, topY, width, height,
-            blockLineThickness, isBreakableFromBottom, isActive);   // initially not active, to be set in makeActive()
+            blockLineThickness, isBreakableFromBottom, initAsActive);   // initially not active, to be set in makeActive()
 
         this.blockText = "?";
         this.itemAppeared = false;
@@ -47,10 +47,10 @@ public class ItemBlock extends Block {
      */
     public ItemBlock(Platformer mainSketch, int leftX, int topY,
                      int width, int height, ACollectable item,
-                     int blockLineThickness, boolean isVisible, boolean isBreakableFromBottom, boolean isActive) {
+                     int blockLineThickness, boolean isVisible, boolean isBreakableFromBottom, boolean initAsActive) {
 
         super(mainSketch, leftX, topY, width, height, blockLineThickness,
-            isVisible, isBreakableFromBottom, isActive);  // initially not active, to be set in makeActive(), isVisible
+            isVisible, isBreakableFromBottom, initAsActive);  // initially not active, to be set in makeActive(), isVisible
 
         this.itemAppeared = false;
 

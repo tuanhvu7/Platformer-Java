@@ -31,7 +31,7 @@ public abstract class APanel implements IDrawable, IMouseControllable {
     /**
      * set properties of this
      */
-    APanel(Platformer mainSketch, int panelColor, String panelText, int leftX, int topY, int width, int height, boolean isActive) {
+    APanel(Platformer mainSketch, int panelColor, String panelText, int leftX, int topY, int width, int height, boolean initAsActive) {
         this.mainSketch = mainSketch;
 
         this.panelText = panelText;
@@ -45,7 +45,7 @@ public abstract class APanel implements IDrawable, IMouseControllable {
         this.topY = topY;
         this.bottomY = topY + height;
 
-        if (isActive) {
+        if (initAsActive) {
             this.makeActive();
         }
     }

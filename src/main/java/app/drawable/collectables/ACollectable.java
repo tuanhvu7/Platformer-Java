@@ -29,7 +29,7 @@ public abstract class ACollectable implements IDrawable {
      */
     ACollectable(Platformer mainSketch,
                  int leftX, int topY, int width, int height,
-                 int blockLineThickness, boolean isActive) {
+                 int blockLineThickness, boolean initAsActive) {
 
         this.mainSketch = mainSketch;
 
@@ -40,7 +40,7 @@ public abstract class ACollectable implements IDrawable {
 
         this.blockLineThickness = blockLineThickness;
 
-        if (isActive) {
+        if (initAsActive) {
             this.makeActive();
         }
     }

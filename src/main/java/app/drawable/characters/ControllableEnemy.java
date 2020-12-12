@@ -34,8 +34,8 @@ public class ControllableEnemy extends Enemy implements IKeyControllable {
     public ControllableEnemy(Platformer mainSketch, int x, int y, int diameter,
                              boolean isJumpControllable, boolean isHorizontalControllable,
                              float horizontalVel,
-                             boolean isInvulnerable, boolean isVisible, boolean isActive) {
-        super(mainSketch, x, y, diameter, horizontalVel, isInvulnerable, isVisible, isActive);
+                             boolean isInvulnerable, boolean isVisible, boolean initAsActive) {
+        super(mainSketch, x, y, diameter, horizontalVel, isInvulnerable, isVisible, initAsActive);
         this.isJumpControllable = isJumpControllable;
         this.jumpPressed = false;
 

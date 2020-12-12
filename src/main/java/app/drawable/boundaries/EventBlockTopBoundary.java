@@ -13,8 +13,8 @@ public class EventBlockTopBoundary extends HorizontalBoundary {
      * sets this to affect all characters and be visible
      */
     public EventBlockTopBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
-                                 boolean isActive) {
-        super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness, true, isActive);
+                                 boolean initAsActive) {
+        super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness, true, initAsActive);
     }
 
     /**
@@ -22,8 +22,8 @@ public class EventBlockTopBoundary extends HorizontalBoundary {
      * sets this to affect all characters
      */
     public EventBlockTopBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
-                                 boolean isVisible, boolean isActive) {
-        super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness, isVisible, true, isActive);
+                                 boolean isVisible, boolean initAsActive) {
+        super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness, isVisible, true, initAsActive);
     }
 
     /**
@@ -31,10 +31,10 @@ public class EventBlockTopBoundary extends HorizontalBoundary {
      */
     public EventBlockTopBoundary(Platformer mainSketch, int startXPoint, int startYPoint, int x2Offset, int boundaryLineThickness,
                                  boolean isVisible, boolean doesAffectPlayer, boolean doesAffectNonPlayers,
-                                 boolean isActive) {
+                                 boolean initAsActive) {
         super(mainSketch, startXPoint, startYPoint, x2Offset, boundaryLineThickness,
             isVisible, doesAffectPlayer, doesAffectNonPlayers,
-            true, isActive);
+            true, initAsActive);
     }
 
     /**

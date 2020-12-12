@@ -9,8 +9,8 @@ import app.enums.EProcessingMethods;
  * common for menus with keyboard controls
  */
 public abstract class AMenuWithKeyboardControl extends AMenu implements IKeyControllable {
-    AMenuWithKeyboardControl(Platformer mainSketch, boolean isActive) {
-        super(mainSketch, isActive);
+    AMenuWithKeyboardControl(Platformer mainSketch, boolean initAsActive) {
+        super(mainSketch, initAsActive);
     }
 
     /**

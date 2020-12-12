@@ -11,8 +11,8 @@ public class LevelGoal extends ACollectable {
      * set properties of this;
      * sets this to affect all characters and be visible
      */
-    public LevelGoal(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness, boolean isActive) {
-        super(mainSketch, leftX, topY, width, height, blockLineThickness, isActive);
+    public LevelGoal(Platformer mainSketch, int leftX, int topY, int width, int height, int blockLineThickness, boolean initAsActive) {
+        super(mainSketch, leftX, topY, width, height, blockLineThickness, initAsActive);
         this.fillColor = Constants.LEVEL_GOAL_COLOR;
     }
 
